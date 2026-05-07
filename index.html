@@ -570,35 +570,8 @@
     </div>
 
     <div id="aiWeakConfig" class="hidden" style="margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-        <div>
-          <div class="hint" style="margin-bottom:4px;">과목</div>
-          <select id="aiWeakSubjectSelect" class="select">
-            <option value="1과목">상법(보험편)</option>
-            <option value="2과목">농어업재해보험법령</option>
-            <option value="3과목">재배학</option>
-          </select>
-        </div>
-        <div>
-          <div class="hint" style="margin-bottom:4px;">난이도</div>
-          <select id="aiWeakDifficultySelect" class="select">
-            <option value="default" selected>기본(실전+)</option>
-            <option value="high">상</option>
-            <option value="medium">중</option>
-            <option value="low">하</option>
-          </select>
-        </div>
-        <div>
-          <div class="hint" style="margin-bottom:4px;">문제 수</div>
-          <select id="aiWeakCountSelect" class="select">
-            <option value="20">20</option>
-            <option value="25" selected>25</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-      </div>
+      <div id="aiWeakSubjectRows"></div>
+      <button class="btn sm outline" style="margin-top:8px;width:100%;" onclick="addWeakSubjectRow()">➕ 과목 추가</button>
     </div>
 
     <input id="apiKeyInput" class="api-input" type="password" placeholder="Gemini API Key 입력" style="margin-top:10px;" />
@@ -1521,9 +1494,7 @@ function openAIModal(){
   document.getElementById('aiRoundInput').value='';
   document.getElementById('aiTagInput').value='';
   document.querySelector('input[name="aiMode"][value="full"]').checked=true;
-  document.getElementById('aiWeakSubjectSelect').value='2과목';
-  document.getElementById('aiWeakDifficultySelect').value='default';
-  document.getElementById('aiWeakCountSelect').value='25';
+  resetWeakSubjectRows();
   toggleAIModeUI();
   document.getElementById('aiModal').classList.remove('hidden');
 }
@@ -1531,6 +1502,78 @@ function closeAIModal(){ document.getElementById('aiModal').classList.add('hidde
 function toggleAIModeUI(){
   const mode=document.querySelector('input[name="aiMode"]:checked')?.value||'full';
   document.getElementById('aiWeakConfig').classList.toggle('hidden', mode!=='weak');
+}
+
+/* 약점 과목 동적 행 관리 */
+const WEAK_SUBJECT_OPTIONS = [
+  {value:'1과목', label:'상법(보험편)'},
+  {value:'2과목', label:'농어업재해보험법령'},
+  {value:'3과목', label:'재배학'}
+];
+const WEAK_DIFF_OPTIONS = [
+  {value:'default', label:'기본(실전+)'},
+  {value:'high', label:'상'},
+  {value:'medium', label:'중'},
+  {value:'low', label:'하'}
+];
+const WEAK_COUNT_OPTIONS = ['20','25','30','40','50'];
+
+function buildWeakSubjectRow(subjectVal, diffVal, countVal, isFirst){
+  const subOpts = WEAK_SUBJECT_OPTIONS.map(o=>`<option value="${o.value}" ${o.value===subjectVal?'selected':''}>${o.label}</option>`).join('');
+  const diffOpts = WEAK_DIFF_OPTIONS.map(o=>`<option value="${o.value}" ${o.value===diffVal?'selected':''}>${o.label}</option>`).join('');
+  const cntOpts = WEAK_COUNT_OPTIONS.map(v=>`<option value="${v}" ${v===countVal?'selected':''}>${v}</option>`).join('');
+  const removeBtn = isFirst ? '' : `<button class="btn sm danger" style="padding:2px 8px;font-size:.75rem;flex-shrink:0;" onclick="removeWeakSubjectRow(this)" title="과목 제거">✕</button>`;
+  return `<div class="weak-subject-row" style="display:flex;align-items:flex-end;gap:6px;margin-bottom:6px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:100px;">
+      <div class="hint" style="margin-bottom:2px;font-size:.75rem;">과목</div>
+      <select class="select weak-sub-select" style="width:100%;">${subOpts}</select>
+    </div>
+    <div style="flex:1;min-width:90px;">
+      <div class="hint" style="margin-bottom:2px;font-size:.75rem;">난이도</div>
+      <select class="select weak-diff-select" style="width:100%;">${diffOpts}</select>
+    </div>
+    <div style="flex:1;min-width:80px;">
+      <div class="hint" style="margin-bottom:2px;font-size:.75rem;">문제 수</div>
+      <select class="select weak-count-select" style="width:100%;">${cntOpts}</select>
+    </div>
+    ${removeBtn}
+  </div>`;
+}
+
+function resetWeakSubjectRows(){
+  const container = document.getElementById('aiWeakSubjectRows');
+  container.innerHTML = buildWeakSubjectRow('2과목','default','25',true);
+}
+
+function addWeakSubjectRow(){
+  const container = document.getElementById('aiWeakSubjectRows');
+  const existingRows = container.querySelectorAll('.weak-subject-row');
+  if(existingRows.length >= 3) { showToast('최대 3과목까지 선택 가능합니다',2000); return; }
+  const usedSubjects = new Set();
+  container.querySelectorAll('.weak-sub-select').forEach(s=>usedSubjects.add(s.value));
+  const nextSub = WEAK_SUBJECT_OPTIONS.find(o=>!usedSubjects.has(o.value));
+  const subVal = nextSub ? nextSub.value : '1과목';
+  container.insertAdjacentHTML('beforeend', buildWeakSubjectRow(subVal,'default','25',false));
+}
+
+function removeWeakSubjectRow(btn){
+  const container = document.getElementById('aiWeakSubjectRows');
+  const rows = container.querySelectorAll('.weak-subject-row');
+  if(rows.length <= 1) { showToast('최소 1과목은 선택해야 합니다',2000); return; }
+  btn.closest('.weak-subject-row').remove();
+}
+
+function collectWeakSubjectConfigs(){
+  const configs = [];
+  const container = document.getElementById('aiWeakSubjectRows');
+  container.querySelectorAll('.weak-subject-row').forEach(row=>{
+    configs.push({
+      subject: row.querySelector('.weak-sub-select').value,
+      difficulty: row.querySelector('.weak-diff-select').value,
+      count: Number(row.querySelector('.weak-count-select').value || 25)
+    });
+  });
+  return configs;
 }
 
 async function startGeminiAI(){
@@ -1545,18 +1588,22 @@ async function startGeminiAI(){
   if(saveKey&&apiKey) localStorage.setItem(STORAGE.API_KEY,apiKey);
   if(!saveKey) localStorage.removeItem(STORAGE.API_KEY);
 
-  let selectedSubjects=[], targetCountMap={}, difficulty='default';
+  let selectedSubjects=[], targetCountMap={}, difficulty='default', subjectDifficultyMap={};
   if(aiMode==='full'){
     selectedSubjects=['1과목','2과목','3과목'];
     targetCountMap={"1과목":25,"2과목":25,"3과목":25};
     difficulty='default';
   }else{
-    const weakSubject=document.getElementById('aiWeakSubjectSelect').value;
-    const weakCount=Number(document.getElementById('aiWeakCountSelect').value||25);
-    difficulty=document.getElementById('aiWeakDifficultySelect').value||'default';
-    selectedSubjects=[weakSubject];
+    const configs=collectWeakSubjectConfigs();
     targetCountMap={"1과목":0,"2과목":0,"3과목":0};
-    targetCountMap[weakSubject]=weakCount;
+    configs.forEach(c=>{
+      selectedSubjects.push(c.subject);
+      targetCountMap[c.subject]=(targetCountMap[c.subject]||0)+c.count;
+      subjectDifficultyMap[c.subject]=c.difficulty;
+    });
+    // 중복 제거 (같은 과목 여러 행이면 합산)
+    selectedSubjects=[...new Set(selectedSubjects)];
+    difficulty=configs[0]?.difficulty||'default';
   }
 
   closeAIModal();
@@ -1598,7 +1645,9 @@ async function startGeminiAI(){
 
     await Promise.all(selectedSubjects.map(async code=>{
       const need=targetCountMap[code]||0;
-      resultMap[code]=await generateBySubject(apiKey,code,subjectLongName[code],ordered,conf.aiGuide,need);
+      const subDiff=subjectDifficultyMap[code]||difficulty;
+      const subConf=getDifficultyConfigByKey(subDiff);
+      resultMap[code]=await generateBySubject(apiKey,code,subjectLongName[code],ordered,subConf.aiGuide,need);
     }));
 
     const generated=[];
@@ -1637,7 +1686,8 @@ async function startGeminiAI(){
       const autoMin=getAutoMinutesByQuestionCount(currentQuestions.length);
       examDurationSec=autoMin*60;
       examRemainingSec=examDurationSec;
-      setExamModeChip(`AI 약점집중 · ${SUBJECT_NAMES[selectedSubjects[0]]} · ${currentQuestions.length}문항 · ${autoMin}분`);
+      const subNames=selectedSubjects.map(s=>SUBJECT_NAMES[s]).join('+');
+      setExamModeChip(`AI 약점집중 · ${subNames} · ${currentQuestions.length}문항 · ${autoMin}분`);
     }else{
       examDurationSec=90*60;
       examRemainingSec=90*60;
