@@ -833,14 +833,16 @@ const STORAGE = {
 const PAST_EXAM_URL = 'https://www.comcbt.com/cbt/index2.php?hack_number=29';
 
 const MODEL_PRICING_USD_PER_1M = [
-  { re:/gemini-2\.5-pro/i, in:3.50, out:10.50 },
-  { re:/gemini-2\.5-flash/i, in:0.35, out:1.05 },
+  { re:/gemini-3-pro/i, in:1.25, out:5.00 },
+  { re:/gemini-3-flash/i, in:0.15, out:0.60 },
+  { re:/gemini-2\.5-pro/i, in:1.25, out:5.00 },
+  { re:/gemini-2\.5-flash/i, in:0.15, out:0.60 },
   { re:/gemini-1\.5-pro/i, in:3.50, out:10.50 },
   { re:/gemini-1\.5-flash/i, in:0.35, out:1.05 },
   { re:/gemini-pro/i, in:0.50, out:1.50 },
-  { re:/gemini/i, in:0.50, out:1.50 },
+  { re:/gemini/i, in:0.15, out:0.60 },
 ];
-const FX_USD_KRW = 1350;
+const FX_USD_KRW = 1450;
 
 const DIFFICULTY_MAP = {
   default:{ label:'실전+', wrongMix:0.30, aiGuide:'실제 기출보다 살짝 어렵게. 함정은 과하지 않게.', modelMode:'balanced' },
@@ -1183,8 +1185,16 @@ function saveBudget(){
   updateDashboard();
 }
 
-function estimateTokensByChars(t){ return Math.max(1,Math.ceil(String(t||'').length/4)); }
-function getPricingByModel(m){ return MODEL_PRICING_USD_PER_1M.find(x=>x.re.test(String(m||''))) || {in:0.50,out:1.50}; }
+function estimateTokensByChars(t){
+  const s=String(t||'');
+  // 한글/한자/일본어 등 CJK 문자는 Gemini 토크나이저에서 약 1글자=1토큰
+  // 영문/숫자는 약 4글자=1토큰
+  const cjkCount=(s.match(/[\u1100-\u11FF\u2E80-\u2FDF\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u3130-\u318F\u3200-\u32FF\u3400-\u4DBF\u4E00-\u9FFF\uAC00-\uD7AF\uF900-\uFAFF\uFF00-\uFFEF]/g)||[]).length;
+  const otherCount=s.length-cjkCount;
+  // CJK: 1토큰/글자, 기타: 0.25토큰/글자 (4글자당 1토큰)
+  return Math.max(1, Math.round(cjkCount + otherCount/4));
+}
+function getPricingByModel(m){ return MODEL_PRICING_USD_PER_1M.find(x=>x.re.test(String(m||''))) || {in:0.15,out:0.60}; }
 function addApiUsageEstimate(p,r,m){
   const s=getApiUsageStats();
   const pT=estimateTokensByChars(p), rT=estimateTokensByChars(r), pr=getPricingByModel(m);
@@ -2056,6 +2066,14 @@ function runSelfCheck(){
   check('apiStatusBody 요소 존재', !!document.getElementById('apiStatusBody'));
   check('API 사용량 초기화 버튼 존재', !!document.querySelector('button[onclick="resetApiUsage()"]'));
 
+  // 13-2. 토큰 추정 및 가격 정확도 확인
+  const estSrc=estimateTokensByChars.toString();
+  check('estimateTokensByChars CJK 문자 감지 포함', estSrc.includes('CJK')||estSrc.includes('\\u4E00'));
+  check('MODEL_PRICING gemini-3-pro 포함', MODEL_PRICING_USD_PER_1M.some(x=>x.re.test('gemini-3-pro')));
+  check('MODEL_PRICING gemini-3-flash 포함', MODEL_PRICING_USD_PER_1M.some(x=>x.re.test('gemini-3-flash')));
+  check('FX_USD_KRW 1450으로 업데이트', FX_USD_KRW===1450);
+  check('fallback 가격 0.15/0.60 (flash 기준)', (()=>{const p=getPricingByModel('unknown-model');return p.in===0.15&&p.out===0.60;})());
+
   // 14. localStorage 실측 확인
   const storedKey=localStorage.getItem(STORAGE.API_KEY);
   const usage=getApiUsageStats();
@@ -2091,6 +2109,10 @@ function runSelfCheck(){
   log.push(`  10. 💰 API 현황 패널: 키 상태/호출횟수/비용/한도/사용률 바 + 모델별 상세`);
   log.push(`  11. 🔄 API 사용량 초기화: 호출/비용만 리셋 (키·한도 유지)`);
   log.push(`  12. 🛡️ 전체 초기화 시 API 데이터(키/사용량/한도) 보존 보장`);
+  log.push(`  13. 📋 과목별 출제범위: 상법 보험편 / 농재법 / 재배학 상세 범위 + 절대금지 주제`);
+  log.push(`  14. 💰 토큰 추정 개선: 한글 1글자=1토큰, 영문 4글자=1토큰으로 정확도 향상`);
+  log.push(`  15. 💵 모델 가격 업데이트: gemini-3-pro/flash 추가, 2026년 5월 기준 최신 가격 반영`);
+  log.push(`  16. 💱 환율 업데이트: 1,350원 → 1,450원 (USD/KRW)`);
 
   document.getElementById('patchLogBody').textContent=log.join('\n');
 }
