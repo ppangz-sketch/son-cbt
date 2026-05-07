@@ -340,6 +340,7 @@
       <div class="subtitle">2026 제12회 1차 대비 · 산업인력공단 실전 재현</div>
     </div>
     <div class="header-actions">
+      <button class="theme-btn" onclick="openPatchLog()" title="수정 로그 확인">📋 로그</button>
       <div id="timerBox" class="hidden">⏱ <span id="timeText">90:00</span></div>
       <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     </div>
@@ -586,6 +587,18 @@
     <div class="modal-actions">
       <button class="btn outline" onclick="closeAIModal()">취소</button>
       <button class="btn primary" onclick="startGeminiAI()">AI 생성 시작</button>
+    </div>
+  </div>
+</div>
+
+<!-- PATCH LOG MODAL -->
+<div id="patchLogModal" class="modal hidden">
+  <div class="modal-card" style="max-width:700px;">
+    <div class="modal-title">📋 수정 로그 (Patch Log)</div>
+    <div id="patchLogBody" style="max-height:450px;overflow-y:auto;font-size:.82rem;line-height:1.6;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:8px;white-space:pre-wrap;font-family:Consolas,'Courier New',monospace;color:var(--text);"></div>
+    <div class="modal-actions" style="margin-top:10px;">
+      <button class="btn outline" onclick="document.getElementById('patchLogModal').classList.add('hidden')">닫기</button>
+      <button class="btn primary" onclick="runSelfCheck()">🔄 재검사</button>
     </div>
   </div>
 </div>
@@ -1502,6 +1515,84 @@ function closeAIModal(){ document.getElementById('aiModal').classList.add('hidde
 function toggleAIModeUI(){
   const mode=document.querySelector('input[name="aiMode"]:checked')?.value||'full';
   document.getElementById('aiWeakConfig').classList.toggle('hidden', mode!=='weak');
+}
+
+/* =============================
+   수정 로그 / 자가진단
+============================= */
+function openPatchLog(){
+  document.getElementById('patchLogModal').classList.remove('hidden');
+  runSelfCheck();
+}
+
+function runSelfCheck(){
+  const log=[];
+  const now=new Date().toLocaleString('ko-KR');
+  log.push(`🕐 검사시각: ${now}`);
+  log.push(`──────────────────────────────`);
+  log.push(``);
+
+  let pass=0, fail=0;
+
+  function check(desc, ok, detail){
+    if(ok){ pass++; log.push(`✅ PASS — ${desc}`); }
+    else { fail++; log.push(`❌ FAIL — ${desc}${detail?' → '+detail:''}`); }
+  }
+
+  // 1. aiWeakConfig 구조 확인
+  const cfg=document.getElementById('aiWeakConfig');
+  check('aiWeakConfig 요소 존재', !!cfg);
+  check('aiWeakConfig 내 aiWeakSubjectRows 존재', !!document.getElementById('aiWeakSubjectRows'));
+  check('aiWeakConfig 내 과목추가 버튼 존재', !!cfg?.querySelector('button[onclick*="addWeakSubjectRow"]'));
+
+  // 2. 기존 select 제거 확인
+  check('aiWeakSubjectSelect 제거됨 (동적행으로 대체)', !document.getElementById('aiWeakSubjectSelect'));
+  check('aiWeakDifficultySelect 제거됨', !document.getElementById('aiWeakDifficultySelect'));
+  check('aiWeakCountSelect 제거됨', !document.getElementById('aiWeakCountSelect'));
+
+  // 3. JS 함수 존재 확인
+  check('buildWeakSubjectRow 함수 존재', typeof buildWeakSubjectRow==='function');
+  check('resetWeakSubjectRows 함수 존재', typeof resetWeakSubjectRows==='function');
+  check('addWeakSubjectRow 함수 존재', typeof addWeakSubjectRow==='function');
+  check('removeWeakSubjectRow 함수 존재', typeof removeWeakSubjectRow==='function');
+  check('collectWeakSubjectConfigs 함수 존재', typeof collectWeakSubjectConfigs==='function');
+
+  // 4. WEAK 상수 존재 확인
+  check('WEAK_SUBJECT_OPTIONS 상수 존재', Array.isArray(WEAK_SUBJECT_OPTIONS) && WEAK_SUBJECT_OPTIONS.length===3);
+  check('WEAK_DIFF_OPTIONS 상수 존재', Array.isArray(WEAK_DIFF_OPTIONS) && WEAK_DIFF_OPTIONS.length===4);
+  check('WEAK_COUNT_OPTIONS 상수 존재', Array.isArray(WEAK_COUNT_OPTIONS) && WEAK_COUNT_OPTIONS.length===5);
+
+  // 5. openAIModal에서 resetWeakSubjectRows 호출 확인
+  const openAISrc=openAIModal.toString();
+  check('openAIModal에서 resetWeakSubjectRows 호출', openAISrc.includes('resetWeakSubjectRows'));
+  check('openAIModal에서 기존 select 참조 없음', !openAISrc.includes('aiWeakSubjectSelect'));
+
+  // 6. startGeminiAI에서 collectWeakSubjectConfigs 호출 확인
+  const startAISrc=startGeminiAI.toString();
+  check('startGeminiAI에서 collectWeakSubjectConfigs 호출', startAISrc.includes('collectWeakSubjectConfigs'));
+  check('startGeminiAI에서 subjectDifficultyMap 사용', startAISrc.includes('subjectDifficultyMap'));
+
+  // 7. 헤더 로그 버튼 확인
+  check('헤더에 📋 로그 버튼 존재', !!document.querySelector('button[onclick="openPatchLog()"]'));
+
+  // 8. 패치로그 모달 존재
+  check('patchLogModal 모달 존재', !!document.getElementById('patchLogModal'));
+
+  log.push(``);
+  log.push(`──────────────────────────────`);
+  log.push(`📊 결과: ${pass}개 통과 / ${fail}개 실패 / ${pass+fail}개 항목`);
+  if(fail===0) log.push(`🎉 모든 검사 통과! 수정사항이 정상 적용되었습니다.`);
+  else log.push(`⚠️ ${fail}개 항목 실패 — 위 FAIL 항목을 확인하세요.`);
+
+  log.push(``);
+  log.push(`📝 적용된 수정 내역:`);
+  log.push(`  1. aiWeakConfig: 단일 select → 동적 행(row) 시스템`);
+  log.push(`  2. 각 행: 과목/난이도/문제수 select + 제거(✕) 버튼`);
+  log.push(`  3. ➕ 과목 추가 버튼 (최대 3과목, 중복 자동 제외)`);
+  log.push(`  4. startGeminiAI: 다중 과목 수집 → subjectDifficultyMap`);
+  log.push(`  5. 결과 라벨: '상법+농재법' 형식으로 다중 과목 표시`);
+
+  document.getElementById('patchLogBody').textContent=log.join('\n');
 }
 
 /* 약점 과목 동적 행 관리 */
