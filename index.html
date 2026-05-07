@@ -1578,6 +1578,23 @@ function runSelfCheck(){
   // 8. 패치로그 모달 존재
   check('patchLogModal 모달 존재', !!document.getElementById('patchLogModal'));
 
+  // 9. API 키 저장 로직 확인
+  check('openAIModal에서 저장된 API키 불러오기', openAISrc.includes('STORAGE.API_KEY'));
+  check('startGeminiAI에서 API키 저장/삭제 분기', startAISrc.includes('saveKey&&apiKey') && startAISrc.includes('saveKey&&!apiKey'));
+  check('saveApiKeyChk 체크박스 존재', !!document.getElementById('saveApiKeyChk'));
+  check('apiKeyInput 필드 존재', !!document.getElementById('apiKeyInput'));
+
+  // 10. localStorage 실측 확인
+  const storedKey=localStorage.getItem(STORAGE.API_KEY);
+  if(storedKey){
+    const masked=storedKey.slice(0,6)+'...'+storedKey.slice(-4);
+    log.push(``);
+    log.push(`🔑 localStorage 저장된 API 키: ${masked} (길이:${storedKey.length})`);
+  } else {
+    log.push(``);
+    log.push(`🔑 localStorage 저장된 API 키: 없음`);
+  }
+
   log.push(``);
   log.push(`──────────────────────────────`);
   log.push(`📊 결과: ${pass}개 통과 / ${fail}개 실패 / ${pass+fail}개 항목`);
@@ -1591,6 +1608,7 @@ function runSelfCheck(){
   log.push(`  3. ➕ 과목 추가 버튼 (최대 3과목, 중복 자동 제외)`);
   log.push(`  4. startGeminiAI: 다중 과목 수집 → subjectDifficultyMap`);
   log.push(`  5. 결과 라벨: '상법+농재법' 형식으로 다중 과목 표시`);
+  log.push(`  6. API키 저장: 체크+입력→저장 / 체크+빈값→삭제 / 미체크→삭제`);
 
   document.getElementById('patchLogBody').textContent=log.join('\n');
 }
@@ -1676,7 +1694,8 @@ async function startGeminiAI(){
   const roundId=roundInput||getRoundAutoName();
   const aiMode=document.querySelector('input[name="aiMode"]:checked')?.value||'full';
 
-  if(saveKey&&apiKey) localStorage.setItem(STORAGE.API_KEY,apiKey);
+  if(saveKey&&apiKey){ localStorage.setItem(STORAGE.API_KEY,apiKey); }
+  else if(saveKey&&!apiKey){ localStorage.removeItem(STORAGE.API_KEY); }
   if(!saveKey) localStorage.removeItem(STORAGE.API_KEY);
 
   let selectedSubjects=[], targetCountMap={}, difficulty='default', subjectDifficultyMap={};
