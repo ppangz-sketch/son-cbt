@@ -439,6 +439,7 @@
         <button class="btn primary" onclick="startAIBankFilteredExam(false)">조건 랜덤 풀이</button>
         <button class="btn warn" onclick="startAIBankFilteredExam(true)">조건 오답만 재시험</button>
         <button class="btn outline" onclick="resetAIBankSeen()">풀이이력 초기화</button>
+        <button class="btn danger" onclick="resetAIBankAll()">전체 초기화</button>
       </div>
       <div id="bankStats" style="margin-top:10px;"></div>
       <div id="bankPreview" style="margin-top:10px;"></div>
@@ -520,6 +521,10 @@
 
   <section id="resultScreen" class="hidden">
     <div class="result-wrap">
+      <div class="panel" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+        <h2 style="margin:0;color:var(--primary);">📊 시험 결과</h2>
+        <button class="btn primary" onclick="goHome()">🏠 메인으로</button>
+      </div>
       <div class="panel" style="text-align:center;">
         <div id="motivationMessage" style="font-size:1.15rem;font-weight:800;color:var(--primary);"></div>
         <div id="motivationSub" style="margin-top:6px;color:var(--sub);font-weight:700;"></div>
@@ -993,6 +998,14 @@ function saveAIBankSeenSet(s){ localStorage.setItem(STORAGE.AI_BANK_SEEN, JSON.s
 function resetAIBankSeen(){
   if(!confirm('풀이이력을 초기화할까요?')) return;
   localStorage.setItem(STORAGE.AI_BANK_SEEN,'[]');
+  updateAIBankScreen(); updateDashboard();
+}
+function resetAIBankAll(){
+  if(!confirm('AI 문제은행의 모든 데이터(문제, 풀이이력, 오답기록)를 초기화할까요?\n\n⚠ 이 작업은 되돌릴 수 없습니다.')) return;
+  localStorage.removeItem(STORAGE.AI_BANK);
+  localStorage.removeItem(STORAGE.AI_BANK_SEEN);
+  localStorage.removeItem(STORAGE.AI_BANK_WRONG);
+  showToast('AI 문제은행 전체 초기화 완료');
   updateAIBankScreen(); updateDashboard();
 }
 function getAIBankWrongMap(){ try{ return JSON.parse(localStorage.getItem(STORAGE.AI_BANK_WRONG)||'{}')||{}; }catch(_){ return {}; } }
@@ -1594,12 +1607,18 @@ async function startGeminiAI(){
       const need=targetCountMap[code]||0;
       const aiList=resultMap[code]?.list||[];
       const academyPool=uniqueBySignature(bySubject(academyData,code));
-      const mixedPool=uniqueBySignature([...aiList,...academyPool]);
 
-      let picked=pickWithoutRecent(mixedPool,need,code);
+      // AI 생성 문제만 우선 사용 (학원 문제 섞지 않음)
+      let picked=pickWithoutRecent(aiList,need,code);
       if(picked.length<need){
         partialFilled=true;
-        picked=ensureCountWithDup([...picked,...academyPool],need,code);
+        // 부족한 경우에만 학원 DB로 보완
+        const remaining=need-picked.length;
+        const academyPicked=pickWithoutRecent(academyPool,remaining,code);
+        picked=[...picked,...academyPicked];
+        if(picked.length<need){
+          picked=ensureCountWithDup([...picked,...academyPool],need,code);
+        }
       }
       generated.push(...picked);
     }
