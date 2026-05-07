@@ -337,7 +337,6 @@
     }
     [data-theme="dark"] .opt-num{border-color:rgba(255,255,255,0.2);color:var(--sub);}
     .option.selected .opt-num{background:var(--primary);color:#fff;border-color:var(--primary);}
-    .jamo-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
     .jamo-chip{
       display:inline-flex;align-items:center;justify-content:center;
       min-width:26px;height:26px;padding:2px 8px;
@@ -348,6 +347,33 @@
     [data-theme="dark"] .jamo-chip{
       background:rgba(88,166,255,0.12);
       border:1px solid rgba(88,166,255,0.3);
+    }
+    /* jamo-box: ㄱㄴㄷㄹ 보기 박스 */
+    .jamo-box{
+      margin:12px 0;padding:14px 16px;
+      border:1.5px solid var(--line);border-radius:10px;
+      background:var(--panel);
+    }
+    [data-theme="dark"] .jamo-box{
+      background:rgba(255,255,255,0.02);
+      border-color:rgba(255,255,255,0.08);
+    }
+    .jamo-box-title{
+      font-size:.78rem;font-weight:800;color:var(--sub);
+      margin-bottom:10px;letter-spacing:.5px;
+    }
+    .jamo-grid{
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .jamo-item{
+      display:flex;align-items:flex-start;gap:10px;
+      line-height:1.55;
+    }
+    .jamo-item .jamo-chip{
+      flex-shrink:0;margin-top:1px;
+    }
+    .jamo-item .jamo-text{
+      flex:1;font-size:.92rem;color:var(--text);
     }
     .nav-row{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:16px;}
 
@@ -885,9 +911,70 @@ function escapeHtml(s){
   return String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
 }
 function renderJamoBoxes(text){
-  // ㄱ,ㄴ,ㄷ,ㄹ,ㅁ,ㅂ,ㅅ,ㅇ,ㅈ,ㅊ,ㅋ,ㅌ,ㅍ,ㅎ 패턴을 사각박스로 감싸기
+  // ㄱ,ㄴ,ㄷ,ㄹ,ㅁ,ㅂ,ㅅ,ㅇ,ㅈ,ㅊ,ㅋ,ㅌ,ㅍ,ㅎ 및 ㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭㉮ 패턴을 사각박스로 감싸기
   // Safari 호환: lookbehind 대신 boundary 체크
-  return String(text||'').replace(/(^|[^a-zA-Z0-9])([ㄱ-ㅎ]+)(?![a-zA-Z0-9])/g, '$1<span class="jamo-chip">$2</span>');
+  return String(text||'').replace(/(^|[^a-zA-Z0-9\u3260-\u327E])([\u3131-\u314E\u3260-\u327E]+)(?![a-zA-Z0-9\u3260-\u327E])/g, '$1<span class="jamo-chip">$2</span>');
+}
+
+// 문제 지문에서 ㄱ,ㄴ,ㄷ,ㄹ / ㉠,㉡,㉢,㉣ 항목들을 분리하여 박스로 렌더링
+function splitJamoSection(questionText){
+  // jamo 항목 패턴: 줄 시작에 ㄱ. ㄴ. ㄷ. ㄹ. ㅁ. ㅂ. ㅅ. ㅇ. ㅈ. ㅊ. ㅋ. ㅌ. ㅍ. ㅎ. 또는 ㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮
+  const jamoLineRe = /^[\u3131-\u314E\u3260-\u327E][\s\.\)]\s*/;
+  const lines = questionText.split(/\n/);
+  
+  // jamo 항목이 2개 이상 연속으로 나오는지 확인
+  let jamoStartIdx = -1;
+  let jamoCount = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (jamoLineRe.test(trimmed)) {
+      if (jamoStartIdx === -1) jamoStartIdx = i;
+      jamoCount++;
+    } else if (jamoStartIdx !== -1 && trimmed === '') {
+      // 빈 줄은 jamo 섹션 내에서 허용
+      continue;
+    } else if (jamoStartIdx !== -1) {
+      // jamo 아닌 줄이 나오면 중단
+      break;
+    }
+  }
+  
+  // jamo 항목이 2개 미만이면 분리하지 않음 (일반 텍스트로 처리)
+  if (jamoCount < 2) return { mainText: questionText, jamoItems: null };
+  
+  const mainLines = lines.slice(0, jamoStartIdx);
+  const jamoLines = lines.slice(jamoStartIdx, jamoStartIdx + jamoCount);
+  const afterLines = lines.slice(jamoStartIdx + jamoCount);
+  
+  // mainText: jamo 이전 + 이후 텍스트
+  const mainText = [...mainLines, ...afterLines].join('\n').trim();
+  
+  // jamoItems: 각 항목을 {label, text}로 파싱
+  const jamoItems = jamoLines.map(line => {
+    const trimmed = line.trim();
+    const match = trimmed.match(/^([\u3131-\u314E\u3260-\u327E]+)[\s\.\)]\s*(.*)$/);
+    if (match) {
+      return { label: match[1], text: match[2] };
+    }
+    return { label: '', text: trimmed };
+  }).filter(item => item.label);
+  
+  return { mainText, jamoItems: jamoItems.length >= 2 ? jamoItems : null };
+}
+
+function renderJamoBox(jamoItems){
+  if (!jamoItems || !jamoItems.length) return '';
+  return `<div class="jamo-box">
+    <div class="jamo-box-title">보기</div>
+    <div class="jamo-grid">
+      ${jamoItems.map(item => `
+        <div class="jamo-item">
+          <span class="jamo-chip">${escapeHtml(item.label)}</span>
+          <span class="jamo-text">${renderJamoBoxes(escapeHtml(item.text))}</span>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
 }
 function questionSignature(q){ return simpleHash(`${q.subject}|${q.question}|${(q.options||[]).join('|')}|${q.answer}`); }
 function simpleHash(str){
@@ -1707,7 +1794,9 @@ ${scopeText}
 - options는 반드시 4개, answer는 0~3 정수
 - 마크다운 코드블록(\`\`\`) 금지, JSON 배열 외 어떤 텍스트도 출력 금지
 - 모든 보기는 길고 상세하게 — 단답형 절대 금지
-- [절대 출제 금지 주제]에 해당하는 내용은 어떤 경우에도 출제하지 마라`;
+- [절대 출제 금지 주제]에 해당하는 내용은 어떤 경우에도 출제하지 마라
+- question 필드에 ㄱ,ㄴ,ㄷ,ㄹ,ㅁ,ㅂ,㉠,㉡,㉢,㉣ 등의 자모 항목을 절대 포함하지 마라. 문제 지문은 순수한 질문 텍스트만 작성하고, 선택지는 options 배열에만 넣어라.
+- "다음 중 옳은 것을 모두 고르면?" 같은 문제는 question에 질문만 쓰고, 보기 내용은 options 배열의 각 항목에 풀어서 작성하라.`;
 }
 function safeParseJSONArray(text){
   let t=String(text||'').trim().replace(/```json/gi,'').replace(/```/g,'').trim();
@@ -2428,6 +2517,11 @@ function renderCurrentQuestion(){
   const sig=q.signature||questionSignature(q);
   const isBookmarked=currentBookmarks.has(sig);
   const card=document.getElementById('questionCard');
+  
+  // jamo 항목 분리 처리
+  const { mainText, jamoItems } = splitJamoSection(q.question);
+  const jamoBoxHTML = renderJamoBox(jamoItems);
+  
   card.innerHTML=`
     <div class="q-meta">
       <div class="q-no-wrap">
@@ -2442,7 +2536,8 @@ function renderCurrentQuestion(){
         </div>
       </div>
     </div>
-    <div class="q-text">${renderJamoBoxes(escapeHtml(q.question))}</div>
+    <div class="q-text">${renderJamoBoxes(escapeHtml(mainText))}</div>
+    ${jamoBoxHTML}
     <div class="options">
       ${q.options.map((opt,i)=>`
         <div class="option ${userAnswers[currentIndex]===i?'selected':''}" onclick="selectOption(${i})">
@@ -2620,14 +2715,17 @@ function buildTips(weakSubs,wrongCount){
 }
 function buildWrongListHTML(list){
   if(!list.length) return `<div class="strength-item">오답이 없습니다. 전체 정답!</div>`;
-  return list.map(w=>`
+  return list.map(w=>{
+    const { mainText, jamoItems } = splitJamoSection(w.q.question);
+    const jamoBoxHTML = renderJamoBox(jamoItems);
+    return `
     <div class="wrong-item">
-      <div class="wrong-q">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${renderJamoBoxes(escapeHtml(w.q.question))}</div>
+      <div class="wrong-q">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${renderJamoBoxes(escapeHtml(mainText))}${jamoBoxHTML}</div>
       <div class="wrong-me">내 답: ${w.my===null?'미응답':`${w.my+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.my]))})`}</div>
       <div class="wrong-ans">정답: ${w.q.answer+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.q.answer]))})</div>
       <div class="exp"><b>해설</b><br>${renderJamoBoxes(escapeHtml(w.q.explanation))}</div>
     </div>
-  `).join('');
+  `;}).join('');
 }
 function saveWrongNote(q){
   let notes=JSON.parse(localStorage.getItem(STORAGE.WRONG_NOTE)||'[]');
@@ -2769,10 +2867,12 @@ function renderWrongListWithStoredAnalysis(){
         </div>`;
     }
     const hasAnalysis = !!(saved && saved.analysis);
+    const { mainText, jamoItems } = splitJamoSection(w.q.question);
+    const jamoBoxHTML = renderJamoBox(jamoItems);
     return `
       <div class="wrong-item">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;">
-          <div class="wrong-q" style="flex:1;">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${renderJamoBoxes(escapeHtml(w.q.question))}</div>
+          <div class="wrong-q" style="flex:1;">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${renderJamoBoxes(escapeHtml(mainText))}${jamoBoxHTML}</div>
           <button class="btn sm ai-analyze-btn ${hasAnalysis?'success':'primary'}" data-idx="${w.idx}" onclick="analyzeSingleWrong(${w.idx}, currentQuestions[${w.idx-1}], ${w.my===null?'null':w.my})" ${hasAnalysis?'disabled':''} style="flex-shrink:0;white-space:nowrap;">${hasAnalysis?'✅':'🤖 분석'}</button>
         </div>
         <div class="wrong-me">내 답: ${w.my===null?'미응답':`${w.my+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.my]))})`}</div>
