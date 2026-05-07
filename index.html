@@ -1008,7 +1008,12 @@ function renderApiStatus(){
     <tr><td style="font-size:.75rem;word-break:break-all;">${escapeHtml(name.split('/').pop()||name)}</td>
     <td>${info.calls||0}회</td><td>${Math.round(info.costKRW||0).toLocaleString()}원</td></tr>`).join('');
 
-  document.getElementById('apiStatusBody').innerHTML=`
+  // details open 상태 보존
+  const body=document.getElementById('apiStatusBody');
+  const detailsEl=body.querySelector('details');
+  const wasOpen=detailsEl&&detailsEl.hasAttribute('open');
+
+  body.innerHTML=`
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:10px;">
       <div class="panel" style="padding:10px;text-align:center;">
         <div class="hint" style="font-size:.75rem;">API 키 상태</div>
@@ -1038,7 +1043,7 @@ function renderApiStatus(){
       </div>
     </div>`:''}
     ${modelRows?`
-    <details style="font-size:.8rem;">
+    <details${wasOpen?' open':''} style="font-size:.8rem;">
       <summary style="cursor:pointer;color:var(--primary);font-weight:700;">📋 모델별 상세</summary>
       <table style="width:100%;border-collapse:collapse;margin-top:6px;">
         <thead><tr style="border-bottom:1px solid var(--line);"><th style="text-align:left;padding:4px;">모델</th><th>호출</th><th>비용</th></tr></thead>
@@ -1721,9 +1726,9 @@ function runSelfCheck(){
   // 13. API 사용량/비용 로컬저장 독립 확인
   check('resetApiUsage 함수 존재', typeof resetApiUsage==='function');
   check('renderApiStatus 함수 존재', typeof renderApiStatus==='function');
-  check('resetAIBankAll에서 API 데이터 유지 (API_USAGE 삭제 안함)', !resetSrc.includes('API_USAGE'));
-  check('resetAIBankAll에서 API_BUDGET 유지', !resetSrc.includes('API_BUDGET'));
-  check('resetAIBankAll에서 API_KEY 유지', !resetSrc.includes('API_KEY'));
+  check('resetAIBankAll에서 API 데이터 유지 (API_USAGE 삭제 안함)', !resetSrc.includes('removeItem(STORAGE.API_USAGE)'));
+  check('resetAIBankAll에서 API_BUDGET 유지', !resetSrc.includes('removeItem(STORAGE.API_BUDGET)'));
+  check('resetAIBankAll에서 API_KEY 유지', !resetSrc.includes('removeItem(STORAGE.API_KEY)'));
   check('apiStatusBody 요소 존재', !!document.getElementById('apiStatusBody'));
   check('API 사용량 초기화 버튼 존재', !!document.querySelector('button[onclick="resetApiUsage()"]'));
 
