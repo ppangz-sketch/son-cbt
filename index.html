@@ -88,7 +88,8 @@
     #timerBox{
       padding:8px 16px;border-radius:8px;font-weight:800;font-size:1.15rem;
       background:rgba(255,255,255,.58);border:1px solid rgba(0,0,0,.18);color:#111;
-      min-width:100px;text-align:center;font-variant-numeric:tabular-nums;
+      width:110px;text-align:center;font-variant-numeric:tabular-nums;
+      display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
     }
     #timerBox.warning{background:var(--warn);color:#fff;}
     #timerBox.critical{background:var(--danger);color:#fff;animation:blink 1s infinite;}
@@ -170,7 +171,7 @@
     .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--primary-2));transition:width .3s;}
 
     .question-card{
-      background:var(--paper);border:1px solid var(--paper-line);border-radius:10px;
+      background:#ffffff;border:1px solid var(--paper-line);border-radius:10px;
       padding:24px 28px;min-height:440px;display:flex;flex-direction:column;
       box-shadow:0 1px 3px rgba(0,0,0,.03);
     }
@@ -217,6 +218,14 @@
       font-weight:800;font-size:.85rem;color:var(--sub);flex-shrink:0;margin-top:1px;
     }
     .option.selected .opt-num{background:var(--primary);color:#fff;border-color:var(--primary);}
+    .jamo-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+    .jamo-chip{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:26px;height:26px;padding:2px 8px;
+      border:1.5px solid var(--primary);border-radius:5px;
+      background:var(--primary-light);color:var(--primary);
+      font-weight:800;font-size:.82rem;
+    }
     .nav-row{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:16px;}
 
     .omr{
@@ -553,8 +562,15 @@
       <div class="panel" id="tipsBox"></div>
       <div class="panel" id="patternBox"></div>
       <div class="panel">
-        <h3 style="margin-top:0;color:var(--primary);">📝 오답 상세</h3>
+        <h3 style="margin:0 0 10px 0;color:var(--primary);">📝 오답 상세</h3>
         <div id="wrongList"></div>
+      </div>
+      <div id="resultApiFloat" style="position:fixed;bottom:20px;right:20px;z-index:100;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.78rem;box-shadow:0 2px 12px rgba(0,0,0,.08);display:flex;align-items:center;gap:8px;opacity:.75;transition:opacity .3s;cursor:default;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='.75'">
+        <span style="font-size:1rem;">💰</span>
+        <div>
+          <div style="color:var(--sub);font-size:.68rem;">API 누적비용</div>
+          <span id="resultApiCost" style="font-weight:800;color:var(--primary);font-size:.9rem;">0원</span>
+        </div>
       </div>
       <button class="btn primary" style="width:100%;padding:14px;" onclick="goHome()">메인으로</button>
     </div>
@@ -637,7 +653,8 @@ const STORAGE = {
   BOOKMARKS:'손해평가사_bookmarks_v1',
   SAVED_EXAM:'손해평가사_saved_exam_v1',
   THEME:'손해평가사_theme',
-  RECENT_SEEN:'손해평가사_recent_seen_v1'
+  RECENT_SEEN:'손해평가사_recent_seen_v1',
+  AI_WRONG_ANALYSIS:'손해평가사_ai_wrong_analysis_v1'
 };
 const PAST_EXAM_URL = 'https://www.comcbt.com/cbt/index2.php?hack_number=29';
 
@@ -690,6 +707,11 @@ function shuffle(arr){
 function bySubject(data, subject){ return (data||[]).filter(q=>q.subject===subject); }
 function escapeHtml(s){
   return String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
+}
+function renderJamoBoxes(text){
+  // ㄱ,ㄴ,ㄷ,ㄹ,ㅁ,ㅂ,ㅅ,ㅇ,ㅈ,ㅊ,ㅋ,ㅌ,ㅍ,ㅎ 패턴을 사각박스로 감싸기
+  // Safari 호환: lookbehind 대신 boundary 체크
+  return String(text||'').replace(/(^|[^a-zA-Z0-9])([ㄱ-ㅎ]+)(?![a-zA-Z0-9])/g, '$1<span class="jamo-chip">$2</span>');
 }
 function questionSignature(q){ return simpleHash(`${q.subject}|${q.question}|${(q.options||[]).join('|')}|${q.answer}`); }
 function simpleHash(str){
@@ -801,11 +823,11 @@ function buildWrongPatternPanelHTML(viewSubject='all'){
   const btn = (code,txt) => `<button class="btn sm ${viewSubject===code?'primary':'outline'}" onclick="setPatternViewSubject('${code}')">${txt}</button>`;
 
   if(!Object.values(s.items||{}).length){
-    return `<h3 style="margin:0 0 8px 0;color:var(--primary);">🧠 오답 선지 패턴 분석</h3>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+    return `<h3 style="margin:0 0 10px 0;color:var(--primary);font-size:1.05rem;">🧠 오답 선지 패턴 분석</h3>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
         ${btn('all','전체')} ${btn('1과목','상법')} ${btn('2과목','농재법')} ${btn('3과목','재배학')}
       </div>
-      <div class="hint">아직 누적 패턴 데이터가 없습니다.</div>`;
+      <div class="hint" style="font-size:.88rem;">아직 누적 패턴 데이터가 없습니다. 문제를 풀면 자동으로 쌓입니다.</div>`;
   }
 
   const maxStreakAll = Math.max(...Object.values(s.items).map(x=>x.maxStreak||0),0);
@@ -818,33 +840,46 @@ function buildWrongPatternPanelHTML(viewSubject='all'){
     if(!arr.length) return '';
     arr.sort((a,b)=>(b.count||0)-(a.count||0) || (b.maxStreak||0)-(a.maxStreak||0));
     const top = arr.slice(0,3);
-    return `<div style="margin-top:8px;">
-      <div style="font-weight:800;color:var(--primary);margin-bottom:6px;">[${SUBJECT_NAMES[subjectCode]}] 패턴 ${arr.length}개</div>
+    return `<div style="margin-top:14px;">
+      <div style="font-weight:800;color:var(--primary);margin-bottom:10px;font-size:.95rem;">📌 ${SUBJECT_NAMES[subjectCode]} · 패턴 ${arr.length}개</div>
       ${top.map((x,i)=>`
-        <div style="padding:8px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;background:var(--panel);">
-          <div style="font-weight:800;">${i+1}. ${escapeHtml(x.question)}</div>
-          <div class="hint" style="margin-top:4px;">
-            자주 고른 오답: <b style="color:var(--danger)">${(x.pickedIdx??0)+1}번 ${escapeHtml(x.pickedText||'')}</b> ·
-            정답: <b style="color:var(--ok)">${(x.answerIdx??0)+1}번 ${escapeHtml(x.answerText||'')}</b><br>
-            누적 ${x.count||0}회 · 최대 연속 ${x.maxStreak||0}회
+        <div style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:var(--panel);line-height:1.7;">
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:10px;color:var(--text);">${i+1}. ${escapeHtml(x.question)}</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span style="background:var(--danger-bg);color:var(--danger);padding:3px 10px;border-radius:4px;font-weight:700;font-size:.82rem;">내가 고른 오답</span>
+              <span style="font-weight:700;color:var(--danger);">${(x.pickedIdx??0)+1}번</span>
+              <span style="color:var(--text);line-height:1.6;">${escapeHtml(x.pickedText||'')}</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span style="background:var(--ok-bg);color:var(--ok);padding:3px 10px;border-radius:4px;font-weight:700;font-size:.82rem;">정답</span>
+              <span style="font-weight:700;color:var(--ok);">${(x.answerIdx??0)+1}번</span>
+              <span style="color:var(--text);line-height:1.6;">${escapeHtml(x.answerText||'')}</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line-soft);font-size:.82rem;color:var(--sub);">
+            <span>🔁 누적 <b style="color:var(--text);">${x.count||0}회</b></span>
+            <span>🔥 최대 연속 <b style="color:${(x.maxStreak||0)>=3?'var(--danger)':(x.maxStreak||0)===2?'var(--warn)':'var(--text)'};">${x.maxStreak||0}회</b></span>
           </div>
         </div>
       `).join('')}
     </div>`;
   };
 
-  return `<h3 style="margin:0 0 8px 0;color:var(--primary);">🧠 오답 선지 패턴 분석</h3>
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+  return `<h3 style="margin:0 0 10px 0;color:var(--primary);font-size:1.05rem;">🧠 오답 선지 패턴 분석</h3>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
       ${btn('all','전체')} ${btn('1과목','상법')} ${btn('2과목','농재법')} ${btn('3과목','재배학')}
     </div>
-    <div class="badge-row" style="margin-bottom:8px;">
-      <span class="chip">누적 패턴 ${list.length}개</span>
-      <span class="chip ${maxStreakAll>=3?'danger':maxStreakAll===2?'warn':'ok'}">전체 최대 연속 ${maxStreakAll}회</span>
+    <div class="badge-row" style="margin-bottom:10px;">
+      <span class="chip" style="font-size:.85rem;">📊 누적 패턴 <b>${list.length}개</b></span>
+      <span class="chip ${maxStreakAll>=3?'danger':maxStreakAll===2?'warn':'ok'}" style="font-size:.85rem;">🔥 최대 연속 <b>${maxStreakAll}회</b></span>
     </div>
     ${viewSubject==='all'
       ? (renderGroup('1과목') + renderGroup('2과목') + renderGroup('3과목'))
       : renderGroup(viewSubject)}
-    <div class="hint" style="margin-top:6px;">반복되는 오답 선지는 ‘왜 끌리는지’ 근거를 1줄로 적어보면 교정 속도가 빨라집니다.</div>`;
+    <div style="margin-top:12px;padding:10px 14px;background:var(--primary-light);border-radius:8px;font-size:.85rem;color:var(--primary);line-height:1.6;font-weight:600;">
+      💡 반복되는 오답 선지는 <b>'왜 이 선지가 끌렸는지'</b> 근거를 1줄로 적어보면 교정 속도가 빨라집니다.
+    </div>`;
 }
 function renderPatternPanel(defaultSubject='all'){
   if(defaultSubject) patternViewSubject = defaultSubject;
@@ -1063,7 +1098,7 @@ function saveAIBank(a){ localStorage.setItem(STORAGE.AI_BANK, JSON.stringify(a))
 function getAIBankSeenSet(){ try{ const a=JSON.parse(localStorage.getItem(STORAGE.AI_BANK_SEEN)||'[]'); return new Set(Array.isArray(a)?a:[]);}catch(_){ return new Set(); } }
 function saveAIBankSeenSet(s){ localStorage.setItem(STORAGE.AI_BANK_SEEN, JSON.stringify([...s])); }
 function resetAIBankSeen(){
-  if(!confirm('풀이이력을 초기화할까요?')) return;
+  if(!confirm('풀이이력 초기화할까요?')) return;
   localStorage.setItem(STORAGE.AI_BANK_SEEN,'[]');
   updateAIBankScreen(); updateDashboard();
 }
@@ -1418,6 +1453,13 @@ function safeParseJSONArray(text){
   t=t.replace(/[“”]/g,'"').replace(/[‘’]/g,"'").replace(/,\s*([}\]])/g,'$1');
   try{ const p=JSON.parse(t); return Array.isArray(p)?p:[]; }catch(_){ return []; }
 }
+function safeParseJSONObject(text){
+  let t=String(text||'').trim().replace(/```json/gi,'').replace(/```/g,'').trim();
+  const s=t.indexOf('{'), e=t.lastIndexOf('}');
+  if(s!==-1 && e!==-1 && e>s) t=t.slice(s,e+1);
+  t=t.replace(/[“”]/g,'"').replace(/[‘’]/g,"'").replace(/,\s*([}\]])/g,'$1');
+  try{ const p=JSON.parse(t); return p&&typeof p==='object'?p:null; }catch(_){ return null; }
+}
 function normalizeQuestion(q,idx,subjectCode){
   const options=Array.isArray(q.options)?q.options.slice(0,4).map(v=>String(v)):[];
   while(options.length<4) options.push(`선택지 ${options.length+1}`);
@@ -1460,7 +1502,7 @@ function orderModelsByStrategy(models,difficulty){
 async function callGenerateContent(model,apiKey,prompt){
   if(isBudgetExceeded()) throw new Error('AI 한도 초과');
   const url=`${model.base}/${model.name}:generateContent?key=${apiKey}`;
-  const body={contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.4,topP:0.9,maxOutputTokens:4096,responseMimeType:"application/json"}};
+  const body={contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.4,topP:0.9,maxOutputTokens:8192}};
   let lastErr=null;
   for(let attempt=1;attempt<=3;attempt++){
     try{
@@ -1486,7 +1528,7 @@ async function generateBySubject(apiKey,code,name,models,guide,targetCount){
       const arr=safeParseJSONArray(r.text);
       if(!arr.length) continue;
       const norm=arr.map((q,i)=>normalizeQuestion(q,i,code)).filter(q=>q.subject===code);
-      if(norm.length>=Math.max(5,Math.floor(targetCount*0.4))) return {list:norm.slice(0,targetCount),modelName:r.modelName};
+      if(norm.length>=Math.max(3,Math.floor(targetCount*0.25))) return {list:norm.slice(0,targetCount),modelName:r.modelName};
     }catch(_){ continue; }
   }
   return {list:[],modelName:'fallback'};
@@ -1765,9 +1807,9 @@ function runSelfCheck(){
   log.push(`  7. 전체 초기화: AI은행 + 학습현황(EXAM_HISTORY) + 오답노트 동시 초기화`);
   log.push(`  8. AI 프롬프트: 일타강사 페르소나 + 장문 보기(최소15단어) + 상세 해설`);
   log.push(`  9. 🔄 새로고침 버튼: 시험 중이면 자동저장 후 location.reload(true)`);
-  log.push(` 10. 💰 API 현황 패널: 키 상태/호출횟수/비용/한도/사용률 바 + 모델별 상세`);
-  log.push(` 11. 🔄 API 사용량 초기화: 호출/비용만 리셋 (키·한도 유지)`);
-  log.push(` 12. 🛡️ 전체 초기화 시 API 데이터(키/사용량/한도) 보존 보장`);
+  log.push(`  10. 💰 API 현황 패널: 키 상태/호출횟수/비용/한도/사용률 바 + 모델별 상세`);
+  log.push(`  11. 🔄 API 사용량 초기화: 호출/비용만 리셋 (키·한도 유지)`);
+  log.push(`  12. 🛡️ 전체 초기화 시 API 데이터(키/사용량/한도) 보존 보장`);
 
   document.getElementById('patchLogBody').textContent=log.join('\n');
 }
@@ -1861,7 +1903,7 @@ async function startGeminiAI(){
   if(aiMode==='full'){
     selectedSubjects=['1과목','2과목','3과목'];
     targetCountMap={"1과목":25,"2과목":25,"3과목":25};
-    difficulty='default';
+    difficulty=getSelectedDifficulty();
   }else{
     const configs=collectWeakSubjectConfigs();
     targetCountMap={"1과목":0,"2과목":0,"3과목":0};
@@ -2036,12 +2078,12 @@ function renderCurrentQuestion(){
         </div>
       </div>
     </div>
-    <div class="q-text">${escapeHtml(q.question)}</div>
+    <div class="q-text">${renderJamoBoxes(escapeHtml(q.question))}</div>
     <div class="options">
       ${q.options.map((opt,i)=>`
         <div class="option ${userAnswers[currentIndex]===i?'selected':''}" onclick="selectOption(${i})">
           <span class="opt-num">${i+1}</span>
-          <span>${escapeHtml(opt)}</span>
+          <span>${renderJamoBoxes(escapeHtml(opt))}</span>
         </div>
       `).join('')}
     </div>
@@ -2170,7 +2212,9 @@ function submitExam(){
   const defaultSubject=(examType==='ai-weak' && currentQuestions[0]) ? currentQuestions[0].subject : 'all';
   renderPatternPanel(defaultSubject);
 
-  document.getElementById('wrongList').innerHTML=buildWrongListHTML(wrongList);
+  document.getElementById('wrongList').innerHTML = buildWrongListHTML(wrongList);
+  // Replace with stored-analysis-aware rendering after initial render
+  setTimeout(()=>renderWrongListWithStoredAnalysis(), 50);
   updateDashboard();
 }
 function buildRoundAnalysis(roundNo,score){
@@ -2198,7 +2242,7 @@ function buildRoundAnalysis(roundNo,score){
       <span class="chip">안정권(70점)까지 ${gapTo70}점</span>
       <span class="chip ${passProb>=70?'ok':passProb>=40?'warn':'danger'}">합격 가능성 ${passProb}%</span>
     </div>
-    <div class="${score>=60?'strength-item':'weakness-item'}">${advice}</div>
+    <div class="strength-item">${advice}</div>
   `;
 }
 function buildTips(weakSubs,wrongCount){
@@ -2214,10 +2258,10 @@ function buildWrongListHTML(list){
   if(!list.length) return `<div class="strength-item">오답이 없습니다. 전체 정답!</div>`;
   return list.map(w=>`
     <div class="wrong-item">
-      <div class="wrong-q">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${escapeHtml(w.q.question)}</div>
-      <div class="wrong-me">내 답: ${w.my===null?'미응답':`${w.my+1}번 (${escapeHtml(w.q.options[w.my])})`}</div>
-      <div class="wrong-ans">정답: ${w.q.answer+1}번 (${escapeHtml(w.q.options[w.q.answer])})</div>
-      <div class="exp"><b>해설</b><br>${escapeHtml(w.q.explanation)}</div>
+      <div class="wrong-q">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${renderJamoBoxes(escapeHtml(w.q.question))}</div>
+      <div class="wrong-me">내 답: ${w.my===null?'미응답':`${w.my+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.my]))})`}</div>
+      <div class="wrong-ans">정답: ${w.q.answer+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.q.answer]))})</div>
+      <div class="exp"><b>해설</b><br>${renderJamoBoxes(escapeHtml(w.q.explanation))}</div>
     </div>
   `).join('');
 }
@@ -2228,6 +2272,162 @@ function saveWrongNote(q){
   if(idx===-1) notes.push({...q,signature:sig,wrongCount:1,lastWrong:nowISO()});
   else{ notes[idx].wrongCount=(notes[idx].wrongCount||1)+1; notes[idx].lastWrong=nowISO(); }
   localStorage.setItem(STORAGE.WRONG_NOTE, JSON.stringify(notes));
+}
+
+/* =============================
+   AI 오답 집중분석 (개별 분석 + 로컬저장)
+============================= */
+function getAIWrongAnalysisStore(){
+  try{ const v=JSON.parse(localStorage.getItem(STORAGE.AI_WRONG_ANALYSIS)||'{}'); return v&&typeof v==='object'?v:{}; }catch(_){ return {}; }
+}
+function saveAIWrongAnalysisStore(s){ localStorage.setItem(STORAGE.AI_WRONG_ANALYSIS, JSON.stringify(s)); }
+
+function buildWrongAnalysisPrompt(wrongItem){
+  const q = wrongItem.q;
+  const myAnswer = wrongItem.my===null ? '미응답' : `${wrongItem.my+1}번: ${q.options[wrongItem.my]}`;
+  const correctAnswer = `${q.answer+1}번: ${q.options[q.answer]}`;
+  return `너는 대한민국 손해평가사 1차 시험 전문 학습 컨설턴트다. 수험생이 틀린 문제를 분석하고 도움을 줘야 한다.
+
+[과목] ${SUBJECT_NAMES[q.subject]}
+[문제] ${q.question}
+[보기]
+① ${q.options[0]}
+② ${q.options[1]}
+③ ${q.options[2]}
+④ ${q.options[3]}
+[수험생이 고른 답] ${myAnswer}
+[정답] ${correctAnswer}
+[기존 해설] ${q.explanation}
+
+다음 JSON 형식으로만 응답하라:
+{
+  "trap": "수험생이 왜 이 오답을 골랐는지 심리적/인지적 함정 분석 (2~3문장)",
+  "core": "이 문제에서 반드시 기억해야 할 핵심 개념 1개 (1문장)",
+  "tip": "시험장에서 실수하지 않을 암기팁 또는 구별법 (1문장)",
+  "drill": "같은 개념을 묻는 유사 함정 연습문제 1개. 보기 4개 포함. 정답은 0~3 인덱스.",
+  "drillOptions": ["보기1", "보기2", "보기3", "보기4"],
+  "drillAnswer": 0,
+  "drillExplanation": "연습문제 해설 (1~2문장)"
+}`;
+}
+
+async function analyzeSingleWrong(idx, q, myAnswer){
+  const apiKey = localStorage.getItem(STORAGE.API_KEY);
+  if(!apiKey){ alert('API 키가 저장되어 있지 않습니다.'); return; }
+  if(isBudgetExceeded()){ alert('AI 월 한도를 초과했습니다.'); return; }
+
+  const sig = q.signature || questionSignature(q);
+  const store = getAIWrongAnalysisStore();
+
+  // 이미 분석된 항목이면 바로 표시
+  if(store[sig]){
+    renderWrongListWithStoredAnalysis();
+    return;
+  }
+
+  // 버튼 상태 변경
+  const btn = document.querySelector(`.ai-analyze-btn[data-idx="${idx}"]`);
+  if(btn){ btn.disabled=true; btn.textContent='⏳'; }
+
+  try{
+    const models = await listAvailableGeminiModels(apiKey);
+    if(!models.length) throw new Error('사용 가능한 Gemini 모델 없음');
+    const ordered = orderModelsByStrategy(models, 'default');
+
+    const prompt = buildWrongAnalysisPrompt({idx, q, my:myAnswer});
+    for(const m of ordered){
+      try{
+        const r = await callGenerateContent(m, apiKey, prompt);
+        // AI가 단일 JSON 객체를 반환하므로 safeParseJSONObject 사용
+        const parsed = safeParseJSONObject(r.text);
+        if(parsed && parsed.trap){
+          store[sig] = {analysis:parsed, analyzedAt:nowISO(), model:m.name};
+          saveAIWrongAnalysisStore(store);
+          renderWrongListWithStoredAnalysis();
+          updateResultApiFloat();
+          return;
+        }
+      }catch(_){ continue; }
+    }
+    throw new Error('모든 모델 실패');
+  }catch(err){
+    if(btn){ btn.disabled=false; btn.textContent='🤖'; }
+    showToast(`분석 실패: ${err.message}`, 3000);
+  }
+}
+
+function renderWrongListWithStoredAnalysis(){
+  const store = getAIWrongAnalysisStore();
+  const wrongItems = [];
+  currentQuestions.forEach((q,i)=>{
+    if(userAnswers[i]!==q.answer){
+      wrongItems.push({idx:i+1, q, my:userAnswers[i]});
+    }
+  });
+
+  document.getElementById('wrongList').innerHTML = wrongItems.map(w=>{
+    const sig = w.q.signature || questionSignature(w.q);
+    const saved = store[sig];
+    let aiBlock = '';
+    if(saved && saved.analysis){
+      const a = saved.analysis;
+      aiBlock = `
+        <div style="margin-top:10px;padding:12px 14px;background:var(--primary-light);border-radius:8px;border-left:3px solid var(--primary);line-height:1.7;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-weight:800;color:var(--primary);font-size:.9rem;">🤖 AI 집중분석</span>
+            <span class="hint" style="font-size:.7rem;">${new Date(saved.analyzedAt).toLocaleString('ko-KR')}</span>
+          </div>
+          <div style="margin-bottom:8px;">
+            <span style="font-weight:700;color:var(--danger);font-size:.82rem;">🎯 왜 이 오답을 골랐을까?</span>
+            <div style="font-size:.85rem;color:var(--text);margin-top:3px;">${escapeHtml(a.trap||'')}</div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <span style="font-weight:700;color:var(--ok);font-size:.82rem;">💎 핵심 개념</span>
+            <div style="font-size:.85rem;color:var(--text);margin-top:3px;">${escapeHtml(a.core||'')}</div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <span style="font-weight:700;color:var(--warn);font-size:.82rem;">💡 암기팁</span>
+            <div style="font-size:.85rem;color:var(--text);margin-top:3px;">${escapeHtml(a.tip||'')}</div>
+          </div>
+          ${a.drill ? `
+          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);">
+            <span style="font-weight:700;color:var(--primary);font-size:.82rem;">🔄 유사 함정 연습문제</span>
+            <div style="font-size:.85rem;color:var(--text);margin:6px 0;font-weight:600;">${renderJamoBoxes(escapeHtml(a.drill||''))}</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:.82rem;margin-bottom:6px;">
+              ${(a.drillOptions||[]).map((opt,oi)=>`
+                <div style="padding:6px 10px;border-radius:4px;background:${oi===a.drillAnswer?'var(--ok-bg)':'var(--panel)'};color:${oi===a.drillAnswer?'var(--ok)':'var(--text)'};font-weight:${oi===a.drillAnswer?'700':'400'};">
+                  ${oi===a.drillAnswer?'✅':'　'}${oi+1}. ${renderJamoBoxes(escapeHtml(opt||''))}
+                </div>
+              `).join('')}
+            </div>
+            <div class="hint" style="font-size:.78rem;">${renderJamoBoxes(escapeHtml(a.drillExplanation||''))}</div>
+          </div>`:''}
+        </div>`;
+    }
+    const hasAnalysis = !!(saved && saved.analysis);
+    return `
+      <div class="wrong-item">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;">
+          <div class="wrong-q" style="flex:1;">Q${w.idx}. [${SUBJECT_NAMES[w.q.subject]}] ${renderJamoBoxes(escapeHtml(w.q.question))}</div>
+          <button class="btn sm ai-analyze-btn ${hasAnalysis?'success':'primary'}" data-idx="${w.idx}" onclick="analyzeSingleWrong(${w.idx}, currentQuestions[${w.idx-1}], ${w.my===null?'null':w.my})" ${hasAnalysis?'disabled':''} style="flex-shrink:0;white-space:nowrap;">${hasAnalysis?'✅':'🤖 분석'}</button>
+        </div>
+        <div class="wrong-me">내 답: ${w.my===null?'미응답':`${w.my+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.my]))})`}</div>
+        <div class="wrong-ans">정답: ${w.q.answer+1}번 (${renderJamoBoxes(escapeHtml(w.q.options[w.q.answer]))})</div>
+        <div class="exp"><b>해설</b><br>${renderJamoBoxes(escapeHtml(w.q.explanation))}</div>
+        ${aiBlock}
+      </div>`;
+  }).join('');
+
+  updateResultApiFloat();
+}
+
+function updateResultApiFloat(){
+  const el = document.getElementById('resultApiCost');
+  if(!el) return;
+  const usage = getApiUsageStats();
+  const limit = getBudgetLimit();
+  const pct = limit>0 ? Math.round((usage.estimatedCostKRW/limit)*100) : 0;
+  el.innerHTML = `${Math.round(usage.estimatedCostKRW).toLocaleString()}원${limit>0?` <span style="font-size:.7rem;color:${pct>=80?'var(--danger)':'var(--sub)'};">(${pct}%)</span>`:''}`;
 }
 
 /* =============================
@@ -2549,7 +2749,7 @@ function buildRoundByRoundAnalysis(history){
       else if(score>=40) coach=`기초가 아직 얇은 단계입니다. 조급함 금물. <b>${weakName}</b>부터 기본서 1회독 + 기출 3개년을 2주 내 끝내고 2회차를 보세요.`;
       else coach='출제 포인트가 아직 보이지 않는 단계. 무조건 <b>기본서 + 강의</b> 병행. 문제풀이는 3회차부터 시작하세요.';
     }else if(round<=3){
-      if(delta!==null&&delta>=10) coach=`+${delta}점 급상승은 학습량이 임계치를 넘었다는 신호. <b>${weakName}(${weakScore}점)</b>만 보완되면 합격권 진입. 오답노트 7일내 재풀이 사이클 고정하세요.`;
+      if(delta!==null&&delta>=10) coach=`+${delta}점 급상승은 학습량이 임계치를 넘었다는 신호. <b>${weakName}</b>만 보완되면 합격권 진입. 오답노트 7일내 재풀이 사이클 고정하세요.`;
       else if(delta!==null&&delta>=3) coach=`+${delta}점은 정상 성장 곡선입니다. <b>${weakName}</b>에서 10점 더 끌어올리는게 이번주 미션. 해당 과목만 하루 90분 3일간 집중.`;
       else if(delta!==null&&delta>=-2) coach='정체 구간(±2점). 점수가 안 오르는게 아니라 <b>난이도가 올라간 것</b>. 기출 판례형/사례형을 의도적으로 골라 푸세요.';
       else coach=`${Math.abs(delta||0)}점 하락은 피로 누적 or 출제 범위 확장 신호. <b>${weakName}</b> 기본서 해당 단원 복귀 후 해당 과목만 집중 30문제 × 3세트.`;
@@ -2704,7 +2904,7 @@ function buildStrategyReport(){
     </div>
 
     <div class="panel" style="margin-bottom:10px;">
-      <h3 style="margin:0 0 8px 0;color:var(--primary);">📅 D-${daysLeft} 맞춤 운영안</h3>
+      <h3 style="margin:0 0 10px 0;color:var(--primary);">📅 D-${daysLeft} 맞춤 운영안</h3>
       <div style="line-height:1.9;font-size:.95rem;">${weekPlan}</div>
     </div>
 
