@@ -1488,7 +1488,7 @@ async function listAvailableGeminiModels(apiKey){
         .filter(m=>Array.isArray(m.supportedGenerationMethods)&&m.supportedGenerationMethods.includes('generateContent'))
         .map(m=>({base,name:m.name}))
         .filter(m=>m.name&&/gemini/i.test(m.name))
-        .filter(m=>!/embedding|vision|image|audio|aqa|tts|transcribe|live/i.test(m.name))
+        .filter(m=>!/embedding|vision|image|audio|aqa|tts|transcribe|live|lite/i.test(m.name))
         .filter(m=>!/gemini-2\.0-flash$/i.test(m.name));
       all=all.concat(valid);
     }catch(err){
@@ -1514,11 +1514,11 @@ function orderModelsByStrategy(models,difficulty){
 async function callGenerateContent(model,apiKey,prompt){
   if(isBudgetExceeded()) throw new Error('AI 한도 초과');
   const url=`${model.base}/${model.name}:generateContent?key=${apiKey}`;
-  const body={contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.4,topP:0.9,maxOutputTokens:8192}};
+  const body={contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.4,topP:0.9}};
   let lastErr=null;
   for(let attempt=1;attempt<=3;attempt++){
     const controller=new AbortController();
-    const timeoutId=setTimeout(()=>controller.abort(),30000); // 30초 타임아웃
+    const timeoutId=setTimeout(()=>controller.abort(),120000); // 120초 타임아웃 (25문항 전체 생성)
     try{
       const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});
       clearTimeout(timeoutId);
@@ -1530,7 +1530,7 @@ async function callGenerateContent(model,apiKey,prompt){
     }catch(err){
       clearTimeout(timeoutId);
       lastErr=err; const m=String(err.message||'');
-      if(err.name==='AbortError'){ lastErr=new Error('API 응답 시간 초과(30초)'); }
+      if(err.name==='AbortError'){ lastErr=new Error('API 응답 시간 초과(120초)'); }
       // 타임아웃, 할당량 초과, 서버 에러는 재시도
       if(/429|quota|rate|exhausted|timeout|시간 초과|abort/i.test(m)||err.name==='AbortError'){
         if(attempt<3){ await new Promise(r=>setTimeout(r,1000*attempt)); continue; }
@@ -2032,15 +2032,18 @@ async function startGeminiAI(){
 
     const subjectLongName={"1과목":"상법 보험편","2과목":"농어업재해보험법령","3과목":"재배학"};
 
-    // 순차 처리로 진행률 표시 (Promise.all 대신)
-    for(const code of selectedSubjects){
+    // 모든 과목 병렬 생성 (과목당 단일 호출, 과목 간 병렬)
+    updateProgressUI('','3개 과목 동시 생성 중...');
+    await Promise.all(selectedSubjects.map(async code=>{
       if(Date.now()-startTime>overallTimeout) throw new Error('전체 생성 시간 초과(5분)');
       const need=targetCountMap[code]||0;
       const subDiff=subjectDifficultyMap[code]||difficulty;
       const subConf=getDifficultyConfigByKey(subDiff);
-      updateProgressUI(code,`${subjectLongName[code]} ${need}문항 생성 중...`);
       resultMap[code]=await generateBySubject(apiKey,code,subjectLongName[code],ordered,subConf.aiGuide,need);
-    }
+    }));
+
+    // 모든 과목 완료 표시
+    updateProgressUI('','문제 생성 완료, 정리 중...');
 
     const generated=[];
     let partialFilled=false;
