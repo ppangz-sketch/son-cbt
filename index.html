@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>손해평가사 CBT</title>
@@ -143,17 +143,15 @@
         margin-bottom: 14px;
         box-shadow: 0 2px 8px var(--header-glow);
         border: 1px solid var(--line);
+        -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
-      }
-      [data-theme='dark'] .header {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
         border: 1px solid rgba(255, 255, 255, 0.06);
         box-shadow:
           0 4px 24px rgba(0, 0, 0, 0.4),
           var(--glow-blue);
+        -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
-      }
-      .title {
         font-size: 1.35rem;
         font-weight: 800;
         letter-spacing: -0.02em;
@@ -239,6 +237,7 @@
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
       }
       .settings-grid {
@@ -423,8 +422,8 @@
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
         border: 1px solid rgba(255, 255, 255, 0.06);
         box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+        -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
-        color: var(--text);
       }
       .top-left,
       .top-right {
@@ -836,6 +835,7 @@
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
       }
       .omr-header {
@@ -1072,13 +1072,11 @@
         justify-content: center;
         z-index: 9999;
         padding: 20px;
+        -webkit-backdrop-filter: blur(4px);
         backdrop-filter: blur(4px);
-      }
-      [data-theme='dark'] .modal {
         background: rgba(0, 0, 0, 0.7);
+        -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
-      }
-      .modal-card {
         width: min(760px, 100%);
         background: var(--panel);
         border: 1px solid var(--line);
@@ -1377,7 +1375,7 @@
         <div class="settings-grid">
           <div class="settings-item">
             <div class="settings-title">출제 난이도 (기본)</div>
-            <select id="difficultySelect" class="select">
+            <select id="difficultySelect" class="select" title="출제 난이도 선택">
               <option value="">기본(실전+) · 기출보다 살짝 어려움</option>
               <option value="high">상 · 고난도/응용형</option>
               <option value="medium">중 · 표준 실전</option>
@@ -1705,6 +1703,7 @@
               opacity: 0.8;
               transition: opacity 0.3s;
               cursor: default;
+              -webkit-backdrop-filter: blur(8px);
               backdrop-filter: blur(8px);
             "
             onmouseenter="this.style.opacity = '1'"
