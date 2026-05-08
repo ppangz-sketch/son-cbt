@@ -1,0 +1,99 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🧹 HTML/CSS/JS 포맷 정리",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/.vscode/scripts/format_html.py",
+        "${workspaceFolder}/index.html"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🔍 HTML 기본 검증",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/.vscode/scripts/validate_html.py",
+        "${workspaceFolder}/index.html"
+      ],
+      "problemMatcher": {
+        "owner": "html",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(WARNING|ERROR):\\s*(.+)\\s*\\(line\\s*(\\d+)\\)$",
+          "severity": 1,
+          "message": 2,
+          "line": 3
+        }
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📦 Git 변경사항 확인",
+      "type": "shell",
+      "command": "git",
+      "args": ["diff", "--stat"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🚀 Git 커밋 & 푸시 (대화형)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/.vscode/scripts/git_commit_push.py",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "✅ 전체 자동화 (포맷 → 검증 → 변경확인)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/.vscode/scripts/auto_check.py",
+        "${workspaceFolder}/index.html",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

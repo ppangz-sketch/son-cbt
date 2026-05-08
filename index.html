@@ -66,7 +66,7 @@
       --bookmark:#e3b341;
       --header-text:#e6edf3;
       --header-glow:rgba(88,166,255,0.08);
-      
+
       --glass-bg:rgba(22,27,34,0.85);
       --glass-border:rgba(255,255,255,0.06);
       --glow-blue:0 0 20px rgba(88,166,255,0.15);
@@ -977,7 +977,7 @@ function splitJamoSection(questionText){
   // jamo 항목 패턴: 줄 시작에 ㄱ. ㄴ. ㄷ. ㄹ. ㅁ. ㅂ. ㅅ. ㅇ. ㅈ. ㅊ. ㅋ. ㅌ. ㅍ. ㅎ. 또는 ㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮
   const jamoLineRe = /^[\u3131-\u314E\u3260-\u327E][\s\.\)]\s*/;
   const lines = questionText.split(/\n/);
-  
+
   // jamo 항목이 2개 이상 연속으로 나오는지 확인
   let jamoStartIdx = -1;
   let jamoCount = 0;
@@ -994,17 +994,17 @@ function splitJamoSection(questionText){
       break;
     }
   }
-  
+
   // jamo 항목이 2개 미만이면 분리하지 않음 (일반 텍스트로 처리)
   if (jamoCount < 2) return { mainText: questionText, jamoItems: null };
-  
+
   const mainLines = lines.slice(0, jamoStartIdx);
   const jamoLines = lines.slice(jamoStartIdx, jamoStartIdx + jamoCount);
   const afterLines = lines.slice(jamoStartIdx + jamoCount);
-  
+
   // mainText: jamo 이전 + 이후 텍스트
   const mainText = [...mainLines, ...afterLines].join('\n').trim();
-  
+
   // jamoItems: 각 항목을 {label, text}로 파싱
   const jamoItems = jamoLines.map(line => {
     const trimmed = line.trim();
@@ -1014,7 +1014,7 @@ function splitJamoSection(questionText){
     }
     return { label: '', text: trimmed };
   }).filter(item => item.label);
-  
+
   return { mainText, jamoItems: jamoItems.length >= 2 ? jamoItems : null };
 }
 
@@ -1673,7 +1673,6 @@ function assertAcademyDataBeforeExam(){
   return true;
 }
 
-
 /* =============================
    학원 75문항
 ============================= */
@@ -1717,7 +1716,6 @@ function buildAcademy75(difficultyKey='default'){
 
   return SUBJECTS.flatMap(s=>out.filter(q=>q.subject===s));
 }
-
 
 /* =============================
    AI 유틸
@@ -2078,7 +2076,6 @@ function startExam(type){
   currentQuestions=buildAcademy75(diff);
   setExamModeChip(`학원 모의고사 · ${getDifficultyConfigByKey(diff).label} · 75문항`);
 }
-
 
   userAnswers=new Array(currentQuestions.length).fill(null);
   currentIndex=0;
@@ -2941,11 +2938,11 @@ function renderCurrentQuestion(){
   const sig=q.signature||questionSignature(q);
   const isBookmarked=currentBookmarks.has(sig);
   const card=document.getElementById('questionCard');
-  
+
   // jamo 항목 분리 처리
   const { mainText, jamoItems } = splitJamoSection(q.question);
   const jamoBoxHTML = renderJamoBox(jamoItems);
-  
+
   card.innerHTML=`
     <div class="q-meta">
       <div class="q-no-wrap">
@@ -3415,7 +3412,6 @@ if(budgetEl && document.activeElement !== budgetEl && !budgetInputDirty){
   if(budgetEl.value !== target) budgetEl.value = target;
 }
 
-
   const prob=calcPassProbability();
   document.getElementById('passProbValue').textContent=`${prob}%`;
   document.getElementById('passProbLabel').textContent=
@@ -3852,7 +3848,7 @@ if(budgetEl){
     return;
   }
   academyValidationCache = validateAcademyData();
-  
+
   currentBookmarks=loadBookmarks();
   updateDashboard();
 

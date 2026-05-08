@@ -1,0 +1,73 @@
+{
+  // ============================================
+  // son-cbt 프로젝트 설정
+  // ============================================
+
+  // --- 포맷팅 ---
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  // --- Prettier 설정 ---
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.bracketSameLine": true,
+  "prettier.htmlWhitespaceSensitivity": "css",
+
+  // --- 편집기 ---
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.wordWrap": "off",
+
+  // --- 파일 ---
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.git": true
+  },
+
+  // --- GitLens ---
+  "gitlens.codeLens.enabled": true,
+  "gitlens.currentLine.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+
+  // --- Live Server ---
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.root": "/",
+  "liveServer.settings.CustomBrowser": "chrome",
+
+  // --- Todo Tree ---
+  "todo-tree.general.tags": ["TODO", "FIXME", "BUG", "HACK", "NOTE", "OPTIMIZE"],
+  "todo-tree.highlights.defaultHighlight": {
+    "foreground": "#fff",
+    "type": "text"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": { "background": "#c0924f", "icon": "checklist" },
+    "FIXME": { "background": "#c85f58", "icon": "flame" },
+    "BUG": { "background": "#c85f58", "icon": "bug" },
+    "NOTE": { "background": "#5f946a", "icon": "note" }
+  }
+}
