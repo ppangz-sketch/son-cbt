@@ -53,6 +53,11 @@
   "gitlens.currentLine.enabled": true,
   "gitlens.hovers.currentLine.over": "line",
 
+  // --- Git 자동화 ---
+  "git.postCommitCommand": "sync",
+  "git.enableSmartCommit": true,
+  "git.smartCommitChanges": "all",
+
   // --- Live Server ---
   "liveServer.settings.donotShowInfoMsg": true,
   "liveServer.settings.root": "/",
