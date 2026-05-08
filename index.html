@@ -4723,8 +4723,8 @@ ${scopeText}
         renderPatternPanel(defaultSubject);
 
         document.getElementById('wrongList').innerHTML = buildWrongListHTML(wrongList);
-        // Replace with stored-analysis-aware rendering after initial render
-        setTimeout(() => renderWrongListWithStoredAnalysis(), 50);
+        // 즉시 저장된 AI 분석 결과와 함께 렌더링 (50ms 지연 제거)
+        renderWrongListWithStoredAnalysis();
         updateDashboard();
       }
       function buildRoundAnalysis(roundNo, score) {
