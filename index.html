@@ -252,6 +252,8 @@
         border-radius: 12px;
         padding: 12px;
         background: var(--panel);
+        min-width: 0;
+        overflow: hidden;
       }
       [data-theme='dark'] .settings-item {
         background: rgba(22, 27, 34, 0.6);
@@ -1048,6 +1050,17 @@
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
+        align-items: stretch;
+      }
+      .strategy-grid > .settings-item {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      @media (max-width: 820px) {
+        .strategy-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       .modal {
@@ -1510,13 +1523,34 @@
             <div class="settings-item">
               <div class="settings-title">📅 남은 기간 설정 (시험일 선택)</div>
               <input id="examDateInput" class="input" type="date" onchange="updateDaysLeftDisplay()" />
-              <div id="daysLeftDisplay" class="hint" style="margin-top: 6px">
+              <div
+                id="daysLeftDisplay"
+                class="hint"
+                style="
+                  margin-top: 8px;
+                  padding: 10px 12px;
+                  background: var(--line-soft);
+                  border-radius: 8px;
+                  font-size: 0.9rem;
+                  line-height: 1.5;
+                  text-align: center;
+                ">
                 시험일을 선택하면 D-day가 자동 계산됩니다.
+              </div>
+              <div
+                class="hint"
+                style="margin-top: auto; padding-top: 10px; font-size: 0.78rem; line-height: 1.5; color: var(--sub)">
+                💡 <b>시험일 기준 D-day</b>에 따라 학습 운영안이 자동으로 달라집니다.<br />
+                · 90일 이상: 3단계 정착 → 확장 → 가속<br />
+                · 45~90일: 전·후반기 압축 학습<br />
+                · 21~45일: 실전 중심 반복<br />
+                · 21일 이하: 파이널 정리
               </div>
             </div>
             <div class="settings-item">
               <div class="settings-title">📝 실제 기출 결과 수동 입력</div>
-              <div style="display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <div class="hint" style="font-size: 0.78rem; margin-bottom: 2px">과목별 점수 (각 0~100점)</div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px">
                   <input
                     id="pastSub1Input"
@@ -1524,7 +1558,7 @@
                     type="number"
                     min="0"
                     max="100"
-                    placeholder="상법 점수"
+                    placeholder="상법"
                     oninput="autoCalcPastTotal()" />
                   <input
                     id="pastSub2Input"
@@ -1532,7 +1566,7 @@
                     type="number"
                     min="0"
                     max="100"
-                    placeholder="농재법 점수"
+                    placeholder="농재법"
                     oninput="autoCalcPastTotal()" />
                   <input
                     id="pastSub3Input"
@@ -1540,22 +1574,38 @@
                     type="number"
                     min="0"
                     max="100"
-                    placeholder="재배학 점수"
+                    placeholder="재배학"
                     oninput="autoCalcPastTotal()" />
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px">
-                  <span style="font-weight: 800; white-space: nowrap">📊 총점:</span>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 8px 10px;
+                    background: var(--line-soft);
+                    border-radius: 8px;
+                    flex-wrap: wrap;
+                  ">
+                  <span style="font-weight: 800; white-space: nowrap">📊 총점</span>
                   <span
                     id="pastTotalDisplay"
-                    style="font-size: 1.3rem; font-weight: 900; color: var(--primary); min-width: 50px"
+                    style="font-size: 1.25rem; font-weight: 900; color: var(--primary); min-width: 40px"
                     >-</span
                   >
-                  <span id="pastPassStatus" style="font-size: 0.85rem; font-weight: 800; margin-left: 4px"></span>
+                  <span id="pastPassStatus" style="font-size: 0.85rem; font-weight: 800; margin-left: auto"></span>
                 </div>
-                <div id="pastSubFailStatus" style="font-size: 0.8rem; font-weight: 700; color: var(--danger)"></div>
-                <div style="display: flex; gap: 6px; align-items: center">
-                  <input id="pastDateInput" class="input" type="date" style="flex: 1" />
-                  <button class="btn outline" onclick="savePastManualResult()" style="white-space: nowrap">저장</button>
+                <div
+                  id="pastSubFailStatus"
+                  style="font-size: 0.8rem; font-weight: 700; color: var(--danger); min-height: 1em"></div>
+                <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 2px">
+                  <div class="hint" style="font-size: 0.78rem">응시일 (선택 입력)</div>
+                  <div style="display: flex; gap: 6px; align-items: center">
+                    <input id="pastDateInput" class="input" type="date" style="flex: 1; min-width: 0" />
+                    <button class="btn primary" onclick="savePastManualResult()" style="white-space: nowrap">
+                      💾 저장
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2246,7 +2296,8 @@
         if (currentQuestions.length > 0 && !document.getElementById('examScreen').classList.contains('hidden')) {
           autoSaveExam();
         }
-        location.reload(true);
+        // location.reload(true)는 비표준 — 표준 reload() 사용 (브라우저가 최신 스펙에 따라 캐시 처리)
+        location.reload();
       }
 
       /* =============================
@@ -5279,17 +5330,19 @@ ${scopeText}
         // 시간대 버그 방지: YYYY-MM-DD 직접 파싱 (new Date('YYYY-MM-DD')는 UTC로 해석될 수 있음)
         const [y, m, d] = dateVal.split('-').map(Number);
         const examDate = new Date(y, m - 1, d);
-        // 고정 기준 날짜 사용 (2026-05-09)
-        const today = new Date(2026, 4, 9); // 월은 0-indexed (5월 = 4)
+        // 실제 오늘 날짜 기준으로 D-day 계산 (자정 기준 비교)
+        const today = new Date();
         today.setHours(0, 0, 0, 0);
         const diffMs = examDate.getTime() - today.getTime();
         const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
         if (daysLeft < 0) {
-          display.innerHTML = `시험일이 <b style="color:var(--danger);">${Math.abs(daysLeft)}일</b> 지났습니다.`;
+          display.innerHTML = `<span style="color:var(--sub);">시험일이 <b style="color:var(--danger);">${Math.abs(daysLeft)}일</b> 지났습니다.</span>`;
         } else if (daysLeft === 0) {
-          display.innerHTML = '<b style="color:var(--danger);">D-DAY! 오늘이 시험일입니다!</b>';
+          display.innerHTML = '<b style="color:var(--danger);font-size:1.05rem;">🔥 D-DAY · 오늘이 시험일입니다!</b>';
         } else {
-          display.innerHTML = `<b>D-${daysLeft}일</b> (${Math.ceil(daysLeft / 7)}주) 남았습니다.`;
+          const weeks = Math.ceil(daysLeft / 7);
+          const color = daysLeft <= 21 ? 'var(--danger)' : daysLeft <= 60 ? 'var(--warn)' : 'var(--ok)';
+          display.innerHTML = `<b style="color:${color};font-size:1.1rem;">D-${daysLeft}</b> <span style="color:var(--sub);">(약 ${weeks}주 남음)</span>`;
         }
       }
 
@@ -5493,8 +5546,8 @@ ${scopeText}
         if (examDateVal) {
           const [y, m, d] = examDateVal.split('-').map(Number);
           const examDate = new Date(y, m - 1, d);
-          // 고정 기준 날짜 사용 (2026-05-09)
-          const today = new Date(2026, 4, 9); // 월은 0-indexed (5월 = 4)
+          // 실제 오늘 날짜 기준으로 D-day 계산
+          const today = new Date();
           today.setHours(0, 0, 0, 0);
           daysLeft = Math.max(1, Math.ceil((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
         }
