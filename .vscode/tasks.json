@@ -5,10 +5,7 @@
       "label": "🧹 HTML/CSS/JS 포맷 정리",
       "type": "shell",
       "command": "python",
-      "args": [
-        "${workspaceFolder}/.vscode/scripts/format_html.py",
-        "${workspaceFolder}/index.html"
-      ],
+      "args": ["${workspaceFolder}/.vscode/scripts/format_html.py", "${workspaceFolder}/index.html"],
       "problemMatcher": [],
       "group": {
         "kind": "build",
@@ -23,10 +20,7 @@
       "label": "🔍 HTML 기본 검증",
       "type": "shell",
       "command": "python",
-      "args": [
-        "${workspaceFolder}/.vscode/scripts/validate_html.py",
-        "${workspaceFolder}/index.html"
-      ],
+      "args": ["${workspaceFolder}/.vscode/scripts/validate_html.py", "${workspaceFolder}/index.html"],
       "problemMatcher": {
         "owner": "html",
         "fileLocation": ["relative", "${workspaceFolder}"],
@@ -65,10 +59,7 @@
       "label": "🚀 Git 커밋 & 푸시 (대화형)",
       "type": "shell",
       "command": "python",
-      "args": [
-        "${workspaceFolder}/.vscode/scripts/git_commit_push.py",
-        "${workspaceFolder}"
-      ],
+      "args": ["${workspaceFolder}/.vscode/scripts/git_commit_push.py", "${workspaceFolder}"],
       "problemMatcher": [],
       "group": "none",
       "presentation": {
@@ -94,6 +85,98 @@
         "reveal": "always",
         "panel": "shared"
       }
+    },
+    {
+      "label": "🤖 AI 작업 시작 (자동 라우팅)",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "start", "${input:aiTaskDescription}"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🔄 AI 핸드오프 → Claude Code",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "handoff", "--to", "claude_code"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🔄 AI 핸드오프 → OpenRouter",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "handoff", "--to", "openrouter"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "🔄 AI 핸드오프 → Copilot",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "handoff", "--to", "copilot"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "📊 AI 작업 상태 확인",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "status"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "💰 AI 비용 현황",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "cost"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "✅ AI 작업 완료",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/.vscode/scripts/ai_router.py", "done"],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "aiTaskDescription",
+      "type": "promptString",
+      "description": "어떤 작업을 할까요?",
+      "default": "코드 전체 점검"
     }
   ]
 }

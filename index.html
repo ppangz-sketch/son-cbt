@@ -752,6 +752,11 @@
         color: var(--primary);
         font-weight: 800;
         font-size: 0.82rem;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: middle;
       }
       [data-theme='dark'] .jamo-chip {
         background: rgba(88, 166, 255, 0.12);
@@ -764,6 +769,9 @@
         border: 1.5px solid var(--line);
         border-radius: 10px;
         background: var(--panel);
+        overflow: hidden;
+        word-break: break-all;
+        overflow-wrap: break-word;
       }
       [data-theme='dark'] .jamo-box {
         background: rgba(255, 255, 255, 0.02);
@@ -795,6 +803,9 @@
         flex: 1;
         font-size: 0.92rem;
         color: var(--text);
+        min-width: 0;
+        word-break: break-all;
+        overflow-wrap: break-word;
       }
       .nav-row {
         margin-top: auto;
@@ -5264,10 +5275,12 @@ ${scopeText}
           return;
         }
         localStorage.setItem('strategy_examDate', dateVal);
-        const examDate = new Date(dateVal + 'T00:00:00');
+        // 시간대 버그 방지: YYYY-MM-DD 직접 파싱 (new Date('YYYY-MM-DD')는 UTC로 해석될 수 있음)
+        const [y, m, d] = dateVal.split('-').map(Number);
+        const examDate = new Date(y, m - 1, d);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const diffMs = examDate - today;
+        const diffMs = examDate.getTime() - today.getTime();
         const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
         if (daysLeft < 0) {
           display.innerHTML = `시험일이 <b style="color:var(--danger);">${Math.abs(daysLeft)}일</b> 지났습니다.`;
@@ -5337,7 +5350,12 @@ ${scopeText}
 
         pushExamHistory({
           id: `P_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
-          date: dateVal ? new Date(dateVal + 'T09:00:00').toISOString() : nowISO(),
+          date: dateVal
+            ? (() => {
+                const [y, m, d] = dateVal.split('-').map(Number);
+                return new Date(y, m - 1, d, 9, 0, 0).toISOString();
+              })()
+            : nowISO(),
           type: 'past-manual',
           totalScore: Math.round(total),
           wrongCount: null,
@@ -5471,10 +5489,11 @@ ${scopeText}
         const examDateVal = document.getElementById('examDateInput').value;
         let daysLeft = 60;
         if (examDateVal) {
-          const examDate = new Date(examDateVal + 'T00:00:00');
+          const [y, m, d] = examDateVal.split('-').map(Number);
+          const examDate = new Date(y, m - 1, d);
           const today = new Date();
           today.setHours(0, 0, 0, 0);
-          daysLeft = Math.max(1, Math.ceil((examDate - today) / (1000 * 60 * 60 * 24)));
+          daysLeft = Math.max(1, Math.ceil((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
         }
         const hist = getExamHistory().sort((a, b) => new Date(a.date) - new Date(b.date));
         const notes = JSON.parse(localStorage.getItem(STORAGE.WRONG_NOTE) || '[]');

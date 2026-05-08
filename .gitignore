@@ -1,0 +1,4 @@
+# AI 핸드오프 시스템 (로컬 전용)
+.ai_handoff.md
+.ai_state.json
+.ai_cost_log.jsonl

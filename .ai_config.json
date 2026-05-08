@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "created": "2026-05-08",
+  "providers": {
+    "copilot": {
+      "name": "GitHub Copilot",
+      "type": "extension",
+      "monthlyCost": 10,
+      "currency": "USD",
+      "strengths": ["자동완성", "빠른응답", "작은수정", "무제한사용"],
+      "weaknesses": ["대규모분석", "멀티파일", "긴컨텍스트"],
+      "maxContextLines": 500,
+      "idealFor": ["단일파일수정", "함수추가", "버그수정", "리팩토링"]
+    },
+    "claude_code": {
+      "name": "Claude Code (Anthropic)",
+      "type": "cli",
+      "monthlyCostEstimate": "60-150",
+      "currency": "USD",
+      "strengths": ["에이전트", "파일읽기쓰기", "터미널명령", "긴컨텍스트"],
+      "weaknesses": ["비용변동", "CLI불편", "느린응답"],
+      "maxContextLines": 5000,
+      "idealFor": ["대규모리팩토링", "멀티파일작업", "전체점검", "복잡한디버깅"],
+      "installCommand": "npm install -g @anthropic-ai/claude-code",
+      "runCommand": "claude"
+    },
+    "openrouter": {
+      "name": "OpenRouter (DeepSeek V4 Pro)",
+      "type": "api",
+      "monthlyCostEstimate": "30-900",
+      "currency": "USD",
+      "strengths": ["최고성능", "매우긴컨텍스트", "멀티모델", "추론능력"],
+      "weaknesses": ["비쌈", "중개수수료", "수동설정"],
+      "maxContextLines": 10000,
+      "idealFor": ["전체코드감사", "구조설계", "데이터검증", "최종병기"],
+      "note": "최종 병기로만 사용. 월 $10 이하로 제한 권장"
+    }
+  },
+  "routing": {
+    "rules": [
+      {
+        "when": "작업 파일이 1개이고 500줄 미만",
+        "use": "copilot",
+        "priority": 1
+      },
+      {
+        "when": "작업 파일이 여러 개이거나 500줄 이상",
+        "use": "claude_code",
+        "priority": 2
+      },
+      {
+        "when": "전체 코드베이스 감사 또는 Claude Code 실패",
+        "use": "openrouter",
+        "priority": 3
+      }
+    ]
+  },
+  "costAlerts": {
+    "openrouterDailyLimit": 5,
+    "openrouterMonthlyLimit": 30,
+    "claudeCodeDailyLimit": 10,
+    "claudeCodeMonthlyLimit": 150
+  }
+}
