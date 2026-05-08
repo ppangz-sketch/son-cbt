@@ -171,14 +171,15 @@
         align-items: center;
       }
       #timerBox {
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: 6px 12px;
+        border-radius: 6px;
         font-weight: 800;
-        font-size: 1.15rem;
-        background: rgba(255, 255, 255, 0.58);
-        border: 1px solid rgba(0, 0, 0, 0.18);
-        color: #111;
-        width: 110px;
+        font-size: 1.05rem;
+        background: transparent;
+        border: none;
+        color: var(--text);
+        width: auto;
+        min-width: 80px;
         text-align: center;
         font-variant-numeric: tabular-nums;
         display: inline-flex;
@@ -187,8 +188,8 @@
         flex-shrink: 0;
       }
       [data-theme='dark'] #timerBox {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+        border: none;
         color: var(--text);
       }
       #timerBox.warning {
@@ -5278,7 +5279,8 @@ ${scopeText}
         // 시간대 버그 방지: YYYY-MM-DD 직접 파싱 (new Date('YYYY-MM-DD')는 UTC로 해석될 수 있음)
         const [y, m, d] = dateVal.split('-').map(Number);
         const examDate = new Date(y, m - 1, d);
-        const today = new Date();
+        // 고정 기준 날짜 사용 (2026-05-09)
+        const today = new Date(2026, 4, 9); // 월은 0-indexed (5월 = 4)
         today.setHours(0, 0, 0, 0);
         const diffMs = examDate.getTime() - today.getTime();
         const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
@@ -5491,7 +5493,8 @@ ${scopeText}
         if (examDateVal) {
           const [y, m, d] = examDateVal.split('-').map(Number);
           const examDate = new Date(y, m - 1, d);
-          const today = new Date();
+          // 고정 기준 날짜 사용 (2026-05-09)
+          const today = new Date(2026, 4, 9); // 월은 0-indexed (5월 = 4)
           today.setHours(0, 0, 0, 0);
           daysLeft = Math.max(1, Math.ceil((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
         }
@@ -5692,6 +5695,9 @@ ${scopeText}
 
         currentBookmarks = loadBookmarks();
         updateDashboard();
+
+        // 메인 화면에서 timerBox 확실히 숨기기
+        document.getElementById('timerBox').classList.add('hidden');
 
         liveRefreshInterval = setInterval(() => {
           if (!document.getElementById('mainScreen').classList.contains('hidden')) updateDashboard();
