@@ -145,6 +145,11 @@
         border: 1px solid var(--line);
         -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      [data-theme='dark'] .header {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
         border: 1px solid rgba(255, 255, 255, 0.06);
         box-shadow:
@@ -152,10 +157,6 @@
           var(--glow-blue);
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
-        font-size: 1.35rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        color: var(--header-text);
       }
       .subtitle {
         font-size: 0.88rem;
@@ -420,6 +421,7 @@
       }
       [data-theme='dark'] .exam-topbar {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
+        color: var(--text);
         border: 1px solid rgba(255, 255, 255, 0.06);
         box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
         -webkit-backdrop-filter: blur(12px);
@@ -1066,17 +1068,16 @@
       .modal {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.45);
+        background: rgba(0, 0, 0, 0.7);
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 9999;
         padding: 20px;
-        -webkit-backdrop-filter: blur(4px);
-        backdrop-filter: blur(4px);
-        background: rgba(0, 0, 0, 0.7);
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
+      }
+      .modal-card {
         width: min(760px, 100%);
         background: var(--panel);
         border: 1px solid var(--line);
