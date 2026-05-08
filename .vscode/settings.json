@@ -6,6 +6,11 @@
   // --- 포맷팅 ---
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "isort.check": false,
+  "isort.server.enabled": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
