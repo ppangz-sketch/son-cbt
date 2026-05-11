@@ -53,6 +53,12 @@
     "**/.git": true
   },
 
+  // --- 자동화/태스크용 터미널 ---
+  "terminal.integrated.automationProfile.windows": {
+    "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "args": ["-NoProfile"]
+  },
+
   // --- GitLens ---
   "gitlens.codeLens.enabled": true,
   "gitlens.currentLine.enabled": true,
@@ -60,8 +66,37 @@
 
   // --- Git 자동화 ---
   "git.postCommitCommand": "sync",
+  "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "git.smartCommitChanges": "all",
+
+  // --- 저장 시 자동 실행 ---
+  "triggerTaskOnSave.on": true,
+  "triggerTaskOnSave.delay": 700,
+  "triggerTaskOnSave.restart": true,
+  "triggerTaskOnSave.showNotifications": false,
+  "triggerTaskOnSave.showStatusBarToggle": true,
+  "triggerTaskOnSave.tasks": {
+    "✅ 전체 자동화 (포맷 → 검증 → 변경확인)": ["${workspaceFolder}/index.html"]
+  },
+
+  // --- 하단 상태바 작업 버튼 ---
+  "VsCodeTaskButtons.showCounter": false,
+  "VsCodeTaskButtons.tasks": [
+    {
+      "label": "$(check) 저장 검사",
+      "task": "✅ 전체 자동화 (포맷 → 검증 → 변경확인)",
+      "tooltip": "현재 index.html을 포맷/검증/변경확인합니다.",
+      "alignment": "left"
+    },
+    {
+      "label": "$(rocket) 전체 자동화+동기화",
+      "task": "🚀 전체 자동화 + 원클릭 커밋·동기화",
+      "tooltip": "포맷/검증/변경확인 후 날짜+파일명 자동 메시지로 커밋과 동기화까지 진행합니다.",
+      "alignment": "left",
+      "color": "warning"
+    }
+  ],
 
   // --- Live Server ---
   "liveServer.settings.donotShowInfoMsg": true,

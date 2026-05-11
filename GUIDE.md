@@ -45,6 +45,15 @@ son-cbt/
 | `🔍 HTML 기본 검증`                       | HTML 태그 짝 맞춤, 구조 오류 검사                     |
 | `📦 Git 변경사항 확인`                    | `git diff --stat` 실행                                |
 | `🚀 Git 커밋 & 푸시 (대화형)`             | 커밋 메시지 입력 후 자동 푸시                         |
+| `⚡ Git 원클릭 커밋 + 동기화`             | 날짜+파일명 자동 메시지로 add → commit → pull/rebase → push |
+| `🚀 전체 자동화 + 원클릭 커밋·동기화`    | 포맷/검증/변경확인 후 자동 메시지 commit + sync까지 진행 |
+
+### 하단 버튼 + 저장 자동 실행
+
+- 추천 확장: `Gruntfuggly.triggertaskonsave`, `spencerwmiles.vscode-task-buttons`
+- `index.html` 저장 시 자동으로 `✅ 전체 자동화 (포맷 → 검증 → 변경확인)` 실행
+- VS Code 하단 상태바에 `저장 검사`, `전체 자동화+동기화` 버튼 표시
+- Cursor 에이전트가 파일을 수정한 뒤에도 프로젝트 훅으로 자동 점검 실행
 
 ### 🤖 AI 작업
 

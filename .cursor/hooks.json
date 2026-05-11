@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "python .cursor/hooks/run_auto_check_after_edit.py",
+        "matcher": "Write|TabWrite",
+        "timeout": 30
+      }
+    ]
+  }
+}
