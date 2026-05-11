@@ -279,28 +279,31 @@
         backdrop-filter: blur(8px);
       }
       .screen-top-panel {
-        border-radius: 20px;
-        background: linear-gradient(135deg, var(--panel) 0%, var(--primary-light) 100%);
+        border-radius: 16px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 245, 238, 0.96) 100%);
+        border-color: rgba(111, 122, 134, 0.14);
+        box-shadow: 0 6px 18px rgba(28, 26, 20, 0.035);
       }
       [data-theme='dark'] .screen-top-panel {
-        background: linear-gradient(135deg, rgba(22, 27, 34, 0.96) 0%, rgba(88, 166, 255, 0.08) 100%);
-        border-color: rgba(88, 166, 255, 0.12);
+        background: linear-gradient(180deg, rgba(22, 27, 34, 0.94) 0%, rgba(17, 22, 29, 0.94) 100%);
+        border-color: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
       }
       .panel-title-main {
         margin: 0;
         color: var(--primary);
         font-family: var(--font-display);
-        font-size: 1.18rem;
+        font-size: 1.08rem;
         font-weight: 900;
-        letter-spacing: -0.045em;
-        line-height: 1.12;
+        letter-spacing: -0.04em;
+        line-height: 1.15;
       }
       .panel-title-sub {
         margin-top: 5px;
         color: var(--sub);
-        font-size: 0.83rem;
-        line-height: 1.65;
-        max-width: 640px;
+        font-size: 0.8rem;
+        line-height: 1.58;
+        max-width: 560px;
       }
       .stage-hero {
         display: grid;
@@ -536,15 +539,15 @@
       }
       .settings-item {
         border: 1px solid var(--line);
-        border-radius: 16px;
+        border-radius: 14px;
         padding: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, var(--panel) 100%);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 248, 243, 0.96) 100%);
         min-width: 0;
         overflow: hidden;
-        box-shadow: 0 6px 20px rgba(28, 26, 20, 0.035);
+        box-shadow: 0 4px 14px rgba(28, 26, 20, 0.03);
       }
       [data-theme='dark'] .settings-item {
-        background: linear-gradient(180deg, rgba(22, 27, 34, 0.82) 0%, rgba(13, 17, 23, 0.84) 100%);
+        background: linear-gradient(180deg, rgba(22, 27, 34, 0.88) 0%, rgba(13, 17, 23, 0.86) 100%);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
       .settings-title {
@@ -559,42 +562,55 @@
       .menu-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 10px;
         margin: 12px 0;
       }
       .menu-btn {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, var(--panel) 100%);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        min-height: 126px;
-        padding: 18px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(249, 246, 240, 0.97) 100%);
+        border: 1px solid rgba(111, 122, 134, 0.16);
+        border-radius: 16px;
+        min-height: 112px;
+        padding: 16px;
         cursor: pointer;
         text-align: left;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 7px;
+        justify-content: flex-start;
+        gap: 6px;
         transition: all 0.2s;
         color: var(--text);
-        box-shadow: 0 8px 22px rgba(28, 26, 20, 0.04);
+        box-shadow: 0 4px 14px rgba(28, 26, 20, 0.035);
+        position: relative;
+        overflow: hidden;
       }
       [data-theme='dark'] .menu-btn {
-        background: linear-gradient(180deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.92) 100%);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+        background: linear-gradient(180deg, rgba(22, 27, 34, 0.92) 0%, rgba(15, 20, 27, 0.92) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+      }
+      .menu-btn::before {
+        content: '';
+        width: 30px;
+        height: 3px;
+        border-radius: 999px;
+        background: rgba(111, 122, 134, 0.22);
+        margin-bottom: 4px;
+      }
+      [data-theme='dark'] .menu-btn::before {
+        background: rgba(88, 166, 255, 0.32);
       }
       @media (hover: hover) {
         .menu-btn:hover {
-          transform: translateY(-2px);
+          transform: translateY(-1px);
           border-color: var(--primary);
-          box-shadow: 0 4px 12px rgba(111, 122, 134, 0.16);
+          box-shadow: 0 8px 18px rgba(111, 122, 134, 0.12);
         }
         [data-theme='dark'] .menu-btn:hover {
           border-color: var(--primary);
           box-shadow:
-            0 6px 24px rgba(88, 166, 255, 0.15),
+            0 8px 24px rgba(88, 166, 255, 0.14),
             0 2px 8px rgba(0, 0, 0, 0.3);
-          transform: translateY(-3px);
+          transform: translateY(-2px);
         }
       }
       .menu-btn:active {
@@ -607,17 +623,17 @@
       }
       .menu-title {
         font-family: var(--font-display);
-        font-size: 0.98rem;
+        font-size: 0.94rem;
         font-weight: 900;
         color: var(--text);
-        letter-spacing: -0.04em;
-        line-height: 1.22;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
       }
       .menu-desc {
-        font-size: 0.82rem;
+        font-size: 0.79rem;
         color: var(--sub);
-        line-height: 1.62;
-        letter-spacing: -0.01em;
+        line-height: 1.54;
+        letter-spacing: -0.005em;
       }
 
       .badge-row {
@@ -1929,10 +1945,10 @@
         <div class="stage-hero">
           <div class="panel stage-hero-panel">
             <div class="stage-kicker">2026 손해평가사 학습 포털</div>
-            <h1 class="stage-title-large">1차는 점수로, 2차는 답안력으로 준비합니다</h1>
+            <h1 class="stage-title-large">1차는 점수의 흐름으로, 2차는 답안의 밀도로 준비합니다</h1>
             <div class="stage-lead">
-              익숙한 CBT 풀이 흐름은 그대로 두고, 2차는 서술형과 계산형 훈련을 분리했습니다. 오늘 필요한 학습
-              모드만 골라 더 짧고 깊게 공부할 수 있습니다.
+              익숙한 CBT 풀이 흐름은 그대로 두고, 2차는 서술형과 계산형 훈련을 분리했습니다. 필요한 모드만 골라
+              오늘의 공부를 더 짧고 깊게 가져갈 수 있습니다.
             </div>
             <div class="stage-hero-meta">
               <span class="chip">객관식 실전</span>
@@ -1959,7 +1975,7 @@
               <span class="stage-choice-arrow">→</span>
             </div>
             <div class="stage-choice-desc">
-              모의고사, 기출, 오답 분석, 전략 리포트를 한 흐름으로 묶은 객관식 학습 공간입니다.
+              모의고사와 기출, 오답 분석을 한 흐름으로 묶어 점수 안정감을 만드는 공간입니다.
             </div>
             <div class="badge-row">
               <span class="chip">객관식</span>
@@ -1973,7 +1989,7 @@
               <span class="stage-choice-arrow">→</span>
             </div>
             <div class="stage-choice-desc">
-              서술형, 계산형, 암기형 훈련을 나눠 답안 밀도와 계산 정확도를 함께 끌어올립니다.
+              서술형과 계산형, 암기형 훈련을 나눠 답안의 밀도와 계산의 정확도를 함께 끌어올립니다.
             </div>
             <div class="badge-row">
               <span class="chip ok">서술형</span>
@@ -1997,7 +2013,7 @@
           ">
           <div>
             <h2 class="panel-title-main">1차 CBT 학습실</h2>
-            <div class="panel-title-sub">모의고사부터 오답 정리, 전략 점검까지 객관식 학습 흐름을 한곳에 모았습니다.</div>
+            <div class="panel-title-sub">모의, 기출, 오답 정리를 지금 바로 이어서 진행할 수 있습니다.</div>
           </div>
           <button class="btn outline" onclick="goPortal()">시험 선택</button>
         </div>
@@ -2034,28 +2050,28 @@
 
         <div class="menu-grid">
           <button class="menu-btn" onclick="startExam('academy')">
-            <div class="menu-title">학원 모의고사</div>
-            <div class="menu-desc">실전형 75문항으로 전체 감각을 점검합니다.</div>
+            <div class="menu-title">학원 모의</div>
+            <div class="menu-desc">실전형 75문항으로 현재 감각을 점검합니다.</div>
           </button>
           <button class="menu-btn" onclick="openAIModal()">
-            <div class="menu-title">AI 모의고사</div>
-            <div class="menu-desc">약점 과목 비중을 조절해 새 문제 세트를 만듭니다.</div>
+            <div class="menu-title">AI 모의</div>
+            <div class="menu-desc">약점 비중을 조절해 새 문제 세트를 만듭니다.</div>
           </button>
           <button class="menu-btn" onclick="openPastExamDirect()">
-            <div class="menu-title">실제 기출문제</div>
-            <div class="menu-desc">기출 사이트를 새 탭으로 열고 현재 화면은 그대로 유지합니다.</div>
+            <div class="menu-title">기출 열기</div>
+            <div class="menu-desc">기출 사이트를 새 탭으로 열고 현재 화면은 유지합니다.</div>
           </button>
           <button class="menu-btn" onclick="showWrongAnalysis()">
-            <div class="menu-title">오답 집중학습</div>
+            <div class="menu-title">오답 분석</div>
             <div class="menu-desc" id="wrongSummary">저장된 오답 분석</div>
           </button>
           <button class="menu-btn" onclick="showAIBankScreen()">
             <div class="menu-title">AI 문제은행</div>
-            <div class="menu-desc" id="aiBankSummary">회차, 태그, 난이도로 문제를 다시 묶어 학습합니다.</div>
+            <div class="menu-desc" id="aiBankSummary">조건별로 문제를 다시 묶어 바로 풉니다.</div>
           </button>
           <button class="menu-btn" onclick="showStrategyScreen()">
-            <div class="menu-title">합격 전략 컨설팅</div>
-            <div class="menu-desc">최근 성적과 오답 패턴으로 학습 우선순위를 정리합니다.</div>
+            <div class="menu-title">전략 리포트</div>
+            <div class="menu-desc">최근 성적과 오답 패턴으로 우선순위를 정리합니다.</div>
           </button>
         </div>
 
@@ -2063,7 +2079,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
             <div>
               <h3 style="margin: 0 0 4px 0; color: var(--primary)">2차 학습센터</h3>
-              <div class="hint">기출 기반 서술 연습과 짧은 퀴즈를 2차 과목 체계에 맞춰 주제별로 묶었습니다.</div>
+              <div class="hint">기출 기반 연습과 짧은 퀴즈를 주제별로 바로 이어갈 수 있습니다.</div>
             </div>
             <button class="btn primary" onclick="showSecondStudyScreen()">2차 학습 시작</button>
           </div>
@@ -2093,7 +2109,7 @@
         <div class="panel" style="margin-bottom: 12px">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px">
             <div>
-              <h3 style="margin: 0 0 4px 0; color: var(--primary)">🎯 현재 합격 가능성</h3>
+              <h3 style="margin: 0 0 4px 0; color: var(--primary)">합격 가능성</h3>
               <div class="hint">최근 5회 모의고사 + 오답 안정성 + 과목 밸런스 종합</div>
             </div>
             <div id="passProbabilityBox" style="text-align: right">
@@ -2105,13 +2121,13 @@
         </div>
 
         <div class="panel">
-          <h3 style="margin: 0 0 10px 0; color: var(--primary)">📊 학습 현황</h3>
+          <h3 style="margin: 0 0 10px 0; color: var(--primary)">학습 현황</h3>
           <div id="dashboardBody"></div>
         </div>
 
         <div class="panel" style="margin-top: 12px">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px">
-            <h3 style="margin: 0; color: var(--primary)">💰 API 사용 현황</h3>
+            <h3 style="margin: 0; color: var(--primary)">API 사용 현황</h3>
             <span class="hint" style="font-size: 0.75rem">✅ API 데이터는 전체 초기화해도 유지됩니다</span>
           </div>
           <div id="apiStatusBody" style="margin-top: 8px"></div>
@@ -2119,7 +2135,7 @@
 
         <div class="panel" style="margin-top: 12px">
           <div style="display: flex; justify-content: space-between; align-items: center">
-            <h3 style="margin: 0; color: var(--primary)">💾 저장된 시험 재개</h3>
+            <h3 style="margin: 0; color: var(--primary)">저장된 시험</h3>
             <button class="btn outline sm" onclick="clearSavedExam()">저장 삭제</button>
           </div>
           <div id="savedExamInfo" style="margin-top: 8px"></div>
@@ -2132,7 +2148,7 @@
           style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
           <div>
             <h2 class="panel-title-main">2차 실전 학습실</h2>
-            <div class="panel-title-sub">서술, 계산, 암기 훈련을 나눠 오늘 필요한 답안 연습에만 집중할 수 있습니다.</div>
+            <div class="panel-title-sub">서술, 계산, 암기 훈련을 필요한 순서대로 바로 실행할 수 있습니다.</div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap">
             <button class="btn outline" onclick="showFirstStageScreen()">1차 CBT</button>
@@ -2142,15 +2158,15 @@
 
         <div class="menu-grid">
           <button class="menu-btn" onclick="openSecondPractice('answer')">
-            <div class="menu-title">서술형 답안 훈련</div>
+            <div class="menu-title">서술형 훈련</div>
             <div class="menu-desc">키워드 누락과 문장 밀도를 빠르게 점검합니다.</div>
           </button>
           <button class="menu-btn" onclick="openSecondPractice('calc')">
-            <div class="menu-title">계산형 단계 훈련</div>
+            <div class="menu-title">계산형 훈련</div>
             <div class="menu-desc">공식, 대입값, 중간값, 최종답을 단계별로 확인합니다.</div>
           </button>
           <button class="menu-btn" onclick="openSecondPractice('memory')">
-            <div class="menu-title">핵심 빈칸 암기</div>
+            <div class="menu-title">빈칸 암기</div>
             <div class="menu-desc">숫자, 기한, 주체 문장을 짧게 반복해 암기합니다.</div>
           </button>
           <button class="menu-btn" onclick="openSecondPractice('planner')">
@@ -2161,7 +2177,7 @@
 
         <div class="second-dashboard-grid">
           <div class="panel">
-            <h3 style="margin: 0 0 10px 0; color: var(--primary)">📊 2차 학습 현황</h3>
+            <h3 style="margin: 0 0 10px 0; color: var(--primary)">2차 학습 현황</h3>
             <div id="secondStageSummary"></div>
           </div>
           <div class="panel">
@@ -2188,7 +2204,7 @@
       <section id="bankScreen" class="hidden">
         <div class="panel screen-top-panel">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
-            <h2 class="panel-title-main">📚 AI 문제은행 관리</h2>
+            <h2 class="panel-title-main">AI 문제은행 관리</h2>
             <button class="btn outline" onclick="goHome()">메인</button>
           </div>
           <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 12px">
@@ -2233,7 +2249,7 @@
       <section id="strategyScreen" class="hidden">
         <div class="panel screen-top-panel">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
-            <h2 class="panel-title-main">🎯 합격 전략 컨설팅 리포트</h2>
+            <h2 class="panel-title-main">합격 전략 리포트</h2>
             <button class="btn outline" onclick="goHome()">메인</button>
           </div>
           <div class="strategy-grid" style="margin-top: 12px">
@@ -2469,7 +2485,7 @@
       <section id="analysisScreen" class="hidden">
         <div class="panel screen-top-panel">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
-            <h2 class="panel-title-main">❌ 오답 분석</h2>
+            <h2 class="panel-title-main">오답 분석</h2>
             <button class="btn outline" onclick="goHome()">메인</button>
           </div>
           <div id="analysisBody" style="margin-top: 12px"></div>
