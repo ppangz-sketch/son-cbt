@@ -79,5 +79,6 @@
     "FIXME": { "background": "#c85f58", "icon": "flame" },
     "BUG": { "background": "#c85f58", "icon": "bug" },
     "NOTE": { "background": "#5f946a", "icon": "note" }
-  }
+  },
+  "terminal.integrated.allowMnemonics": true
 }
