@@ -9,7 +9,27 @@
     <script src="data_academy.js"></script>
     <style>
       :root {
-        --font-cbt: 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움', 'Pretendard', 'Noto Sans KR', sans-serif;
+        --font-body:
+          'Pretendard Variable',
+          'Pretendard',
+          'SUIT Variable',
+          'SUIT',
+          'Noto Sans KR',
+          'Apple SD Gothic Neo',
+          'Malgun Gothic',
+          '맑은 고딕',
+          sans-serif;
+        --font-display:
+          'Pretendard Variable',
+          'Pretendard',
+          'SUIT Variable',
+          'SUIT',
+          'Noto Sans KR',
+          'Apple SD Gothic Neo',
+          'Malgun Gothic',
+          '맑은 고딕',
+          sans-serif;
+        --font-cbt: var(--font-body);
 
         --bg: #f7f5ef;
         --paper: #fffdf8;
@@ -85,6 +105,9 @@
         -webkit-user-select: none;
         user-select: none;
         min-height: 100vh;
+        letter-spacing: -0.012em;
+        text-rendering: optimizeLegibility;
+        word-break: keep-all;
       }
       [data-theme='dark'] body {
         background:
@@ -150,10 +173,11 @@
         letter-spacing: -0.02em;
       }
       .title {
+        font-family: var(--font-display);
         font-size: 1.38rem;
         font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
+        letter-spacing: -0.05em;
+        line-height: 1.04;
       }
       [data-theme='dark'] .header {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
@@ -165,10 +189,12 @@
         backdrop-filter: blur(16px);
       }
       .subtitle {
-        font-size: 0.88rem;
-        opacity: 0.9;
-        margin-top: 2px;
+        font-size: 0.82rem;
+        opacity: 0.88;
+        margin-top: 4px;
         color: var(--header-text);
+        letter-spacing: -0.015em;
+        line-height: 1.5;
       }
       .header-actions {
         display: flex;
@@ -263,15 +289,18 @@
       .panel-title-main {
         margin: 0;
         color: var(--primary);
-        font-size: 1.22rem;
+        font-family: var(--font-display);
+        font-size: 1.18rem;
         font-weight: 900;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.045em;
+        line-height: 1.12;
       }
       .panel-title-sub {
         margin-top: 5px;
         color: var(--sub);
-        font-size: 0.84rem;
-        line-height: 1.55;
+        font-size: 0.83rem;
+        line-height: 1.65;
+        max-width: 640px;
       }
       .stage-hero {
         display: grid;
@@ -291,24 +320,27 @@
       .stage-kicker {
         color: var(--primary);
         font-weight: 900;
-        font-size: 0.76rem;
+        font-size: 0.72rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .stage-title-large {
-        font-size: clamp(1.8rem, 3.7vw, 3rem);
+        font-family: var(--font-display);
+        font-size: clamp(1.9rem, 3.7vw, 3.08rem);
         font-weight: 900;
-        line-height: 1.06;
-        letter-spacing: -0.04em;
-        margin: 0 0 12px 0;
+        line-height: 1.02;
+        letter-spacing: -0.06em;
+        margin: 0 0 14px 0;
+        max-width: 760px;
       }
       .stage-lead {
         color: var(--sub);
-        line-height: 1.68;
-        font-weight: 600;
-        max-width: 760px;
-        font-size: 0.95rem;
+        line-height: 1.78;
+        font-weight: 500;
+        max-width: 690px;
+        font-size: 0.96rem;
+        letter-spacing: -0.01em;
       }
       .stage-hero-meta {
         display: flex;
@@ -407,14 +439,18 @@
         border-top: 3px solid var(--primary);
       }
       .stage-choice-title {
-        font-size: 1.18rem;
+        font-family: var(--font-display);
+        font-size: 1.14rem;
         font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1.16;
       }
       .stage-choice-desc {
         color: var(--sub);
-        line-height: 1.6;
-        font-weight: 600;
-        font-size: 0.9rem;
+        line-height: 1.7;
+        font-weight: 500;
+        font-size: 0.88rem;
+        letter-spacing: -0.01em;
       }
       .stage-choice-arrow {
         width: 32px;
@@ -570,15 +606,18 @@
         pointer-events: none;
       }
       .menu-title {
-        font-size: 1rem;
+        font-family: var(--font-display);
+        font-size: 0.98rem;
         font-weight: 900;
         color: var(--text);
-        letter-spacing: -0.02em;
+        letter-spacing: -0.04em;
+        line-height: 1.22;
       }
       .menu-desc {
         font-size: 0.82rem;
         color: var(--sub);
-        line-height: 1.55;
+        line-height: 1.62;
+        letter-spacing: -0.01em;
       }
 
       .badge-row {
@@ -1455,15 +1494,17 @@
         border-color: rgba(88, 166, 255, 0.16);
       }
       .study-hero-title {
-        font-size: 1.18rem;
+        font-family: var(--font-display);
+        font-size: 1.14rem;
         font-weight: 900;
         color: var(--primary);
-        letter-spacing: -0.03em;
+        letter-spacing: -0.045em;
       }
       .study-hero-desc {
         margin-top: 8px;
-        line-height: 1.72;
-        font-size: 0.92rem;
+        line-height: 1.76;
+        font-size: 0.91rem;
+        letter-spacing: -0.01em;
       }
       .study-grid {
         display: grid;
@@ -1483,8 +1524,10 @@
       .study-block-title {
         margin: 0 0 10px 0;
         color: var(--primary);
-        font-size: 1rem;
+        font-family: var(--font-display);
+        font-size: 0.98rem;
         font-weight: 800;
+        letter-spacing: -0.035em;
       }
       .study-tip-list {
         display: grid;
@@ -1872,7 +1915,7 @@
       <div class="header">
         <div>
           <div class="title">손해평가사 합격 CBT</div>
-          <div class="subtitle">1차 CBT · 2차 1·2과목 서술/계산 학습 통합</div>
+          <div class="subtitle">1차 객관식부터 2차 답안 훈련까지, 한 곳에서</div>
         </div>
         <div class="header-actions">
           <button class="theme-btn" onclick="openPatchLog()" title="수정 로그 확인">📋 로그</button>
@@ -1885,57 +1928,57 @@
       <section id="portalScreen">
         <div class="stage-hero">
           <div class="panel stage-hero-panel">
-            <div class="stage-kicker">2026 손해평가사 합격 로드맵</div>
-            <h1 class="stage-title-large">1차 객관식부터 2차 서술·계산까지 한 화면에서 분리 관리</h1>
+            <div class="stage-kicker">2026 손해평가사 학습 포털</div>
+            <h1 class="stage-title-large">1차는 점수로, 2차는 답안력으로 준비합니다</h1>
             <div class="stage-lead">
-              1차는 기존 CBT 풀이 흐름을 유지하고, 2차는 서술형 답안 작성과 계산 훈련을 분리해 실전 감각 중심으로
-              정리했습니다. 아래에서 바로 학습 모드를 선택하면 됩니다.
+              익숙한 CBT 풀이 흐름은 그대로 두고, 2차는 서술형과 계산형 훈련을 분리했습니다. 오늘 필요한 학습
+              모드만 골라 더 짧고 깊게 공부할 수 있습니다.
             </div>
             <div class="stage-hero-meta">
-              <span class="chip">1차 객관식</span>
-              <span class="chip">2차 서술형</span>
+              <span class="chip">객관식 실전</span>
+              <span class="chip">서술형 답안</span>
               <span class="chip">계산형 훈련</span>
-              <span class="chip">D-day 플래너</span>
+              <span class="chip">D-day 관리</span>
             </div>
           </div>
           <div class="panel portal-countdown-card">
             <div>
               <div class="portal-countdown-kicker">시험 일정</div>
               <div id="portalCountdownDays" class="portal-countdown-days">D-000</div>
-              <div id="portalCountdownLabel" class="portal-countdown-label">2026년 8월 29일 기준</div>
+              <div id="portalCountdownLabel" class="portal-countdown-label">기본기와 실전 감각을 쌓는 시기</div>
               <div class="portal-countdown-date">2026.08.29 토요일</div>
             </div>
-            <div id="portalCountdownNote" class="portal-countdown-note">남은 기간에 맞춰 1차 객관식과 2차 서술형 비중을 조절하세요.</div>
+            <div id="portalCountdownNote" class="portal-countdown-note">지금은 객관식 안정화와 2차 답안 훈련을 함께 끌어올릴 시기입니다.</div>
           </div>
         </div>
 
         <div class="stage-choice-grid">
           <button class="stage-choice primary-stage" onclick="showFirstStageScreen()">
             <div class="stage-choice-head">
-              <div class="stage-choice-title">📘 1차 CBT 학습실</div>
+              <div class="stage-choice-title">1차 CBT 학습실</div>
               <span class="stage-choice-arrow">→</span>
             </div>
             <div class="stage-choice-desc">
-              학원 모의고사, AI 모의고사, 실제 기출, 오답 분석, 전략 컨설팅까지 기존 객관식 학습 흐름을 그대로 사용합니다.
+              모의고사, 기출, 오답 분석, 전략 리포트를 한 흐름으로 묶은 객관식 학습 공간입니다.
             </div>
             <div class="badge-row">
               <span class="chip">객관식</span>
               <span class="chip">75문항</span>
-              <span class="chip">오답/점수 분석</span>
+              <span class="chip">오답 리빌드</span>
             </div>
           </button>
           <button class="stage-choice second" onclick="showSecondStageScreen()">
             <div class="stage-choice-head">
-              <div class="stage-choice-title">✍️ 2차 실전학습실</div>
+              <div class="stage-choice-title">2차 실전 학습실</div>
               <span class="stage-choice-arrow">→</span>
             </div>
             <div class="stage-choice-desc">
-              서술형 답안 작성, 계산문제 단계 훈련, 핵심 빈칸 암기, 2차 전용 D-day 플래너로 답안력을 압축 훈련합니다.
+              서술형, 계산형, 암기형 훈련을 나눠 답안 밀도와 계산 정확도를 함께 끌어올립니다.
             </div>
             <div class="badge-row">
-              <span class="chip ok">주관식</span>
+              <span class="chip ok">서술형</span>
               <span class="chip ok">계산형</span>
-              <span class="chip ok">키워드 채점</span>
+              <span class="chip ok">답안 훈련</span>
             </div>
           </button>
         </div>
@@ -1953,8 +1996,8 @@
             margin-bottom: 12px;
           ">
           <div>
-            <h2 class="panel-title-main">📘 1차 CBT 학습실</h2>
-            <div class="panel-title-sub">객관식 실전 모의고사와 오답 분석 메뉴를 한 흐름으로 정리한 메인 대시보드입니다.</div>
+            <h2 class="panel-title-main">1차 CBT 학습실</h2>
+            <div class="panel-title-sub">모의고사부터 오답 정리, 전략 점검까지 객관식 학습 흐름을 한곳에 모았습니다.</div>
           </div>
           <button class="btn outline" onclick="goPortal()">시험 선택</button>
         </div>
@@ -1991,36 +2034,36 @@
 
         <div class="menu-grid">
           <button class="menu-btn" onclick="startExam('academy')">
-            <div class="menu-title">📘 학원 모의고사</div>
-            <div class="menu-desc">기본 75문항(상법25/농재법25/재배학25)</div>
+            <div class="menu-title">학원 모의고사</div>
+            <div class="menu-desc">실전형 75문항으로 전체 감각을 점검합니다.</div>
           </button>
           <button class="menu-btn" onclick="openAIModal()">
-            <div class="menu-title">🤖 제미나이 AI 모의고사</div>
-            <div class="menu-desc">기본 25/25/25 + 약점 과목 집중모드</div>
+            <div class="menu-title">AI 모의고사</div>
+            <div class="menu-desc">약점 과목 비중을 조절해 새 문제 세트를 만듭니다.</div>
           </button>
           <button class="menu-btn" onclick="openPastExamDirect()">
-            <div class="menu-title">📝 실제 기출문제</div>
-            <div class="menu-desc">comcbt 새 탭에서 열기 (메인 화면 유지)</div>
+            <div class="menu-title">실제 기출문제</div>
+            <div class="menu-desc">기출 사이트를 새 탭으로 열고 현재 화면은 그대로 유지합니다.</div>
           </button>
           <button class="menu-btn" onclick="showWrongAnalysis()">
-            <div class="menu-title">❌ 오답 집중학습</div>
+            <div class="menu-title">오답 집중학습</div>
             <div class="menu-desc" id="wrongSummary">저장된 오답 분석</div>
           </button>
           <button class="menu-btn" onclick="showAIBankScreen()">
-            <div class="menu-title">📚 AI 문제은행</div>
-            <div class="menu-desc" id="aiBankSummary">회차/태그/난이도 필터 + 오답만 재시험</div>
+            <div class="menu-title">AI 문제은행</div>
+            <div class="menu-desc" id="aiBankSummary">회차, 태그, 난이도로 문제를 다시 묶어 학습합니다.</div>
           </button>
           <button class="menu-btn" onclick="showStrategyScreen()">
-            <div class="menu-title">🎯 합격 전략 컨설팅</div>
-            <div class="menu-desc">회차별 진단 + 합격까지 남은 % 분석</div>
+            <div class="menu-title">합격 전략 컨설팅</div>
+            <div class="menu-desc">최근 성적과 오답 패턴으로 학습 우선순위를 정리합니다.</div>
           </button>
         </div>
 
         <div class="panel" style="margin-bottom: 12px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
             <div>
-              <h3 style="margin: 0 0 4px 0; color: var(--primary)">✍️ 2차 학습센터</h3>
-              <div class="hint">2차 1과목·2과목 체계에 맞춰 학습팁, 간단 퀴즈, 기출 기반 연습문제를 정리했습니다.</div>
+              <h3 style="margin: 0 0 4px 0; color: var(--primary)">2차 학습센터</h3>
+              <div class="hint">기출 기반 서술 연습과 짧은 퀴즈를 2차 과목 체계에 맞춰 주제별로 묶었습니다.</div>
             </div>
             <button class="btn primary" onclick="showSecondStudyScreen()">2차 학습 시작</button>
           </div>
@@ -2088,8 +2131,8 @@
           class="panel screen-top-panel"
           style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
           <div>
-            <h2 class="panel-title-main">✍️ 2차 실전학습실</h2>
-            <div class="panel-title-sub">서술형, 계산형, 암기형 훈련을 분리해 답안 완성도를 빠르게 끌어올리는 실전 메뉴입니다.</div>
+            <h2 class="panel-title-main">2차 실전 학습실</h2>
+            <div class="panel-title-sub">서술, 계산, 암기 훈련을 나눠 오늘 필요한 답안 연습에만 집중할 수 있습니다.</div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap">
             <button class="btn outline" onclick="showFirstStageScreen()">1차 CBT</button>
@@ -2099,20 +2142,20 @@
 
         <div class="menu-grid">
           <button class="menu-btn" onclick="openSecondPractice('answer')">
-            <div class="menu-title">✍️ 서술형 답안 작성</div>
-            <div class="menu-desc">필수 키워드 포함 여부와 답안 밀도를 즉시 확인</div>
+            <div class="menu-title">서술형 답안 훈련</div>
+            <div class="menu-desc">키워드 누락과 문장 밀도를 빠르게 점검합니다.</div>
           </button>
           <button class="menu-btn" onclick="openSecondPractice('calc')">
-            <div class="menu-title">🧮 계산문제 단계 채점</div>
-            <div class="menu-desc">공식 선택, 값 대입, 중간 계산, 최종 답을 분리 점검</div>
+            <div class="menu-title">계산형 단계 훈련</div>
+            <div class="menu-desc">공식, 대입값, 중간값, 최종답을 단계별로 확인합니다.</div>
           </button>
           <button class="menu-btn" onclick="openSecondPractice('memory')">
-            <div class="menu-title">🧩 빈칸 암기</div>
-            <div class="menu-desc">법령·약관 핵심 문장과 숫자 기준을 빈칸으로 반복</div>
+            <div class="menu-title">핵심 빈칸 암기</div>
+            <div class="menu-desc">숫자, 기한, 주체 문장을 짧게 반복해 암기합니다.</div>
           </button>
           <button class="menu-btn" onclick="openSecondPractice('planner')">
-            <div class="menu-title">📅 2차 D-day 플래너</div>
-            <div class="menu-desc">남은 기간에 맞춰 답안·계산·암기 비중을 자동 제안</div>
+            <div class="menu-title">2차 D-day 플래너</div>
+            <div class="menu-desc">남은 기간에 맞는 학습 비중을 정리해 제안합니다.</div>
           </button>
         </div>
 
@@ -2936,9 +2979,9 @@
       ];
 
       const SECOND_STAGE_MODES = {
-        answer: { label: '서술형 답안 작성', icon: '✍️' },
-        calc: { label: '계산문제 단계 채점', icon: '🧮' },
-        memory: { label: '빈칸 암기', icon: '🧩' },
+        answer: { label: '서술형 답안 훈련', icon: '✍️' },
+        calc: { label: '계산형 단계 훈련', icon: '🧮' },
+        memory: { label: '핵심 빈칸 암기', icon: '🧩' },
         planner: { label: '2차 D-day 플래너', icon: '📅' },
       };
       const SECOND_STAGE_CONTENT = {
@@ -4401,7 +4444,7 @@ ${scopeText}
 
         if (daysLeft > 0) {
           dayEl.textContent = `D-${daysLeft}`;
-          labelEl.textContent = daysLeft <= 30 ? '막판 압축 훈련 구간' : '실전 감각을 쌓는 기간';
+          labelEl.textContent = daysLeft <= 30 ? '막판 정리와 답안 압축 구간' : '기본기와 실전 감각을 쌓는 시기';
         } else if (daysLeft === 0) {
           dayEl.textContent = 'D-DAY';
           labelEl.textContent = '오늘이 시험일입니다';
@@ -4412,10 +4455,10 @@ ${scopeText}
 
         noteEl.textContent =
           daysLeft > 45
-            ? '지금은 기본기와 실전 감각을 함께 올리기 좋은 구간입니다.'
+            ? '지금은 객관식 안정화와 2차 답안 훈련을 함께 끌어올릴 시기입니다.'
             : daysLeft > 14
-              ? '계산 정확도와 서술형 키워드 밀도를 매일 짧게 반복하는 편이 좋습니다.'
-              : '신규 범위 확장보다 오답 재작성과 공식·키워드 고정에 집중하는 편이 안전합니다.';
+              ? '계산 정확도와 서술형 문장 밀도를 매일 짧게 점검하는 편이 좋습니다.'
+              : '새 범위를 넓히기보다 오답 재작성과 공식, 키워드 고정에 집중하는 편이 안전합니다.';
       }
 
       /* =============================
