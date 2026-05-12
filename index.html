@@ -4518,6 +4518,51 @@
           pitfall: '허리를 꺾어 정렬을 만들지 않습니다.',
           nextAction: '답안 구조 훈련 카드 1개 확인',
         },
+        {
+          id: 'transition-20min-start',
+          symptom: '시작 두려움',
+          title: '20분 착수 루틴 3분',
+          when: '1차 합격 후 2차가 막막해서 공부법만 찾고 있을 때',
+          minutes: '3분',
+          steps: [
+            '검색 창을 닫고 타이머 20분을 켭니다.',
+            '기본서 10페이지 읽기와 기출 1문제 필사 중 하나만 고릅니다.',
+            '오늘은 완벽한 계획 대신 손으로 20분만 실행합니다.',
+            '끝난 뒤 내일 첫 과제를 한 줄로 적고 바로 자리를 정리합니다.',
+          ],
+          pitfall: '커리큘럼을 다 짠 뒤 시작하려고 하면 다시 미뤄집니다.',
+          nextAction: '2차 수행 안내에서 오늘 과제 1개만 확인',
+        },
+        {
+          id: 'transition-stop-reset',
+          symptom: '분석 마비',
+          title: 'STOP 루틴 2분',
+          when: '불안 때문에 검색과 계획만 반복되고 손이 안 나갈 때',
+          minutes: '2분',
+          steps: [
+            '마음속으로 강하게 STOP을 외쳐 사고 흐름을 끊습니다.',
+            '지금 보이는 3가지, 닿는 감각 2가지, 들리는 소리 1가지를 확인합니다.',
+            '코로 4초 들이마시고 입으로 6초 내쉬며 어깨 힘을 풉니다.',
+            '지금 해결할 일 1개만 적고 바로 20분 착수로 넘어갑니다.',
+          ],
+          pitfall: '불안을 완전히 없애려 하기보다, 행동 1개를 정하는 데 집중해야 합니다.',
+          nextAction: '공식 1개 또는 기출 1문제 필사 시작',
+        },
+        {
+          id: 'transition-ai-detox',
+          symptom: 'AI 의존',
+          title: 'AI 없이 종이 1시간 2분',
+          when: '공부법이나 진로 고민을 계속 검색하고 AI에 묻고 있을 때',
+          minutes: '2분',
+          steps: [
+            '스마트폰을 비행기 모드로 바꾸거나 다른 방에 둡니다.',
+            '오늘 1시간은 기본서, 종이, 펜만 놓고 공부합니다.',
+            '모르는 부분도 먼저 내 문장으로 설명하거나 암기 코드를 적어봅니다.',
+            '마지막 5분에만 필요한 질문 1개를 정리합니다.',
+          ],
+          pitfall: '정보를 더 모으면 안심될 것 같아도 실행이 없으면 불안만 길어집니다.',
+          nextAction: '답안 구조 1세트 또는 계산 공식 1개를 손으로 적기',
+        },
       ];
       const STRATEGY_LIBRARY = [
         {
@@ -4556,7 +4601,124 @@
           weekly: '실패한 날은 10분 암기 + 10분 손글씨 최소 루틴으로 마감',
           checklist: ['대체 루틴이 있는가', '오늘 총평을 남겼는가', '다음날 바로 착수 지점이 정리됐는가'],
         },
+        {
+          id: 'transition-launch',
+          title: '전환기 즉시 착수형',
+          fit: '1차 합격 직후 2차가 막막해 검색과 계획만 늘어나는 사람',
+          works: '합격 직후 3~7일의 분석 마비 구간에서 완벽주의 지연을 끊고 첫 기록을 만드는 데 강합니다.',
+          warning: '공부법 비교만 하다 시작이 늦어지면 100일 골든타임을 그대로 잃습니다.',
+          weekly: '매일 20분 착수 + 기출 1문제 필사 또는 공식 1개 필사부터 시작',
+          checklist: [
+            '오늘 20분 타이머를 켰는가',
+            '검색 대신 손글씨 기록 1개를 남겼는가',
+            '내일 첫 과제를 한 줄로 적어뒀는가',
+          ],
+        },
+        {
+          id: 'hundred-day-compress',
+          title: '100일 압축형',
+          fit: '100일 안에 이론 압축과 기출 회독을 동시에 끌고 가야 하는 사람',
+          works: '1~30일 이론 압축, 31~60일 공식 체화, 61~85일 기출/모의, 86~100일 최종 암기로 흐름을 고정합니다.',
+          warning: '단계 없이 그날그날 다른 공부를 하면 누적 감각이 남지 않습니다.',
+          weekly: '주중은 이론·공식·손글씨를 고정하고, 주말은 기출/오답 회독 중심으로 운영',
+          checklist: [
+            '이론서가 압축 노트로 줄고 있는가',
+            '공식이 손으로 바로 써지는가',
+            '오답이 반복되지 않게 기록되고 있는가',
+          ],
+        },
+        {
+          id: 'wfh-boundary',
+          title: '재택근무 분리형',
+          fit: '재택근무로 출퇴근 시간은 아끼지만 업무와 공부 경계가 흐려지는 사람',
+          works: '공간 분리, 아침 개구리 먹기, 타임 블로킹, 미세 학습으로 집중 전환 비용을 낮춥니다.',
+          warning: '업무 자리와 공부 자리가 섞이면 쉬는 듯 일하고, 일하는 듯 공부하는 상태가 됩니다.',
+          weekly: '아침 1시간 계산 공식, 업무 중 10분 미세 학습, 저녁 2시간 손글씨·계산 실전',
+          checklist: [
+            '아침 가장 어려운 과제를 먼저 했는가',
+            '캘린더에 공부 시간이 블록으로 잡혀 있는가',
+            '미세 학습용 요약본이 준비돼 있는가',
+          ],
+        },
+        {
+          id: 'ai-minimal',
+          title: 'AI 미니멀 주체형',
+          fit: '공부법·진로 고민을 AI와 검색에 계속 맡기게 되는 사람',
+          works: '판단권을 다시 본인에게 돌려 시험장에서 필요한 문제 해결 근육을 회복합니다.',
+          warning: '알고리즘에 질문을 넘기는 시간이 길어질수록 스스로 쓰고 판단하는 힘이 약해집니다.',
+          weekly: '하루 1시간 종이·펜 전용 시간 + 질문은 마지막 10분에만 정리',
+          checklist: [
+            'AI 없이 쓴 시간이 있었는가',
+            '오늘 막힌 문제를 내 문장으로 설명했는가',
+            '검색은 실행 후에만 했는가',
+          ],
+        },
       ];
+      const TRANSITION_REPORT_CONTENT = {
+        starter: {
+          title: '1차 합격 후 3~7일이 가장 위험합니다',
+          summary:
+            '이 시기에는 2차의 방대한 양에 압도되어 효율적인 방법만 찾다가 실제 학습을 미루는 완벽주의적 지연이 쉽게 생깁니다.',
+          rules: [
+            '완벽한 방법은 없습니다. 검색이 아니라 손으로 쓴 기록이 실력을 만듭니다.',
+            '오늘의 최소 기준은 20분 착수와 기록 1개입니다.',
+            '두려움은 기출 1문제 필사로 시험의 실체를 대면할 때 가장 빨리 줄어듭니다.',
+          ],
+        },
+        roadmap: [
+          {
+            range: '1~30일',
+            label: '기초 확립',
+            goal: '이론서 핵심 개념과 용어 정의 압축',
+            method: '300페이지 이론서를 10페이지 내외 압축 노트로 줄이기',
+            action: '기본서 10페이지 + 핵심 용어 필사',
+          },
+          {
+            range: '31~60일',
+            label: '공식 체화',
+            goal: '품목별 공식 암기와 계산 감각 고정',
+            method: '피해율 산정 공식을 손으로 반복하고 중간값까지 쓰기',
+            action: '공식 1개 손필사 + 계산기 15분',
+          },
+          {
+            range: '61~85일',
+            label: '심화 적용',
+            goal: '기출문제와 모의고사 3회독 이상',
+            method: '오답 노트로 약점 보완, 풀이 시간 단축',
+            action: '기출 1세트 + 오답 1개 복기',
+          },
+          {
+            range: '86~100일',
+            label: '최종 정리',
+            goal: '단기 기억 극대화와 실수 통제',
+            method: '1주/3일/당일 단위 암기 코드 반복',
+            action: '당일 암기 카드 + 실수 목록 재확인',
+          },
+        ],
+        wfh: [
+          {
+            title: '공간 분리',
+            detail: '침실·거실이 아니라 공부와 업무만을 위한 전용 자리를 두어 뇌의 모드 전환 비용을 줄입니다.',
+          },
+          { title: '개구리 먹기', detail: '아침 업무 시작 전 1시간에 가장 어렵고 불편한 계산 공식을 먼저 처리합니다.' },
+          { title: '타임 블로킹', detail: '캘린더에 업무와 공부 시간을 미리 블록으로 잡아 경계를 시각화합니다.' },
+          { title: '미세 학습', detail: '업무 중 10분 자투리에는 PDF 요약본이나 키워드 암기만 짧게 반복합니다.' },
+          { title: '바디 더블링', detail: '혼자 흐름이 끊기면 Study with me나 캠스터디로 강제 환경을 만듭니다.' },
+        ],
+        overload: [
+          '걱정되는 내용을 모두 적은 뒤, 지금 해결할 일과 미래에 맡길 일을 분리합니다.',
+          '불안이 밀려오면 마음속으로 STOP을 외치고 오감으로 현재로 돌아옵니다.',
+          '코로 들이마시고 입으로 길게 내쉬며 몸의 긴장을 먼저 낮춥니다.',
+          '결론은 감정이 아니라 오늘 행동 1개로 내립니다.',
+        ],
+        aiDetox: [
+          '하루 1시간은 AI와 검색 없이 기본서, 종이, 펜만으로 공부합니다.',
+          '스마트폰은 비행기 모드로 두거나 다른 방에 두어 접근 자체를 어렵게 만듭니다.',
+          '시험장에서 문제를 해결하는 주체는 알고리즘이 아니라 내 뇌라는 감각을 회복합니다.',
+        ],
+        regret:
+          '공부법을 찾느라 시작하지 못한 100일보다, 투박하더라도 오늘 1페이지를 암기한 100일이 훨씬 덜 후회됩니다.',
+      };
       const TELEGRAM_API_SPEC = {
         sendPath: '/api/telegram/send',
         checkinPath: '/api/telegram/checkin',
@@ -4757,6 +4919,47 @@
         const phase =
           daysLeft > 75 ? '기초 정착' : daysLeft > 45 ? '실전 전환' : daysLeft > 21 ? '실수 보정' : '파이널 모사';
         return { examDate, daysLeft, weeks: Math.max(1, Math.ceil(daysLeft / 7)), phase };
+      }
+      function getTransitionActionPlan(days = getDaysLeftInfo(), progress = getSecondProgressSummary()) {
+        const count = progress?.data?.length || 0;
+        if (!count) {
+          return {
+            title: '분석 마비를 끊는 오늘의 시작',
+            text: '공부법 탐색 대신 20분 타이머를 켜고 기본서 10페이지 또는 기출 1문제 필사부터 시작하세요.',
+            next: '오늘 최소 기준: 20분 착수 + 기록 1개',
+            route: '#second/perform',
+          };
+        }
+        if (count < 3) {
+          return {
+            title: '완벽주의 지연 차단 구간',
+            text: '계획을 더 세우기보다 손글씨 과제 1개와 계산 과제 1개를 확인하고 기록부터 남기세요.',
+            next: '오늘 최소 기준: 손글씨 15분 + 계산 15분',
+            route: '#second/perform',
+          };
+        }
+        if (days.daysLeft > 60) {
+          return {
+            title: '100일 압축 초반 운영',
+            text: '아침에는 가장 어려운 계산 공식, 저녁에는 손글씨 구조 고정으로 하루의 뼈대를 세우는 구간입니다.',
+            next: '오늘 최소 기준: 아침 계산 공식 1개 먼저',
+            route: '#strategy',
+          };
+        }
+        if (days.daysLeft > 30) {
+          return {
+            title: '실전 전환 가속 구간',
+            text: '기출/모의 회독과 오답 복기로 시간 단축을 만드는 시기입니다. 새 정보보다 적용 비율을 높이세요.',
+            next: '오늘 최소 기준: 기출 1세트 + 오답 1개 복기',
+            route: '#strategy',
+          };
+        }
+        return {
+          title: '파이널 정리 우선 구간',
+          text: '새 정보보다 1주/3일/당일 단위 암기 코드와 실수 통제를 먼저 굳혀야 합니다.',
+          next: '오늘 최소 기준: 암기 카드 + 실수 목록 재확인',
+          route: '#strategy',
+        };
       }
       function getRoutineRecords() {
         try {
@@ -4984,9 +5187,17 @@
       }
       function getTimeBlockActions() {
         return [
-          { label: '새벽', text: '답안 구조 1세트 또는 손글씨 답안 15분', route: '#second/perform' },
-          { label: '회사 중', text: '2차 키워드 암기 20분', route: '#hub/strategy' },
-          { label: '퇴근 후', text: '계산기 훈련 + 체크리스트', route: '#second/checklist' },
+          {
+            label: '아침 1시간',
+            text: '가장 어려운 계산 공식 1개를 먼저 처리하는 개구리 먹기 시간',
+            route: '#second/calcGuide',
+          },
+          {
+            label: '업무 중 10분',
+            text: 'PDF 요약본이나 키워드만 보는 미세 학습으로 감각 유지',
+            route: '#hub/strategy',
+          },
+          { label: '저녁 2시간', text: '손글씨 15분 + 계산 15분 + 체크리스트로 실행 마감', route: '#second/checklist' },
         ];
       }
       function buildRoutineSuggestions(records = getRoutineRecords()) {
@@ -5047,6 +5258,23 @@
           icon: '🧠',
           text: '암기는 "보기 전에 입으로 먼저 말하기 → 종이에 쓰기 → 확인하기" 순서가 가장 깊게 남습니다.',
         },
+        {
+          icon: '🚦',
+          text: '분석 마비가 오면 공부법 탐색을 멈추고 20분 타이머부터 켜세요. 실행이 불안을 가장 빨리 줄입니다.',
+        },
+        {
+          icon: '📄',
+          text: '시작이 두려우면 기출 1문제만 필사하며 시험의 실체를 먼저 마주하세요. 모호함이 줄면 공포도 줄어듭니다.',
+        },
+        {
+          icon: '🐸',
+          text: '재택근무일수록 아침 첫 1시간에 가장 싫은 계산 공식부터 처리해야 하루의 불안이 줄어듭니다.',
+        },
+        {
+          icon: '📝',
+          text: '걱정은 머릿속에 두지 말고 종이에 적으세요. 지금 할 일과 미래에 맡길 일을 분리하면 집중이 돌아옵니다.',
+        },
+        { icon: '🤖', text: '하루 1시간은 AI와 검색 없이 종이와 펜만 쓰는 시간이 있어야 시험장에서 내 힘이 남습니다.' },
       ];
       function pickTips(seedString, count = 2) {
         const seed = String(seedString || nowISO())
@@ -5199,6 +5427,12 @@
             tone: 'warn',
             text: '저녁 공부 시작이 자주 밀립니다. 30분 기본형으로 가볍게 진입하세요.',
           });
+        if (!streak.currentAny && recent.length >= 3)
+          alerts.push({
+            icon: '🚦',
+            tone: 'warn',
+            text: '전환기에는 완벽한 계획보다 20분 착수가 먼저입니다. 오늘은 공식 1개 필사만 해도 흐름이 다시 생깁니다.',
+          });
         if (symptomCount('승모근통증·두통·피로') >= 2 || symptomCount('승모근-두통-피로') >= 2)
           alerts.push({
             icon: '💆',
@@ -5245,11 +5479,23 @@
         const blocks = getTimeBlockActions();
         const days = getDaysLeftInfo();
         const symptom = getLatestSymptomFocus();
+        const progress = getSecondProgressSummary();
+        const transition = getTransitionActionPlan(days, progress);
         box.innerHTML = `
           <div class="badge-row" style="margin-bottom:10px;">
             <span class="chip danger">D-${days.daysLeft}</span>
             <span class="chip">${days.phase}</span>
             <span class="chip">오늘 증상 ${escapeHtml(symptom)}</span>
+          </div>
+          <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);padding:12px 14px;">
+            <div class="settings-title">전환기 시작 원칙</div>
+            <div style="font-weight:800;color:var(--primary);margin:6px 0 4px 0;">${escapeHtml(transition.title)}</div>
+            <div class="hint" style="line-height:1.7;">${escapeHtml(transition.text)}</div>
+            <div class="subject-row" style="margin-top:8px;"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="openHashRoute('${transition.route.slice(1)}')">지금 바로 시작</button>
+              <button class="btn outline" onclick="showConditionHub('breath')">호흡·멘탈 보기</button>
+            </div>
           </div>
           <div class="subject-row" style="margin-bottom:10px;"><span>오늘의 증상 포커스</span><span>${escapeHtml(symptom)} · 공부 시작 전 컨디션 루틴 우선 적용</span></div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
@@ -5374,18 +5620,26 @@
         const progress = getSecondProgressSummary();
         const latest = progress.recent[0];
         const symptom = getLatestSymptomFocus();
+        const days = getDaysLeftInfo();
+        const transition = getTransitionActionPlan(days, progress);
         box.innerHTML = `
           <div class="badge-row" style="margin-bottom:10px;">
+            <span class="chip danger">D-${days.daysLeft}</span>
             <span class="chip">누적 ${progress.data.length}회</span>
             <span class="chip">최근 모드 ${escapeHtml(SECOND_STAGE_MODES[latest?.mode]?.label || '기록 대기')}</span>
             <span class="chip">현재 증상 ${escapeHtml(symptom)}</span>
           </div>
+          <div class="subject-row"><span>지금 가장 중요한 것</span><span>${escapeHtml(transition.title)}</span></div>
+          <div class="subject-row"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
           ${
             latest
               ? `<div class="subject-row"><span>최근 기록</span><span>${escapeHtml(latest.detail || '수행 기록 저장됨')}</span></div>`
               : '<div class="hint">아직 오늘 공부 기록이 없습니다. 오늘 공부 안내부터 시작하세요.</div>'
           }
-          <div style="margin-top:10px;"><button class="btn outline" onclick="showStrategyScreen()">2차 전략 리포트</button></div>`;
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn primary" onclick="openHashRoute('${transition.route.slice(1)}')">지금 바로 시작</button>
+            <button class="btn outline" onclick="showStrategyScreen()">2차 전략 리포트</button>
+          </div>`;
       }
       function renderConditionHubCard(card) {
         return `
@@ -5823,12 +6077,27 @@
         const body = document.getElementById('secondPracticeBody');
         if (!body) return;
         const plan = getTodayExecutionPlan();
+        const days = getDaysLeftInfo();
+        const progress = getSecondProgressSummary();
+        const transition = getTransitionActionPlan(days, progress);
         const answerItem = SECOND_STAGE_CONTENT.answer.find((x) => x.id === itemId) || SECOND_STAGE_CONTENT.answer[0];
         const calcItem = SECOND_STAGE_CONTENT.calc.find((x) => x.id === itemId) || SECOND_STAGE_CONTENT.calc[0];
         const memoryItem = SECOND_STAGE_CONTENT.memory[0];
         body.innerHTML = `
           <div class="hint" style="line-height:1.8;margin-bottom:12px;">
             웹에서 오래 작성하지 말고, 문제를 확인한 뒤 종이와 볼펜, 계산기로 실제 수행하세요. 수행 후에는 체크리스트와 루틴 캘린더로 복기합니다.
+          </div>
+          <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);">
+            <div class="settings-title">전환기 시작 가이드</div>
+            <h3 style="margin:8px 0;color:var(--primary);">${escapeHtml(transition.title)}</h3>
+            <div class="hint" style="line-height:1.75;">${escapeHtml(TRANSITION_REPORT_CONTENT.starter.summary)}</div>
+            <div class="subject-row"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
+            <div class="subject-row"><span>첫 행동</span><span>기본서 10페이지 또는 기출 1문제 필사 중 하나만 바로 시작</span></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="recordSecondExecution('perform', '전환기 시작 가이드 확인')">시작 가이드 확인 기록</button>
+              <button class="btn outline" onclick="showConditionHub('breath')">STOP 루틴 보기</button>
+              <button class="btn outline" onclick="showStrategyScreen()">100일 전략 보기</button>
+            </div>
           </div>
           <div class="panel" style="margin-bottom:10px;">
             <div class="settings-title">오늘 손으로 써야 할 문제</div>
@@ -5944,6 +6213,7 @@
         const routines = getRecentRoutineStats(7);
         const symptom = getLatestSymptomFocus();
         const latest = progress.recent[0];
+        const transition = getTransitionActionPlan(days, progress);
         body.innerHTML = `
           <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);">
             <div class="badge-row">
@@ -5952,7 +6222,48 @@
               <span class="chip">2차 기록 ${progress.data.length}회</span>
               <span class="chip">현재 증상 ${escapeHtml(symptom)}</span>
             </div>
-            <div class="hint" style="margin-top:8px;line-height:1.7;">100일 안에서는 새 정보 소비보다 매일의 새벽 공부, 아침 운동, 저녁 공부 흐름을 끊지 않는 쪽이 점수를 만듭니다.</div>
+            <div style="font-weight:800;color:var(--primary);margin-top:8px;">${escapeHtml(transition.title)}</div>
+            <div class="hint" style="margin-top:6px;line-height:1.7;">${escapeHtml(transition.text)}</div>
+            <div class="subject-row" style="margin-top:8px;"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">1차 합격 후 3~7일 함정</h3>
+            <div class="hint" style="line-height:1.75;margin-bottom:8px;">${escapeHtml(TRANSITION_REPORT_CONTENT.starter.summary)}</div>
+            ${TRANSITION_REPORT_CONTENT.starter.rules
+              .map((item) => `<div class="subject-row"><span>핵심 원칙</span><span>${escapeHtml(item)}</span></div>`)
+              .join('')}
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 10px 0;color:var(--primary);">100일 완성 로드맵</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+              ${TRANSITION_REPORT_CONTENT.roadmap
+                .map(
+                  (item) => `
+                <div class="settings-item">
+                  <div class="badge-row" style="margin-bottom:8px;"><span class="chip">${escapeHtml(item.range)}</span><span class="chip">${escapeHtml(item.label)}</span></div>
+                  <div style="font-weight:800;color:var(--primary);margin-bottom:6px;">${escapeHtml(item.goal)}</div>
+                  <div class="hint" style="line-height:1.65;">${escapeHtml(item.method)}</div>
+                  <div class="subject-row" style="margin-top:8px;"><span>오늘 행동</span><span>${escapeHtml(item.action)}</span></div>
+                </div>`
+                )
+                .join('')}
+            </div>
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 10px 0;color:var(--primary);">재택근무 수험 운영법</h3>
+            <div class="feature-list">
+              ${TRANSITION_REPORT_CONTENT.wfh.map((item) => `<div><b>${escapeHtml(item.title)}</b>: ${escapeHtml(item.detail)}</div>`).join('')}
+            </div>
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 10px 0;color:var(--primary);">심리 과부하 · AI 의존 관리</h3>
+            ${TRANSITION_REPORT_CONTENT.overload
+              .map((item) => `<div class="subject-row"><span>과부하 관리</span><span>${escapeHtml(item)}</span></div>`)
+              .join('')}
+            ${TRANSITION_REPORT_CONTENT.aiDetox
+              .map((item) => `<div class="subject-row"><span>AI 디톡스</span><span>${escapeHtml(item)}</span></div>`)
+              .join('')}
+            <div class="second-result-box" style="margin-top:10px;"><b>후회 최소화 프레임</b><br>${escapeHtml(TRANSITION_REPORT_CONTENT.regret)}</div>
           </div>
           <div class="panel" style="margin-bottom:10px;">
             <h3 style="margin:0 0 8px 0;color:var(--primary);">최근 7일 루틴 진단</h3>
@@ -5983,6 +6294,13 @@
                     .join('')
                 : '<div class="hint">아직 오늘 공부 기록이 없습니다. 오늘 공부 안내를 먼저 시작하세요.</div>'
             }
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="openHashRoute('${transition.route.slice(1)}')">오늘 바로 시작</button>
+              <button class="btn outline" onclick="showConditionHub('breath')">호흡·멘탈 카드</button>
+              <button class="btn outline" onclick="showConditionHub('strategy')">전략 카드</button>
+            </div>
           </div>
           <div class="panel placeholder-card">
             <div class="placeholder-badge">준비 중</div>
