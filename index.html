@@ -2249,6 +2249,16 @@
                 <b>권장 API</b><br />
                 <span id="telegramSpecLine">/api/telegram/send · /api/telegram/checkin</span>
               </div>
+              <div style="margin-top:10px;">
+                <div class="hint" style="margin-bottom:4px;">브리지 기본 URL</div>
+                <input id="telegramBridgeBaseInput" class="input" type="url" placeholder="http://192.168.219.131:8787" />
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+                <button class="btn outline" onclick="saveTelegramBridgeBaseUrl()">브리지 URL 저장</button>
+                <button class="btn outline" onclick="sendTelegramRoutineCheckin()">체크인 테스트 전송</button>
+                <button class="btn outline" onclick="sendTelegramTodayPerform()">오늘 수행 전송</button>
+              </div>
+              <div id="telegramEndpointHint" class="hint" style="margin-top:8px;line-height:1.7;">브리지 URL을 저장하면 실제 전송 엔드포인트가 여기 표시됩니다.</div>
               <div class="hint" style="margin-top:8px;">딥링크는 텔레그램 메시지에서 특정 화면과 카드로 바로 진입하게 하는 용도로 사용합니다.</div>
             </div>
           </div>
@@ -3039,13 +3049,13 @@
           id: 'round-shoulder-reset',
           symptom: '라운드숄더',
           title: '라운드숄더 리셋 5분',
-          purpose: '굽은 어깨와 가슴 앞 긴장을 풀어 답안 작성 시 어깨 말림을 줄입니다.',
-          good: '가슴을 과하게 내밀지 않고, 쇄골이 넓어지는 느낌으로 어깨를 뒤아래로 둡니다.',
-          bad: '허리를 꺾어 억지로 가슴만 여는 자세는 피합니다.',
-          cues: ['겨드랑이 아래가 길어진다', '흉골을 살짝 들어올린다', '팔보다 견갑골이 먼저 움직인다'],
+          purpose: '굽은 어깨와 가슴 앞 긴장, 어깨 앞쪽으로 상완골이 밀리는 전방활주 패턴을 함께 줄여 답안 작성 시 어깨 말림과 앞쪽 찝힘을 낮춥니다.',
+          good: '가슴을 과하게 내밀지 않고 쇄골이 넓어지는 느낌을 유지하며, 상완골 머리가 앞이 아니라 몸통 중심 쪽에 가볍게 안착되는 느낌으로 어깨를 뒤아래로 둡니다.',
+          bad: '허리를 꺾어 억지로 가슴만 열거나 팔을 뒤로 과하게 젖혀 어깨 앞쪽이 더 밀리는 자세는 피합니다.',
+          cues: ['겨드랑이 아래가 길어진다', '흉골을 살짝 들어올린다', '팔보다 견갑골이 먼저 움직인다', '어깨 앞이 튀어나오지 않게 상완골 위치를 가볍게 뒤로 정렬한다'],
           duration: '5분 · 2세트',
-          goodFor: '오래 앉아 어깨가 말렸을 때, 계산형 훈련 전',
-          avoid: '어깨 앞쪽 통증이 심하면 범위를 줄입니다.',
+          goodFor: '오래 앉아 어깨가 말렸을 때, 어깨 앞이 자주 뻐근하거나 계산형 훈련 전 팔이 앞으로 말릴 때',
+          avoid: '어깨 앞쪽 통증이나 걸리는 느낌이 심하면 범위를 줄이고, 팔을 몸 뒤로 과하게 보내지 않습니다.',
         },
         {
           id: 'pelvis-balance',
@@ -3437,6 +3447,61 @@
       function saveTelegramBridgeConfig(config) {
         localStorage.setItem(STORAGE.TELEGRAM_BRIDGE, JSON.stringify({ ...(config || {}), updatedAt: nowISO() }));
       }
+      function normalizeTelegramBridgeBaseUrl(value) {
+        return String(value || '')
+          .trim()
+          .replace(/\/+$/, '');
+      }
+      function getTelegramBridgeEndpoints(config = getTelegramBridgeConfig()) {
+        const raw = normalizeTelegramBridgeBaseUrl(config.baseUrl || config.endpoint || '');
+        const base = raw
+          .replace(new RegExp(`${TELEGRAM_API_SPEC.sendPath.replace(/\//g, '\\/')}$`), '')
+          .replace(new RegExp(`${TELEGRAM_API_SPEC.checkinPath.replace(/\//g, '\\/')}$`), '');
+        if (!base) return { base: '', send: '', checkin: '' };
+        return {
+          base,
+          send: `${base}${TELEGRAM_API_SPEC.sendPath}`,
+          checkin: `${base}${TELEGRAM_API_SPEC.checkinPath}`,
+        };
+      }
+      function syncTelegramBridgeInputs() {
+        const input = document.getElementById('telegramBridgeBaseInput');
+        const hint = document.getElementById('telegramEndpointHint');
+        const endpoints = getTelegramBridgeEndpoints();
+        if (input) input.value = endpoints.base;
+        if (hint) {
+          hint.innerHTML = endpoints.base
+            ? `저장된 브리지: <code>${escapeHtml(endpoints.base)}</code><br />전송: <code>${escapeHtml(
+                endpoints.send
+              )}</code><br />체크인: <code>${escapeHtml(endpoints.checkin)}</code>`
+            : '브리지 URL을 저장하면 실제 전송 엔드포인트가 여기 표시됩니다.';
+        }
+      }
+      function saveTelegramBridgeBaseUrl() {
+        const input = document.getElementById('telegramBridgeBaseInput');
+        const base = normalizeTelegramBridgeBaseUrl(input?.value || '');
+        if (!base) {
+          showToast('브리지 기본 URL을 먼저 입력하세요.', 1800);
+          return;
+        }
+        const config = getTelegramBridgeConfig();
+        const endpoints = getTelegramBridgeEndpoints({ ...config, baseUrl: base });
+        saveTelegramBridgeConfig({
+          ...config,
+          baseUrl: endpoints.base,
+          endpoint: endpoints.send,
+          checkinEndpoint: endpoints.checkin,
+        });
+        syncTelegramBridgeInputs();
+        buildStrategyReport();
+        showToast('텔레그램 브리지 URL 저장 완료', 1800);
+      }
+      function getTelegramRequestEndpoint(kind = 'send') {
+        const config = getTelegramBridgeConfig();
+        const endpoints = getTelegramBridgeEndpoints(config);
+        if (kind === 'checkin') return config.checkinEndpoint || endpoints.checkin || '';
+        return config.endpoint || endpoints.send || '';
+      }
       function buildDeepLink(route) {
         const base = `${window.location.origin}${window.location.pathname}${window.location.search}`;
         return `${base}${route.startsWith('#') ? route : `#${route}`}`;
@@ -3453,16 +3518,39 @@
           context.route || '#second/perform'
         )}`;
       }
-      async function sendTelegramBridge(payload) {
-        const config = getTelegramBridgeConfig();
-        if (!config.endpoint) throw new Error('텔레그램 중계 엔드포인트가 설정되지 않았습니다.');
-        const res = await fetch(config.endpoint, {
+      async function sendTelegramBridge(payload, endpointOverride = '') {
+        const target = endpointOverride || getTelegramRequestEndpoint('send');
+        if (!target) throw new Error('텔레그램 중계 엔드포인트가 설정되지 않았습니다.');
+        const res = await fetch(target, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
         if (!res.ok) throw new Error(`텔레그램 중계 실패: HTTP ${res.status}`);
         return res.json().catch(() => ({}));
+      }
+      async function sendTelegramTodayPerform() {
+        try {
+          await sendTelegramBridge(
+            {
+              kind: 'perform',
+              message: '오늘 2차는 손으로 합니다. 볼펜과 계산기를 꺼내고 시작하세요.',
+              route: '#second/perform',
+            },
+            getTelegramRequestEndpoint('send')
+          );
+          showToast('오늘 수행 메시지를 텔레그램으로 보냈습니다.', 2000);
+        } catch (err) {
+          showToast(err?.message || '텔레그램 전송에 실패했습니다.', 2400);
+        }
+      }
+      async function sendTelegramRoutineCheckin() {
+        try {
+          await sendTelegramBridge({ kind: 'checkin' }, getTelegramRequestEndpoint('checkin'));
+          showToast('저녁 체크인 메시지를 텔레그램으로 보냈습니다.', 2000);
+        } catch (err) {
+          showToast(err?.message || '텔레그램 전송에 실패했습니다.', 2400);
+        }
       }
       function getTodayExecutionPlan() {
         const days = getDaysLeftInfo();
@@ -3994,6 +4082,7 @@
           <div class="panel">
             <h3 style="margin:0 0 8px 0;color:var(--primary);">텔레그램 연동 준비</h3>
             <div class="subject-row"><span>보안 원칙</span><span>Bot token과 chat id는 프론트엔드에 저장하지 않습니다.</span></div>
+            <div class="subject-row"><span>현재 브리지</span><span>${escapeHtml(getTelegramBridgeEndpoints().base || '미설정')}</span></div>
             <div class="subject-row"><span>권장 엔드포인트</span><span>${escapeHtml(TELEGRAM_API_SPEC.sendPath)} / ${escapeHtml(
               TELEGRAM_API_SPEC.checkinPath
             )}</span></div>
@@ -8035,6 +8124,7 @@ ${scopeText}
         showScreen('strategyScreen');
         document.getElementById('strategyBody').innerHTML = `<div class="hint">[2차 전략 분석 실행]을 눌러 최신 수행 기록을 분석하세요.</div>`;
         document.getElementById('examDateInput').value = getSecondExamDateValue();
+        syncTelegramBridgeInputs();
         updateDaysLeftDisplay();
         buildStrategyReport();
         if (!String(window.location.hash || '').startsWith('#strategy/')) setHashRoute('#strategy/report');
