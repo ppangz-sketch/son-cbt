@@ -1,28 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
-  <rect width="640" height="380" fill="#f8f1df" />
-  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
-  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Wall Angel</text>
-  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Back of head, ribcage and arms stay close to wall.</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf0" />
+      <stop offset="100%" stop-color="#f6ecd9" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7d9154" />
+    </marker>
+  </defs>
 
-  <line x1="182" y1="100" x2="182" y2="322" stroke="#b19365" stroke-width="12" />
-  <text x="150" y="94" font-family="Arial, sans-serif" font-size="13" fill="#6e5026">wall</text>
+  <rect width="640" height="380" fill="#f3ead7" />
+  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
+  <rect x="156" y="70" width="20" height="260" rx="10" fill="#c0a174" />
+  <rect x="0" y="316" width="640" height="64" fill="#efe3cb" />
 
-  <circle cx="286" cy="136" r="20" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
-  <line x1="286" y1="156" x2="286" y2="246" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="286" y1="182" x2="238" y2="210" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="238" y1="210" x2="238" y2="252" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="286" y1="182" x2="334" y2="210" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="334" y1="210" x2="334" y2="252" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="286" y1="246" x2="260" y2="304" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="286" y1="246" x2="312" y2="304" stroke="#8a6a3c" stroke-width="7" />
+  <circle cx="270" cy="129" r="23" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+  <path d="M240 160 Q270 148 300 160 L298 232 Q270 246 242 232 Z" fill="#8f796b" stroke="#735b4d" stroke-width="3" />
+  <path d="M241 174 Q214 192 214 214 L214 248" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M299 174 Q326 192 326 214 L326 248" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M255 232 L242 304" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M285 232 L292 304" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M242 304 L216 304" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M292 304 L318 304" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
 
-  <path d="M238 210 C228 182, 228 154, 238 126" fill="none" stroke="#4f8b42" stroke-width="5" />
-  <polygon points="238,120 232,130 244,130" fill="#4f8b42" />
-  <path d="M334 210 C344 182, 344 154, 334 126" fill="none" stroke="#4f8b42" stroke-width="5" />
-  <polygon points="334,120 328,130 340,130" fill="#4f8b42" />
+  <path d="M214 212 C208 180 208 154 214 126" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M326 212 C332 180 332 154 326 126" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
 
-  <line x1="182" y1="136" x2="266" y2="136" stroke="#b3573a" stroke-width="2" stroke-dasharray="6 5" />
-  <line x1="182" y1="210" x2="232" y2="210" stroke="#b3573a" stroke-width="2" stroke-dasharray="6 5" />
-  <line x1="182" y1="252" x2="232" y2="252" stroke="#b3573a" stroke-width="2" stroke-dasharray="6 5" />
-  <text x="370" y="160" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">slide arm up and down slowly</text>
+  <circle cx="238" cy="129" r="5" fill="#d78b6e" />
+  <circle cx="214" cy="214" r="5" fill="#d78b6e" />
+  <circle cx="214" cy="248" r="5" fill="#d78b6e" />
+  <circle cx="238" cy="304" r="5" fill="#d78b6e" />
+  <circle cx="156" cy="129" r="5" fill="#d78b6e" opacity="0.7" />
+  <circle cx="156" cy="214" r="5" fill="#d78b6e" opacity="0.7" />
+  <circle cx="156" cy="248" r="5" fill="#d78b6e" opacity="0.7" />
 </svg>

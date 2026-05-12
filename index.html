@@ -4460,15 +4460,6 @@
           ],
         },
       ];
-      const POSTURE_IMAGE_URLS = {
-        'door-chest-stretch': 'https://img.youtube.com/vi/O8rJw_TmC1Y/hqdefault.jpg',
-        'open-book': 'https://img.youtube.com/vi/SVCfR_BAkoM/hqdefault.jpg',
-        'scalene-stretch': 'https://img.youtube.com/vi/bEiP80kIccE/hqdefault.jpg',
-        'wall-angel': 'https://img.youtube.com/vi/wPOcXSXFTSo/hqdefault.jpg',
-        'chin-tuck': 'https://img.youtube.com/vi/u8C5LgpK3r4/hqdefault.jpg',
-        'dead-bug': 'https://img.youtube.com/vi/bxn9FBrt4-A/hqdefault.jpg',
-        'wall-standing': 'https://img.youtube.com/vi/Tof3U-GnjPg/hqdefault.jpg',
-      };
       const BREATH_MENTAL_CONTENT = [
         {
           id: 'breath-shallow',
@@ -5442,8 +5433,7 @@
           .slice(0, 3)
           .map((s) => `<li>${escapeHtml(s)}</li>`)
           .join('');
-        const imageSrc = POSTURE_IMAGE_URLS[item.id] || `assets/posture/${item.id}.png`;
-        const fallbackImageSrc = `assets/posture/${item.id}.svg`;
+        const imageSrc = `assets/posture/${item.id}.svg`;
         const refsHtml = (item.refs || [])
           .map(
             (r) =>
@@ -5507,7 +5497,7 @@
                 </div>
                 <h3 class="posture-card-title">${escapeHtml(item.title)}</h3>
                 <div class="posture-image-wrap">
-                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(item.title)} 자세 가이드 이미지" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(fallbackImageSrc)}'" />
+                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(item.title)} 자세 가이드 이미지" loading="lazy" />
                   <div class="posture-image-caption">핵심 정렬: ${escapeHtml(item.target)} · 동작 전후에 통증이 증가하면 범위를 줄이세요.</div>
                 </div>
                 <div class="posture-back-check">

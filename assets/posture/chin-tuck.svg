@@ -1,22 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
-  <rect width="640" height="380" fill="#f8f1df" />
-  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
-  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Chin Tuck</text>
-  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Glide chin straight back, do not bend neck down.</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf0" />
+      <stop offset="100%" stop-color="#f6ecd9" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7d9154" />
+    </marker>
+  </defs>
 
-  <rect x="210" y="248" width="220" height="18" rx="8" fill="#d9c9a9" />
-  <rect x="258" y="206" width="96" height="44" rx="16" fill="#e2d5ba" />
-  <path d="M366 122 C392 122, 410 142, 410 166 C410 190, 392 210, 366 210 C352 210, 340 202, 332 192 C326 184, 326 172, 332 164 C340 154, 352 146, 366 146"
-    fill="#f3d9b5" stroke="#8a6a3c" stroke-width="3" />
-  <line x1="334" y1="192" x2="292" y2="224" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="292" y1="224" x2="270" y2="248" stroke="#8a6a3c" stroke-width="7" />
+  <rect width="640" height="380" fill="#f3ead7" />
+  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
+  <rect x="218" y="248" width="220" height="18" rx="9" fill="#ccb18d" />
+  <rect x="262" y="206" width="98" height="44" rx="16" fill="#d9c9a9" />
 
-  <line x1="425" y1="166" x2="472" y2="166" stroke="#b3573a" stroke-width="4" />
-  <polygon points="478,166 468,160 468,172" fill="#b3573a" />
-  <line x1="348" y1="166" x2="305" y2="166" stroke="#4f8b42" stroke-width="4" />
-  <polygon points="299,166 309,160 309,172" fill="#4f8b42" />
+  <g opacity="0.35">
+    <path d="M378 124 C405 126 424 145 424 170 C424 196 404 214 376 214 C361 214 348 208 340 198 C334 191 334 178 340 169 C348 158 360 149 376 149"
+      fill="#f0cfad" stroke="#c18f7a" stroke-width="3" />
+    <path d="M338 198 L294 224 L274 248" fill="none" stroke="#c18f7a" stroke-width="13" stroke-linecap="round" />
+  </g>
 
-  <text x="484" y="170" font-family="Arial, sans-serif" font-size="13" fill="#b3573a">forward head</text>
-  <text x="214" y="170" font-family="Arial, sans-serif" font-size="13" fill="#4f8b42">pull chin back</text>
-  <text x="210" y="296" font-family="Arial, sans-serif" font-size="13" fill="#6e5026">keep eyes level and shoulders relaxed</text>
+  <path d="M355 124 C381 124 398 142 398 165 C398 188 381 206 356 206 C342 206 330 200 322 191 C317 183 317 172 322 164 C329 154 341 146 355 146"
+    fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+  <path d="M322 192 L282 223 L266 248" fill="none" stroke="#735b4d" stroke-width="13" stroke-linecap="round" />
+  <path d="M282 223 L335 223" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" opacity="0.18" />
+
+  <path d="M374 166 C348 166 328 166 313 166" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <circle cx="344" cy="166" r="22" fill="#d78b6e" opacity="0.16" />
 </svg>

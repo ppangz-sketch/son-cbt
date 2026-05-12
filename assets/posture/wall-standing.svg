@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
-  <rect width="640" height="380" fill="#f8f1df" />
-  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
-  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Wall Standing</text>
-  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">4-point contact: head, upper back, hips, heels.</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf0" />
+      <stop offset="100%" stop-color="#f6ecd9" />
+    </linearGradient>
+  </defs>
 
-  <line x1="206" y1="100" x2="206" y2="320" stroke="#b19365" stroke-width="12" />
-  <circle cx="292" cy="134" r="20" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
-  <line x1="292" y1="154" x2="292" y2="244" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="292" y1="186" x2="256" y2="216" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="292" y1="186" x2="330" y2="216" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="292" y1="244" x2="266" y2="306" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="292" y1="244" x2="314" y2="306" stroke="#8a6a3c" stroke-width="7" />
+  <rect width="640" height="380" fill="#f3ead7" />
+  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
+  <rect x="194" y="72" width="18" height="256" rx="9" fill="#c0a174" />
+  <rect x="0" y="314" width="640" height="66" fill="#efe3cb" />
 
-  <circle cx="250" cy="134" r="7" fill="#4f8b42" />
-  <circle cx="250" cy="174" r="7" fill="#4f8b42" />
-  <circle cx="250" cy="236" r="7" fill="#4f8b42" />
-  <circle cx="250" cy="304" r="7" fill="#4f8b42" />
+  <circle cx="280" cy="129" r="22" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+  <path d="M250 158 Q278 146 304 159 L303 230 Q278 244 252 231 Z" fill="#8f796b" stroke="#735b4d" stroke-width="3" />
+  <path d="M253 176 L226 214" fill="none" stroke="#735b4d" stroke-width="13" stroke-linecap="round" />
+  <path d="M300 176 L326 212" fill="none" stroke="#735b4d" stroke-width="13" stroke-linecap="round" />
+  <path d="M262 230 L248 306" fill="none" stroke="#735b4d" stroke-width="13" stroke-linecap="round" />
+  <path d="M294 230 L301 306" fill="none" stroke="#735b4d" stroke-width="13" stroke-linecap="round" />
 
-  <line x1="206" y1="134" x2="244" y2="134" stroke="#4f8b42" stroke-width="3" />
-  <line x1="206" y1="174" x2="244" y2="174" stroke="#4f8b42" stroke-width="3" />
-  <line x1="206" y1="236" x2="244" y2="236" stroke="#4f8b42" stroke-width="3" />
-  <line x1="206" y1="304" x2="244" y2="304" stroke="#4f8b42" stroke-width="3" />
-
-  <text x="344" y="138" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">head contact</text>
-  <text x="344" y="178" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">upper back contact</text>
-  <text x="344" y="240" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">hip contact</text>
-  <text x="344" y="308" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">heel contact</text>
+  <circle cx="239" cy="129" r="7" fill="#7d9154" />
+  <circle cx="241" cy="178" r="7" fill="#7d9154" />
+  <circle cx="244" cy="232" r="7" fill="#7d9154" />
+  <circle cx="244" cy="306" r="7" fill="#7d9154" />
+  <path d="M194 129 L232 129" stroke="#7d9154" stroke-width="4" stroke-linecap="round" />
+  <path d="M194 178 L234 178" stroke="#7d9154" stroke-width="4" stroke-linecap="round" />
+  <path d="M194 232 L237 232" stroke="#7d9154" stroke-width="4" stroke-linecap="round" />
+  <path d="M194 306 L237 306" stroke="#7d9154" stroke-width="4" stroke-linecap="round" />
 </svg>

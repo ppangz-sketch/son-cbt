@@ -1,23 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
-  <rect width="640" height="380" fill="#f8f1df" />
-  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
-  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Dead Bug</text>
-  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Opposite arm and leg extend while low back stays down.</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf0" />
+      <stop offset="100%" stop-color="#f6ecd9" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7d9154" />
+    </marker>
+  </defs>
 
-  <rect x="126" y="250" width="388" height="46" rx="20" fill="#e2d5ba" opacity="0.7" />
-  <circle cx="250" cy="226" r="20" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
-  <line x1="268" y1="238" x2="354" y2="248" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="298" y1="244" x2="266" y2="184" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="334" y1="248" x2="390" y2="198" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="354" y1="248" x2="418" y2="248" stroke="#8a6a3c" stroke-width="7" />
-  <line x1="354" y1="248" x2="334" y2="306" stroke="#8a6a3c" stroke-width="7" />
+  <rect width="640" height="380" fill="#f3ead7" />
+  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
+  <rect x="118" y="246" width="404" height="52" rx="24" fill="#dfcfb2" opacity="0.75" />
 
-  <path d="M266 184 C256 168, 250 150, 252 132" fill="none" stroke="#4f8b42" stroke-width="5" />
-  <polygon points="252,126 246,136 258,136" fill="#4f8b42" />
-  <path d="M390 198 C410 182, 424 170, 440 162" fill="none" stroke="#4f8b42" stroke-width="5" />
-  <polygon points="446,160 436,156 438,168" fill="#4f8b42" />
-  <text x="448" y="164" font-family="Arial, sans-serif" font-size="13" fill="#4f8b42">extend opposite side</text>
+  <circle cx="238" cy="220" r="22" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+  <path d="M258 235 Q298 236 338 246" fill="none" stroke="#735b4d" stroke-width="16" stroke-linecap="round" />
+  <path d="M296 239 L268 176" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M330 244 L387 194" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M346 246 L416 246" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <path d="M346 246 L324 306" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
 
-  <line x1="258" y1="260" x2="360" y2="260" stroke="#b3573a" stroke-width="3" stroke-dasharray="7 6" />
-  <text x="190" y="282" font-family="Arial, sans-serif" font-size="13" fill="#b3573a">keep lower back near floor</text>
+  <path d="M268 176 C258 158 252 144 252 126" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M388 194 C410 180 427 169 444 161" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ellipse cx="332" cy="250" rx="42" ry="26" fill="#d78b6e" opacity="0.18" />
+  <path d="M260 261 Q308 255 357 261" fill="none" stroke="#b86d58" stroke-width="4" stroke-dasharray="6 6" />
 </svg>
