@@ -1,50 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fffaf0" />
-      <stop offset="100%" stop-color="#f5ead6" />
+      <stop offset="0%" stop-color="#fffdf8" />
+      <stop offset="100%" stop-color="#f7f0e4" />
     </linearGradient>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#728b4c" />
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7c9654" />
     </marker>
   </defs>
-  <rect width="640" height="380" fill="#f3ead7" />
-  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
-  <rect x="318" y="46" width="2" height="288" fill="#dcccb0" stroke-dasharray="6 8" />
-  <rect x="104" y="78" width="14" height="236" rx="7" fill="#c0a174" />
-  <rect x="424" y="78" width="14" height="236" rx="7" fill="#c0a174" />
-  <rect x="0" y="318" width="640" height="62" fill="#eee1c9" />
+  <rect width="640" height="380" fill="#f4eee3" />
+  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#e0d6c5" stroke-width="2" />
+  <rect x="318" y="54" width="2" height="270" fill="#e7dfd1" />
+  <rect x="104" y="82" width="12" height="230" rx="6" fill="#c2a780" />
+  <rect x="424" y="82" width="12" height="230" rx="6" fill="#c2a780" />
+  <rect x="0" y="318" width="640" height="62" fill="#ece3d3" />
 
-  <circle cx="66" cy="68" r="18" fill="#8a6a3c" />
-  <text x="60" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">1</text>
-  <circle cx="386" cy="68" r="18" fill="#8a6a3c" />
-  <text x="380" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">2</text>
+  <circle cx="66" cy="68" r="18" fill="#8f7a5d" />
+  <text x="60" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffdf8">1</text>
+  <circle cx="386" cy="68" r="18" fill="#8f7a5d" />
+  <text x="380" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffdf8">2</text>
 
-  <g opacity="0.36">
-    <circle cx="194" cy="132" r="20" fill="#f0cfad" stroke="#c69079" stroke-width="3" />
-    <path d="M168 160 Q194 150 220 160 L218 228 Q194 240 170 228 Z" fill="#c89a8b" stroke="#c69079" stroke-width="3" />
-    <path d="M170 174 L144 212" fill="none" stroke="#c69079" stroke-width="12" stroke-linecap="round" />
-    <path d="M218 174 L244 212" fill="none" stroke="#c69079" stroke-width="12" stroke-linecap="round" />
-    <path d="M180 228 L166 302" fill="none" stroke="#c69079" stroke-width="12" stroke-linecap="round" />
-    <path d="M208 228 L214 302" fill="none" stroke="#c69079" stroke-width="12" stroke-linecap="round" />
+  <g opacity="0.34">
+    <circle cx="194" cy="132" r="19" fill="#f7d9cd" stroke="#bba39a" stroke-width="2.5" />
+    <circle cx="194" cy="106" r="11" fill="#c6a998" />
+    <path d="M176 129 C180 115 207 115 212 129" fill="#c6a998" />
+    <path d="M170 160 Q194 150 218 160 L214 208 Q194 218 174 208 Z" fill="#e8d9a6" stroke="#bba39a" stroke-width="2.5" />
+    <path d="M176 208 Q194 214 210 208 L214 260 Q196 272 178 260 Z" fill="#efb4b1" stroke="#bba39a" stroke-width="2.5" />
+    <path d="M174 174 L148 212" fill="none" stroke="#bba39a" stroke-width="8" stroke-linecap="round" />
+    <path d="M214 174 L240 212" fill="none" stroke="#bba39a" stroke-width="8" stroke-linecap="round" />
+    <path d="M184 260 L170 304" fill="none" stroke="#bba39a" stroke-width="8" stroke-linecap="round" />
+    <path d="M204 260 L210 304" fill="none" stroke="#bba39a" stroke-width="8" stroke-linecap="round" />
   </g>
 
-  <path d="M286 166 C318 156 344 156 370 166" fill="none" stroke="#728b4c" stroke-width="7" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M286 166 C318 156 344 156 370 166" fill="none" stroke="#7c9654" stroke-width="7" stroke-linecap="round" marker-end="url(#arrow)" />
 
   <g>
-    <circle cx="510" cy="132" r="20" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
-    <path d="M484 160 Q510 150 536 160 L534 228 Q510 240 486 228 Z" fill="#8e776c" stroke="#735b4d" stroke-width="3" />
-    <path d="M486 174 L460 212" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M534 174 L560 212" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M496 228 L482 302" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M524 228 L530 302" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <circle cx="450" cy="132" r="6" fill="#728b4c" />
-    <circle cx="452" cy="178" r="6" fill="#728b4c" />
-    <circle cx="456" cy="232" r="6" fill="#728b4c" />
-    <circle cx="458" cy="302" r="6" fill="#728b4c" />
-    <path d="M424 132 L442 132" stroke="#728b4c" stroke-width="4" stroke-linecap="round" />
-    <path d="M424 178 L444 178" stroke="#728b4c" stroke-width="4" stroke-linecap="round" />
-    <path d="M424 232 L448 232" stroke="#728b4c" stroke-width="4" stroke-linecap="round" />
-    <path d="M424 302 L450 302" stroke="#728b4c" stroke-width="4" stroke-linecap="round" />
+    <circle cx="510" cy="132" r="19" fill="#f7d9cd" stroke="#6f6562" stroke-width="2.5" />
+    <circle cx="510" cy="106" r="11" fill="#8b6a55" />
+    <path d="M492 129 C496 115 523 115 528 129" fill="#8b6a55" />
+    <circle cx="503" cy="134" r="2.2" fill="#544844" />
+    <circle cx="517" cy="134" r="2.2" fill="#544844" />
+    <circle cx="498" cy="144" r="4" fill="#f3b6b2" opacity="0.8" />
+    <circle cx="522" cy="144" r="4" fill="#f3b6b2" opacity="0.8" />
+    <path d="M486 160 Q510 150 534 160 L530 208 Q510 218 490 208 Z" fill="#f0d84f" stroke="#6f6562" stroke-width="2.5" />
+    <path d="M494 208 Q510 214 526 208 L530 260 Q512 272 494 260 Z" fill="#f2a2a2" stroke="#6f6562" stroke-width="2.5" />
+    <path d="M490 174 L464 212" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M530 174 L556 212" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M500 260 L486 304" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M520 260 L526 304" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <circle cx="450" cy="132" r="6" fill="#7c9654" />
+    <circle cx="452" cy="178" r="6" fill="#7c9654" />
+    <circle cx="456" cy="232" r="6" fill="#7c9654" />
+    <circle cx="458" cy="302" r="6" fill="#7c9654" />
+    <path d="M424 132 L442 132" stroke="#7c9654" stroke-width="4" stroke-linecap="round" />
+    <path d="M424 178 L444 178" stroke="#7c9654" stroke-width="4" stroke-linecap="round" />
+    <path d="M424 232 L448 232" stroke="#7c9654" stroke-width="4" stroke-linecap="round" />
+    <path d="M424 302 L450 302" stroke="#7c9654" stroke-width="4" stroke-linecap="round" />
   </g>
 </svg>

@@ -1,46 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fffaf0" />
-      <stop offset="100%" stop-color="#f5ead6" />
+      <stop offset="0%" stop-color="#fffdf8" />
+      <stop offset="100%" stop-color="#f7f0e4" />
     </linearGradient>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#728b4c" />
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7c9654" />
     </marker>
   </defs>
-  <rect width="640" height="380" fill="#f3ead7" />
-  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
-  <rect x="318" y="46" width="2" height="288" fill="#dcccb0" stroke-dasharray="6 8" />
-  <rect x="92" y="266" width="204" height="26" rx="13" fill="#d8c5a5" opacity="0.76" />
-  <rect x="344" y="266" width="204" height="26" rx="13" fill="#d8c5a5" opacity="0.76" />
+  <rect width="640" height="380" fill="#f4eee3" />
+  <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#e0d6c5" stroke-width="2" />
+  <rect x="318" y="54" width="2" height="270" fill="#e7dfd1" />
+  <rect x="92" y="266" width="204" height="26" rx="13" fill="#dacbb2" opacity="0.8" />
+  <rect x="344" y="266" width="204" height="26" rx="13" fill="#dacbb2" opacity="0.8" />
 
-  <circle cx="66" cy="68" r="18" fill="#8a6a3c" />
-  <text x="60" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">1</text>
-  <circle cx="386" cy="68" r="18" fill="#8a6a3c" />
-  <text x="380" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">2</text>
+  <circle cx="66" cy="68" r="18" fill="#8f7a5d" />
+  <text x="60" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffdf8">1</text>
+  <circle cx="386" cy="68" r="18" fill="#8f7a5d" />
+  <text x="380" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffdf8">2</text>
 
   <g>
-    <circle cx="144" cy="242" r="18" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
-    <path d="M162 250 Q200 246 232 252" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
-    <path d="M190 248 L190 188" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M220 252 L260 220" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M230 252 L276 252" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M230 252 L210 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <ellipse cx="214" cy="254" rx="34" ry="22" fill="#d98768" opacity="0.18" />
+    <circle cx="146" cy="240" r="15" fill="#f7d9cd" stroke="#6f6562" stroke-width="2.5" />
+    <circle cx="146" cy="219" r="9" fill="#8b6a55" />
+    <path d="M133 234 C137 224 156 224 160 234" fill="#8b6a55" />
+    <path d="M162 248 Q200 244 232 250" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M188 246 L188 188" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M220 250 L260 220" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M230 250 L276 250" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M230 250 L208 300" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M170 244 Q196 242 216 244" fill="none" stroke="#f0d84f" stroke-width="14" stroke-linecap="round" />
+    <path d="M196 247 Q216 248 228 254" fill="none" stroke="#f2a2a2" stroke-width="14" stroke-linecap="round" />
   </g>
 
   <g>
-    <circle cx="396" cy="242" r="18" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
-    <path d="M414 250 Q452 246 484 252" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
-    <path d="M448 252 L448 192" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M474 252 L532 206" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M484 252 L548 252" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <path d="M484 252 L464 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
-    <ellipse cx="470" cy="254" rx="42" ry="24" fill="#d98768" opacity="0.24" />
+    <circle cx="398" cy="240" r="15" fill="#f7d9cd" stroke="#6f6562" stroke-width="2.5" />
+    <circle cx="398" cy="219" r="9" fill="#8b6a55" />
+    <path d="M385 234 C389 224 408 224 412 234" fill="#8b6a55" />
+    <path d="M414 248 Q452 244 484 250" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M448 250 L448 190" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M474 250 L532 206" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M484 250 L548 250" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M484 250 L462 300" fill="none" stroke="#6f6562" stroke-width="8" stroke-linecap="round" />
+    <path d="M422 244 Q448 242 472 244" fill="none" stroke="#f0d84f" stroke-width="14" stroke-linecap="round" />
+    <path d="M450 247 Q470 248 484 254" fill="none" stroke="#f2a2a2" stroke-width="14" stroke-linecap="round" />
   </g>
 
-  <path d="M462 192 C452 172 448 158 448 142" fill="none" stroke="#728b4c" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
-  <path d="M530 206 C546 196 560 188 576 182" fill="none" stroke="#728b4c" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
-  <path d="M186 268 Q212 260 242 268" fill="none" stroke="#b86d58" stroke-width="4" stroke-dasharray="6 6" />
-  <path d="M442 268 Q468 260 498 268" fill="none" stroke="#b86d58" stroke-width="4" stroke-dasharray="6 6" />
+  <path d="M462 192 C452 172 448 158 448 142" fill="none" stroke="#7c9654" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M530 206 C546 196 560 188 576 182" fill="none" stroke="#7c9654" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M186 268 Q212 260 242 268" fill="none" stroke="#de938f" stroke-width="4" stroke-dasharray="6 6" />
+  <path d="M442 268 Q468 260 498 268" fill="none" stroke="#de938f" stroke-width="4" stroke-dasharray="6 6" />
 </svg>
