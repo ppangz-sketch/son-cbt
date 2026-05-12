@@ -1761,10 +1761,17 @@
           padding: 12px 14px;
           border-radius: 16px;
           align-items: flex-start;
+          flex-direction: column;
         }
         .header-actions {
+          width: 100%;
           flex-wrap: wrap;
-          justify-content: flex-end;
+          justify-content: flex-start;
+          gap: 6px;
+        }
+        .theme-btn {
+          padding: 6px 8px;
+          font-size: 0.8rem;
         }
         .title {
           font-size: 1.05rem;
@@ -1795,8 +1802,39 @@
         .portal-countdown-days {
           font-size: 1.75rem;
         }
+        .panel {
+          padding: 14px;
+        }
+        .screen-top-panel {
+          padding: 14px !important;
+        }
+        .panel-title-main {
+          font-size: 1rem;
+        }
+        .panel-title-sub {
+          font-size: 0.76rem;
+          line-height: 1.5;
+          max-width: 100%;
+        }
         .menu-grid {
           grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .menu-btn {
+          min-height: 88px;
+          padding: 12px 13px;
+        }
+        .menu-title {
+          font-size: 0.86rem;
+        }
+        .menu-desc {
+          font-size: 0.74rem;
+          line-height: 1.48;
+          display: -webkit-box;
+          line-clamp: 2;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       }
 
@@ -1934,7 +1972,7 @@
           <div class="subtitle">1차 객관식부터 2차 답안 훈련까지, 한 곳에서</div>
         </div>
         <div class="header-actions">
-          <button class="theme-btn" onclick="openPatchLog()" title="수정 로그 확인">📋 로그</button>
+          <button class="theme-btn" onclick="openPatchLog()" title="현재 화면 점검">🩺 점검</button>
           <button class="theme-btn" onclick="refreshPage()" title="페이지 새로고침 (수정사항 반영)">🔄 새로고침</button>
           <div id="timerBox" class="hidden">⏱ <span id="timeText">90:00</span></div>
           <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
@@ -2518,7 +2556,7 @@
     <!-- PATCH LOG MODAL -->
     <div id="patchLogModal" class="modal hidden">
       <div class="modal-card" style="max-width: 700px">
-        <div class="modal-title">📋 수정 로그 (Patch Log)</div>
+        <div class="modal-title">🩺 빠른 점검</div>
         <div
           id="patchLogBody"
           style="
@@ -3571,9 +3609,9 @@
       }
       function getRouteFromLocation() {
         const hashRoute = normalizeRouteHash(window.location.hash);
-        if (hashRoute) return hashRoute;
         const queryRoute = new URLSearchParams(window.location.search).get('route');
-        return normalizeRouteHash(queryRoute);
+        const normalizedQueryRoute = normalizeRouteHash(queryRoute);
+        return hashRoute || normalizedQueryRoute;
       }
       function buildDeepLink(route) {
         const hashRoute = normalizeRouteHash(route);
@@ -6415,168 +6453,39 @@ ${scopeText}
       function runSelfCheck() {
         const log = [];
         const now = new Date().toLocaleString('ko-KR');
-        log.push(`🕐 검사시각: ${now}`);
+        const visibleScreens = ['portalScreen', 'mainScreen', 'secondStageScreen', 'routineCalendarScreen', 'strategyScreen'].filter(
+          (id) => !document.getElementById(id)?.classList.contains('hidden')
+        );
+        const bridgeBase = getTelegramBridgeEndpoints().base || '미설정';
+        const examDate = getSecondExamDateValue();
+        const days = getDaysLeftInfo(examDate);
+        const routines = getRoutineRecords();
+        const progress = getSecondProgressSummary();
+        const mainGrid = document.querySelector('#mainScreen .menu-grid');
+        const mainCards = [...document.querySelectorAll('#mainScreen .menu-grid:first-of-type .menu-btn .menu-title')]
+          .map((node) => node.textContent?.trim())
+          .filter(Boolean);
+
+        log.push(`🕐 점검 시각: ${now}`);
         log.push(`──────────────────────────────`);
+        log.push(`현재 보이는 화면: ${visibleScreens.join(', ') || '없음'}`);
+        log.push(`현재 주소: ${window.location.pathname}${window.location.search}${window.location.hash}`);
+        log.push(`브리지 주소: ${bridgeBase}`);
+        log.push(`시험일: ${examDate} / D-${String(days.daysLeft).padStart(3, '0')}`);
+        log.push(`루틴 기록: ${routines.length}건 / 2차 기록: ${progress.data.length}건`);
         log.push(``);
-
-        let pass = 0,
-          fail = 0;
-
-        function check(desc, ok, detail) {
-          if (ok) {
-            pass++;
-            log.push(`✅ PASS — ${desc}`);
-          } else {
-            fail++;
-            log.push(`❌ FAIL — ${desc}${detail ? ' → ' + detail : ''}`);
-          }
-        }
-
-        // 1. aiWeakConfig 구조 확인
-        const cfg = document.getElementById('aiWeakConfig');
-        check('aiWeakConfig 요소 존재', !!cfg);
-        check('aiWeakConfig 내 aiWeakSubjectRows 존재', !!document.getElementById('aiWeakSubjectRows'));
-        check('aiWeakConfig 내 과목추가 버튼 존재', !!cfg?.querySelector('button[onclick*="addWeakSubjectRow"]'));
-
-        // 2. 기존 select 제거 확인
-        check('aiWeakSubjectSelect 제거됨 (동적행으로 대체)', !document.getElementById('aiWeakSubjectSelect'));
-        check('aiWeakDifficultySelect 제거됨', !document.getElementById('aiWeakDifficultySelect'));
-        check('aiWeakCountSelect 제거됨', !document.getElementById('aiWeakCountSelect'));
-
-        // 3. JS 함수 존재 확인
-        check('buildWeakSubjectRow 함수 존재', typeof buildWeakSubjectRow === 'function');
-        check('resetWeakSubjectRows 함수 존재', typeof resetWeakSubjectRows === 'function');
-        check('addWeakSubjectRow 함수 존재', typeof addWeakSubjectRow === 'function');
-        check('removeWeakSubjectRow 함수 존재', typeof removeWeakSubjectRow === 'function');
-        check('collectWeakSubjectConfigs 함수 존재', typeof collectWeakSubjectConfigs === 'function');
-
-        // 4. WEAK 상수 존재 확인
-        check(
-          'WEAK_SUBJECT_OPTIONS 상수 존재',
-          Array.isArray(WEAK_SUBJECT_OPTIONS) && WEAK_SUBJECT_OPTIONS.length === 3
-        );
-        check('WEAK_DIFF_OPTIONS 상수 존재', Array.isArray(WEAK_DIFF_OPTIONS) && WEAK_DIFF_OPTIONS.length === 4);
-        check('WEAK_COUNT_OPTIONS 상수 존재', Array.isArray(WEAK_COUNT_OPTIONS) && WEAK_COUNT_OPTIONS.length === 5);
-
-        // 5. openAIModal에서 resetWeakSubjectRows 호출 확인
-        const openAISrc = openAIModal.toString();
-        check('openAIModal에서 resetWeakSubjectRows 호출', openAISrc.includes('resetWeakSubjectRows'));
-        check('openAIModal에서 기존 select 참조 없음', !openAISrc.includes('aiWeakSubjectSelect'));
-
-        // 6. startGeminiAI에서 collectWeakSubjectConfigs 호출 확인
-        const startAISrc = startGeminiAI.toString();
-        check('startGeminiAI에서 collectWeakSubjectConfigs 호출', startAISrc.includes('collectWeakSubjectConfigs'));
-        check('startGeminiAI에서 subjectDifficultyMap 사용', startAISrc.includes('subjectDifficultyMap'));
-
-        // 7. 헤더 로그 버튼 확인
-        check('헤더에 📋 로그 버튼 존재', !!document.querySelector('button[onclick="openPatchLog()"]'));
-
-        // 8. 패치로그 모달 존재
-        check('patchLogModal 모달 존재', !!document.getElementById('patchLogModal'));
-
-        // 9. 새로고침 버튼 확인
-        check('헤더에 🔄 새로고침 버튼 존재', !!document.querySelector('button[onclick="refreshPage()"]'));
-        check('refreshPage 함수 존재', typeof refreshPage === 'function');
-
-        // 10. API 키 저장 로직 확인
-        check('openAIModal에서 저장된 API키 불러오기', openAISrc.includes('STORAGE.API_KEY'));
-        check(
-          'startGeminiAI에서 API키 저장/삭제 분기',
-          startAISrc.includes('saveKey&&apiKey') && startAISrc.includes('saveKey&&!apiKey')
-        );
-        check('saveApiKeyChk 체크박스 존재', !!document.getElementById('saveApiKeyChk'));
-        check('apiKeyInput 필드 존재', !!document.getElementById('apiKeyInput'));
-
-        // 11. 전체초기화에 학습현황 연동 확인
-        const resetSrc = resetAIBankAll.toString();
-        check('resetAIBankAll에서 EXAM_HISTORY 초기화', resetSrc.includes('EXAM_HISTORY'));
-        check('resetAIBankAll에서 WRONG_NOTE 초기화', resetSrc.includes('WRONG_NOTE'));
-        check('resetAIBankAll에서 WRONG_PATTERN 초기화', resetSrc.includes('WRONG_PATTERN'));
-
-        // 12. buildPrompt 프롬프트 강화 확인
-        const promptSrc = buildPrompt.toString();
-        check('buildPrompt 일타강사 페르소나 포함', promptSrc.includes('일타강사') || promptSrc.includes('컨설턴트'));
-        check('buildPrompt 장문 보기 지시 포함 (15단어 이상)', promptSrc.includes('15단어'));
-        check('buildPrompt 해설 상세화 지시 포함', promptSrc.includes('정답인지') || promptSrc.includes('왜'));
-        check('buildPrompt 과목별 출제범위 정의 (subjectScopes)', promptSrc.includes('subjectScopes'));
-        check('buildPrompt 1과목 상법 범위 포함', promptSrc.includes('상법 제4편 보험편'));
-        check('buildPrompt 2과목 농재법 범위 포함', promptSrc.includes('농어업재해보험법 및 하위법령'));
-        check('buildPrompt 3과목 재배학 범위 포함', promptSrc.includes('재배학 및 원예작물학'));
-        check('buildPrompt 절대 출제 금지 주제 포함', promptSrc.includes('절대 출제 금지 주제'));
-
-        // 13. API 사용량/비용 로컬저장 독립 확인
-        check('resetApiUsage 함수 존재', typeof resetApiUsage === 'function');
-        check('renderApiStatus 함수 존재', typeof renderApiStatus === 'function');
-        check(
-          'resetAIBankAll에서 API 데이터 유지 (API_USAGE 삭제 안함)',
-          !resetSrc.includes('removeItem(STORAGE.API_USAGE)')
-        );
-        check('resetAIBankAll에서 API_BUDGET 유지', !resetSrc.includes('removeItem(STORAGE.API_BUDGET)'));
-        check('resetAIBankAll에서 API_KEY 유지', !resetSrc.includes('removeItem(STORAGE.API_KEY)'));
-        check('apiStatusBody 요소 존재', !!document.getElementById('apiStatusBody'));
-        check('API 사용량 초기화 버튼 존재', !!document.querySelector('button[onclick="resetApiUsage()"]'));
-
-        // 13-2. 토큰 추정 및 가격 정확도 확인
-        const estSrc = estimateTokensByChars.toString();
-        check('estimateTokensByChars CJK 문자 감지 포함', estSrc.includes('CJK') || estSrc.includes('\\u4E00'));
-        check(
-          'MODEL_PRICING gemini-3-pro 포함',
-          MODEL_PRICING_USD_PER_1M.some((x) => x.re.test('gemini-3-pro'))
-        );
-        check(
-          'MODEL_PRICING gemini-3-flash 포함',
-          MODEL_PRICING_USD_PER_1M.some((x) => x.re.test('gemini-3-flash'))
-        );
-        check('FX_USD_KRW 1450으로 업데이트', FX_USD_KRW === 1450);
-        check(
-          'fallback 가격 0.15/0.60 (flash 기준)',
-          (() => {
-            const p = getPricingByModel('unknown-model');
-            return p.in === 0.15 && p.out === 0.6;
-          })()
-        );
-
-        // 14. localStorage 실측 확인
-        const storedKey = localStorage.getItem(STORAGE.API_KEY);
-        const usage = getApiUsageStats();
-        const budget = getBudgetLimit();
-        if (storedKey) {
-          const masked = storedKey.slice(0, 6) + '...' + storedKey.slice(-4);
-          log.push(``);
-          log.push(`🔑 localStorage API 키: ${masked} (길이:${storedKey.length})`);
-        } else {
-          log.push(``);
-          log.push(`🔑 localStorage API 키: 없음`);
-        }
-        log.push(
-          `📊 localStorage API 호출: ${usage.calls}회 / 비용: ${Math.round(usage.estimatedCostKRW).toLocaleString()}원 / 한도: ${budget > 0 ? budget.toLocaleString() + '원' : '미설정'}`
-        );
-        log.push(`✅ API 데이터(키/사용량/한도)는 전체 초기화해도 보존됩니다.`);
-
+        log.push(`📱 현재 화면 크기`);
+        log.push(`- 폭 ${window.innerWidth}px · 높이 ${window.innerHeight}px · 배율 ${window.devicePixelRatio}`);
+        log.push(`- 메인 메뉴 열 수: ${mainGrid ? getComputedStyle(mainGrid).gridTemplateColumns : '확인 불가'}`);
+        log.push(`- 메인 메뉴: ${mainCards.join(' / ') || '확인 불가'}`);
         log.push(``);
-        log.push(`──────────────────────────────`);
-        log.push(`📊 결과: ${pass}개 통과 / ${fail}개 실패 / ${pass + fail}개 항목`);
-        if (fail === 0) log.push(`🎉 모든 검사 통과! 수정사항이 정상 적용되었습니다.`);
-        else log.push(`⚠️ ${fail}개 항목 실패 — 위 FAIL 항목을 확인하세요.`);
-
+        log.push(`✅ 빠른 확인 항목`);
+        log.push(`- 점검 모달 열림: ${document.getElementById('patchLogModal')?.classList.contains('hidden') ? '아니오' : '예'}`);
+        log.push(`- 새로고침 버튼 존재: ${document.querySelector('button[onclick=\"refreshPage()\"]') ? '예' : '아니오'}`);
+        log.push(`- 루틴 캘린더 버튼 존재: ${document.querySelector('button[onclick=\"showRoutineCalendar()\"]') ? '예' : '아니오'}`);
+        log.push(`- 텔레그램 브리지 저장 여부: ${bridgeBase === '미설정' ? '아니오' : '예'}`);
         log.push(``);
-        log.push(`📝 적용된 수정 내역:`);
-        log.push(`  1. aiWeakConfig: 단일 select → 동적 행(row) 시스템`);
-        log.push(`  2. 각 행: 과목/난이도/문제수 select + 제거(✕) 버튼`);
-        log.push(`  3. ➕ 과목 추가 버튼 (최대 3과목, 중복 자동 제외)`);
-        log.push(`  4. startGeminiAI: 다중 과목 수집 → subjectDifficultyMap`);
-        log.push(`  5. 결과 라벨: '상법+농재법' 형식으로 다중 과목 표시`);
-        log.push(`  6. API키 저장: 체크+입력→저장 / 체크+빈값→삭제 / 미체크→삭제`);
-        log.push(`  7. 전체 초기화: AI은행 + 학습현황(EXAM_HISTORY) + 오답노트 동시 초기화`);
-        log.push(`  8. AI 프롬프트: 일타강사 페르소나 + 장문 보기(최소15단어) + 상세 해설`);
-        log.push(`  9. 🔄 새로고침 버튼: 시험 중이면 자동저장 후 location.reload(true)`);
-        log.push(`  10. 💰 API 현황 패널: 키 상태/호출횟수/비용/한도/사용률 바 + 모델별 상세`);
-        log.push(`  11. 🔄 API 사용량 초기화: 호출/비용만 리셋 (키·한도 유지)`);
-        log.push(`  12. 🛡️ 전체 초기화 시 API 데이터(키/사용량/한도) 보존 보장`);
-        log.push(`  13. 📋 과목별 출제범위: 상법 보험편 / 농재법 / 재배학 상세 범위 + 절대금지 주제`);
-        log.push(`  14. 💰 토큰 추정 개선: 한글 1글자=1토큰, 영문 4글자=1토큰으로 정확도 향상`);
-        log.push(`  15. 💵 모델 가격 업데이트: gemini-3-pro/flash 추가, 2026년 5월 기준 최신 가격 반영`);
-        log.push(`  16. 💱 환율 업데이트: 1,350원 → 1,450원 (USD/KRW)`);
+        log.push(`안내: 문제가 생기면 현재 주소와 보이는 화면 이름을 같이 확인하면 원인을 좁히기 쉽습니다.`);
 
         document.getElementById('patchLogBody').textContent = log.join('\n');
       }
@@ -8520,7 +8429,8 @@ ${scopeText}
         if (incomingRoute && !window.location.hash) {
           history.replaceState(null, '', `${window.location.pathname}${window.location.search}${incomingRoute}`);
         }
-        if (!applyRouteFromHash(incomingRoute)) showScreen('portalScreen');
+        const appliedRoute = applyRouteFromHash(incomingRoute);
+        if (!appliedRoute) showScreen('portalScreen');
 
         // 메인 화면에서 timerBox 확실히 숨기기
         document.getElementById('timerBox').classList.add('hidden');
