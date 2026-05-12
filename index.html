@@ -31,32 +31,32 @@
           sans-serif;
         --font-cbt: var(--font-body);
 
-        --bg: #f7f5ef;
-        --paper: #fffdf8;
-        --paper-line: #e9e3d8;
-        --panel: #fffefb;
-        --line: #ddd6ca;
-        --line-soft: #f1ece2;
+        --bg: #f3ead7;
+        --paper: #fbf6ea;
+        --paper-line: #e2d5ba;
+        --panel: #fcf8ee;
+        --line: #d9caac;
+        --line-soft: #ece2c9;
 
-        --text: #1f1d18;
-        --sub: #6a665f;
-        --primary: #6f7a86;
-        --primary-2: #5f6974;
-        --primary-light: #eef1f4;
-        --accent: #8f9aa6;
+        --text: #2b231a;
+        --sub: #6e5f4c;
+        --primary: #8a6a3c;
+        --primary-2: #6f5430;
+        --primary-light: #f1e6cc;
+        --accent: #b58a4c;
 
-        --topbar-1: #dfe4eb;
-        --topbar-2: #d2d8e1;
+        --topbar-1: #ecdfc4;
+        --topbar-2: #dfd0ad;
 
-        --danger: #c85f58;
-        --danger-bg: #fff3f1;
-        --ok: #5f946a;
-        --ok-bg: #eef8f0;
-        --warn: #c0924f;
-        --warn-bg: #fff8ee;
-        --bookmark: #d0a45f;
-        --header-text: #111111;
-        --header-glow: rgba(0, 0, 0, 0.06);
+        --danger: #b65848;
+        --danger-bg: #f8eae4;
+        --ok: #5e8a59;
+        --ok-bg: #ecf1e3;
+        --warn: #b78639;
+        --warn-bg: #f5ead0;
+        --bookmark: #c08e3e;
+        --header-text: #2b231a;
+        --header-glow: rgba(80, 60, 30, 0.06);
       }
 
       [data-theme='dark'] {
@@ -98,16 +98,25 @@
         -webkit-tap-highlight-color: transparent;
         font-family: var(--font-cbt);
       }
+      html {
+        font-size: 16px;
+      }
       body {
         margin: 0;
-        background: var(--bg);
+        background:
+          radial-gradient(ellipse at 12% 0%, rgba(255, 244, 220, 0.55) 0%, transparent 55%),
+          radial-gradient(ellipse at 100% 100%, rgba(214, 188, 142, 0.18) 0%, transparent 60%),
+          var(--bg);
         color: var(--text);
         -webkit-user-select: none;
         user-select: none;
         min-height: 100vh;
+        font-size: 0.96rem;
+        line-height: 1.62;
         letter-spacing: -0.012em;
         text-rendering: optimizeLegibility;
         word-break: keep-all;
+        overflow-wrap: break-word;
       }
       [data-theme='dark'] body {
         background:
@@ -145,39 +154,71 @@
         font-family: var(--font-cbt);
         color: var(--text);
       }
+      h1,
+      h2,
+      h3,
+      h4 {
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        letter-spacing: -0.022em;
+      }
+      h2 {
+        font-size: 1.18rem;
+        line-height: 1.3;
+        margin: 0 0 8px;
+      }
+      h3 {
+        font-size: 1rem;
+        line-height: 1.3;
+        margin: 0 0 8px;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      code {
+        font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+        font-size: 0.84em;
+        background: var(--line-soft);
+        padding: 1px 6px;
+        border-radius: 6px;
+        color: var(--text);
+      }
       .hidden {
         display: none !important;
       }
       .container {
-        max-width: 1366px;
+        max-width: 1180px;
         margin: 0 auto;
-        padding: 14px 18px;
+        padding: 16px 20px 28px;
       }
 
       .header {
         background: linear-gradient(135deg, var(--topbar-1) 0%, var(--topbar-2) 100%);
         color: var(--header-text);
-        border-radius: 14px;
+        border-radius: 16px;
         padding: 14px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
         margin-bottom: 14px;
-        box-shadow: 0 2px 8px var(--header-glow);
-        border: 1px solid var(--line);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-        font-size: 1.22rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        box-shadow: 0 4px 14px var(--header-glow);
+        border: 1px solid var(--paper-line);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        font-weight: 700;
+        letter-spacing: -0.018em;
       }
       .title {
         font-family: var(--font-display);
-        font-size: 1.24rem;
-        font-weight: 900;
-        letter-spacing: -0.05em;
-        line-height: 1.04;
+        font-size: 1.12rem;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 1.14;
       }
       [data-theme='dark'] .header {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
@@ -189,11 +230,11 @@
         backdrop-filter: blur(16px);
       }
       .subtitle {
-        font-size: 0.82rem;
-        opacity: 0.88;
+        font-size: 0.78rem;
+        opacity: 0.82;
         margin-top: 4px;
         color: var(--header-text);
-        letter-spacing: -0.015em;
+        letter-spacing: -0.012em;
         line-height: 1.5;
       }
       .header-actions {
@@ -238,15 +279,19 @@
         }
       }
       .theme-btn {
-        background: rgba(255, 255, 255, 0.58);
-        border: 1px solid rgba(0, 0, 0, 0.18);
-        color: #111;
-        padding: 6px 10px;
-        border-radius: 8px;
+        background: rgba(255, 252, 244, 0.78);
+        border: 1px solid var(--paper-line);
+        color: var(--text);
+        padding: 6px 11px;
+        border-radius: 10px;
         cursor: pointer;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         font-weight: 700;
         transition: all 0.15s;
+      }
+      .theme-btn:hover {
+        background: var(--primary-light);
+        border-color: var(--primary);
       }
       [data-theme='dark'] .theme-btn {
         background: rgba(255, 255, 255, 0.06);
@@ -259,15 +304,17 @@
       }
 
       .panel {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, var(--panel) 100%);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 18px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+        border: 1px solid var(--paper-line);
+        border-radius: 16px;
+        padding: 18px 20px;
         color: var(--text);
         transition:
           border-color 0.2s,
           box-shadow 0.2s;
-        box-shadow: 0 8px 24px rgba(28, 26, 20, 0.04);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.6) inset,
+          0 6px 18px rgba(96, 70, 30, 0.05);
       }
       [data-theme='dark'] .panel {
         background: linear-gradient(180deg, rgba(22, 27, 34, 0.92) 0%, rgba(13, 17, 23, 0.9) 100%);
@@ -280,9 +327,9 @@
       }
       .screen-top-panel {
         border-radius: 16px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 245, 238, 0.96) 100%);
-        border-color: rgba(111, 122, 134, 0.14);
-        box-shadow: 0 6px 18px rgba(28, 26, 20, 0.035);
+        background: linear-gradient(180deg, var(--paper) 0%, rgba(248, 240, 222, 0.96) 100%);
+        border-color: var(--paper-line);
+        box-shadow: 0 4px 14px rgba(96, 70, 30, 0.05);
       }
       [data-theme='dark'] .screen-top-panel {
         background: linear-gradient(180deg, rgba(22, 27, 34, 0.94) 0%, rgba(17, 22, 29, 0.94) 100%);
@@ -293,16 +340,16 @@
         margin: 0;
         color: var(--primary);
         font-family: var(--font-display);
-        font-size: 1.08rem;
-        font-weight: 900;
-        letter-spacing: -0.04em;
-        line-height: 1.15;
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
       }
       .panel-title-sub {
         margin-top: 5px;
         color: var(--sub);
-        font-size: 0.8rem;
-        line-height: 1.58;
+        font-size: 0.78rem;
+        line-height: 1.6;
         max-width: 560px;
       }
       .stage-hero {
@@ -312,9 +359,9 @@
         margin-bottom: 14px;
       }
       .stage-hero-panel {
-        padding: 24px 24px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, var(--panel) 0%, var(--primary-light) 100%);
+        padding: 22px 24px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, var(--paper) 0%, var(--primary-light) 100%);
       }
       [data-theme='dark'] .stage-hero-panel {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(88, 166, 255, 0.08) 100%);
@@ -322,82 +369,84 @@
       }
       .stage-kicker {
         color: var(--primary);
-        font-weight: 900;
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
+        font-weight: 800;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .stage-title-large {
         font-family: var(--font-display);
-        font-size: clamp(1.55rem, 3.1vw, 2.45rem);
-        font-weight: 900;
-        line-height: 1.02;
-        letter-spacing: -0.06em;
-        margin: 0 0 14px 0;
-        max-width: 760px;
+        font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+        font-weight: 800;
+        line-height: 1.18;
+        letter-spacing: -0.03em;
+        margin: 0 0 12px 0;
+        max-width: 720px;
       }
       .stage-lead {
         color: var(--sub);
-        line-height: 1.78;
+        line-height: 1.72;
         font-weight: 500;
-        max-width: 690px;
-        font-size: 0.9rem;
-        letter-spacing: -0.01em;
+        max-width: 660px;
+        font-size: 0.86rem;
+        letter-spacing: -0.005em;
       }
       .stage-hero-meta {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
-        margin-top: 16px;
+        margin-top: 14px;
       }
       .stage-hero-meta .chip,
       .stage-choice .chip {
-        font-size: 0.76rem;
-        padding: 4px 9px;
+        font-size: 0.72rem;
+        padding: 3px 9px;
       }
       .portal-countdown-card {
-        padding: 18px;
-        border-radius: 20px;
+        padding: 20px 22px;
+        border-radius: 18px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, var(--panel) 100%);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
       }
       [data-theme='dark'] .portal-countdown-card {
         background: linear-gradient(180deg, rgba(22, 27, 34, 0.95) 0%, rgba(13, 17, 23, 0.92) 100%);
         border-color: rgba(88, 166, 255, 0.12);
       }
       .portal-countdown-kicker {
-        font-size: 0.76rem;
-        font-weight: 900;
-        letter-spacing: 0.08em;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--sub);
       }
       .portal-countdown-days {
-        font-size: clamp(1.85rem, 4vw, 2.45rem);
-        font-weight: 900;
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        font-weight: 800;
         color: var(--primary);
-        line-height: 1;
-        letter-spacing: -0.05em;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-top: 6px;
       }
       .portal-countdown-label {
-        font-size: 0.86rem;
+        font-size: 0.82rem;
         font-weight: 700;
         color: var(--text);
+        margin-top: 4px;
       }
       .portal-countdown-date {
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         color: var(--sub);
       }
       .portal-countdown-note {
         padding: 10px 12px;
-        border-radius: 12px;
+        border-radius: 10px;
         background: var(--line-soft);
-        font-size: 0.8rem;
-        line-height: 1.55;
+        font-size: 0.78rem;
+        line-height: 1.6;
         color: var(--sub);
       }
       .stage-choice-grid {
@@ -407,27 +456,28 @@
         margin: 14px 0;
       }
       .stage-choice {
-        border: 1px solid var(--line);
-        background: var(--panel);
+        border: 1px solid var(--paper-line);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
         color: var(--text);
-        border-radius: 20px;
-        padding: 20px;
-        min-height: 188px;
+        border-radius: 18px;
+        padding: 18px 20px;
+        min-height: 170px;
         text-align: left;
         cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: 10px;
         transition: all 0.2s;
+        box-shadow: 0 4px 12px rgba(96, 70, 30, 0.04);
       }
       [data-theme='dark'] .stage-choice {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.86), rgba(13, 17, 23, 0.94));
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
       .stage-choice:hover {
-        transform: translateY(-3px);
+        transform: translateY(-2px);
         border-color: var(--primary);
-        box-shadow: 0 10px 28px rgba(111, 122, 134, 0.14);
+        box-shadow: 0 10px 22px rgba(138, 106, 60, 0.14);
       }
       .stage-choice-head {
         display: flex;
@@ -443,29 +493,29 @@
       }
       .stage-choice-title {
         font-family: var(--font-display);
-        font-size: 1.14rem;
-        font-weight: 900;
-        letter-spacing: -0.04em;
-        line-height: 1.16;
+        font-size: 1.02rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.22;
       }
       .stage-choice-desc {
         color: var(--sub);
         line-height: 1.7;
         font-weight: 500;
-        font-size: 0.88rem;
-        letter-spacing: -0.01em;
+        font-size: 0.83rem;
+        letter-spacing: -0.005em;
       }
       .stage-choice-arrow {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         background: var(--primary-light);
         color: var(--primary);
-        font-size: 1rem;
-        font-weight: 900;
+        font-size: 0.95rem;
+        font-weight: 800;
         flex-shrink: 0;
       }
       .feature-list {
@@ -476,11 +526,12 @@
       }
       .feature-list div {
         padding: 10px 12px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, var(--line-soft) 100%);
-        border: 1px solid rgba(111, 122, 134, 0.12);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--line-soft) 100%);
+        border: 1px solid var(--paper-line);
         border-radius: 12px;
         font-weight: 700;
-        line-height: 1.45;
+        line-height: 1.55;
+        font-size: 0.86rem;
       }
       [data-theme='dark'] .feature-list div {
         background: rgba(255, 255, 255, 0.04);
@@ -492,28 +543,28 @@
         gap: 12px;
       }
       .practice-card {
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, var(--panel) 100%);
-        border-radius: 18px;
-        padding: 16px;
+        border: 1px solid var(--paper-line);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+        border-radius: 14px;
+        padding: 16px 18px;
         margin-bottom: 12px;
-        box-shadow: 0 8px 22px rgba(28, 26, 20, 0.04);
+        box-shadow: 0 4px 14px rgba(96, 70, 30, 0.05);
       }
       [data-theme='dark'] .practice-card {
         background: linear-gradient(180deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.88) 100%);
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
       .textarea {
-        border: 1px solid var(--line);
+        border: 1px solid var(--paper-line);
         border-radius: 12px;
-        padding: 13px 14px;
-        background: rgba(255, 255, 255, 0.75);
+        padding: 12px 14px;
+        background: var(--paper);
         color: var(--text);
         width: 100%;
         min-height: 130px;
         resize: vertical;
-        line-height: 1.68;
-        font-size: 0.92rem;
+        line-height: 1.7;
+        font-size: 0.88rem;
       }
       [data-theme='dark'] .textarea {
         background: rgba(13, 17, 23, 0.58);
@@ -521,11 +572,12 @@
       }
       .second-result-box {
         margin-top: 10px;
-        padding: 12px;
+        padding: 12px 14px;
         border-radius: 12px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, var(--line-soft) 100%);
-        border: 1px solid rgba(111, 122, 134, 0.12);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--line-soft) 100%);
+        border: 1px solid var(--paper-line);
         line-height: 1.7;
+        font-size: 0.88rem;
       }
       [data-theme='dark'] .second-result-box {
         background: rgba(255, 255, 255, 0.04);
@@ -538,39 +590,57 @@
         margin-bottom: 12px;
       }
       .settings-item {
-        border: 1px solid var(--line);
+        border: 1px solid var(--paper-line);
         border-radius: 14px;
-        padding: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 248, 243, 0.96) 100%);
+        padding: 14px 16px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
         min-width: 0;
         overflow: hidden;
-        box-shadow: 0 4px 14px rgba(28, 26, 20, 0.03);
+        box-shadow: 0 3px 10px rgba(96, 70, 30, 0.04);
       }
       [data-theme='dark'] .settings-item {
         background: linear-gradient(180deg, rgba(22, 27, 34, 0.88) 0%, rgba(13, 17, 23, 0.86) 100%);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
       .settings-title {
-        font-size: 0.8rem;
-        font-weight: 900;
-        letter-spacing: 0.04em;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
         color: var(--primary);
+      }
+      .placeholder-item {
+        border: 1px dashed var(--paper-line);
+        background: linear-gradient(180deg, rgba(255, 251, 240, 0.9) 0%, var(--line-soft) 100%);
+      }
+      .placeholder-badge {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+      .placeholder-card {
+        border: 1px dashed var(--paper-line);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--line-soft) 100%);
       }
 
       .menu-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 8px;
+        gap: 10px;
         margin: 12px 0;
       }
       .menu-btn {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(249, 246, 240, 0.97) 100%);
-        border: 1px solid rgba(111, 122, 134, 0.16);
-        border-radius: 16px;
-        min-height: 96px;
-        padding: 13px 14px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+        border: 1px solid var(--paper-line);
+        border-radius: 14px;
+        min-height: 90px;
+        padding: 12px 14px;
         cursor: pointer;
         text-align: left;
         display: flex;
@@ -579,7 +649,7 @@
         gap: 6px;
         transition: all 0.2s;
         color: var(--text);
-        box-shadow: 0 4px 14px rgba(28, 26, 20, 0.035);
+        box-shadow: 0 3px 10px rgba(96, 70, 30, 0.04);
         position: relative;
         overflow: hidden;
       }
@@ -590,10 +660,11 @@
       }
       .menu-btn::before {
         content: '';
-        width: 30px;
+        width: 26px;
         height: 3px;
         border-radius: 999px;
-        background: rgba(111, 122, 134, 0.22);
+        background: var(--primary);
+        opacity: 0.45;
         margin-bottom: 4px;
       }
       [data-theme='dark'] .menu-btn::before {
@@ -603,7 +674,7 @@
         .menu-btn:hover {
           transform: translateY(-1px);
           border-color: var(--primary);
-          box-shadow: 0 8px 18px rgba(111, 122, 134, 0.12);
+          box-shadow: 0 8px 18px rgba(138, 106, 60, 0.14);
         }
         [data-theme='dark'] .menu-btn:hover {
           border-color: var(--primary);
@@ -623,17 +694,22 @@
       }
       .menu-title {
         font-family: var(--font-display);
-        font-size: 0.88rem;
-        font-weight: 900;
+        font-size: 0.86rem;
+        font-weight: 800;
         color: var(--text);
-        letter-spacing: -0.03em;
-        line-height: 1.2;
+        letter-spacing: -0.022em;
+        line-height: 1.25;
       }
       .menu-desc {
-        font-size: 0.75rem;
+        font-size: 0.74rem;
         color: var(--sub);
-        line-height: 1.54;
+        line-height: 1.55;
         letter-spacing: -0.005em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       .badge-row {
@@ -642,13 +718,14 @@
         flex-wrap: wrap;
       }
       .chip {
-        padding: 5px 10px;
-        border: 1px solid var(--line);
+        padding: 4px 10px;
+        border: 1px solid var(--paper-line);
         border-radius: 999px;
         background: var(--panel);
-        font-size: 0.78rem;
+        font-size: 0.74rem;
         font-weight: 700;
         color: var(--text);
+        line-height: 1.4;
       }
       [data-theme='dark'] .chip {
         background: rgba(255, 255, 255, 0.04);
@@ -672,14 +749,14 @@
 
       .select,
       .input {
-        border: 1px solid var(--line);
-        border-radius: 12px;
+        border: 1px solid var(--paper-line);
+        border-radius: 10px;
         padding: 10px 12px;
-        background: rgba(255, 255, 255, 0.78);
+        background: var(--paper);
         color: var(--text);
         width: 100%;
-        font-weight: 700;
-        font-size: 0.88rem;
+        font-weight: 600;
+        font-size: 0.86rem;
         transition:
           border-color 0.2s,
           box-shadow 0.2s;
@@ -704,8 +781,9 @@
         width: 100%;
       }
       .hint {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         color: var(--sub);
+        line-height: 1.65;
       }
 
       #examLayout {
@@ -721,14 +799,15 @@
       }
       .exam-topbar {
         background: linear-gradient(135deg, var(--topbar-1) 0%, var(--topbar-2) 100%);
-        color: #111;
+        color: var(--text);
         border-radius: 14px;
         padding: 12px 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 8px;
-        border: 1px solid var(--line);
+        border: 1px solid var(--paper-line);
+        flex-wrap: wrap;
       }
       [data-theme='dark'] .exam-topbar {
         background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(13, 17, 23, 0.95) 100%);
@@ -746,12 +825,12 @@
         flex-wrap: wrap;
       }
       .chip-white {
-        padding: 5px 10px;
-        border: 1px solid rgba(0, 0, 0, 0.22);
+        padding: 4px 10px;
+        border: 1px solid var(--paper-line);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.58);
-        color: #111;
-        font-size: 0.82rem;
+        background: rgba(255, 252, 240, 0.7);
+        color: var(--text);
+        font-size: 0.76rem;
         font-weight: 700;
       }
       [data-theme='dark'] .chip-white {
@@ -760,15 +839,16 @@
         color: var(--text);
       }
       .btn {
-        border: none;
-        border-radius: 8px;
+        border: 1px solid var(--paper-line);
+        border-radius: 10px;
         padding: 9px 14px;
-        font-weight: 800;
+        font-weight: 700;
         cursor: pointer;
-        background: var(--line-soft);
+        background: var(--paper);
         color: var(--text);
-        font-size: 0.88rem;
+        font-size: 0.84rem;
         transition: all 0.15s;
+        line-height: 1.3;
       }
       .btn:hover {
         filter: brightness(0.94);
@@ -787,7 +867,8 @@
       }
       .btn.primary {
         background: var(--primary);
-        color: #fff;
+        color: #fffaf0;
+        border-color: var(--primary-2);
       }
       [data-theme='dark'] .btn.primary {
         box-shadow: 0 2px 12px rgba(88, 166, 255, 0.25);
@@ -806,8 +887,8 @@
         box-shadow: 0 4px 20px rgba(248, 81, 73, 0.35);
       }
       .btn.outline {
-        background: rgba(255, 255, 255, 0.72);
-        border: 1px solid var(--line);
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
         color: var(--text);
       }
       [data-theme='dark'] .btn.outline {
@@ -843,15 +924,19 @@
         cursor: not-allowed;
       }
       .btn-white {
-        background: rgba(255, 255, 255, 0.9);
-        color: #111;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        border-radius: 6px;
-        padding: 6px 10px;
-        font-weight: 800;
+        background: var(--paper);
+        color: var(--text);
+        border: 1px solid var(--paper-line);
+        border-radius: 8px;
+        padding: 6px 11px;
+        font-weight: 700;
         cursor: pointer;
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         transition: all 0.15s;
+      }
+      .btn-white:hover {
+        background: var(--primary-light);
+        border-color: var(--primary);
       }
       [data-theme='dark'] .btn-white {
         background: rgba(255, 255, 255, 0.06);
@@ -883,14 +968,16 @@
       }
 
       .question-card {
-        background: #ffffff;
+        background: var(--paper);
         border: 1px solid var(--paper-line);
         border-radius: 14px;
         padding: 24px 28px;
         min-height: 440px;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.6) inset,
+          0 4px 14px rgba(96, 70, 30, 0.05);
       }
       [data-theme='dark'] .question-card {
         background: linear-gradient(180deg, #1c2128 0%, #161b22 100%);
@@ -916,16 +1003,16 @@
         gap: 10px;
       }
       .q-no-circle {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         background: var(--primary);
-        color: #fff;
+        color: #fffaf0;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 800;
-        font-size: 0.95rem;
+        font-size: 0.86rem;
       }
       [data-theme='dark'] .q-no-circle {
         box-shadow: 0 0 16px rgba(88, 166, 255, 0.3);
@@ -933,14 +1020,14 @@
       .q-no-txt {
         font-weight: 800;
         color: var(--primary);
-        font-size: 1rem;
+        font-size: 0.92rem;
       }
       .q-sub {
-        font-size: 0.85rem;
-        color: #fff;
+        font-size: 0.78rem;
+        color: #fffaf0;
         background: var(--primary);
         padding: 4px 10px;
-        border-radius: 6px;
+        border-radius: 999px;
         font-weight: 700;
       }
       [data-theme='dark'] .q-sub {
@@ -978,11 +1065,11 @@
         border-color: var(--bookmark);
       }
       .q-text {
-        font-size: 1.18rem;
+        font-size: 1.05rem;
         font-weight: 600;
-        line-height: 1.85;
+        line-height: 1.78;
         margin-bottom: 18px;
-        letter-spacing: -0.005em;
+        letter-spacing: -0.003em;
         color: var(--text);
       }
       .options {
@@ -991,13 +1078,13 @@
         gap: 9px;
       }
       .option {
-        border: 2px solid transparent;
+        border: 1px solid var(--paper-line);
         border-radius: 10px;
-        padding: 14px 16px;
-        background: var(--panel);
+        padding: 13px 15px;
+        background: var(--paper);
         cursor: pointer;
-        font-size: 1rem;
-        line-height: 1.55;
+        font-size: 0.94rem;
+        line-height: 1.6;
         transition: all 0.15s;
         display: flex;
         gap: 10px;
@@ -1049,14 +1136,14 @@
         color: var(--sub);
       }
       .option.selected .opt-num {
-        background: #e07b39;
-        color: #fff;
-        border-color: #e07b39;
+        background: var(--primary);
+        color: #fffaf0;
+        border-color: var(--primary);
       }
       [data-theme='dark'] .option.selected .opt-num {
-        background: #e07b39;
-        color: #fff;
-        border-color: #e07b39;
+        background: var(--primary);
+        color: #fffaf0;
+        border-color: var(--primary);
       }
       .jamo-chip {
         display: inline-flex;
@@ -1084,13 +1171,13 @@
       /* jamo-box: ㄱㄴㄷㄹ 보기 박스 */
       .jamo-box {
         margin: 12px 0;
-        padding: 14px 16px;
-        border: 1.5px solid var(--line);
-        border-radius: 10px;
-        background: var(--panel);
+        padding: 13px 15px;
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
         overflow: hidden;
-        word-break: break-all;
-        overflow-wrap: break-word;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
       }
       [data-theme='dark'] .jamo-box {
         background: rgba(255, 255, 255, 0.02);
@@ -1209,7 +1296,7 @@
       }
       .omr-btn.answered {
         background: var(--primary);
-        color: #fff;
+        color: #fffaf0;
         border-color: var(--primary);
       }
       [data-theme='dark'] .omr-btn.answered {
@@ -1217,7 +1304,7 @@
       }
       .omr-btn.current {
         background: var(--warn);
-        color: #fff;
+        color: #fffaf0;
         border-color: var(--warn);
         z-index: 1;
       }
@@ -1249,20 +1336,23 @@
         gap: 12px;
       }
       .score-box {
-        font-size: 3rem;
-        font-weight: 900;
+        font-size: clamp(2rem, 5vw, 2.6rem);
+        font-weight: 800;
         text-align: center;
         margin: 8px 0;
+        color: var(--primary);
+        letter-spacing: -0.04em;
       }
       [data-theme='dark'] .score-box {
         text-shadow: 0 0 30px rgba(88, 166, 255, 0.3);
       }
       .status {
         border-radius: 12px;
-        padding: 16px;
-        font-size: 1.15rem;
-        font-weight: 900;
+        padding: 14px 18px;
+        font-size: 1.02rem;
+        font-weight: 800;
         text-align: center;
+        letter-spacing: -0.02em;
       }
       .status.pass {
         background: var(--ok-bg);
@@ -1284,12 +1374,23 @@
         display: flex;
         justify-content: space-between;
         gap: 12px;
-        padding: 12px 14px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, var(--panel) 100%);
-        font-weight: 700;
+        padding: 11px 14px;
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+        font-weight: 600;
         color: var(--text);
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+      .subject-row > span:first-child {
+        flex-shrink: 0;
+        color: var(--sub);
+        font-weight: 700;
+      }
+      .subject-row > span:last-child {
+        text-align: right;
+        min-width: 0;
       }
       [data-theme='dark'] .subject-row {
         background: rgba(22, 27, 34, 0.62);
@@ -1340,13 +1441,15 @@
 
       .weakness-item,
       .strength-item {
-        padding: 12px 14px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, var(--panel) 100%);
+        padding: 11px 14px;
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
         margin-top: 8px;
-        font-weight: 700;
+        font-weight: 600;
         color: var(--text);
+        font-size: 0.86rem;
+        line-height: 1.55;
       }
       [data-theme='dark'] .weakness-item {
         background: rgba(248, 81, 73, 0.05);
@@ -1388,24 +1491,27 @@
       .modal {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(40, 30, 12, 0.45);
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 9999;
         padding: 20px;
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
       }
       .modal-card {
-        width: min(760px, 100%);
-        background: var(--panel);
-        border: 1px solid var(--line);
+        width: min(720px, 100%);
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
         border-radius: 16px;
-        padding: 24px;
-        max-height: 90vh;
+        padding: 22px;
+        max-height: 88vh;
         overflow: auto;
         color: var(--text);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.6) inset,
+          0 16px 36px rgba(60, 40, 16, 0.18);
       }
       [data-theme='dark'] .modal-card {
         background: linear-gradient(180deg, #1c2128 0%, #161b22 100%);
@@ -1415,10 +1521,11 @@
           var(--glow-blue);
       }
       .modal-title {
-        font-size: 1.2rem;
-        font-weight: 900;
+        font-size: 1.06rem;
+        font-weight: 800;
         margin-bottom: 8px;
         color: var(--primary);
+        letter-spacing: -0.02em;
       }
       .api-input {
         width: 100%;
@@ -1499,11 +1606,11 @@
         justify-content: space-between;
         align-items: flex-start;
         gap: 14px;
-        padding: 18px 20px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: linear-gradient(135deg, var(--primary-light) 0%, var(--panel) 100%);
-        box-shadow: 0 10px 24px rgba(28, 26, 20, 0.04);
+        padding: 16px 20px;
+        border: 1px solid var(--paper-line);
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--paper) 100%);
+        box-shadow: 0 6px 18px rgba(96, 70, 30, 0.05);
       }
       [data-theme='dark'] .study-hero {
         background: linear-gradient(135deg, rgba(88, 166, 255, 0.09) 0%, rgba(22, 27, 34, 0.85) 100%);
@@ -1511,16 +1618,18 @@
       }
       .study-hero-title {
         font-family: var(--font-display);
-        font-size: 1.14rem;
-        font-weight: 900;
+        font-size: 1.04rem;
+        font-weight: 800;
         color: var(--primary);
-        letter-spacing: -0.045em;
+        letter-spacing: -0.028em;
+        line-height: 1.25;
       }
       .study-hero-desc {
         margin-top: 8px;
-        line-height: 1.76;
-        font-size: 0.91rem;
-        letter-spacing: -0.01em;
+        line-height: 1.7;
+        font-size: 0.86rem;
+        letter-spacing: -0.005em;
+        color: var(--sub);
       }
       .study-grid {
         display: grid;
@@ -1541,21 +1650,21 @@
         margin: 0 0 10px 0;
         color: var(--primary);
         font-family: var(--font-display);
-        font-size: 0.98rem;
+        font-size: 0.92rem;
         font-weight: 800;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.022em;
       }
       .study-tip-list {
         display: grid;
         gap: 8px;
       }
       .study-tip-item {
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 11px 13px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, var(--panel) 100%);
-        font-size: 0.9rem;
-        line-height: 1.65;
+        border: 1px solid var(--paper-line);
+        border-radius: 10px;
+        padding: 10px 13px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+        font-size: 0.84rem;
+        line-height: 1.62;
       }
       [data-theme='dark'] .study-tip-item {
         background: rgba(255, 255, 255, 0.02);
@@ -1583,7 +1692,7 @@
       }
       .study-nav-btn.active {
         border-color: var(--primary);
-        background: linear-gradient(135deg, rgba(47, 109, 246, 0.11) 0%, rgba(255, 255, 255, 0.96) 100%);
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--paper) 100%);
       }
       [data-theme='dark'] .study-nav-btn {
         background: rgba(255, 255, 255, 0.03);
@@ -1594,14 +1703,15 @@
         box-shadow: 0 0 14px rgba(88, 166, 255, 0.12);
       }
       .study-nav-title {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: 800;
         margin-bottom: 6px;
+        line-height: 1.3;
       }
       .study-nav-meta {
-        font-size: 0.8rem;
+        font-size: 0.76rem;
         color: var(--sub);
-        line-height: 1.5;
+        line-height: 1.55;
       }
       .study-feedback {
         margin-top: 10px;
@@ -1630,12 +1740,12 @@
         background: var(--danger-bg);
       }
       .practice-prompt {
-        font-size: 0.98rem;
-        line-height: 1.8;
-        padding: 14px 16px;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: var(--panel);
+        font-size: 0.92rem;
+        line-height: 1.75;
+        padding: 13px 16px;
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
         white-space: normal;
       }
       [data-theme='dark'] .practice-prompt {
@@ -1650,12 +1760,13 @@
       }
       .practice-guide {
         margin-top: 10px;
-        padding: 12px 14px;
+        padding: 11px 14px;
         border-radius: 10px;
         border: 1px dashed var(--primary);
         background: var(--primary-light);
-        font-size: 0.88rem;
-        line-height: 1.65;
+        font-size: 0.84rem;
+        line-height: 1.7;
+        color: var(--primary-2);
       }
       [data-theme='dark'] .practice-guide {
         background: rgba(88, 166, 255, 0.08);
@@ -1672,19 +1783,15 @@
         padding-bottom: 0;
       }
 
-      @media (min-width: 1180px) and (max-width: 1400px) {
+      @media (min-width: 1180px) {
         .container {
-          padding: 18px 22px;
-          max-width: 100%;
-        }
-        .header {
-          padding: 16px 22px;
+          padding: 22px 24px 32px;
         }
         .title {
-          font-size: 1.45rem;
+          font-size: 1.2rem;
         }
         .menu-btn {
-          min-height: 135px;
+          min-height: 108px;
         }
         #examLayout,
         #secondLayout {
@@ -1692,29 +1799,25 @@
           gap: 14px;
         }
         .question-card {
-          min-height: 520px;
-          padding: 28px 32px;
+          min-height: 480px;
+          padding: 26px 30px;
         }
         .q-text {
-          font-size: 1.28rem;
-          line-height: 1.9;
+          font-size: 1.12rem;
+          line-height: 1.85;
         }
         .option {
-          font-size: 1.08rem;
-          padding: 15px 18px;
-        }
-        .omr-btn {
-          height: 38px;
-          font-size: 0.85rem;
+          font-size: 1rem;
+          padding: 14px 17px;
         }
         .btn {
           padding: 10px 16px;
-          font-size: 0.98rem;
+          font-size: 0.9rem;
         }
         #timerBox {
-          font-size: 1.22rem;
-          padding: 9px 18px;
-          min-width: 105px;
+          font-size: 1.05rem;
+          padding: 8px 14px;
+          min-width: 90px;
         }
       }
       @media (max-width: 960px) {
@@ -1722,10 +1825,10 @@
           padding: 14px 16px;
         }
         .title {
-          font-size: 1.18rem;
+          font-size: 1.06rem;
         }
         .subtitle {
-          font-size: 0.82rem;
+          font-size: 0.78rem;
         }
         #examLayout,
         #secondLayout {
@@ -1755,13 +1858,14 @@
       }
       @media (max-width: 600px) {
         .container {
-          padding: 10px 12px;
+          padding: 12px 14px 22px;
         }
         .header {
           padding: 12px 14px;
-          border-radius: 16px;
+          border-radius: 14px;
           align-items: flex-start;
           flex-direction: column;
+          gap: 8px;
         }
         .header-actions {
           width: 100%;
@@ -1770,83 +1874,109 @@
           gap: 6px;
         }
         .theme-btn {
-          padding: 6px 8px;
-          font-size: 0.8rem;
+          padding: 6px 10px;
+          font-size: 0.76rem;
         }
         .title {
-          font-size: 1.05rem;
-        }
-        .subtitle {
-          font-size: 0.78rem;
-          line-height: 1.4;
-        }
-        .stage-title-large {
-          font-size: 1.45rem;
-          line-height: 1.12;
-        }
-        .stage-lead {
-          font-size: 0.82rem;
-          line-height: 1.54;
-        }
-        .stage-choice {
-          padding: 14px 14px;
-          min-height: auto;
-          border-radius: 18px;
-        }
-        .stage-choice-title {
           font-size: 0.98rem;
         }
-        .stage-choice-desc {
+        .subtitle {
+          font-size: 0.74rem;
+          line-height: 1.45;
+        }
+        .stage-hero {
+          gap: 10px;
+        }
+        .stage-hero-panel {
+          padding: 16px 16px;
+          border-radius: 16px;
+        }
+        .stage-title-large {
+          font-size: 1.22rem;
+          line-height: 1.22;
+          letter-spacing: -0.018em;
+        }
+        .stage-lead {
           font-size: 0.8rem;
+          line-height: 1.62;
+        }
+        .stage-choice {
+          padding: 14px 16px;
+          min-height: auto;
+          border-radius: 16px;
+        }
+        .stage-choice-title {
+          font-size: 0.94rem;
+        }
+        .stage-choice-desc {
+          font-size: 0.78rem;
         }
         .portal-countdown-days {
-          font-size: 1.75rem;
+          font-size: 1.5rem;
         }
         .panel {
-          padding: 14px;
+          padding: 14px 14px;
+          border-radius: 14px;
         }
         .screen-top-panel {
           padding: 14px !important;
-          display: block !important;
         }
-        .screen-top-panel > div:last-child {
-          width: 100%;
+        .screen-top-panel > div:first-child {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch !important;
+          gap: 10px;
+        }
+        .screen-top-panel > div:first-child > div:last-child {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
-          margin-top: 10px;
+          gap: 6px;
         }
-        .screen-top-panel > div:last-child .btn {
-          flex: 1 1 calc(50% - 4px);
+        .screen-top-panel > div:first-child > div:last-child .btn {
+          flex: 1 1 calc(50% - 3px);
           justify-content: center;
         }
         .panel-title-main {
-          font-size: 1rem;
+          font-size: 0.98rem;
         }
         .panel-title-sub {
-          font-size: 0.76rem;
-          line-height: 1.5;
+          font-size: 0.74rem;
+          line-height: 1.55;
           max-width: 100%;
         }
         .menu-grid {
           grid-template-columns: 1fr;
-          gap: 10px;
+          gap: 8px;
         }
         .menu-btn {
-          min-height: 88px;
-          padding: 12px 13px;
+          min-height: 78px;
+          padding: 11px 13px;
         }
         .menu-title {
-          font-size: 0.86rem;
+          font-size: 0.84rem;
         }
         .menu-desc {
-          font-size: 0.74rem;
-          line-height: 1.48;
-          display: -webkit-box;
-          line-clamp: 2;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
+          font-size: 0.72rem;
+          line-height: 1.5;
+        }
+        .settings-item {
+          padding: 12px 13px;
+        }
+        .subject-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 2px;
+          padding: 10px 12px;
+        }
+        .subject-row > span:last-child {
+          text-align: left;
+        }
+        .btn {
+          padding: 8px 12px;
+          font-size: 0.82rem;
+        }
+        .badge-row {
+          gap: 5px;
         }
       }
 
@@ -1951,20 +2081,24 @@
 
       .toast {
         position: fixed;
-        bottom: 20px;
+        bottom: 22px;
         left: 50%;
         transform: translateX(-50%);
         background: var(--text);
-        color: var(--panel);
+        color: var(--paper);
         padding: 10px 18px;
-        border-radius: 10px;
+        border-radius: 999px;
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.86rem;
         z-index: 10000;
         opacity: 0;
         transition: opacity 0.3s;
         pointer-events: none;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 20px rgba(40, 30, 12, 0.25);
+        max-width: calc(100% - 32px);
+        white-space: pre-line;
+        text-align: center;
+        line-height: 1.55;
       }
       [data-theme='dark'] .toast {
         background: rgba(255, 255, 255, 0.95);
@@ -2290,33 +2424,17 @@
                 2차 전략 리포트는 루틴 기록과 손글씨·계산 연습 기록을 기준으로 보완 포인트를 제안합니다.
               </div>
             </div>
-            <div class="settings-item">
-              <div class="settings-title">🔐 텔레그램 연동 준비</div>
-              <div class="hint" style="line-height:1.7;">
-                Bot token과 chat id는 프론트에 저장하지 않습니다. 서버PC의 중계 엔드포인트만 연결하는 구조를 기준으로 준비합니다.
+            <div class="settings-item placeholder-item">
+              <div class="settings-title">🔔 알림 연동</div>
+              <div class="placeholder-badge">준비 중</div>
+              <div class="hint" style="line-height:1.7;margin-top:8px;">
+                텔레그램 등 외부 알림 연동은 잠시 중단했습니다. 합격까지는 웹에서 손글씨·계산기 실전 수행과 루틴 기록에 집중합니다.
               </div>
-              <div class="second-result-box" style="margin-top:10px;">
-                <b>권장 API</b><br />
-                <span id="telegramSpecLine">/api/telegram/send · /api/telegram/checkin</span>
-              </div>
-              <div style="margin-top:10px;">
-                <div class="hint" style="margin-bottom:4px;">브리지 기본 URL</div>
-                <input id="telegramBridgeBaseInput" class="input" type="url" placeholder="http://192.168.219.131:8787" />
-              </div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
-                <button class="btn outline" onclick="saveTelegramBridgeBaseUrl()">브리지 URL 저장</button>
-                <button class="btn outline" onclick="sendTelegramRoutineCheckin()">마감 체크 보내기</button>
-                <button class="btn outline" onclick="sendTelegramTodayPerform()">오늘 수행 전송</button>
-                <button class="btn outline" onclick="syncRoutineRecordsFromBridge(false, true)">지금 다시 불러오기</button>
-              </div>
-              <div id="telegramEndpointHint" class="hint" style="margin-top:8px;line-height:1.7;">브리지 URL을 저장하면 실제 전송 엔드포인트가 여기 표시됩니다.</div>
-              <div class="hint" style="margin-top:8px;">딥링크는 텔레그램 메시지에서 특정 화면과 카드로 바로 진입하게 하는 용도로 사용합니다.</div>
             </div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px">
             <button class="btn primary" onclick="buildStrategyReport()">🔍 2차 전략 분석 실행</button>
             <button class="btn outline" onclick="showConditionHub('strategy')">전략 카드 보기</button>
-            <button class="btn outline" onclick="showToast(buildTelegramMessagePreview('checkin'), 2600)">체크인 미리보기</button>
           </div>
           <div id="strategyBody" style="margin-top: 12px"></div>
         </div>
@@ -2349,7 +2467,6 @@
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button class="btn outline" onclick="shiftRoutineMonth(-1)">이전 달</button>
               <button class="btn outline" onclick="shiftRoutineMonth(1)">다음 달</button>
-              <button class="btn outline" onclick="syncRoutineRecordsFromBridge(false, true)">지금 다시 불러오기</button>
               <button class="btn outline" onclick="goHome()">메인</button>
             </div>
           </div>
@@ -3522,58 +3639,19 @@
         };
       }
       function syncTelegramBridgeInputs() {
-        const input = document.getElementById('telegramBridgeBaseInput');
-        const hint = document.getElementById('telegramEndpointHint');
-        const endpoints = getTelegramBridgeEndpoints();
-        if (input) input.value = endpoints.base;
-        if (hint) {
-          hint.innerHTML = endpoints.base
-            ? `저장된 브리지: <code>${escapeHtml(endpoints.base)}</code><br />전송: <code>${escapeHtml(
-                endpoints.send
-              )}</code><br />체크인: <code>${escapeHtml(endpoints.checkin)}</code><br />동기화: <code>${escapeHtml(
-                endpoints.export
-              )}</code>`
-            : '브리지 URL을 저장하면 실제 전송 엔드포인트가 여기 표시됩니다.';
-        }
+        return;
       }
       function saveTelegramBridgeBaseUrl() {
-        const input = document.getElementById('telegramBridgeBaseInput');
-        const base = normalizeTelegramBridgeBaseUrl(input?.value || '');
-        if (!base) {
-          showToast('브리지 기본 URL을 먼저 입력하세요.', 1800);
-          return;
-        }
-        const config = getTelegramBridgeConfig();
-        const endpoints = getTelegramBridgeEndpoints({ ...config, baseUrl: base });
-        saveTelegramBridgeConfig({
-          ...config,
-          baseUrl: endpoints.base,
-          endpoint: endpoints.send,
-          checkinEndpoint: endpoints.checkin,
-          exportEndpoint: endpoints.export,
-        });
-        syncTelegramBridgeInputs();
-        buildStrategyReport();
-        showToast('텔레그램 브리지 URL 저장 완료', 1800);
+        showToast('알림 연동은 준비 중입니다.', 1800);
       }
-      function getTelegramRequestEndpoint(kind = 'send') {
-        const config = getTelegramBridgeConfig();
-        const endpoints = getTelegramBridgeEndpoints(config);
-        if (kind === 'export') return config.exportEndpoint || endpoints.export || '';
-        if (kind === 'checkin') return config.checkinEndpoint || endpoints.checkin || '';
-        return config.endpoint || endpoints.send || '';
+      function getTelegramRequestEndpoint() {
+        return '';
       }
       async function fetchTelegramCheckinExport() {
-        const target = getTelegramRequestEndpoint('export');
-        if (!target) return [];
-        const res = await fetch(target, { method: 'GET' });
-        if (!res.ok) throw new Error(`체크인 동기화 실패: HTTP ${res.status}`);
-        const data = await res.json().catch(() => ({}));
-        return Array.isArray(data?.records) ? data.records : [];
+        return [];
       }
       async function syncRoutineRecordsFromBridge(silent = false, force = false) {
-        const hasEndpoint = !!getTelegramRequestEndpoint('export');
-        if (!hasEndpoint) return 0;
+        return 0;
         if (!force && telegramBridgeSyncInFlight) return telegramBridgeSyncInFlight;
         if (!force && telegramBridgeLastSyncAt && Date.now() - telegramBridgeLastSyncAt < 15000) return 0;
         telegramBridgeSyncInFlight = (async () => {
@@ -3643,44 +3721,14 @@
         }
         return `${context.message || '📝 오늘 공부 안내\n• 손글씨 15분\n• 계산기 15분\n• 끝나면 체크리스트 확인'}\n\n${closing}`;
       }
-      async function sendTelegramBridge(payload, endpointOverride = '') {
-        const target = endpointOverride || getTelegramRequestEndpoint('send');
-        if (!target) throw new Error('텔레그램 중계 엔드포인트가 설정되지 않았습니다.');
-        const targetUrl = new URL(target, window.location.href);
-        if (window.location.protocol === 'https:' && targetUrl.protocol === 'http:') {
-          throw new Error('아이폰에서는 http 브리지 호출이 차단될 수 있습니다. https 브리지 주소가 필요합니다.');
-        }
-        const res = await fetch(target, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) throw new Error(`텔레그램 중계 실패: HTTP ${res.status}`);
-        return res.json().catch(() => ({}));
+      async function sendTelegramBridge() {
+        throw new Error('알림 연동은 준비 중입니다.');
       }
       async function sendTelegramTodayPerform() {
-        try {
-          await sendTelegramBridge(
-            {
-              kind: 'perform',
-              message: '📝 오늘 공부 안내\n• 손글씨 15분\n• 계산기 15분\n• 끝나면 체크리스트 확인',
-              route: '#second/perform',
-              buttonLabel: '오늘 공부 시작',
-            },
-            getTelegramRequestEndpoint('send')
-          );
-          showToast('오늘 공부 안내를 텔레그램으로 보냈습니다.', 2000);
-        } catch (err) {
-          showToast(err?.message || '텔레그램 전송에 실패했습니다.', 2400);
-        }
+        showToast('알림 연동은 준비 중입니다.', 1800);
       }
       async function sendTelegramRoutineCheckin() {
-        try {
-          await sendTelegramBridge({ kind: 'checkin' }, getTelegramRequestEndpoint('checkin'));
-          showToast('하루 마감 체크를 텔레그램으로 보냈습니다.', 2000);
-        } catch (err) {
-          showToast(err?.message || '텔레그램 전송에 실패했습니다.', 2400);
-        }
+        showToast('알림 연동은 준비 중입니다.', 1800);
       }
       function getTodayExecutionPlan() {
         const days = getDaysLeftInfo();
@@ -3948,7 +3996,6 @@
         routineCalendarState = { month: key.slice(0, 7), selectedDate: key };
         showScreen('routineCalendarScreen');
         renderRoutineCalendar();
-        syncRoutineRecordsFromBridge(true);
         setHashRoute(`#routine/calendar/${routineCalendarState.month}`);
       }
       function shiftRoutineMonth(offset) {
@@ -4043,7 +4090,6 @@
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
               <button class="btn primary" onclick="saveRoutineForm()">저장</button>
-              <button class="btn outline" onclick="showToast(buildTelegramMessagePreview('checkin'), 2600)">텔레그램 체크인 미리보기</button>
             </div>
           </div>
           <div class="panel" style="padding:12px;margin-top:10px;">
@@ -4162,9 +4208,10 @@
               <button class="btn outline" onclick="showRoutineCalendar('today')">오늘 회고 기록하기</button>
             </div>
           </div>
-          <div class="panel">
-            <div style="font-weight:800;color:var(--primary);margin-bottom:8px;">텔레그램 체크인 미리보기</div>
-            <div class="hint" style="line-height:1.8;white-space:pre-line;">${escapeHtml(buildTelegramMessagePreview('checkin'))}</div>
+          <div class="panel placeholder-card">
+            <div class="placeholder-badge">준비 중</div>
+            <div style="font-weight:800;color:var(--primary);margin-top:8px;">알림 연동</div>
+            <div class="hint" style="line-height:1.7;margin-top:6px;">외부 알림 연동은 잠시 멈췄습니다. 지금은 손글씨 답안과 계산기 실전 수행에 집중하세요.</div>
           </div>`;
       }
       function renderSecondStrategyReport() {
@@ -4210,17 +4257,10 @@
                 : '<div class="hint">아직 오늘 공부 기록이 없습니다. 오늘 공부 안내를 먼저 시작하세요.</div>'
             }
           </div>
-          <div class="panel">
-            <h3 style="margin:0 0 8px 0;color:var(--primary);">텔레그램 연동 준비</h3>
-            <div class="subject-row"><span>보안 원칙</span><span>Bot token과 chat id는 프론트엔드에 저장하지 않습니다.</span></div>
-            <div class="subject-row"><span>현재 브리지</span><span>${escapeHtml(getTelegramBridgeEndpoints().base || '미설정')}</span></div>
-            <div class="subject-row"><span>권장 엔드포인트</span><span>${escapeHtml(TELEGRAM_API_SPEC.sendPath)} / ${escapeHtml(
-              TELEGRAM_API_SPEC.checkinPath
-            )}</span></div>
-            <div class="subject-row"><span>딥링크 예시</span><span><a href="${buildDeepLink(`#routine/calendar/${toDateKey().slice(0, 7)}`)}" target="_blank" rel="noopener noreferrer">루틴 달력</a> · <a href="${buildDeepLink(
-              '#second/perform'
-            )}" target="_blank" rel="noopener noreferrer">오늘의 수행</a></span></div>
-            <div class="hint" style="margin-top:8px;line-height:1.7;">실제 토큰 연결은 서버PC의 중계 계층에서만 처리하고, 프론트에서는 메시지 템플릿과 경로만 준비합니다.</div>
+          <div class="panel placeholder-card">
+            <div class="placeholder-badge">준비 중</div>
+            <h3 style="margin:8px 0 6px 0;color:var(--primary);">알림 연동</h3>
+            <div class="hint" style="line-height:1.7;">텔레그램 등 외부 알림 연동은 잠시 멈춰두었습니다. 합격 전까지는 웹 안의 손글씨·계산기 실전 수행과 루틴 기록만으로 진행합니다.</div>
           </div>`;
       }
       function setHashRoute(route) {
@@ -5983,7 +6023,6 @@ ${scopeText}
       }
       function showFirstStageScreen() {
         showScreen('mainScreen');
-        syncRoutineRecordsFromBridge(true);
         updateDashboard();
         setHashRoute('#main');
       }
@@ -5993,7 +6032,6 @@ ${scopeText}
         timerInterval = null;
         autoSaveInterval = null;
         document.getElementById('timerBox').classList.add('hidden');
-        syncRoutineRecordsFromBridge(true);
         renderPortalCountdown();
         showScreen('portalScreen');
         setHashRoute('#portal');
@@ -6470,39 +6508,37 @@ ${scopeText}
       function runSelfCheck() {
         const log = [];
         const now = new Date().toLocaleString('ko-KR');
-        const visibleScreens = ['portalScreen', 'mainScreen', 'secondStageScreen', 'routineCalendarScreen', 'strategyScreen'].filter(
-          (id) => !document.getElementById(id)?.classList.contains('hidden')
-        );
-        const bridgeBase = getTelegramBridgeEndpoints().base || '미설정';
+        const visibleScreens = ['portalScreen', 'mainScreen', 'secondStageScreen', 'routineCalendarScreen', 'strategyScreen']
+          .filter((id) => !document.getElementById(id)?.classList.contains('hidden'))
+          .map((id) => id.replace('Screen', ''));
         const examDate = getSecondExamDateValue();
         const days = getDaysLeftInfo(examDate);
         const routines = getRoutineRecords();
         const progress = getSecondProgressSummary();
         const mainGrid = document.querySelector('#mainScreen .menu-grid');
-        const mainCards = [...document.querySelectorAll('#mainScreen .menu-grid:first-of-type .menu-btn .menu-title')]
-          .map((node) => node.textContent?.trim())
-          .filter(Boolean);
+        const apiSpec = (typeof TELEGRAM_API_SPEC === 'object' && TELEGRAM_API_SPEC) || {};
 
         log.push(`🕐 점검 시각: ${now}`);
         log.push(`──────────────────────────────`);
-        log.push(`현재 보이는 화면: ${visibleScreens.join(', ') || '없음'}`);
+        log.push(`현재 화면: ${visibleScreens.join(', ') || '없음'}`);
         log.push(`현재 주소: ${window.location.pathname}${window.location.search}${window.location.hash}`);
-        log.push(`브리지 주소: ${bridgeBase}`);
-        log.push(`시험일: ${examDate} / D-${String(days.daysLeft).padStart(3, '0')}`);
-        log.push(`루틴 기록: ${routines.length}건 / 2차 기록: ${progress.data.length}건`);
+        log.push(`시험일: ${examDate} · D-${String(days.daysLeft).padStart(3, '0')} · ${days.phase}`);
+        log.push(`루틴 기록 ${routines.length}건 · 2차 수행 기록 ${progress.data.length}건`);
         log.push(``);
-        log.push(`📱 현재 화면 크기`);
+        log.push(`📱 화면`);
         log.push(`- 폭 ${window.innerWidth}px · 높이 ${window.innerHeight}px · 배율 ${window.devicePixelRatio}`);
         log.push(`- 메인 메뉴 열 수: ${mainGrid ? getComputedStyle(mainGrid).gridTemplateColumns : '확인 불가'}`);
-        log.push(`- 메인 메뉴: ${mainCards.join(' / ') || '확인 불가'}`);
         log.push(``);
-        log.push(`✅ 빠른 확인 항목`);
+        log.push(`🔔 알림`);
+        log.push(`- 텔레그램 등 외부 알림 연동은 현재 준비 중입니다.`);
+        log.push(`- 모든 알림 호출은 차단되어 있고, 추가 트래픽이 발생하지 않습니다.`);
+        log.push(``);
+        log.push(`✅ 점검`);
         log.push(`- 점검 모달 열림: ${document.getElementById('patchLogModal')?.classList.contains('hidden') ? '아니오' : '예'}`);
-        log.push(`- 새로고침 버튼 존재: ${document.querySelector('button[onclick=\"refreshPage()\"]') ? '예' : '아니오'}`);
-        log.push(`- 루틴 캘린더 버튼 존재: ${document.querySelector('button[onclick=\"showRoutineCalendar()\"]') ? '예' : '아니오'}`);
-        log.push(`- 텔레그램 브리지 저장 여부: ${bridgeBase === '미설정' ? '아니오' : '예'}`);
+        log.push(`- 새로고침 버튼: ${document.querySelector('button[onclick=\"refreshPage()\"]') ? '있음' : '없음'}`);
+        log.push(`- 루틴 캘린더 진입: ${document.querySelector('button[onclick=\"showRoutineCalendar()\"]') ? '있음' : '없음'}`);
         log.push(``);
-        log.push(`안내: 문제가 생기면 현재 주소와 보이는 화면 이름을 같이 확인하면 원인을 좁히기 쉽습니다.`);
+        log.push(`문제가 생기면 위의 [현재 화면 / 현재 주소]를 같이 적어 두면 원인을 좁히기 쉽습니다.`);
 
         document.getElementById('patchLogBody').textContent = log.join('\n');
       }
@@ -8135,8 +8171,6 @@ ${scopeText}
         showScreen('strategyScreen');
         document.getElementById('strategyBody').innerHTML = `<div class="hint">[2차 전략 분석 실행]을 눌러 최신 수행 기록을 분석하세요.</div>`;
         document.getElementById('examDateInput').value = getSecondExamDateValue();
-        syncTelegramBridgeInputs();
-        syncRoutineRecordsFromBridge(true);
         updateDaysLeftDisplay();
         buildStrategyReport();
         if (!String(window.location.hash || '').startsWith('#strategy/')) setHashRoute('#strategy/report');
@@ -8437,11 +8471,6 @@ ${scopeText}
         renderConditionHub('body');
         routineCalendarState = { month: toDateKey().slice(0, 7), selectedDate: toDateKey() };
         renderRoutineCalendar();
-        syncRoutineRecordsFromBridge(true, true).then(() => {
-          updateDashboard();
-          renderPortalCountdown();
-          renderRoutineCalendar();
-        });
         const incomingRoute = getRouteFromLocation();
         if (incomingRoute && !window.location.hash) {
           history.replaceState(null, '', `${window.location.pathname}${window.location.search}${incomingRoute}`);
@@ -8456,14 +8485,6 @@ ${scopeText}
           if (!document.getElementById('mainScreen').classList.contains('hidden')) updateDashboard();
           if (!document.getElementById('bankScreen').classList.contains('hidden')) updateAIBankScreen();
           if (!document.getElementById('secondStageScreen').classList.contains('hidden')) renderSecondStageSummary();
-          if (
-            !document.getElementById('portalScreen').classList.contains('hidden') ||
-            !document.getElementById('mainScreen').classList.contains('hidden') ||
-            !document.getElementById('routineCalendarScreen').classList.contains('hidden') ||
-            !document.getElementById('strategyScreen').classList.contains('hidden')
-          ) {
-            syncRoutineRecordsFromBridge(true);
-          }
         }, 3000);
       });
     </script>
