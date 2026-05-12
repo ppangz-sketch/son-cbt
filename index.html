@@ -45,8 +45,8 @@
         --primary-light: #f1e6cc;
         --accent: #b58a4c;
 
-        --topbar-1: #ecdfc4;
-        --topbar-2: #dfd0ad;
+        --topbar-1: #fbf6ec;
+        --topbar-2: #ede4d0;
 
         --danger: #b65848;
         --danger-bg: #f8eae4;
@@ -2079,6 +2079,281 @@
         margin-left: 4px;
       }
 
+      /* 루틴 위젯 */
+      .routine-pill-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      @media (max-width: 420px) {
+        .routine-pill-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      .routine-pill {
+        appearance: none;
+        border: 1px solid var(--paper-line);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+        color: var(--text);
+        border-radius: 14px;
+        padding: 12px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        cursor: pointer;
+        text-align: left;
+        font: inherit;
+        transition: all 0.18s;
+        box-shadow: 0 2px 6px rgba(96, 70, 30, 0.04);
+      }
+      .routine-pill:hover {
+        border-color: var(--primary);
+        transform: translateY(-1px);
+      }
+      .routine-pill-emoji {
+        font-size: 1.02rem;
+      }
+      .routine-pill-label {
+        font-size: 0.84rem;
+        font-weight: 800;
+        letter-spacing: -0.012em;
+      }
+      .routine-pill-status {
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--sub);
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--line-soft);
+        margin-top: 2px;
+      }
+      .routine-pill.ok {
+        background: linear-gradient(180deg, #f4f8ec 0%, #ecf2dd 100%);
+        border-color: #bcca96;
+      }
+      .routine-pill.ok .routine-pill-status {
+        background: var(--ok-bg);
+        color: var(--ok);
+      }
+      .routine-pill.warn {
+        background: linear-gradient(180deg, #fbf2dc 0%, #f5e8c5 100%);
+        border-color: #d9bf75;
+      }
+      .routine-pill.warn .routine-pill-status {
+        background: var(--warn-bg);
+        color: var(--warn);
+      }
+      .today-routine-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .today-routine-kicker {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--sub);
+      }
+      .today-routine-progress {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-top: 2px;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+      .today-routine-progress.done {
+        color: var(--ok);
+      }
+      .today-routine-progress.half {
+        color: var(--warn);
+      }
+      .today-routine-progress.low {
+        color: var(--danger);
+      }
+      .today-routine-progress.idle {
+        color: var(--sub);
+      }
+      .streak-row {
+        display: flex;
+        gap: 4px;
+        flex-wrap: nowrap;
+      }
+      .streak-cell {
+        width: 12px;
+        height: 18px;
+        border-radius: 4px;
+        background: var(--line-soft);
+        border: 1px solid var(--paper-line);
+      }
+      .streak-cell.low {
+        background: #f0d4cf;
+        border-color: #d9aaa1;
+      }
+      .streak-cell.half {
+        background: #f4dfa6;
+        border-color: #cda551;
+      }
+      .streak-cell.done {
+        background: #c7d9a3;
+        border-color: #8aa563;
+      }
+      .streak-cell.today {
+        outline: 2px solid var(--primary);
+        outline-offset: 1px;
+      }
+      /* 루틴 캘린더 그리드 */
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .cal-grid.head {
+        margin-bottom: 6px;
+      }
+      .cal-head {
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-align: center;
+        color: var(--sub);
+        padding: 4px 0;
+      }
+      .cal-head.sun {
+        color: var(--danger);
+      }
+      .cal-head.sat {
+        color: var(--primary);
+      }
+      .cal-cell {
+        appearance: none;
+        border: 1px solid var(--paper-line);
+        background: var(--panel);
+        color: var(--text);
+        border-radius: 10px;
+        min-height: 64px;
+        padding: 6px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 4px;
+        cursor: pointer;
+        font: inherit;
+        transition: all 0.18s;
+      }
+      .cal-cell.empty {
+        background: transparent;
+        border: none;
+        cursor: default;
+        min-height: 0;
+      }
+      .cal-cell.idle {
+        background: linear-gradient(180deg, var(--paper) 0%, var(--panel) 100%);
+      }
+      .cal-cell.low {
+        background: linear-gradient(180deg, #fbe9e2 0%, #f5d6cc 100%);
+        border-color: #e0aea1;
+      }
+      .cal-cell.half {
+        background: linear-gradient(180deg, #fbedc7 0%, #f3dd9d 100%);
+        border-color: #d9b76d;
+      }
+      .cal-cell.done {
+        background: linear-gradient(180deg, #e3edcd 0%, #c9dca0 100%);
+        border-color: #97b766;
+      }
+      .cal-cell.today {
+        box-shadow: 0 0 0 2px var(--primary);
+      }
+      .cal-cell.selected {
+        border-color: var(--primary);
+        box-shadow: 0 6px 14px rgba(138, 106, 60, 0.18);
+      }
+      .cal-cell:hover {
+        transform: translateY(-1px);
+      }
+      .cal-day {
+        font-weight: 800;
+        font-size: 0.86rem;
+        letter-spacing: -0.01em;
+      }
+      .cal-dot-row {
+        display: flex;
+        gap: 3px;
+      }
+      .cal-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(98, 80, 50, 0.18);
+      }
+      .cal-dot.on {
+        background: var(--ok);
+      }
+      .cal-dot.half {
+        background: var(--warn);
+      }
+      .cal-dot.off {
+        background: rgba(98, 80, 50, 0.18);
+      }
+      .cal-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        font-size: 0.74rem;
+        color: var(--sub);
+        align-items: center;
+      }
+      .cal-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .cal-tone {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        display: inline-block;
+        border: 1px solid var(--paper-line);
+      }
+      .cal-tone.done {
+        background: #c9dca0;
+        border-color: #97b766;
+      }
+      .cal-tone.half {
+        background: #f3dd9d;
+        border-color: #d9b76d;
+      }
+      .cal-tone.idle {
+        background: var(--panel);
+      }
+      @media (max-width: 600px) {
+        .cal-cell {
+          min-height: 54px;
+          padding: 5px 6px;
+        }
+        .cal-day {
+          font-size: 0.8rem;
+        }
+        .cal-dot {
+          width: 6px;
+          height: 6px;
+        }
+        .streak-cell {
+          width: 10px;
+          height: 14px;
+        }
+        .routine-pill {
+          padding: 10px 10px;
+        }
+      }
+
       .toast {
         position: fixed;
         bottom: 22px;
@@ -2226,6 +2501,14 @@
             <div class="menu-title">합격 유지실</div>
             <div class="menu-desc">몸관리, 호흡, 2차 전략 카드를 한 곳에서 봅니다.</div>
           </button>
+        </div>
+
+        <div class="panel" style="margin-bottom: 12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+            <h3 style="margin:0;color:var(--primary);">오늘의 루틴 체크</h3>
+            <button class="btn outline sm" onclick="showRoutineCalendar()">루틴 캘린더 열기</button>
+          </div>
+          <div id="mainTodayRoutine"></div>
         </div>
 
         <div class="panel" style="margin-bottom: 12px">
@@ -3201,6 +3484,24 @@
 
       const ROUTINE_STATUS_OPTIONS = ['미실행', '일부', '완료'];
       const ROUTINE_STATUS_SCORE = { 미실행: 0, 일부: 0.5, 완료: 1 };
+      const ROUTINE_ACTIVE_FIELDS = [
+        { key: 'morning', label: '새벽 공부', short: '새벽', emoji: '🌅' },
+        { key: 'workout', label: '아침 운동', short: '운동', emoji: '🏃' },
+        { key: 'lunch', label: '저녁 공부', short: '저녁', emoji: '📘' },
+      ];
+      const ROUTINE_ACTIVE_KEYS = ROUTINE_ACTIVE_FIELDS.map((f) => f.key);
+      function cycleRoutineStatus(status) {
+        const idx = ROUTINE_STATUS_OPTIONS.indexOf(status);
+        return ROUTINE_STATUS_OPTIONS[(idx + 1) % ROUTINE_STATUS_OPTIONS.length];
+      }
+      function statusToClass(status) {
+        if (status === '완료') return 'ok';
+        if (status === '일부') return 'warn';
+        return '';
+      }
+      function getDailyDoneRatio(item) {
+        return avg(ROUTINE_ACTIVE_KEYS.map((k) => getStatusPct(item[k])));
+      }
       const BODY_CARE_CONTENT = [
         {
           id: 'neck-reset',
@@ -3602,12 +3903,18 @@
           return toDateKey(d);
         }).reverse();
         const items = keys.map((k) => getRoutineRecord(k));
-        const fields = ['morning', 'workout', 'lunch', 'evening', 'second', 'sleep'];
         const summary = {};
-        fields.forEach((field) => {
+        ROUTINE_ACTIVE_KEYS.forEach((field) => {
           summary[field] = avg(items.map((item) => getStatusPct(item[field])));
         });
-        return { keys, items, summary };
+        summary.daily = avg(items.map(getDailyDoneRatio));
+        const fullDoneCount = items.filter((item) => getDailyDoneRatio(item) >= 0.99).length;
+        const halfDoneCount = items.filter((item) => {
+          const r = getDailyDoneRatio(item);
+          return r >= 0.34 && r < 0.99;
+        }).length;
+        const skipDoneCount = items.filter((item) => getDailyDoneRatio(item) <= 0.001).length;
+        return { keys, items, summary, fullDoneCount, halfDoneCount, skipDoneCount };
       }
       function getTelegramBridgeConfig() {
         try {
@@ -3767,14 +4074,14 @@
         const suggestions = [];
         const countLow = (key) => recent.filter((x) => getStatusPct(x[key]) < 0.5).length;
         const symptomCount = (name) => recent.filter((x) => x.symptom === name).length;
-        if (countLow('evening') >= 4) suggestions.push('저녁 공부 시작이 자주 밀립니다. 오늘부터 저녁 루틴을 90분이 아니라 30분 기본형으로 고정하세요.');
-        if (countLow('second') >= 3) suggestions.push('오늘 공부 실행 기록이 비어 있습니다. 저녁 최소 과제를 손글씨 15분으로 고정하세요.');
-        if (countLow('sleep') >= 3) suggestions.push('제시간 취침이 자주 무너집니다. 기상 알림보다 취침 경고를 먼저 강화하세요.');
+        if (countLow('morning') >= 4) suggestions.push('새벽 공부가 자주 무너집니다. 일어나자마자 책상 앞 15분만이라도 고정해서 흐름을 살리세요.');
+        if (countLow('workout') >= 4) suggestions.push('아침 운동이 누적해서 빠지고 있습니다. 10분 짧은 코어/스트레칭으로 최소 루틴을 유지하세요.');
+        if (countLow('lunch') >= 3) suggestions.push('저녁 공부 시작이 자주 밀립니다. 30분 기본형 손글씨/계산기 1세트로 가볍게 진입하세요.');
         if (symptomCount('승모근통증·두통·피로') >= 2 || symptomCount('승모근-두통-피로') >= 2)
           suggestions.push('승모근 통증·두통이 반복됩니다. 저녁 세션 전 4분 호흡-자세 리셋을 기본 단계로 넣으세요.');
         if (symptomCount('얕은 호흡') >= 2) suggestions.push('얕은 호흡이 반복됩니다. 공부 시작 전 2분 호흡 재정렬 루틴을 고정 단계로 넣으세요.');
-        if (symptomCount('골반전방경사') >= 2) suggestions.push('골반전방경사 관련 불편이 반복됩니다. 아침 헬스 전 둔근 활성 루틴 비중을 높이세요.');
-        return suggestions.length ? suggestions : ['최근 흐름은 유지되고 있습니다. 저녁 최소 루틴을 끊기지 않게 유지하세요.'];
+        if (symptomCount('골반전방경사') >= 2) suggestions.push('골반전방경사 관련 불편이 반복됩니다. 아침 운동 전 둔근 활성 루틴 비중을 높이세요.');
+        return suggestions.length ? suggestions : ['최근 흐름은 유지되고 있습니다. 핵심 3개 루틴을 끊기지 않게 유지하세요.'];
       }
       function getSecondProgressSummary() {
         const data = getSecondStageProgress();
@@ -3863,20 +4170,60 @@
       function renderMainRoutineSummary() {
         const box = document.getElementById('mainRoutineSummary');
         if (!box) return;
-        const { summary } = getRecentRoutineStats(7);
+        const stats = getRecentRoutineStats(7);
+        const { summary, fullDoneCount, halfDoneCount, skipDoneCount } = stats;
+        const daily = summary.daily || 0;
+        const tone = daily >= 0.6 ? 'ok' : daily >= 0.3 ? 'warn' : 'danger';
+        const chips = ROUTINE_ACTIVE_FIELDS.map((f) => {
+          const v = summary[f.key] || 0;
+          const cls = v >= 0.6 ? 'ok' : v >= 0.3 ? 'warn' : v > 0 ? 'danger' : '';
+          return `<span class="chip ${cls}">${f.short} ${pctText(v)}</span>`;
+        }).join('');
         box.innerHTML = `
           <div class="badge-row" style="margin-bottom:10px;">
-            <span class="chip">새벽 ${pctText(summary.morning || 0)}</span>
-            <span class="chip">운동 ${pctText(summary.workout || 0)}</span>
-            <span class="chip">저녁 공부 ${pctText(summary.lunch || 0)}</span>
-            <span class="chip">저녁 시작 ${pctText(summary.evening || 0)}</span>
-            <span class="chip ${summary.second >= 0.6 ? 'ok' : summary.second >= 0.3 ? 'warn' : 'danger'}">2차 ${pctText(summary.second || 0)}</span>
+            <span class="chip ${tone}">최근 7일 ${pctText(daily)}</span>
+            ${chips}
           </div>
+          <div class="subject-row" style="margin-bottom:8px;"><span>완벽 / 절반 / 미기록</span><span>${fullDoneCount}일 · ${halfDoneCount}일 · ${skipDoneCount}일</span></div>
           ${buildRoutineSuggestions()
             .slice(0, 2)
             .map((item) => `<div class="subject-row"><span>보완 포인트</span><span>${escapeHtml(item)}</span></div>`)
             .join('')}
-          <div style="margin-top:10px;"><button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더 열기</button></div>`;
+          <div style="margin-top:10px;"><button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더 자세히 보기</button></div>`;
+      }
+      function renderMainTodayRoutine() {
+        const box = document.getElementById('mainTodayRoutine');
+        if (!box) return;
+        const todayKey = toDateKey();
+        const item = getRoutineRecord(todayKey);
+        const daily = getDailyDoneRatio(item);
+        const tone = daily >= 0.99 ? 'done' : daily >= 0.5 ? 'half' : daily > 0 ? 'low' : 'idle';
+        const pills = ROUTINE_ACTIVE_FIELDS.map((f) => `
+          <button type="button" class="routine-pill ${statusToClass(item[f.key])}" onclick="quickToggleRoutineField('${todayKey}', '${f.key}')">
+            <span class="routine-pill-emoji">${f.emoji}</span>
+            <span class="routine-pill-label">${f.label}</span>
+            <span class="routine-pill-status">${item[f.key]}</span>
+          </button>`).join('');
+        const last14 = [];
+        for (let i = 13; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          const k = toDateKey(d);
+          const rec = getRoutineRecord(k);
+          const r = getDailyDoneRatio(rec);
+          const t = r >= 0.99 ? 'done' : r >= 0.5 ? 'half' : r > 0 ? 'low' : 'idle';
+          last14.push(`<span class="streak-cell ${t}${k === todayKey ? ' today' : ''}" title="${k} · ${pctText(r)}"></span>`);
+        }
+        box.innerHTML = `
+          <div class="today-routine-head">
+            <div>
+              <div class="today-routine-kicker">오늘 ${todayKey.slice(5).replace('-', '.')}</div>
+              <div class="today-routine-progress ${tone}">${pctText(daily)} 진행</div>
+            </div>
+            <div class="streak-row">${last14.join('')}</div>
+          </div>
+          <div class="routine-pill-grid">${pills}</div>
+          <div class="hint" style="margin-top:8px;">버튼을 누르면 미실행 → 일부 → 완료 순으로 바뀝니다. 결과는 캘린더에도 자동으로 반영됩니다.</div>`;
       }
       function renderMainStrategySummary() {
         const box = document.getElementById('mainStrategySummary');
@@ -4010,23 +4357,20 @@
         routineCalendarState.selectedDate = dateKey;
         renderRoutineCalendar();
       }
-      function saveRoutineForm() {
+      function saveRoutineForm(silent = true) {
         const date = routineCalendarState.selectedDate || toDateKey();
+        const current = getRoutineRecord(date);
         upsertRoutineRecord({
+          ...current,
           date,
-          morning: document.getElementById('routineMorningSelect')?.value || '미실행',
-          workout: document.getElementById('routineWorkoutSelect')?.value || '미실행',
-          lunch: document.getElementById('routineLunchSelect')?.value || '미실행',
-          evening: document.getElementById('routineEveningSelect')?.value || '미실행',
-          second: document.getElementById('routineSecondSelect')?.value || '미실행',
-          sleep: document.getElementById('routineSleepSelect')?.value || '미실행',
-          symptom: document.getElementById('routineSymptomSelect')?.value || '없음',
-          summary: document.getElementById('routineSummarySelect')?.value || '보통',
-          note: document.getElementById('routineMemoInput')?.value || '',
+          symptom: document.getElementById('routineSymptomSelect')?.value || current.symptom || '없음',
+          summary: document.getElementById('routineSummarySelect')?.value || current.summary || '보통',
+          note: document.getElementById('routineMemoInput')?.value ?? current.note ?? '',
         });
         renderRoutineCalendar();
         renderMainRoutineSummary();
-        showToast('루틴 기록 저장');
+        renderMainTodayRoutine();
+        if (!silent) showToast('루틴 기록 저장');
       }
       function renderRoutineCalendar() {
         const month = routineCalendarState.month || toDateKey().slice(0, 7);
@@ -4036,66 +4380,91 @@
         const startDay = first.getDay();
         const daysInMonth = new Date(y, m, 0).getDate();
         const records = getRoutineRecords();
+        const todayKey = toDateKey();
         const monthBody = document.getElementById('routineCalendarBody');
         const side = document.getElementById('routineCalendarSide');
         const title = document.getElementById('routineCalendarTitle');
         if (!monthBody || !side || !title) return;
         title.textContent = `${y}년 ${m}월 루틴 캘린더`;
+        const weekdayHead = ['일', '월', '화', '수', '목', '금', '토']
+          .map((d, idx) => `<div class="cal-head ${idx === 0 ? 'sun' : idx === 6 ? 'sat' : ''}">${d}</div>`)
+          .join('');
         const cells = [];
-        for (let i = 0; i < startDay; i++) cells.push('<div></div>');
+        for (let i = 0; i < startDay; i++) cells.push('<div class="cal-cell empty"></div>');
         for (let day = 1; day <= daysInMonth; day++) {
           const key = `${month}-${pad2(day)}`;
           const item = getRoutineRecord(key);
-          const donePct = avg([item.morning, item.workout, item.lunch, item.evening, item.second, item.sleep].map(getStatusPct));
-          const bg =
-            donePct >= 0.8 ? 'var(--ok)' : donePct >= 0.45 ? 'var(--warn)' : donePct > 0 ? 'var(--danger)' : 'var(--panel)';
+          const ratio = getDailyDoneRatio(item);
+          const tone = ratio >= 0.99 ? 'done' : ratio >= 0.5 ? 'half' : ratio > 0 ? 'low' : 'idle';
+          const isToday = key === todayKey;
+          const isSelected = key === selectedDate;
+          const dots = ROUTINE_ACTIVE_FIELDS.map((f) => {
+            const s = item[f.key];
+            const cls = s === '완료' ? 'on' : s === '일부' ? 'half' : 'off';
+            return `<span class="cal-dot ${cls}" title="${f.label}: ${s}"></span>`;
+          }).join('');
           cells.push(`
-            <button class="btn outline sm" style="min-height:88px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;background:${bg};color:${donePct > 0 ? '#fff' : 'var(--text)'};"
+            <button class="cal-cell ${tone}${isToday ? ' today' : ''}${isSelected ? ' selected' : ''}"
               onclick="selectRoutineDate('${key}')">
-              <span style="font-weight:800;">${day}</span>
-              <span style="font-size:.72rem;margin-top:4px;">2차 ${pctText(getStatusPct(item.second))}</span>
-              <span style="font-size:.7rem;margin-top:2px;">${escapeHtml(item.symptom || '없음')}</span>
+              <span class="cal-day">${day}</span>
+              <span class="cal-dot-row">${dots}</span>
             </button>`);
         }
-        monthBody.innerHTML = `<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;">${cells.join('')}</div>`;
+        monthBody.innerHTML = `
+          <div class="cal-grid head">${weekdayHead}</div>
+          <div class="cal-grid">${cells.join('')}</div>
+          <div class="cal-legend">
+            <span><span class="cal-dot on"></span>완료</span>
+            <span><span class="cal-dot half"></span>일부</span>
+            <span><span class="cal-dot off"></span>미실행</span>
+            <span class="cal-legend-tone"><span class="cal-tone done"></span>3개 완료</span>
+            <span class="cal-legend-tone"><span class="cal-tone half"></span>절반 이상</span>
+            <span class="cal-legend-tone"><span class="cal-tone idle"></span>기록 없음</span>
+          </div>`;
         const item = getRoutineRecord(selectedDate);
+        const fieldsHtml = ROUTINE_ACTIVE_FIELDS.map((f) => `
+          <button type="button" class="routine-pill ${statusToClass(item[f.key])}" onclick="quickToggleRoutineField('${selectedDate}', '${f.key}')">
+            <span class="routine-pill-emoji">${f.emoji}</span>
+            <span class="routine-pill-label">${f.label}</span>
+            <span class="routine-pill-status">${item[f.key]}</span>
+          </button>`).join('');
         side.innerHTML = `
-          <div class="panel" style="padding:12px;">
-            <div style="font-weight:800;color:var(--primary);margin-bottom:8px;">${escapeHtml(formatDateLabel(selectedDate))}</div>
-            <div class="settings-grid">
-              <div class="settings-item"><div class="settings-title">새벽 공부</div><select id="routineMorningSelect" class="select">${renderStatusOptions(item.morning)}</select></div>
-              <div class="settings-item"><div class="settings-title">아침 운동</div><select id="routineWorkoutSelect" class="select">${renderStatusOptions(item.workout)}</select></div>
-              <div class="settings-item"><div class="settings-title">저녁 공부</div><select id="routineLunchSelect" class="select">${renderStatusOptions(item.lunch)}</select></div>
-              <div class="settings-item"><div class="settings-title">저녁 시작</div><select id="routineEveningSelect" class="select">${renderStatusOptions(item.evening)}</select></div>
-              <div class="settings-item"><div class="settings-title">오늘 공부 실행</div><select id="routineSecondSelect" class="select">${renderStatusOptions(item.second)}</select></div>
-              <div class="settings-item"><div class="settings-title">제시간 취침</div><select id="routineSleepSelect" class="select">${renderStatusOptions(item.sleep)}</select></div>
-            </div>
-            <div style="margin-top:10px;" class="settings-item">
-              <div class="settings-title">주요 증상</div>
-              <select id="routineSymptomSelect" class="select">
-                ${['없음', '거북목', '라운드숄더', '골반전방경사', '승모근통증·두통·피로', '얕은 호흡']
-                  .map((opt) => `<option value="${opt}" ${opt === item.symptom ? 'selected' : ''}>${opt}</option>`)
-                  .join('')}
-              </select>
-            </div>
-            <div style="margin-top:10px;" class="settings-item">
-              <div class="settings-title">오늘 총평</div>
-              <select id="routineSummarySelect" class="select">
-                ${['좋음', '보통', '무너짐'].map((opt) => `<option value="${opt}" ${opt === item.summary ? 'selected' : ''}>${opt}</option>`).join('')}
-              </select>
+          <div class="panel" style="padding:14px 16px;">
+            <div style="font-weight:800;color:var(--primary);margin-bottom:10px;letter-spacing:-0.02em;">${escapeHtml(formatDateLabel(selectedDate))}</div>
+            <div class="routine-pill-grid">${fieldsHtml}</div>
+            <div class="hint" style="margin-top:8px;">버튼을 누르면 미실행 → 일부 → 완료 순으로 바뀝니다.</div>
+            <div class="settings-grid" style="margin-top:12px;">
+              <div class="settings-item"><div class="settings-title">주요 증상</div>
+                <select id="routineSymptomSelect" class="select" onchange="saveRoutineForm()">
+                  ${['없음', '거북목', '라운드숄더', '골반전방경사', '승모근통증·두통·피로', '얕은 호흡']
+                    .map((opt) => `<option value="${opt}" ${opt === item.symptom ? 'selected' : ''}>${opt}</option>`)
+                    .join('')}
+                </select>
+              </div>
+              <div class="settings-item"><div class="settings-title">오늘 총평</div>
+                <select id="routineSummarySelect" class="select" onchange="saveRoutineForm()">
+                  ${['좋음', '보통', '무너짐'].map((opt) => `<option value="${opt}" ${opt === item.summary ? 'selected' : ''}>${opt}</option>`).join('')}
+                </select>
+              </div>
             </div>
             <div style="margin-top:10px;" class="settings-item">
               <div class="settings-title">간단 메모</div>
-              <textarea id="routineMemoInput" class="textarea" placeholder="무너진 이유나 내일 수정할 점">${escapeHtml(item.note || '')}</textarea>
-            </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
-              <button class="btn primary" onclick="saveRoutineForm()">저장</button>
+              <textarea id="routineMemoInput" class="textarea" placeholder="무너진 이유나 내일 수정할 점" onblur="saveRoutineForm()">${escapeHtml(item.note || '')}</textarea>
             </div>
           </div>
-          <div class="panel" style="padding:12px;margin-top:10px;">
+          <div class="panel" style="padding:14px 16px;margin-top:10px;">
             <div style="font-weight:800;color:var(--primary);margin-bottom:8px;">최근 보완 제안</div>
             ${buildRoutineSuggestions(records).map((item) => `<div class="subject-row"><span>제안</span><span>${escapeHtml(item)}</span></div>`).join('')}
           </div>`;
+      }
+      function quickToggleRoutineField(dateKey, field) {
+        if (!dateKey || !ROUTINE_ACTIVE_KEYS.includes(field)) return;
+        const current = getRoutineRecord(dateKey);
+        const nextStatus = cycleRoutineStatus(current[field]);
+        upsertRoutineRecord({ ...current, [field]: nextStatus });
+        renderRoutineCalendar();
+        renderMainRoutineSummary();
+        renderMainTodayRoutine();
       }
       function renderSecondPerformGuide(itemId = '') {
         const body = document.getElementById('secondPracticeBody');
@@ -4230,18 +4599,18 @@
               <span class="chip">2차 기록 ${progress.data.length}회</span>
               <span class="chip">현재 증상 ${escapeHtml(symptom)}</span>
             </div>
-            <div class="hint" style="margin-top:8px;line-height:1.7;">100일 안에서는 신규 정보 소비보다 손글씨 답안, 계산기 사용, 저녁 시작 시간을 지키는 것이 더 중요합니다.</div>
+            <div class="hint" style="margin-top:8px;line-height:1.7;">100일 안에서는 새 정보 소비보다 매일의 새벽 공부, 아침 운동, 저녁 공부 흐름을 끊지 않는 쪽이 점수를 만듭니다.</div>
           </div>
           <div class="panel" style="margin-bottom:10px;">
             <h3 style="margin:0 0 8px 0;color:var(--primary);">최근 7일 루틴 진단</h3>
             <div class="badge-row" style="margin-bottom:8px;">
-              <span class="chip">새벽 ${pctText(routines.summary.morning || 0)}</span>
-              <span class="chip">운동 ${pctText(routines.summary.workout || 0)}</span>
-              <span class="chip">저녁 공부 ${pctText(routines.summary.lunch || 0)}</span>
-              <span class="chip">저녁 시작 ${pctText(routines.summary.evening || 0)}</span>
-              <span class="chip ${routines.summary.second >= 0.6 ? 'ok' : routines.summary.second >= 0.3 ? 'warn' : 'danger'}">2차 ${pctText(
-                routines.summary.second || 0
-              )}</span>
+              <span class="chip ${routines.summary.daily >= 0.6 ? 'ok' : routines.summary.daily >= 0.3 ? 'warn' : 'danger'}">평균 ${pctText(routines.summary.daily || 0)}</span>
+              ${ROUTINE_ACTIVE_FIELDS.map((f) => {
+                const v = routines.summary[f.key] || 0;
+                const cls = v >= 0.6 ? 'ok' : v >= 0.3 ? 'warn' : v > 0 ? 'danger' : '';
+                return `<span class="chip ${cls}">${f.short} ${pctText(v)}</span>`;
+              }).join('')}
+              <span class="chip">완벽 ${routines.fullDoneCount}일 · 절반 ${routines.halfDoneCount}일</span>
             </div>
             ${buildRoutineSuggestions().map((item) => `<div class="subject-row"><span>보완</span><span>${escapeHtml(item)}</span></div>`).join('')}
           </div>
@@ -6007,8 +6376,8 @@ ${scopeText}
       <span class="chip">수행 ${counts.perform || 0}</span>
       <span class="chip">답안 ${counts.answerGuide || 0}</span>
       <span class="chip">계산 ${counts.calcGuide || 0}</span>
-      <span class="chip ${routine.summary.second >= 0.6 ? 'ok' : routine.summary.second >= 0.3 ? 'warn' : 'danger'}">최근7일 2차 ${pctText(
-        routine.summary.second || 0
+      <span class="chip ${routine.summary.daily >= 0.6 ? 'ok' : routine.summary.daily >= 0.3 ? 'warn' : 'danger'}">최근7일 루틴 ${pctText(
+        routine.summary.daily || 0
       )}</span>
     </div>
     ${recent
@@ -7969,6 +8338,7 @@ ${scopeText}
         updateSavedExamInfo();
         renderApiStatus();
         renderMainExecutionDashboard();
+        renderMainTodayRoutine();
         renderMainRoutineSummary();
         renderMainStrategySummary();
 
