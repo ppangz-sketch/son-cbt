@@ -3618,7 +3618,8 @@
         const params = new URLSearchParams(window.location.search);
         if (hashRoute) params.set('route', hashRoute.replace(/^#/, ''));
         const query = params.toString();
-        return `${window.location.origin}${window.location.pathname}${query ? `?${query}` : ''}${hashRoute}`;
+        const path = window.location.pathname.endsWith('/') ? window.location.pathname : `${window.location.pathname}/`;
+        return `${window.location.origin}${path}${query ? `?${query}` : ''}${hashRoute}`;
       }
       function buildTelegramMessagePreview(kind, context = {}) {
         const closing =
