@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
+  <rect width="640" height="380" fill="#f8f1df" />
+  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
+  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Open Book</text>
+  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Keep knees stacked and rotate from thoracic spine.</text>
+
+  <rect x="120" y="250" width="220" height="38" rx="18" fill="#d9c9a9" opacity="0.55" />
+  <rect x="132" y="214" width="190" height="42" rx="20" fill="#e2d5ba" />
+  <circle cx="192" cy="202" r="18" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
+  <line x1="208" y1="220" x2="292" y2="230" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="292" y1="230" x2="340" y2="248" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="232" y1="224" x2="175" y2="248" stroke="#8a6a3c" stroke-width="6" />
+
+  <path d="M232 224 C300 160, 380 152, 448 210" fill="none" stroke="#4f8b42" stroke-width="6" stroke-linecap="round" />
+  <polygon points="452,214 440,206 442,220" fill="#4f8b42" />
+  <line x1="448" y1="210" x2="504" y2="228" stroke="#8a6a3c" stroke-width="6" />
+  <circle cx="514" cy="234" r="16" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
+
+  <text x="384" y="150" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">open arm with exhale</text>
+  <text x="146" y="296" font-family="Arial, sans-serif" font-size="14" fill="#6e5026">knees stay together</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
+  <rect width="640" height="380" fill="#f8f1df" />
+  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
+  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Wall Angel</text>
+  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Back of head, ribcage and arms stay close to wall.</text>
+
+  <line x1="182" y1="100" x2="182" y2="322" stroke="#b19365" stroke-width="12" />
+  <text x="150" y="94" font-family="Arial, sans-serif" font-size="13" fill="#6e5026">wall</text>
+
+  <circle cx="286" cy="136" r="20" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
+  <line x1="286" y1="156" x2="286" y2="246" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="286" y1="182" x2="238" y2="210" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="238" y1="210" x2="238" y2="252" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="286" y1="182" x2="334" y2="210" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="334" y1="210" x2="334" y2="252" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="286" y1="246" x2="260" y2="304" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="286" y1="246" x2="312" y2="304" stroke="#8a6a3c" stroke-width="7" />
+
+  <path d="M238 210 C228 182, 228 154, 238 126" fill="none" stroke="#4f8b42" stroke-width="5" />
+  <polygon points="238,120 232,130 244,130" fill="#4f8b42" />
+  <path d="M334 210 C344 182, 344 154, 334 126" fill="none" stroke="#4f8b42" stroke-width="5" />
+  <polygon points="334,120 328,130 340,130" fill="#4f8b42" />
+
+  <line x1="182" y1="136" x2="266" y2="136" stroke="#b3573a" stroke-width="2" stroke-dasharray="6 5" />
+  <line x1="182" y1="210" x2="232" y2="210" stroke="#b3573a" stroke-width="2" stroke-dasharray="6 5" />
+  <line x1="182" y1="252" x2="232" y2="252" stroke="#b3573a" stroke-width="2" stroke-dasharray="6 5" />
+  <text x="370" y="160" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">slide arm up and down slowly</text>
+</svg>

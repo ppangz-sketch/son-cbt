@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
+  <rect width="640" height="380" fill="#f8f1df" />
+  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
+  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Wall Standing</text>
+  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">4-point contact: head, upper back, hips, heels.</text>
+
+  <line x1="206" y1="100" x2="206" y2="320" stroke="#b19365" stroke-width="12" />
+  <circle cx="292" cy="134" r="20" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
+  <line x1="292" y1="154" x2="292" y2="244" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="292" y1="186" x2="256" y2="216" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="292" y1="186" x2="330" y2="216" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="292" y1="244" x2="266" y2="306" stroke="#8a6a3c" stroke-width="7" />
+  <line x1="292" y1="244" x2="314" y2="306" stroke="#8a6a3c" stroke-width="7" />
+
+  <circle cx="250" cy="134" r="7" fill="#4f8b42" />
+  <circle cx="250" cy="174" r="7" fill="#4f8b42" />
+  <circle cx="250" cy="236" r="7" fill="#4f8b42" />
+  <circle cx="250" cy="304" r="7" fill="#4f8b42" />
+
+  <line x1="206" y1="134" x2="244" y2="134" stroke="#4f8b42" stroke-width="3" />
+  <line x1="206" y1="174" x2="244" y2="174" stroke="#4f8b42" stroke-width="3" />
+  <line x1="206" y1="236" x2="244" y2="236" stroke="#4f8b42" stroke-width="3" />
+  <line x1="206" y1="304" x2="244" y2="304" stroke="#4f8b42" stroke-width="3" />
+
+  <text x="344" y="138" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">head contact</text>
+  <text x="344" y="178" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">upper back contact</text>
+  <text x="344" y="240" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">hip contact</text>
+  <text x="344" y="308" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">heel contact</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
+  <rect width="640" height="380" fill="#f8f1df" />
+  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
+  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Scalene Stretch</text>
+  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Anchor collarbone and tilt head diagonally back.</text>
+
+  <ellipse cx="320" cy="300" rx="120" ry="26" fill="#e2d5ba" opacity="0.6" />
+  <rect x="250" y="220" width="140" height="90" rx="20" fill="#d9c9a9" />
+  <circle cx="324" cy="158" r="42" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="3" />
+  <line x1="292" y1="194" x2="292" y2="228" stroke="#8a6a3c" stroke-width="8" />
+  <line x1="292" y1="228" x2="260" y2="252" stroke="#8a6a3c" stroke-width="8" />
+  <line x1="292" y1="228" x2="330" y2="248" stroke="#8a6a3c" stroke-width="8" />
+
+  <path d="M344 125 C360 112, 374 116, 388 132" fill="none" stroke="#4f8b42" stroke-width="6" />
+  <polygon points="392,136 380,134 386,144" fill="#4f8b42" />
+  <line x1="250" y1="254" x2="296" y2="246" stroke="#b3573a" stroke-width="5" />
+  <text x="204" y="274" font-family="Arial, sans-serif" font-size="13" fill="#b3573a">hold clavicle down</text>
+  <text x="378" y="116" font-family="Arial, sans-serif" font-size="13" fill="#4f8b42">tilt diagonally</text>
+
+  <path d="M316 190 C316 214, 332 228, 350 240" fill="none" stroke="#4f8b42" stroke-width="4" stroke-dasharray="6 6" />
+  <text x="360" y="248" font-family="Arial, sans-serif" font-size="13" fill="#4f8b42">gentle stretch</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="380" viewBox="0 0 640 380">
+  <rect width="640" height="380" fill="#f8f1df" />
+  <rect x="24" y="24" width="592" height="332" rx="18" fill="#fffaf0" stroke="#d9c9a9" stroke-width="2" />
+  <text x="42" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#6e5026">Door Chest Stretch</text>
+  <text x="42" y="84" font-family="Arial, sans-serif" font-size="15" fill="#7d6540">Open chest, keep ribs down, do not shrug.</text>
+
+  <line x1="170" y1="110" x2="170" y2="320" stroke="#b19365" stroke-width="10" />
+  <line x1="470" y1="110" x2="470" y2="320" stroke="#b19365" stroke-width="10" />
+  <line x1="170" y1="110" x2="470" y2="110" stroke="#b19365" stroke-width="10" />
+  <text x="285" y="104" font-family="Arial, sans-serif" font-size="14" fill="#6e5026">door frame</text>
+
+  <circle cx="320" cy="146" r="22" fill="#f3d9b5" stroke="#8a6a3c" stroke-width="2" />
+  <line x1="320" y1="168" x2="320" y2="242" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="320" y1="190" x2="248" y2="190" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="248" y1="190" x2="248" y2="155" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="320" y1="190" x2="392" y2="190" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="392" y1="190" x2="392" y2="155" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="320" y1="242" x2="286" y2="304" stroke="#8a6a3c" stroke-width="6" />
+  <line x1="320" y1="242" x2="354" y2="304" stroke="#8a6a3c" stroke-width="6" />
+
+  <line x1="282" y1="280" x2="264" y2="280" stroke="#4f8b42" stroke-width="4" />
+  <polygon points="260,280 268,274 268,286" fill="#4f8b42" />
+  <line x1="358" y1="280" x2="376" y2="280" stroke="#4f8b42" stroke-width="4" />
+  <polygon points="380,280 372,274 372,286" fill="#4f8b42" />
+  <text x="240" y="330" font-family="Arial, sans-serif" font-size="14" fill="#4f8b42">slow step forward</text>
+</svg>
