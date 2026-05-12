@@ -2495,6 +2495,314 @@
         background: linear-gradient(180deg, var(--paper) 0%, var(--line-soft) 100%);
       }
 
+      /* === 자세 루틴 카드 === */
+      .posture-intro {
+        background: linear-gradient(180deg, var(--paper) 0%, #f8efd9 100%);
+        border: 1px solid var(--paper-line);
+      }
+      .posture-intro-kicker {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: 0.02em;
+        opacity: 0.85;
+        margin-bottom: 4px;
+      }
+      .posture-intro-title {
+        margin: 0 0 12px 0;
+        font-size: clamp(1.05rem, 2.2vw, 1.32rem);
+        color: var(--text);
+        letter-spacing: -0.005em;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .posture-intro-why-label {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--paper-line);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.78rem;
+        margin-bottom: 8px;
+      }
+      .posture-intro-why {
+        margin: 0 0 10px 0;
+        line-height: 1.78;
+        color: var(--text);
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        font-size: 0.94rem;
+      }
+      .posture-order {
+        padding: 10px 12px;
+        background: rgba(202, 162, 96, 0.12);
+        border-left: 3px solid var(--primary);
+        border-radius: 8px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 12px;
+        font-size: 0.92rem;
+      }
+      .posture-schedule {
+        margin: 12px 0 10px 0;
+      }
+      .posture-schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        margin-top: 6px;
+        background: var(--paper);
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--paper-line);
+      }
+      .posture-schedule-table th,
+      .posture-schedule-table td {
+        padding: 8px 10px;
+        text-align: left;
+        border-bottom: 1px solid var(--paper-line);
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .posture-schedule-table th {
+        background: rgba(202, 162, 96, 0.16);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.84rem;
+      }
+      .posture-schedule-table tr:last-child td {
+        border-bottom: none;
+      }
+      .posture-schedule-table td:last-child {
+        text-align: right;
+        font-weight: 700;
+        color: var(--primary);
+        white-space: nowrap;
+      }
+      .posture-expect {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-top: 10px;
+        padding: 10px 12px;
+        background: rgba(96, 70, 30, 0.06);
+        border-radius: 10px;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: var(--text);
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .posture-expect-icon {
+        flex: 0 0 auto;
+        font-size: 1.05rem;
+      }
+      .posture-refs {
+        margin-top: 10px;
+        font-size: 0.82rem;
+        color: var(--text);
+        opacity: 0.85;
+        line-height: 1.7;
+        word-break: break-all;
+      }
+      .posture-refs a {
+        color: var(--primary);
+        text-decoration: none;
+        margin-right: 4px;
+      }
+      .posture-refs a:hover {
+        text-decoration: underline;
+      }
+      .posture-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 14px;
+      }
+      .posture-card {
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
+        border-radius: 16px;
+        padding: 16px 16px 14px;
+        box-shadow: 0 4px 14px rgba(96, 70, 30, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .posture-card.stage-stretch {
+        border-top: 4px solid #c79c52;
+      }
+      .posture-card.stage-strength {
+        border-top: 4px solid #8a6a3c;
+      }
+      .posture-card.stage-reset {
+        border-top: 4px solid #b18f5a;
+      }
+      .posture-card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .posture-card-meta {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .posture-stage {
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--primary);
+        background: rgba(202, 162, 96, 0.16);
+        padding: 3px 8px;
+        border-radius: 999px;
+      }
+      .posture-badge {
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--text);
+        background: var(--paper-line);
+        padding: 3px 8px;
+        border-radius: 999px;
+        opacity: 0.85;
+      }
+      .posture-card-num {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--primary);
+        line-height: 1;
+        opacity: 0.85;
+      }
+      .posture-card-title {
+        margin: 0;
+        font-size: 1.05rem;
+        color: var(--text);
+        letter-spacing: -0.005em;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .posture-card-target {
+        font-size: 0.82rem;
+        color: var(--primary);
+        font-weight: 700;
+      }
+      .posture-card-purpose {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.72;
+        color: var(--text);
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        opacity: 0.92;
+      }
+      .posture-section {
+        padding-top: 8px;
+        border-top: 1px dashed var(--paper-line);
+      }
+      .posture-section.split {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .posture-section-title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+      .posture-section-title.good {
+        color: #4f7a3a;
+      }
+      .posture-section-title.bad {
+        color: #b3573a;
+      }
+      .posture-step-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .posture-step-list li {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        font-size: 0.88rem;
+        line-height: 1.65;
+        color: var(--text);
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .posture-step-list .step-num {
+        flex: 0 0 22px;
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fdf9ed;
+        font-size: 0.74rem;
+        font-weight: 800;
+        margin-top: 1px;
+      }
+      .posture-list {
+        margin: 0;
+        padding: 0 0 0 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .posture-list li {
+        font-size: 0.86rem;
+        line-height: 1.65;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .posture-list.good li::marker {
+        color: #4f7a3a;
+      }
+      .posture-list.bad li::marker {
+        color: #b3573a;
+      }
+      .posture-list.effects li::marker {
+        color: var(--primary);
+      }
+      .posture-list.caution {
+        padding-left: 0;
+        list-style: none;
+        gap: 6px;
+      }
+      .posture-list.caution li {
+        padding: 8px 10px;
+        background: rgba(179, 87, 58, 0.08);
+        border-left: 3px solid #b3573a;
+        border-radius: 6px;
+        color: var(--text);
+      }
+      @media (max-width: 600px) {
+        .posture-card-grid {
+          grid-template-columns: 1fr;
+        }
+        .posture-section.split {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .posture-schedule-table th,
+        .posture-schedule-table td {
+          padding: 7px 8px;
+          font-size: 0.84rem;
+        }
+        .posture-card {
+          padding: 14px 14px 12px;
+        }
+        .posture-card-title {
+          font-size: 1rem;
+        }
+      }
+
       /* 캘린더 화면 모바일에서 체크 영역을 위로 */
       @media (max-width: 820px) {
         .routine-cal-grid {
@@ -2686,6 +2994,10 @@
           <button class="menu-btn" onclick="showConditionHub()">
             <div class="menu-title">합격 유지실</div>
             <div class="menu-desc">몸관리, 호흡, 2차 전략 카드를 한 곳에서 봅니다.</div>
+          </button>
+          <button class="menu-btn" onclick="showConditionHub('posture')">
+            <div class="menu-title">자세 루틴 (15~20분)</div>
+            <div class="menu-desc">거북목 · 라운드숄더 · 골반전방경사를 한 번에 잡는 통합 루틴 카드입니다.</div>
           </button>
         </div>
 
@@ -3750,6 +4062,179 @@
           avoid: '과호흡처럼 어지러우면 횟수를 줄이고 정상 호흡으로 돌아갑니다.',
         },
       ];
+      const POSTURE_ROUTINE_INTRO = {
+        title: '재택 + 수험 병행 자세 루틴',
+        kicker: '거북목 · 라운드숄더 · 골반전방경사 통합 (총 15~20분)',
+        why: '거북목·라운드숄더·골반전방경사는 따로 생긴 게 아니라 한 연결고리입니다. 짧아진 가슴 근육이 어깨를 앞으로 당기고, 약해진 코어가 골반을 앞으로 기울이면서 척추 전체가 무너지는 구조입니다. 따라서 세 가지를 따로 고치려 하면 비효율적이고, 흉추(등 중간) 가동성 회복이 세 문제를 동시에 해결하는 핵심 열쇠입니다.',
+        order: '풀기(스트레칭) → 잡기(강화) → 마무리(정렬 인식) 순서로 진행합니다.',
+        schedule: [
+          { when: '오전 공부 시작 전', routine: '문틀 가슴 스트레칭 + 암 오프닝', minutes: '7분' },
+          { when: '점심 후', routine: '벽 천사 + 턱 당기기', minutes: '6분' },
+          { when: '저녁 공부 전', routine: '데드버그 + 벽 서기', minutes: '5분' },
+          { when: '50분마다', routine: '벽 서기 1분', minutes: '1분' },
+        ],
+        expect: '두통과 승모근 통증은 가슴 근육이 풀리고 하부 승모근이 강해지면 2~3주 내로 체감 개선이 됩니다. 벽 천사가 처음엔 팔이 벽에 안 닿을 수 있는데, 그게 정상입니다. 억지로 붙이려 하지 말고 닿는 범위 안에서만 하세요.',
+        refs: [
+          { label: 'yuyu.co · 거북목/라운드숄더/골반 통합 가이드', url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/' },
+          { label: 'pilalover · 벽 천사 운동법', url: 'https://pilalover.tistory.com/57' },
+        ],
+      };
+      const POSTURE_ROUTINE_CONTENT = [
+        {
+          id: 'door-chest-stretch',
+          stage: '1단계 · 풀기',
+          stageTone: 'stretch',
+          number: '①',
+          badge: '스트레칭',
+          title: '문틀 가슴 스트레칭',
+          target: '소흉근 · 대흉근',
+          duration: '2분 · 30초 × 3세트',
+          purpose: '짧아진 가슴 앞 근육을 이완해 어깨가 앞으로 끌려가는 패턴(라운드숄더)을 풀어줍니다.',
+          steps: [
+            '문틀에 양팔을 위팔과 아래팔이 90도가 되도록 걸칩니다.',
+            '한 발을 앞으로 내딛고 상체를 천천히 앞으로 밀어 가슴 앞쪽이 늘어나게 합니다.',
+            '편안한 늘어남에서 30초 유지하고, 위치를 1세트마다 살짝 바꿉니다.',
+            '총 3세트 반복합니다.',
+          ],
+          good: ['갈비뼈를 살짝 아래로 내려 가슴만 내밀지 않습니다.', '어깨가 귀쪽으로 들리지 않게 합니다.', '늘어나는 지점에서 호흡을 평소처럼 유지합니다.'],
+          bad: ['허리를 꺾어 가슴만 앞으로 미는 자세', '어깨 앞쪽이 찌릿한데 참고 더 강하게 미는 동작'],
+          effects: ['소흉근·대흉근 이완으로 라운드숄더 완화', '벽 천사 운동의 가동 범위 확보', '저녁 공부 시작 전 가슴 답답함 감소'],
+          cautions: ['어깨 앞쪽이 찌릿하거나 손이 저리면 즉시 멈춥니다.', '회전근개에 통증이 있다면 팔 각도를 80도 이하로 낮춥니다.'],
+          refs: [{ label: '네이버 블로그 · kmedi6210 가이드', url: 'https://blog.naver.com/kmedi6210/224071978369' }],
+        },
+        {
+          id: 'open-book',
+          stage: '1단계 · 풀기',
+          stageTone: 'stretch',
+          number: '②',
+          badge: '흉추 가동성',
+          title: '암 오프닝 (Open Book)',
+          target: '흉추 회전 · 가슴 측면',
+          duration: '3분 · 좌우 10회 × 3세트',
+          purpose: '흉추(등 중간) 회전 가동성을 회복해 거북목·라운드숄더의 공통 원인을 풀어줍니다.',
+          steps: [
+            '옆으로 누워 머리·등·골반이 일직선이 되도록 무릎을 90도로 모읍니다.',
+            '아래쪽 손은 위쪽 무릎을 가볍게 누르고, 위쪽 팔은 천장으로 듭니다.',
+            '위쪽 팔을 반대 방향 바닥으로 천천히 열며 시선이 손끝을 따라갑니다.',
+            '한쪽 10회 후 반대편으로 옮겨 총 3세트 반복합니다.',
+          ],
+          good: ['무릎이 바닥에서 떨어지지 않게 고정합니다.', '회전은 어깨가 아니라 등 중간에서 일어나야 합니다.', '날숨에 맞춰 천천히 엽니다.'],
+          bad: ['빠르게 반동을 주거나 허리를 뒤로 꺾어 회전하는 동작'],
+          effects: ['흉추 회전 가동성 회복', '거북목·라운드숄더 공통 뿌리 완화', '아침 공부 진입 전 척추 풀림'],
+          cautions: ['어지럼증이 있거나 허리 통증이 심하면 회전 범위를 절반으로 줄입니다.'],
+          refs: [{ label: 'YouTube · Open Book 가이드 영상', url: 'https://www.youtube.com/watch?v=SVCfR_BAkoM' }],
+        },
+        {
+          id: 'scalene-stretch',
+          stage: '1단계 · 풀기',
+          stageTone: 'stretch',
+          number: '③',
+          badge: '경추 이완',
+          title: '목 사각근 스트레칭',
+          target: '사각근 · 후두하근',
+          duration: '2분 · 좌우 20초 × 3세트',
+          purpose: '두통의 흔한 원인인 사각근·후두하근을 풀어 거북목 자세에서 오는 압박을 줄입니다.',
+          steps: [
+            '한 손으로 반대쪽 쇄골을 고정하고 어깨가 들리지 않게 합니다.',
+            '고개를 사선 뒤로 천천히 젖혀 목 옆쪽 깊은 곳이 늘어나는 지점을 찾습니다.',
+            '편안한 늘어남에서 20초 유지합니다.',
+            '좌우 교대로 3세트 반복합니다.',
+          ],
+          good: ['턱을 살짝 당긴 상태로 시선만 사선 뒤로 향하게 합니다.', '쇄골을 잡은 손으로 어깨를 가만히 고정합니다.'],
+          bad: ['고개를 강하게 한 번에 젖히거나 회전을 동반하는 동작'],
+          effects: ['사각근·후두하근 이완', '후두부 두통 완화', '저녁 공부 전 머리가 무거울 때 회복'],
+          cautions: ['어지럼증이나 팔 저림이 동반되면 즉시 멈춥니다.', '경추 디스크 진단을 받았다면 의사와 상담 후 시행합니다.'],
+          refs: [{ label: 'barun100 · 거북목·라운드숄더 통합 운동법', url: 'https://alpha.barun100.com/entry/%EA%B1%B0%EB%B6%81%EB%AA%A9-%EB%9D%BC%EC%9A%B4%EB%93%9C%EC%88%84%EB%8D%94-%ED%95%9C%EB%B2%88%EC%97%90-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%9A%B4%EB%8F%99%EB%B2%95' }],
+        },
+        {
+          id: 'wall-angel',
+          stage: '2단계 · 잡기',
+          stageTone: 'strength',
+          number: '④',
+          badge: '근력 강화',
+          title: '벽 천사 운동 (Wall Angel)',
+          target: '하부 승모근 · 능형근',
+          duration: '4분 · 15회 × 3세트',
+          purpose: '거북목·라운드숄더 교정의 핵심 근육인 하부 승모근과 능형근을 동시에 강화합니다.',
+          steps: [
+            '벽에서 15~20cm 떨어져 서서 뒤꿈치·엉덩이·등·뒤통수를 벽에 밀착합니다.',
+            '팔꿈치를 90도로 만들고 손등을 벽에 댑니다 (W 자세).',
+            '팔 뒷면이 벽에서 떨어지지 않도록 천천히 V자로 올렸다 다시 W로 내립니다.',
+            '15회를 1세트로 총 3세트를 진행합니다.',
+          ],
+          good: ['팔 뒷면과 손등이 닿는 범위 안에서만 움직입니다.', '갈비뼈가 앞으로 튀어나오지 않게 코어를 잡아줍니다.', '동작 내내 호흡이 멈추지 않게 합니다.'],
+          bad: ['벽에 닿게 만들려고 허리를 강하게 꺾는 자세', '어깨를 으쓱 올리며 팔만 움직이는 동작'],
+          effects: ['하부 승모근·능형근 활성으로 어깨 정렬 회복', '거북목·라운드숄더 동시 교정', '두통과 승모근 통증 2~3주 내 체감 감소'],
+          cautions: ['처음엔 손이 벽에 안 닿는 것이 정상입니다. 닿는 범위 안에서만 진행합니다.', '어깨 앞쪽이 자극을 받으면 가동 범위를 절반으로 줄입니다.'],
+          refs: [{ label: 'YouTube · 벽 천사 정확한 자세', url: 'https://www.youtube.com/watch?v=wPOcXSXFTSo' }],
+        },
+        {
+          id: 'chin-tuck',
+          stage: '2단계 · 잡기',
+          stageTone: 'strength',
+          number: '⑤',
+          badge: '근력 강화',
+          title: '턱 당기기 (Chin Tuck)',
+          target: '심부 경추 굴곡근',
+          duration: '2분 · 5초 유지 × 10회',
+          purpose: '앞으로 빠진 머리를 본래 위치로 돌리는 깊은 목 안쪽 근육을 직접적으로 강화합니다.',
+          steps: [
+            '의자에 등을 펴고 바르게 앉습니다.',
+            '턱을 수평으로 뒤로 당겨 이중턱이 살짝 만들어지는 지점을 찾습니다 (고개를 숙이는 것이 아닙니다).',
+            '뒤통수를 천장으로 가볍게 길어지게 만든 채 5초 유지합니다.',
+            '10회 반복합니다.',
+          ],
+          good: ['시선은 정면을 유지합니다.', '턱은 뒤로, 뒤통수는 위로 라는 두 방향의 힘을 같이 줍니다.'],
+          bad: ['고개를 푹 숙여 턱만 가슴 쪽으로 떨어뜨리는 동작', '어깨를 위로 들썩이며 힘을 주는 자세'],
+          effects: ['심부 굴곡근 강화로 거북목 재발 방지', '글씨를 오래 쓸 때 목 피로 감소', '두통 발생 빈도 감소'],
+          cautions: ['목 디스크 진단 이력이 있으면 유지 시간을 3초로 줄입니다.'],
+          refs: [{ label: 'yuyu.co · 거북목 교정 가이드', url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/' }],
+        },
+        {
+          id: 'dead-bug',
+          stage: '2단계 · 잡기',
+          stageTone: 'strength',
+          number: '⑥',
+          badge: '코어 강화',
+          title: '데드버그 (Dead Bug)',
+          target: '복횡근 · 장요근 안정화',
+          duration: '2분 · 좌우 교차 8회 × 3세트',
+          purpose: '골반전방경사 교정에 핵심인 코어 안정성을 회복해 오래 앉아도 허리가 덜 무너지게 합니다.',
+          steps: [
+            '천장을 보고 누워 양팔을 위로, 무릎을 90도로 들어 올립니다.',
+            '복부 힘을 유지한 채 반대쪽 팔과 다리를 바닥 가까이 천천히 내립니다.',
+            '허리가 바닥에서 들뜨지 않는 범위까지만 내려간 뒤 시작 자세로 돌아옵니다.',
+            '좌우 교차 8회를 1세트로 총 3세트 진행합니다.',
+          ],
+          good: ['항상 허리를 바닥에 가볍게 눌러둔다는 감각을 유지합니다.', '날숨에 맞춰 팔다리를 내립니다.'],
+          bad: ['속도를 빠르게 하여 반동으로 움직이는 동작', '허리가 바닥에서 들뜨는 범위까지 내리는 동작'],
+          effects: ['복횡근·장요근 활성으로 골반전방경사 보정', '오래 앉을 때 허리 통증 감소', '저녁 공부 진입 전 코어 워밍업'],
+          cautions: ['허리 통증이 날카롭게 올라오면 가동 범위를 절반으로 줄입니다.', '임신 중이거나 디스크 진단 시 의사와 상담 후 시행합니다.'],
+          refs: [{ label: '네이버 블로그 · Dead Bug 가이드', url: 'https://blog.naver.com/liligugu5000/220667634978' }],
+        },
+        {
+          id: 'wall-standing',
+          stage: '3단계 · 마무리',
+          stageTone: 'reset',
+          number: '⑦',
+          badge: '정렬 인식',
+          title: '벽 서기',
+          target: '척추 전반 정렬 감각',
+          duration: '1~2분 · 50분마다 1분',
+          purpose: '뒤꿈치·엉덩이·등·뒤통수를 벽에 붙여 척추 정렬 감각을 몸에 각인시킵니다.',
+          steps: [
+            '벽에 뒤꿈치·엉덩이·등·뒤통수가 모두 닿도록 섭니다.',
+            '허리와 벽 사이 공간에 손을 넣어 큰 공간이 생기지 않게 합니다.',
+            '갈비뼈를 살짝 아래로 내리고 1~2분 유지합니다.',
+            '50분 공부 후 알람에 맞춰 1분만 진행해도 효과가 누적됩니다.',
+          ],
+          good: ['턱을 수평으로 유지한 채 뒤통수가 벽에 가볍게 닿게 합니다.', '갈비뼈를 내려 허리 과신전을 방지합니다.'],
+          bad: ['허리만 꺾어 가슴을 과하게 내미는 자세', '머리를 벽에 누르려고 목 뒤를 강하게 조이는 동작'],
+          effects: ['척추 정렬 감각 학습', '50분 공부 후 누적 피로 리셋', '거북목·라운드숄더·골반전방경사 자기 점검'],
+          cautions: ['뒤통수가 벽에 닿지 않는 정도면 거북목이 심한 단계입니다. 무리하지 말고 닿는 범위에서 시작합니다.'],
+          refs: [{ label: 'yuyu.co · 자세 정렬 가이드', url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/' }],
+        },
+      ];
       const BREATH_MENTAL_CONTENT = [
         {
           id: 'breath-shallow',
@@ -4599,9 +5084,87 @@
         renderConditionHub(tab, itemId);
         setHashRoute(`#hub/${tab}${itemId ? `/${itemId}` : ''}`);
       }
+      function renderPostureExerciseCard(item) {
+        const stepsHtml = item.steps.map((s, idx) => `<li><span class="step-num">${idx + 1}</span><span>${escapeHtml(s)}</span></li>`).join('');
+        const goodHtml = item.good.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+        const badHtml = item.bad.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+        const effectsHtml = item.effects.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+        const cautionsHtml = item.cautions.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+        const refsHtml = (item.refs || [])
+          .map((r) => `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.label)} ↗</a>`)
+          .join('');
+        return `
+          <article class="posture-card stage-${item.stageTone}">
+            <div class="posture-card-head">
+              <div class="posture-card-meta">
+                <span class="posture-stage">${escapeHtml(item.stage)}</span>
+                <span class="posture-badge">${escapeHtml(item.badge)}</span>
+              </div>
+              <div class="posture-card-num">${item.number}</div>
+            </div>
+            <h3 class="posture-card-title">${escapeHtml(item.title)}</h3>
+            <div class="posture-card-target">${escapeHtml(item.target)} · ${escapeHtml(item.duration)}</div>
+            <p class="posture-card-purpose">${escapeHtml(item.purpose)}</p>
+            <div class="posture-section">
+              <div class="posture-section-title">정확한 자세 · 운동법</div>
+              <ol class="posture-step-list">${stepsHtml}</ol>
+            </div>
+            <div class="posture-section split">
+              <div>
+                <div class="posture-section-title good">✓ 올바른 포인트</div>
+                <ul class="posture-list good">${goodHtml}</ul>
+              </div>
+              <div>
+                <div class="posture-section-title bad">✗ 피해야 할 자세</div>
+                <ul class="posture-list bad">${badHtml}</ul>
+              </div>
+            </div>
+            <div class="posture-section">
+              <div class="posture-section-title">효과 · 효능</div>
+              <ul class="posture-list effects">${effectsHtml}</ul>
+            </div>
+            <div class="posture-section">
+              <div class="posture-section-title">주의점</div>
+              <ul class="posture-list caution">${cautionsHtml}</ul>
+            </div>
+            ${refsHtml ? `<div class="posture-refs">참고 · ${refsHtml}</div>` : ''}
+          </article>`;
+      }
+      function renderPostureRoutine() {
+        const intro = POSTURE_ROUTINE_INTRO;
+        const scheduleRows = intro.schedule
+          .map((row) => `<tr><td>${escapeHtml(row.when)}</td><td>${escapeHtml(row.routine)}</td><td>${escapeHtml(row.minutes)}</td></tr>`)
+          .join('');
+        const refsHtml = (intro.refs || [])
+          .map((r) => `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.label)} ↗</a>`)
+          .join(' · ');
+        const cardsHtml = POSTURE_ROUTINE_CONTENT.map(renderPostureExerciseCard).join('');
+        return `
+          <div class="panel posture-intro" style="margin-bottom:12px;">
+            <div class="posture-intro-kicker">${escapeHtml(intro.kicker)}</div>
+            <h2 class="posture-intro-title">${escapeHtml(intro.title)}</h2>
+            <div class="posture-intro-why-label">왜 세 가지가 같이 오는가</div>
+            <p class="posture-intro-why">${escapeHtml(intro.why)}</p>
+            <div class="posture-order">${escapeHtml(intro.order)}</div>
+            <div class="posture-schedule">
+              <div class="posture-section-title">시간대별 적용</div>
+              <table class="posture-schedule-table">
+                <thead><tr><th>시간대</th><th>루틴</th><th>시간</th></tr></thead>
+                <tbody>${scheduleRows}</tbody>
+              </table>
+            </div>
+            <div class="posture-expect">
+              <span class="posture-expect-icon">⏳</span>
+              <span>${escapeHtml(intro.expect)}</span>
+            </div>
+            ${refsHtml ? `<div class="posture-refs">참고 · ${refsHtml}</div>` : ''}
+          </div>
+          <div class="posture-card-grid">${cardsHtml}</div>`;
+      }
       function renderConditionHub(tab = 'body', itemId = '') {
         const tabs = [
           ['body', '몸관리'],
+          ['posture', '자세 루틴'],
           ['breath', '호흡·멘탈'],
           ['strategy', '학습전략 라이브러리'],
         ];
@@ -4639,10 +5202,15 @@
               <div class="subject-row"><span>피해야 할 상황</span><span>${escapeHtml(focus.avoid)}</span></div>
               <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
                 <button class="btn primary" onclick="showToast('오늘 컨디션 루틴으로 선택했습니다.', 1500)">오늘 루틴으로 선택</button>
+                <button class="btn outline" onclick="showConditionHub('posture')">통합 자세 루틴 보기</button>
                 <button class="btn outline" onclick="showRoutineCalendar()">기록 검토</button>
               </div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">${BODY_CARE_CONTENT.map(renderConditionHubCard).join('')}</div>`;
+          return;
+        }
+        if (tab === 'posture') {
+          body.innerHTML = renderPostureRoutine();
           return;
         }
         if (tab === 'breath') {
