@@ -10,25 +10,11 @@
     <style>
       :root {
         --font-body:
-          'Pretendard Variable',
-          'Pretendard',
-          'SUIT Variable',
-          'SUIT',
-          'Noto Sans KR',
-          'Apple SD Gothic Neo',
-          'Malgun Gothic',
-          '맑은 고딕',
-          sans-serif;
+          'Pretendard Variable', 'Pretendard', 'SUIT Variable', 'SUIT', 'Noto Sans KR', 'Apple SD Gothic Neo',
+          'Malgun Gothic', '맑은 고딕', sans-serif;
         --font-display:
-          'Pretendard Variable',
-          'Pretendard',
-          'SUIT Variable',
-          'SUIT',
-          'Noto Sans KR',
-          'Apple SD Gothic Neo',
-          'Malgun Gothic',
-          '맑은 고딕',
-          sans-serif;
+          'Pretendard Variable', 'Pretendard', 'SUIT Variable', 'SUIT', 'Noto Sans KR', 'Apple SD Gothic Neo',
+          'Malgun Gothic', '맑은 고딕', sans-serif;
         --font-cbt: var(--font-body);
 
         --bg: #f3ead7;
@@ -105,8 +91,7 @@
         margin: 0;
         background:
           radial-gradient(ellipse at 12% 0%, rgba(255, 244, 220, 0.55) 0%, transparent 55%),
-          radial-gradient(ellipse at 100% 100%, rgba(214, 188, 142, 0.18) 0%, transparent 60%),
-          var(--bg);
+          radial-gradient(ellipse at 100% 100%, rgba(214, 188, 142, 0.18) 0%, transparent 60%), var(--bg);
         color: var(--text);
         -webkit-user-select: none;
         user-select: none;
@@ -3027,7 +3012,9 @@
           <button class="theme-btn" onclick="openPatchLog()" title="현재 화면 점검">🩺 점검</button>
           <button class="theme-btn" onclick="refreshPage()" title="페이지 새로고침 (수정사항 반영)">🔄 새로고침</button>
           <button class="theme-btn" onclick="showRoutineCalendar()" title="루틴 캘린더 바로가기">📅 캘린더</button>
-          <button class="theme-btn" onclick="showConditionHub('posture')" title="자세 루틴 바로가기">🧍 자세루틴</button>
+          <button class="theme-btn" onclick="showConditionHub('posture')" title="자세 루틴 바로가기">
+            🧍 자세루틴
+          </button>
           <div id="timerBox" class="hidden">⏱ <span id="timeText">90:00</span></div>
           <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
         </div>
@@ -3039,8 +3026,8 @@
             <div class="stage-kicker">2026 손해평가사 학습 포털</div>
             <h1 class="stage-title-large">1차는 점수의 흐름으로, 2차는 답안의 밀도로 준비합니다</h1>
             <div class="stage-lead">
-              익숙한 CBT 풀이 흐름은 그대로 두고, 2차는 서술형과 계산형 훈련을 분리했습니다. 필요한 모드만 골라
-              오늘의 공부를 더 짧고 깊게 가져갈 수 있습니다.
+              익숙한 CBT 풀이 흐름은 그대로 두고, 2차는 서술형과 계산형 훈련을 분리했습니다. 필요한 모드만 골라 오늘의
+              공부를 더 짧고 깊게 가져갈 수 있습니다.
             </div>
             <div class="stage-hero-meta">
               <span class="chip">객관식 실전</span>
@@ -3056,7 +3043,9 @@
               <div id="portalCountdownLabel" class="portal-countdown-label">시험일을 불러오는 중입니다</div>
               <div id="portalCountdownDate" class="portal-countdown-date">시험일을 설정하세요</div>
             </div>
-            <div id="portalCountdownNote" class="portal-countdown-note">지금은 객관식 안정화와 2차 답안 훈련을 함께 끌어올릴 시기입니다.</div>
+            <div id="portalCountdownNote" class="portal-countdown-note">
+              지금은 객관식 안정화와 2차 답안 훈련을 함께 끌어올릴 시기입니다.
+            </div>
           </div>
         </div>
 
@@ -3105,9 +3094,11 @@
           ">
           <div>
             <h2 class="panel-title-main">100일 2차 합격 실행실</h2>
-            <div class="panel-title-sub">오늘 손으로 쓰고, 계산기로 두드리고, 루틴까지 한 곳에서 관리하는 2차 중심 대시보드입니다.</div>
+            <div class="panel-title-sub">
+              오늘 손으로 쓰고, 계산기로 두드리고, 루틴까지 한 곳에서 관리하는 2차 중심 대시보드입니다.
+            </div>
           </div>
-          <div class="top-panel-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div class="top-panel-actions" style="display: flex; gap: 8px; flex-wrap: wrap">
             <button class="btn outline" onclick="showSecondStageScreen()">2차 수행실</button>
             <button class="btn outline" onclick="showFirstStageScreen()">1차 도구</button>
             <button class="btn outline" onclick="goPortal()">시험 선택</button>
@@ -3141,32 +3132,40 @@
         </div>
 
         <div class="panel" style="margin-bottom: 12px">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
-            <h3 style="margin:0;color:var(--primary);">오늘의 루틴 체크</h3>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 10px;
+              flex-wrap: wrap;
+              margin-bottom: 10px;
+            ">
+            <h3 style="margin: 0; color: var(--primary)">오늘의 루틴 체크</h3>
             <button class="btn outline sm" onclick="showRoutineCalendar()">루틴 캘린더 열기</button>
           </div>
           <div id="mainTodayRoutine"></div>
         </div>
 
         <div class="panel" style="margin-bottom: 12px">
-          <h3 style="margin:0 0 10px 0;color:var(--primary);">오늘 해야 할 것</h3>
+          <h3 style="margin: 0 0 10px 0; color: var(--primary)">오늘 해야 할 것</h3>
           <div id="mainExecutionBody"></div>
         </div>
 
         <div class="second-dashboard-grid">
           <div class="panel">
-            <h3 style="margin:0 0 10px 0;color:var(--primary);">최근 7일 루틴 요약</h3>
+            <h3 style="margin: 0 0 10px 0; color: var(--primary)">최근 7일 루틴 요약</h3>
             <div id="mainRoutineSummary"></div>
           </div>
           <div class="panel">
-            <h3 style="margin:0 0 10px 0;color:var(--primary);">2차 전략 리포트 요약</h3>
+            <h3 style="margin: 0 0 10px 0; color: var(--primary)">2차 전략 리포트 요약</h3>
             <div id="mainStrategySummary"></div>
           </div>
         </div>
 
-        <div class="panel" style="margin-top:12px;">
+        <div class="panel" style="margin-top: 12px">
           <h3 style="margin: 0 0 10px 0; color: var(--primary)">기존 1차 도구 빠른 진입</h3>
-          <div class="menu-grid" style="margin-bottom:10px;">
+          <div class="menu-grid" style="margin-bottom: 10px">
             <button class="menu-btn" onclick="startExam('academy')">
               <div class="menu-title">학원 모의</div>
               <div class="menu-desc">1차 감각 점검이 필요할 때 바로 풉니다.</div>
@@ -3188,7 +3187,9 @@
               <div class="menu-desc" id="aiBankSummary">조건별 문제를 다시 묶어 바로 풉니다.</div>
             </button>
           </div>
-          <div class="hint" style="margin-bottom:10px;">1차 기능은 유지하되, 이번 홈 화면의 중심은 2차 손글씨/계산기 수행에 둡니다.</div>
+          <div class="hint" style="margin-bottom: 10px">
+            1차 기능은 유지하되, 이번 홈 화면의 중심은 2차 손글씨/계산기 수행에 둡니다.
+          </div>
           <div id="dashboardBody"></div>
         </div>
 
@@ -3215,7 +3216,9 @@
           style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
           <div>
             <h2 class="panel-title-main">2차 실전 수행실</h2>
-            <div class="panel-title-sub">웹에 오래 쓰지 말고, 오늘 해야 할 손글씨·계산기 수행을 확인하고 바로 종이로 나갑니다.</div>
+            <div class="panel-title-sub">
+              웹에 오래 쓰지 말고, 오늘 해야 할 손글씨·계산기 수행을 확인하고 바로 종이로 나갑니다.
+            </div>
           </div>
           <div class="top-panel-actions" style="display: flex; gap: 8px; flex-wrap: wrap">
             <button class="btn outline" onclick="showStrategyScreen()">2차 전략 리포트</button>
@@ -3317,7 +3320,7 @@
         <div class="panel screen-top-panel">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
             <h2 class="panel-title-main">2차 전략 리포트</h2>
-            <div class="top-panel-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="top-panel-actions" style="display: flex; gap: 8px; flex-wrap: wrap">
               <button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더</button>
               <button class="btn outline" onclick="goHome()">메인</button>
             </div>
@@ -3325,7 +3328,14 @@
           <div class="strategy-grid" style="margin-top: 12px">
             <div class="settings-item">
               <div class="settings-title">📅 2차 시험일</div>
-              <input id="examDateInput" class="input" type="date" onchange="updateDaysLeftDisplay(); buildStrategyReport();" />
+              <input
+                id="examDateInput"
+                class="input"
+                type="date"
+                onchange="
+                  updateDaysLeftDisplay();
+                  buildStrategyReport();
+                " />
               <div
                 id="daysLeftDisplay"
                 class="hint"
@@ -3340,15 +3350,18 @@
                 ">
                 시험일을 선택하면 D-day가 자동 계산됩니다.
               </div>
-              <div class="hint" style="margin-top: auto; padding-top: 10px; font-size: 0.78rem; line-height: 1.5; color: var(--sub)">
+              <div
+                class="hint"
+                style="margin-top: auto; padding-top: 10px; font-size: 0.78rem; line-height: 1.5; color: var(--sub)">
                 2차 전략 리포트는 루틴 기록과 손글씨·계산 연습 기록을 기준으로 보완 포인트를 제안합니다.
               </div>
             </div>
             <div class="settings-item placeholder-item">
               <div class="settings-title">🔔 알림 연동</div>
               <div class="placeholder-badge">준비 중</div>
-              <div class="hint" style="line-height:1.7;margin-top:8px;">
-                텔레그램 등 외부 알림 연동은 잠시 중단했습니다. 합격까지는 웹에서 손글씨·계산기 실전 수행과 루틴 기록에 집중합니다.
+              <div class="hint" style="line-height: 1.7; margin-top: 8px">
+                텔레그램 등 외부 알림 연동은 잠시 중단했습니다. 합격까지는 웹에서 손글씨·계산기 실전 수행과 루틴 기록에
+                집중합니다.
               </div>
             </div>
           </div>
@@ -3362,35 +3375,39 @@
 
       <section id="conditionHubScreen" class="hidden">
         <div class="panel screen-top-panel">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
             <div>
               <h2 class="panel-title-main">합격 유지실</h2>
-              <div class="panel-title-sub">몸관리, 호흡·멘탈, 2차 전략 카드를 한곳에서 보고 바로 실전에 연결합니다.</div>
+              <div class="panel-title-sub">
+                몸관리, 호흡·멘탈, 2차 전략 카드를 한곳에서 보고 바로 실전에 연결합니다.
+              </div>
             </div>
-            <div class="top-panel-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="top-panel-actions" style="display: flex; gap: 8px; flex-wrap: wrap">
               <button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더</button>
               <button class="btn outline" onclick="goHome()">메인</button>
             </div>
           </div>
-          <div id="conditionHubTabs" class="badge-row" style="margin-top:12px;"></div>
-          <div id="conditionHubBody" style="margin-top:12px;"></div>
+          <div id="conditionHubTabs" class="badge-row" style="margin-top: 12px"></div>
+          <div id="conditionHubBody" style="margin-top: 12px"></div>
         </div>
       </section>
 
       <section id="routineCalendarScreen" class="hidden">
         <div class="panel screen-top-panel">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
             <div>
               <h2 class="panel-title-main" id="routineCalendarTitle">루틴 캘린더</h2>
-              <div class="panel-title-sub">매일의 새벽·운동·저녁 공부 흐름을 달력으로 검토하고, 꾸준함을 확인합니다.</div>
+              <div class="panel-title-sub">
+                매일의 새벽·운동·저녁 공부 흐름을 달력으로 검토하고, 꾸준함을 확인합니다.
+              </div>
             </div>
-            <div class="top-panel-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="top-panel-actions" style="display: flex; gap: 8px; flex-wrap: wrap">
               <button class="btn outline" onclick="shiftRoutineMonth(-1)">이전 달</button>
               <button class="btn outline" onclick="shiftRoutineMonth(1)">다음 달</button>
               <button class="btn outline" onclick="goHome()">메인</button>
             </div>
           </div>
-          <div class="second-dashboard-grid routine-cal-grid" style="margin-top:12px;">
+          <div class="second-dashboard-grid routine-cal-grid" style="margin-top: 12px">
             <div class="panel routine-cal-month">
               <div id="routineCalendarBody"></div>
             </div>
@@ -4156,10 +4173,16 @@
           id: 'round-shoulder-reset',
           symptom: '라운드숄더',
           title: '라운드숄더 리셋 5분',
-          purpose: '굽은 어깨와 가슴 앞 긴장, 어깨 앞쪽으로 상완골이 밀리는 전방활주 패턴을 함께 줄여 답안 작성 시 어깨 말림과 앞쪽 찝힘을 낮춥니다.',
+          purpose:
+            '굽은 어깨와 가슴 앞 긴장, 어깨 앞쪽으로 상완골이 밀리는 전방활주 패턴을 함께 줄여 답안 작성 시 어깨 말림과 앞쪽 찝힘을 낮춥니다.',
           good: '가슴을 과하게 내밀지 않고 쇄골이 넓어지는 느낌을 유지하며, 상완골 머리가 앞이 아니라 몸통 중심 쪽에 가볍게 안착되는 느낌으로 어깨를 뒤아래로 둡니다.',
           bad: '허리를 꺾어 억지로 가슴만 열거나 팔을 뒤로 과하게 젖혀 어깨 앞쪽이 더 밀리는 자세는 피합니다.',
-          cues: ['겨드랑이 아래가 길어진다', '흉골을 살짝 들어올린다', '팔보다 견갑골이 먼저 움직인다', '어깨 앞이 튀어나오지 않게 상완골 위치를 가볍게 뒤로 정렬한다'],
+          cues: [
+            '겨드랑이 아래가 길어진다',
+            '흉골을 살짝 들어올린다',
+            '팔보다 견갑골이 먼저 움직인다',
+            '어깨 앞이 튀어나오지 않게 상완골 위치를 가볍게 뒤로 정렬한다',
+          ],
           duration: '5분 · 2세트',
           goodFor: '오래 앉아 어깨가 말렸을 때, 어깨 앞이 자주 뻐근하거나 계산형 훈련 전 팔이 앞으로 말릴 때',
           avoid: '어깨 앞쪽 통증이나 걸리는 느낌이 심하면 범위를 줄이고, 팔을 몸 뒤로 과하게 보내지 않습니다.',
@@ -4212,9 +4235,13 @@
           { when: '저녁 공부 전', routine: '데드버그 + 벽 서기', minutes: '5분' },
           { when: '50분마다', routine: '벽 서기 1분', minutes: '1분' },
         ],
-        expect: '두통과 승모근 통증은 가슴 근육이 풀리고 하부 승모근이 강해지면 2~3주 내로 체감 개선이 됩니다. 벽 천사가 처음엔 팔이 벽에 안 닿을 수 있는데, 그게 정상입니다. 억지로 붙이려 하지 말고 닿는 범위 안에서만 하세요.',
+        expect:
+          '두통과 승모근 통증은 가슴 근육이 풀리고 하부 승모근이 강해지면 2~3주 내로 체감 개선이 됩니다. 벽 천사가 처음엔 팔이 벽에 안 닿을 수 있는데, 그게 정상입니다. 억지로 붙이려 하지 말고 닿는 범위 안에서만 하세요.',
         refs: [
-          { label: 'yuyu.co · 거북목/라운드숄더/골반 통합 가이드', url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/' },
+          {
+            label: 'yuyu.co · 거북목/라운드숄더/골반 통합 가이드',
+            url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/',
+          },
           { label: 'pilalover · 벽 천사 운동법', url: 'https://pilalover.tistory.com/57' },
         ],
       };
@@ -4235,10 +4262,21 @@
             '편안한 늘어남에서 30초 유지하고, 위치를 1세트마다 살짝 바꿉니다.',
             '총 3세트 반복합니다.',
           ],
-          good: ['갈비뼈를 살짝 아래로 내려 가슴만 내밀지 않습니다.', '어깨가 귀쪽으로 들리지 않게 합니다.', '늘어나는 지점에서 호흡을 평소처럼 유지합니다.'],
+          good: [
+            '갈비뼈를 살짝 아래로 내려 가슴만 내밀지 않습니다.',
+            '어깨가 귀쪽으로 들리지 않게 합니다.',
+            '늘어나는 지점에서 호흡을 평소처럼 유지합니다.',
+          ],
           bad: ['허리를 꺾어 가슴만 앞으로 미는 자세', '어깨 앞쪽이 찌릿한데 참고 더 강하게 미는 동작'],
-          effects: ['소흉근·대흉근 이완으로 라운드숄더 완화', '벽 천사 운동의 가동 범위 확보', '저녁 공부 시작 전 가슴 답답함 감소'],
-          cautions: ['어깨 앞쪽이 찌릿하거나 손이 저리면 즉시 멈춥니다.', '회전근개에 통증이 있다면 팔 각도를 80도 이하로 낮춥니다.'],
+          effects: [
+            '소흉근·대흉근 이완으로 라운드숄더 완화',
+            '벽 천사 운동의 가동 범위 확보',
+            '저녁 공부 시작 전 가슴 답답함 감소',
+          ],
+          cautions: [
+            '어깨 앞쪽이 찌릿하거나 손이 저리면 즉시 멈춥니다.',
+            '회전근개에 통증이 있다면 팔 각도를 80도 이하로 낮춥니다.',
+          ],
           refs: [{ label: '네이버 블로그 · kmedi6210 가이드', url: 'https://blog.naver.com/kmedi6210/224071978369' }],
         },
         {
@@ -4257,7 +4295,11 @@
             '위쪽 팔을 반대 방향 바닥으로 천천히 열며 시선이 손끝을 따라갑니다.',
             '한쪽 10회 후 반대편으로 옮겨 총 3세트 반복합니다.',
           ],
-          good: ['무릎이 바닥에서 떨어지지 않게 고정합니다.', '회전은 어깨가 아니라 등 중간에서 일어나야 합니다.', '날숨에 맞춰 천천히 엽니다.'],
+          good: [
+            '무릎이 바닥에서 떨어지지 않게 고정합니다.',
+            '회전은 어깨가 아니라 등 중간에서 일어나야 합니다.',
+            '날숨에 맞춰 천천히 엽니다.',
+          ],
           bad: ['빠르게 반동을 주거나 허리를 뒤로 꺾어 회전하는 동작'],
           effects: ['흉추 회전 가동성 회복', '거북목·라운드숄더 공통 뿌리 완화', '아침 공부 진입 전 척추 풀림'],
           cautions: ['어지럼증이 있거나 허리 통증이 심하면 회전 범위를 절반으로 줄입니다.'],
@@ -4279,11 +4321,22 @@
             '편안한 늘어남에서 20초 유지합니다.',
             '좌우 교대로 3세트 반복합니다.',
           ],
-          good: ['턱을 살짝 당긴 상태로 시선만 사선 뒤로 향하게 합니다.', '쇄골을 잡은 손으로 어깨를 가만히 고정합니다.'],
+          good: [
+            '턱을 살짝 당긴 상태로 시선만 사선 뒤로 향하게 합니다.',
+            '쇄골을 잡은 손으로 어깨를 가만히 고정합니다.',
+          ],
           bad: ['고개를 강하게 한 번에 젖히거나 회전을 동반하는 동작'],
           effects: ['사각근·후두하근 이완', '후두부 두통 완화', '저녁 공부 전 머리가 무거울 때 회복'],
-          cautions: ['어지럼증이나 팔 저림이 동반되면 즉시 멈춥니다.', '경추 디스크 진단을 받았다면 의사와 상담 후 시행합니다.'],
-          refs: [{ label: 'barun100 · 거북목·라운드숄더 통합 운동법', url: 'https://alpha.barun100.com/entry/%EA%B1%B0%EB%B6%81%EB%AA%A9-%EB%9D%BC%EC%9A%B4%EB%93%9C%EC%88%84%EB%8D%94-%ED%95%9C%EB%B2%88%EC%97%90-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%9A%B4%EB%8F%99%EB%B2%95' }],
+          cautions: [
+            '어지럼증이나 팔 저림이 동반되면 즉시 멈춥니다.',
+            '경추 디스크 진단을 받았다면 의사와 상담 후 시행합니다.',
+          ],
+          refs: [
+            {
+              label: 'barun100 · 거북목·라운드숄더 통합 운동법',
+              url: 'https://alpha.barun100.com/entry/%EA%B1%B0%EB%B6%81%EB%AA%A9-%EB%9D%BC%EC%9A%B4%EB%93%9C%EC%88%84%EB%8D%94-%ED%95%9C%EB%B2%88%EC%97%90-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%9A%B4%EB%8F%99%EB%B2%95',
+            },
+          ],
         },
         {
           id: 'wall-angel',
@@ -4301,10 +4354,21 @@
             '팔 뒷면이 벽에서 떨어지지 않도록 천천히 V자로 올렸다 다시 W로 내립니다.',
             '15회를 1세트로 총 3세트를 진행합니다.',
           ],
-          good: ['팔 뒷면과 손등이 닿는 범위 안에서만 움직입니다.', '갈비뼈가 앞으로 튀어나오지 않게 코어를 잡아줍니다.', '동작 내내 호흡이 멈추지 않게 합니다.'],
+          good: [
+            '팔 뒷면과 손등이 닿는 범위 안에서만 움직입니다.',
+            '갈비뼈가 앞으로 튀어나오지 않게 코어를 잡아줍니다.',
+            '동작 내내 호흡이 멈추지 않게 합니다.',
+          ],
           bad: ['벽에 닿게 만들려고 허리를 강하게 꺾는 자세', '어깨를 으쓱 올리며 팔만 움직이는 동작'],
-          effects: ['하부 승모근·능형근 활성으로 어깨 정렬 회복', '거북목·라운드숄더 동시 교정', '두통과 승모근 통증 2~3주 내 체감 감소'],
-          cautions: ['처음엔 손이 벽에 안 닿는 것이 정상입니다. 닿는 범위 안에서만 진행합니다.', '어깨 앞쪽이 자극을 받으면 가동 범위를 절반으로 줄입니다.'],
+          effects: [
+            '하부 승모근·능형근 활성으로 어깨 정렬 회복',
+            '거북목·라운드숄더 동시 교정',
+            '두통과 승모근 통증 2~3주 내 체감 감소',
+          ],
+          cautions: [
+            '처음엔 손이 벽에 안 닿는 것이 정상입니다. 닿는 범위 안에서만 진행합니다.',
+            '어깨 앞쪽이 자극을 받으면 가동 범위를 절반으로 줄입니다.',
+          ],
           refs: [{ label: 'YouTube · 벽 천사 정확한 자세', url: 'https://www.youtube.com/watch?v=wPOcXSXFTSo' }],
         },
         {
@@ -4327,7 +4391,12 @@
           bad: ['고개를 푹 숙여 턱만 가슴 쪽으로 떨어뜨리는 동작', '어깨를 위로 들썩이며 힘을 주는 자세'],
           effects: ['심부 굴곡근 강화로 거북목 재발 방지', '글씨를 오래 쓸 때 목 피로 감소', '두통 발생 빈도 감소'],
           cautions: ['목 디스크 진단 이력이 있으면 유지 시간을 3초로 줄입니다.'],
-          refs: [{ label: 'yuyu.co · 거북목 교정 가이드', url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/' }],
+          refs: [
+            {
+              label: 'yuyu.co · 거북목 교정 가이드',
+              url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/',
+            },
+          ],
         },
         {
           id: 'dead-bug',
@@ -4347,8 +4416,15 @@
           ],
           good: ['항상 허리를 바닥에 가볍게 눌러둔다는 감각을 유지합니다.', '날숨에 맞춰 팔다리를 내립니다.'],
           bad: ['속도를 빠르게 하여 반동으로 움직이는 동작', '허리가 바닥에서 들뜨는 범위까지 내리는 동작'],
-          effects: ['복횡근·장요근 활성으로 골반전방경사 보정', '오래 앉을 때 허리 통증 감소', '저녁 공부 진입 전 코어 워밍업'],
-          cautions: ['허리 통증이 날카롭게 올라오면 가동 범위를 절반으로 줄입니다.', '임신 중이거나 디스크 진단 시 의사와 상담 후 시행합니다.'],
+          effects: [
+            '복횡근·장요근 활성으로 골반전방경사 보정',
+            '오래 앉을 때 허리 통증 감소',
+            '저녁 공부 진입 전 코어 워밍업',
+          ],
+          cautions: [
+            '허리 통증이 날카롭게 올라오면 가동 범위를 절반으로 줄입니다.',
+            '임신 중이거나 디스크 진단 시 의사와 상담 후 시행합니다.',
+          ],
           refs: [{ label: '네이버 블로그 · Dead Bug 가이드', url: 'https://blog.naver.com/liligugu5000/220667634978' }],
         },
         {
@@ -4367,11 +4443,21 @@
             '갈비뼈를 살짝 아래로 내리고 1~2분 유지합니다.',
             '50분 공부 후 알람에 맞춰 1분만 진행해도 효과가 누적됩니다.',
           ],
-          good: ['턱을 수평으로 유지한 채 뒤통수가 벽에 가볍게 닿게 합니다.', '갈비뼈를 내려 허리 과신전을 방지합니다.'],
+          good: [
+            '턱을 수평으로 유지한 채 뒤통수가 벽에 가볍게 닿게 합니다.',
+            '갈비뼈를 내려 허리 과신전을 방지합니다.',
+          ],
           bad: ['허리만 꺾어 가슴을 과하게 내미는 자세', '머리를 벽에 누르려고 목 뒤를 강하게 조이는 동작'],
           effects: ['척추 정렬 감각 학습', '50분 공부 후 누적 피로 리셋', '거북목·라운드숄더·골반전방경사 자기 점검'],
-          cautions: ['뒤통수가 벽에 닿지 않는 정도면 거북목이 심한 단계입니다. 무리하지 말고 닿는 범위에서 시작합니다.'],
-          refs: [{ label: 'yuyu.co · 자세 정렬 가이드', url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/' }],
+          cautions: [
+            '뒤통수가 벽에 닿지 않는 정도면 거북목이 심한 단계입니다. 무리하지 말고 닿는 범위에서 시작합니다.',
+          ],
+          refs: [
+            {
+              label: 'yuyu.co · 자세 정렬 가이드',
+              url: 'https://yuyu.co.kr/blog/3ae20c47-55e7-44d1-ac1e-1500a5ccd712/',
+            },
+          ],
         },
       ];
       const POSTURE_IMAGE_URLS = {
@@ -4390,7 +4476,12 @@
           title: '얕은 호흡 재정렬 2분',
           when: '공부 시작 전, 말이 빨라지고 숨이 차는 느낌이 들 때',
           minutes: '2분',
-          steps: ['한 손은 가슴, 한 손은 옆구리에 둡니다.', '4초 들이마시되 어깨를 들지 않습니다.', '6초 천천히 내쉬며 갈비뼈가 내려오는 느낌을 봅니다.', '10회 반복 후 바로 문제 풀이를 시작합니다.'],
+          steps: [
+            '한 손은 가슴, 한 손은 옆구리에 둡니다.',
+            '4초 들이마시되 어깨를 들지 않습니다.',
+            '6초 천천히 내쉬며 갈비뼈가 내려오는 느낌을 봅니다.',
+            '10회 반복 후 바로 문제 풀이를 시작합니다.',
+          ],
           pitfall: '들숨을 억지로 크게 만들기보다 긴 날숨과 옆구리 확장을 먼저 회복합니다.',
           nextAction: '2차 손글씨 과제 15분 바로 시작',
         },
@@ -4400,7 +4491,11 @@
           title: '승모근 통증 · 두통 완화 3분',
           when: '승모근이 타들어가듯 뻐근하고 머리가 무거울 때',
           minutes: '3분',
-          steps: ['턱을 살짝 당기고 어깨를 툭 내립니다.', '4초 들숨, 7초 날숨으로 8회 반복합니다.', '날숨 때 손바닥으로 허벅지를 눌러 목 힘을 분산합니다.'],
+          steps: [
+            '턱을 살짝 당기고 어깨를 툭 내립니다.',
+            '4초 들숨, 7초 날숨으로 8회 반복합니다.',
+            '날숨 때 손바닥으로 허벅지를 눌러 목 힘을 분산합니다.',
+          ],
           pitfall: '목을 뒤로 젖히거나 승모근을 더 조이는 방식은 피합니다.',
           nextAction: '저녁 계산기 훈련 전 5분 휴식',
         },
@@ -4410,7 +4505,11 @@
           title: '피로 누적일용 착수 호흡 2분',
           when: '졸리지만 바로 눕고 싶지는 않은 퇴근 직후',
           minutes: '2분',
-          steps: ['코로 짧게 들이마시고 입으로 길게 6초 내쉽니다.', '3회 후 정상 호흡으로 20초 유지합니다.', '다시 5회 반복하고 오늘 최소 과제 1개만 선택합니다.'],
+          steps: [
+            '코로 짧게 들이마시고 입으로 길게 6초 내쉽니다.',
+            '3회 후 정상 호흡으로 20초 유지합니다.',
+            '다시 5회 반복하고 오늘 최소 과제 1개만 선택합니다.',
+          ],
           pitfall: '과하게 각성하려고 숨을 세게 들이마시지 않습니다.',
           nextAction: '오늘의 최소 2차 과제 1개 실행',
         },
@@ -4420,7 +4519,11 @@
           title: '자세 정렬 호흡 2분',
           when: '새벽 공부 시작 전, 자세가 무너져 글씨가 흐트러질 때',
           minutes: '2분',
-          steps: ['턱을 살짝 당기고 가슴을 과하게 내밀지 않습니다.', '갈비뼈를 아래로 모으며 4초 들숨 6초 날숨을 반복합니다.', '3회마다 어깨 긴장이 내려갔는지 체크합니다.'],
+          steps: [
+            '턱을 살짝 당기고 가슴을 과하게 내밀지 않습니다.',
+            '갈비뼈를 아래로 모으며 4초 들숨 6초 날숨을 반복합니다.',
+            '3회마다 어깨 긴장이 내려갔는지 체크합니다.',
+          ],
           pitfall: '허리를 꺾어 정렬을 만들지 않습니다.',
           nextAction: '답안 구조 훈련 카드 1개 확인',
         },
@@ -4705,7 +4808,10 @@
         return merged;
       }
       function getLatestSymptomFocus() {
-        const recent = getRoutineRecords().slice().reverse().find((x) => x.symptom && x.symptom !== '없음');
+        const recent = getRoutineRecords()
+          .slice()
+          .reverse()
+          .find((x) => x.symptom && x.symptom !== '없음');
         return recent?.symptom || '얕은 호흡';
       }
       function getStatusPct(status) {
@@ -4839,9 +4945,12 @@
       }
       function buildTelegramMessagePreview(kind, context = {}) {
         const closing =
-          context.closing || ['오늘 한 번의 실행이 합격선을 만든다.', '완벽보다 실행, 실행이 점수를 만든다.', '손이 기억해야 시험장에서 나온다.'][
-            Math.abs((context.seed || nowISO()).split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 3
-          ];
+          context.closing ||
+          [
+            '오늘 한 번의 실행이 합격선을 만든다.',
+            '완벽보다 실행, 실행이 점수를 만든다.',
+            '손이 기억해야 시험장에서 나온다.',
+          ][Math.abs((context.seed || nowISO()).split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 3];
         if (kind === 'checkin') {
           return `🌙 하루 마감 체크\n• 텔레그램 버튼으로 바로 기록\n• 기록은 홈페이지에 자동 반영\n\n${closing}`;
         }
@@ -4860,7 +4969,8 @@
         const days = getDaysLeftInfo();
         const symptom = getLatestSymptomFocus();
         const symptomAction =
-          BODY_CARE_CONTENT.find((x) => x.symptom === symptom) || BODY_CARE_CONTENT.find((x) => x.symptom === '승모근-두통-피로');
+          BODY_CARE_CONTENT.find((x) => x.symptom === symptom) ||
+          BODY_CARE_CONTENT.find((x) => x.symptom === '승모근-두통-피로');
         const handSet = SECOND_STAGE_CONTENT.answer[days.daysLeft % SECOND_STAGE_CONTENT.answer.length];
         const calcSet = SECOND_STAGE_CONTENT.calc[days.daysLeft % SECOND_STAGE_CONTENT.calc.length];
         return {
@@ -4893,28 +5003,59 @@
         const suggestions = [];
         const countLow = (key) => recent.filter((x) => getStatusPct(x[key]) < 0.5).length;
         const symptomCount = (name) => recent.filter((x) => x.symptom === name).length;
-        if (countLow('morning') >= 4) suggestions.push('새벽 공부가 자주 무너집니다. 일어나자마자 책상 앞 15분만이라도 고정해서 흐름을 살리세요.');
-        if (countLow('workout') >= 4) suggestions.push('아침 운동이 누적해서 빠지고 있습니다. 10분 짧은 코어·스트레칭으로 최소 루틴을 유지하세요.');
-        if (countLow('lunch') >= 3) suggestions.push('저녁 공부 시작이 자주 밀립니다. 30분 기본형 손글씨/계산기 1세트로 가볍게 진입하세요.');
+        if (countLow('morning') >= 4)
+          suggestions.push('새벽 공부가 자주 무너집니다. 일어나자마자 책상 앞 15분만이라도 고정해서 흐름을 살리세요.');
+        if (countLow('workout') >= 4)
+          suggestions.push('아침 운동이 누적해서 빠지고 있습니다. 10분 짧은 코어·스트레칭으로 최소 루틴을 유지하세요.');
+        if (countLow('lunch') >= 3)
+          suggestions.push('저녁 공부 시작이 자주 밀립니다. 30분 기본형 손글씨/계산기 1세트로 가볍게 진입하세요.');
         if (symptomCount('승모근통증·두통·피로') >= 2 || symptomCount('승모근-두통-피로') >= 2)
           suggestions.push('승모근 통증·두통이 반복됩니다. 저녁 세션 전 4분 호흡-자세 리셋을 기본 단계로 넣으세요.');
-        if (symptomCount('얕은 호흡') >= 2) suggestions.push('얕은 호흡이 반복됩니다. 공부 시작 전 2분 호흡 재정렬 루틴을 고정 단계로 넣으세요.');
-        if (symptomCount('골반전방경사') >= 2) suggestions.push('골반전방경사 관련 불편이 반복됩니다. 아침 운동 전 둔근 활성 루틴 비중을 높이세요.');
-        return suggestions.length ? suggestions : ['최근 흐름은 유지되고 있습니다. 핵심 3개 루틴을 끊기지 않게 유지하세요.'];
+        if (symptomCount('얕은 호흡') >= 2)
+          suggestions.push('얕은 호흡이 반복됩니다. 공부 시작 전 2분 호흡 재정렬 루틴을 고정 단계로 넣으세요.');
+        if (symptomCount('골반전방경사') >= 2)
+          suggestions.push('골반전방경사 관련 불편이 반복됩니다. 아침 운동 전 둔근 활성 루틴 비중을 높이세요.');
+        return suggestions.length
+          ? suggestions
+          : ['최근 흐름은 유지되고 있습니다. 핵심 3개 루틴을 끊기지 않게 유지하세요.'];
       }
       const ROUTINE_TIP_POOL = [
-        { icon: '🌅', text: '새벽 공부는 시작 15분이 전부입니다. 책상에 앉아 펜을 잡는 행위 자체를 가장 먼저 끝내세요.' },
-        { icon: '🏃', text: '아침 운동이 부담스러운 날은 10분 코어·스트레칭만으로도 미실행이 아니라 일부로 잡고 흐름을 유지하세요.' },
-        { icon: '📘', text: '저녁 공부는 손글씨 답안 1세트 + 계산기 1문제로 가볍게 시작하면 자연스럽게 30분 이상으로 이어집니다.' },
+        {
+          icon: '🌅',
+          text: '새벽 공부는 시작 15분이 전부입니다. 책상에 앉아 펜을 잡는 행위 자체를 가장 먼저 끝내세요.',
+        },
+        {
+          icon: '🏃',
+          text: '아침 운동이 부담스러운 날은 10분 코어·스트레칭만으로도 미실행이 아니라 일부로 잡고 흐름을 유지하세요.',
+        },
+        {
+          icon: '📘',
+          text: '저녁 공부는 손글씨 답안 1세트 + 계산기 1문제로 가볍게 시작하면 자연스럽게 30분 이상으로 이어집니다.',
+        },
         { icon: '⏱️', text: '하루가 무너진 날은 "30분만"이라는 작은 약속을 지키는 쪽이, 다음날 회복까지 빨라집니다.' },
         { icon: '💧', text: '공부 시작 전 물 한 컵, 자세 한 번 리셋. 작은 의식이 집중력 진입 시간을 줄여줍니다.' },
         { icon: '📵', text: '책상에 앉기 전 휴대폰은 다른 방에. "이동 거리"가 의지보다 강합니다.' },
-        { icon: '✍️', text: '2차 답안은 결론 → 근거 → 절차 순으로 목차를 먼저 잡고 손글씨로 옮기는 흐름을 고정하세요.' },
-        { icon: '🧮', text: '계산기 훈련은 식 → 대입 → 중간값 → 단위 → 최종답을 항상 손으로 쓰는 습관과 함께 가야 점수가 안정됩니다.' },
-        { icon: '😴', text: '잠을 깎아 공부량을 늘리는 건 D-30 안에서만 의미가 있습니다. 지금은 6시간을 사수하는 쪽이 점수를 만듭니다.' },
-        { icon: '🪑', text: '같은 자세 60분 이상은 어깨·목 통증으로 바로 돌아옵니다. 50분마다 자세 리셋을 알람으로 걸어두세요.' },
+        {
+          icon: '✍️',
+          text: '2차 답안은 결론 → 근거 → 절차 순으로 목차를 먼저 잡고 손글씨로 옮기는 흐름을 고정하세요.',
+        },
+        {
+          icon: '🧮',
+          text: '계산기 훈련은 식 → 대입 → 중간값 → 단위 → 최종답을 항상 손으로 쓰는 습관과 함께 가야 점수가 안정됩니다.',
+        },
+        {
+          icon: '😴',
+          text: '잠을 깎아 공부량을 늘리는 건 D-30 안에서만 의미가 있습니다. 지금은 6시간을 사수하는 쪽이 점수를 만듭니다.',
+        },
+        {
+          icon: '🪑',
+          text: '같은 자세 60분 이상은 어깨·목 통증으로 바로 돌아옵니다. 50분마다 자세 리셋을 알람으로 걸어두세요.',
+        },
         { icon: '📅', text: '주 1회는 일정한 시간에 한 주를 돌아보고, 다음 주 새벽·저녁 시간을 미리 정해두세요.' },
-        { icon: '🧠', text: '암기는 "보기 전에 입으로 먼저 말하기 → 종이에 쓰기 → 확인하기" 순서가 가장 깊게 남습니다.' },
+        {
+          icon: '🧠',
+          text: '암기는 "보기 전에 입으로 먼저 말하기 → 종이에 쓰기 → 확인하기" 순서가 가장 깊게 남습니다.',
+        },
       ];
       function pickTips(seedString, count = 2) {
         const seed = String(seedString || nowISO())
@@ -5037,17 +5178,54 @@
         const symptomCount = (name) => recent.filter((x) => x.symptom === name).length;
         const streak = getRoutineStreaks(records);
         if (streak.currentFull >= 3) {
-          alerts.push({ icon: '🔥', tone: 'ok', text: `${streak.currentFull}일 연속 3개 루틴을 모두 완료했습니다. 흐름이 만들어지는 구간입니다.` });
+          alerts.push({
+            icon: '🔥',
+            tone: 'ok',
+            text: `${streak.currentFull}일 연속 3개 루틴을 모두 완료했습니다. 흐름이 만들어지는 구간입니다.`,
+          });
         } else if (streak.currentAny >= 3) {
-          alerts.push({ icon: '🪜', tone: 'warn', text: `${streak.currentAny}일 연속 일부 이상 기록 중입니다. 오늘 한 칸만 더 채우면 완벽 연속이 시작됩니다.` });
+          alerts.push({
+            icon: '🪜',
+            tone: 'warn',
+            text: `${streak.currentAny}일 연속 일부 이상 기록 중입니다. 오늘 한 칸만 더 채우면 완벽 연속이 시작됩니다.`,
+          });
         }
-        if (countLow('morning') >= 4) alerts.push({ icon: '🌅', tone: 'warn', text: '새벽 공부가 자주 비어 있습니다. 일어나자마자 책상 15분 고정으로 흐름을 살리세요.' });
-        if (countLow('workout') >= 4) alerts.push({ icon: '🏃', tone: 'warn', text: '아침 운동 공백이 늘었습니다. 10분 코어/스트레칭으로 최소 루틴만 유지해도 충분합니다.' });
-        if (countLow('lunch') >= 3) alerts.push({ icon: '📘', tone: 'warn', text: '저녁 공부 시작이 자주 밀립니다. 30분 기본형으로 가볍게 진입하세요.' });
+        if (countLow('morning') >= 4)
+          alerts.push({
+            icon: '🌅',
+            tone: 'warn',
+            text: '새벽 공부가 자주 비어 있습니다. 일어나자마자 책상 15분 고정으로 흐름을 살리세요.',
+          });
+        if (countLow('workout') >= 4)
+          alerts.push({
+            icon: '🏃',
+            tone: 'warn',
+            text: '아침 운동 공백이 늘었습니다. 10분 코어/스트레칭으로 최소 루틴만 유지해도 충분합니다.',
+          });
+        if (countLow('lunch') >= 3)
+          alerts.push({
+            icon: '📘',
+            tone: 'warn',
+            text: '저녁 공부 시작이 자주 밀립니다. 30분 기본형으로 가볍게 진입하세요.',
+          });
         if (symptomCount('승모근통증·두통·피로') >= 2 || symptomCount('승모근-두통-피로') >= 2)
-          alerts.push({ icon: '💆', tone: 'danger', text: '승모근 통증·두통이 반복됩니다. 저녁 세션 전 4분 호흡-자세 리셋을 기본으로 넣으세요.' });
-        if (symptomCount('얕은 호흡') >= 2) alerts.push({ icon: '🫁', tone: 'danger', text: '얕은 호흡이 반복됩니다. 공부 시작 전 2분 호흡 재정렬을 추가하세요.' });
-        if (symptomCount('골반전방경사') >= 2) alerts.push({ icon: '🧘', tone: 'warn', text: '골반전방경사 신호가 잦습니다. 아침 운동 전 둔근 활성 루틴 비중을 높이세요.' });
+          alerts.push({
+            icon: '💆',
+            tone: 'danger',
+            text: '승모근 통증·두통이 반복됩니다. 저녁 세션 전 4분 호흡-자세 리셋을 기본으로 넣으세요.',
+          });
+        if (symptomCount('얕은 호흡') >= 2)
+          alerts.push({
+            icon: '🫁',
+            tone: 'danger',
+            text: '얕은 호흡이 반복됩니다. 공부 시작 전 2분 호흡 재정렬을 추가하세요.',
+          });
+        if (symptomCount('골반전방경사') >= 2)
+          alerts.push({
+            icon: '🧘',
+            tone: 'warn',
+            text: '골반전방경사 신호가 잦습니다. 아침 운동 전 둔근 활성 루틴 비중을 높이세요.',
+          });
         pickTips(selectedDate, 2).forEach((tip) => alerts.push({ icon: tip.icon, tone: 'info', text: tip.text }));
         return alerts.slice(0, 5);
       }
@@ -5065,7 +5243,9 @@
         showToast('오늘 공부 기록 저장');
       }
       function renderStatusOptions(value) {
-        return ROUTINE_STATUS_OPTIONS.map((opt) => `<option value="${opt}" ${opt === value ? 'selected' : ''}>${opt}</option>`).join('');
+        return ROUTINE_STATUS_OPTIONS.map(
+          (opt) => `<option value="${opt}" ${opt === value ? 'selected' : ''}>${opt}</option>`
+        ).join('');
       }
       function renderMainExecutionDashboard() {
         const box = document.getElementById('mainExecutionBody');
@@ -5166,12 +5346,14 @@
         const item = getRoutineRecord(todayKey);
         const daily = getDailyDoneRatio(item);
         const tone = daily >= 0.99 ? 'done' : daily >= 0.5 ? 'half' : daily > 0 ? 'low' : 'idle';
-        const pills = ROUTINE_ACTIVE_FIELDS.map((f) => `
+        const pills = ROUTINE_ACTIVE_FIELDS.map(
+          (f) => `
           <button type="button" class="routine-pill ${statusToClass(item[f.key])}" onclick="quickToggleRoutineField('${todayKey}', '${f.key}')">
             <span class="routine-pill-emoji">${f.emoji}</span>
             <span class="routine-pill-label">${f.label}</span>
             <span class="routine-pill-status">${item[f.key]}</span>
-          </button>`).join('');
+          </button>`
+        ).join('');
         const last14 = [];
         for (let i = 13; i >= 0; i--) {
           const d = new Date();
@@ -5180,7 +5362,9 @@
           const rec = getRoutineRecord(k);
           const r = getDailyDoneRatio(rec);
           const t = r >= 0.99 ? 'done' : r >= 0.5 ? 'half' : r > 0 ? 'low' : 'idle';
-          last14.push(`<span class="streak-cell ${t}${k === todayKey ? ' today' : ''}" title="${k} · ${pctText(r)}"></span>`);
+          last14.push(
+            `<span class="streak-cell ${t}${k === todayKey ? ' today' : ''}" title="${k} · ${pctText(r)}"></span>`
+          );
         }
         box.innerHTML = `
           <div class="today-routine-head">
@@ -5247,16 +5431,24 @@
         }
       }
       function renderPostureExerciseCard(item) {
-        const stepsHtml = item.steps.map((s, idx) => `<li><span class="step-num">${idx + 1}</span><span>${escapeHtml(s)}</span></li>`).join('');
+        const stepsHtml = item.steps
+          .map((s, idx) => `<li><span class="step-num">${idx + 1}</span><span>${escapeHtml(s)}</span></li>`)
+          .join('');
         const goodHtml = item.good.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
         const badHtml = item.bad.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
         const effectsHtml = item.effects.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
         const cautionsHtml = item.cautions.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
-        const quickChecks = item.good.slice(0, 3).map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+        const quickChecks = item.good
+          .slice(0, 3)
+          .map((s) => `<li>${escapeHtml(s)}</li>`)
+          .join('');
         const imageSrc = POSTURE_IMAGE_URLS[item.id] || `assets/posture/${item.id}.png`;
         const fallbackImageSrc = `assets/posture/${item.id}.svg`;
         const refsHtml = (item.refs || [])
-          .map((r) => `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.label)} ↗</a>`)
+          .map(
+            (r) =>
+              `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.label)} ↗</a>`
+          )
           .join('');
         return `
           <article
@@ -5331,10 +5523,16 @@
       function renderPostureRoutine() {
         const intro = POSTURE_ROUTINE_INTRO;
         const scheduleRows = intro.schedule
-          .map((row) => `<tr><td>${escapeHtml(row.when)}</td><td>${escapeHtml(row.routine)}</td><td>${escapeHtml(row.minutes)}</td></tr>`)
+          .map(
+            (row) =>
+              `<tr><td>${escapeHtml(row.when)}</td><td>${escapeHtml(row.routine)}</td><td>${escapeHtml(row.minutes)}</td></tr>`
+          )
           .join('');
         const refsHtml = (intro.refs || [])
-          .map((r) => `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.label)} ↗</a>`)
+          .map(
+            (r) =>
+              `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.label)} ↗</a>`
+          )
           .join(' · ');
         const cardsHtml = POSTURE_ROUTINE_CONTENT.map(renderPostureExerciseCard).join('');
         return `
@@ -5377,7 +5575,9 @@
           )
           .join('');
         if (tab === 'body') {
-          const focus = itemId ? BODY_CARE_CONTENT.find((x) => x.id === itemId) : BODY_CARE_CONTENT.find((x) => x.symptom === getLatestSymptomFocus()) || BODY_CARE_CONTENT[0];
+          const focus = itemId
+            ? BODY_CARE_CONTENT.find((x) => x.id === itemId)
+            : BODY_CARE_CONTENT.find((x) => x.symptom === getLatestSymptomFocus()) || BODY_CARE_CONTENT[0];
           body.innerHTML = `
             <div class="panel" style="margin-bottom:10px;">
               <div class="settings-title" style="margin-bottom:8px;">오늘 가장 불편한 증상</div>
@@ -5451,7 +5651,8 @@
         const base = parseDateKey(`${routineCalendarState.month}-01`);
         base.setMonth(base.getMonth() + offset);
         routineCalendarState.month = `${base.getFullYear()}-${pad2(base.getMonth() + 1)}`;
-        if (!routineCalendarState.selectedDate.startsWith(routineCalendarState.month)) routineCalendarState.selectedDate = `${routineCalendarState.month}-01`;
+        if (!routineCalendarState.selectedDate.startsWith(routineCalendarState.month))
+          routineCalendarState.selectedDate = `${routineCalendarState.month}-01`;
         renderRoutineCalendar();
         setHashRoute(`#routine/calendar/${routineCalendarState.month}`);
       }
@@ -5525,7 +5726,9 @@
           const rec = getRoutineRecord(k);
           const r = getDailyDoneRatio(rec);
           const t = r >= 0.99 ? 'done' : r >= 0.5 ? 'half' : r > 0 ? 'low' : 'idle';
-          last28.push(`<span class="streak-grid-cell ${t}${k === todayKey ? ' today' : ''}" title="${k} · ${pctText(r)}"></span>`);
+          last28.push(
+            `<span class="streak-grid-cell ${t}${k === todayKey ? ' today' : ''}" title="${k} · ${pctText(r)}"></span>`
+          );
         }
         monthBody.innerHTML = `
           <div class="cal-grid head">${weekdayHead}</div>
@@ -5570,12 +5773,14 @@
             </div>
           </div>`;
         const item = getRoutineRecord(selectedDate);
-        const fieldsHtml = ROUTINE_ACTIVE_FIELDS.map((f) => `
+        const fieldsHtml = ROUTINE_ACTIVE_FIELDS.map(
+          (f) => `
           <button type="button" class="routine-pill ${statusToClass(item[f.key])}" onclick="quickToggleRoutineField('${selectedDate}', '${f.key}')">
             <span class="routine-pill-emoji">${f.emoji}</span>
             <span class="routine-pill-label">${f.label}</span>
             <span class="routine-pill-status">${item[f.key]}</span>
-          </button>`).join('');
+          </button>`
+        ).join('');
         side.innerHTML = `
           <div class="panel" style="padding:14px 16px;">
             <div style="font-weight:800;color:var(--primary);margin-bottom:10px;letter-spacing:-0.02em;">${escapeHtml(formatDateLabel(selectedDate))}</div>
@@ -5608,7 +5813,8 @@
             <div class="alert-list">
               ${buildRoutineAlerts(records, selectedDate)
                 .map(
-                  (a) => `<div class="alert-row ${a.tone}"><span class="alert-icon">${a.icon}</span><span class="alert-text">${escapeHtml(a.text)}</span></div>`
+                  (a) =>
+                    `<div class="alert-row ${a.tone}"><span class="alert-icon">${a.icon}</span><span class="alert-text">${escapeHtml(a.text)}</span></div>`
                 )
                 .join('')}
             </div>
@@ -5769,16 +5975,21 @@
               }).join('')}
               <span class="chip">완벽 ${routines.fullDoneCount}일 · 절반 ${routines.halfDoneCount}일</span>
             </div>
-            ${buildRoutineSuggestions().map((item) => `<div class="subject-row"><span>보완</span><span>${escapeHtml(item)}</span></div>`).join('')}
+            ${buildRoutineSuggestions()
+              .map((item) => `<div class="subject-row"><span>보완</span><span>${escapeHtml(item)}</span></div>`)
+              .join('')}
           </div>
           <div class="panel" style="margin-bottom:10px;">
             <h3 style="margin:0 0 8px 0;color:var(--primary);">오늘 공부 기록</h3>
             ${
               latest
                 ? progress.recent
-                    .map((item) => `<div class="subject-row"><span>${escapeHtml(SECOND_STAGE_MODES[item.mode]?.label || item.mode)}</span><span>${escapeHtml(
-                      item.detail || ''
-                    )} · ${new Date(item.date).toLocaleDateString()}</span></div>`)
+                    .map(
+                      (item) =>
+                        `<div class="subject-row"><span>${escapeHtml(SECOND_STAGE_MODES[item.mode]?.label || item.mode)}</span><span>${escapeHtml(
+                          item.detail || ''
+                        )} · ${new Date(item.date).toLocaleDateString()}</span></div>`
+                    )
                     .join('')
                 : '<div class="hint">아직 오늘 공부 기록이 없습니다. 오늘 공부 안내를 먼저 시작하세요.</div>'
             }
@@ -5800,7 +6011,9 @@
         applyRouteFromHash(value);
       }
       function applyRouteFromHash(hash = window.location.hash) {
-        const clean = String(hash || '').replace(/^#/, '').trim();
+        const clean = String(hash || '')
+          .replace(/^#/, '')
+          .trim();
         if (!clean) return false;
         const parts = clean.split('/').filter(Boolean);
         if (!parts.length) return false;
@@ -8034,7 +8247,13 @@ ${scopeText}
       function runSelfCheck() {
         const log = [];
         const now = new Date().toLocaleString('ko-KR');
-        const visibleScreens = ['portalScreen', 'mainScreen', 'secondStageScreen', 'routineCalendarScreen', 'strategyScreen']
+        const visibleScreens = [
+          'portalScreen',
+          'mainScreen',
+          'secondStageScreen',
+          'routineCalendarScreen',
+          'strategyScreen',
+        ]
           .filter((id) => !document.getElementById(id)?.classList.contains('hidden'))
           .map((id) => id.replace('Screen', ''));
         const examDate = getSecondExamDateValue();
@@ -8060,9 +8279,13 @@ ${scopeText}
         log.push(`- 모든 알림 호출은 차단되어 있고, 추가 트래픽이 발생하지 않습니다.`);
         log.push(``);
         log.push(`✅ 점검`);
-        log.push(`- 점검 모달 열림: ${document.getElementById('patchLogModal')?.classList.contains('hidden') ? '아니오' : '예'}`);
+        log.push(
+          `- 점검 모달 열림: ${document.getElementById('patchLogModal')?.classList.contains('hidden') ? '아니오' : '예'}`
+        );
         log.push(`- 새로고침 버튼: ${document.querySelector('button[onclick=\"refreshPage()\"]') ? '있음' : '없음'}`);
-        log.push(`- 루틴 캘린더 진입: ${document.querySelector('button[onclick=\"showRoutineCalendar()\"]') ? '있음' : '없음'}`);
+        log.push(
+          `- 루틴 캘린더 진입: ${document.querySelector('button[onclick=\"showRoutineCalendar()\"]') ? '있음' : '없음'}`
+        );
         log.push(``);
         log.push(`문제가 생기면 위의 [현재 화면 / 현재 주소]를 같이 적어 두면 원인을 좁히기 쉽습니다.`);
 
@@ -9696,7 +9919,8 @@ ${scopeText}
 ============================= */
       function showStrategyScreen() {
         showScreen('strategyScreen');
-        document.getElementById('strategyBody').innerHTML = `<div class="hint">[2차 전략 분석 실행]을 눌러 최신 수행 기록을 분석하세요.</div>`;
+        document.getElementById('strategyBody').innerHTML =
+          `<div class="hint">[2차 전략 분석 실행]을 눌러 최신 수행 기록을 분석하세요.</div>`;
         document.getElementById('examDateInput').value = getSecondExamDateValue();
         updateDaysLeftDisplay();
         buildStrategyReport();
