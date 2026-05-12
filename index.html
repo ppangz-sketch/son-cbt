@@ -2012,116 +2012,79 @@
             margin-bottom: 12px;
           ">
           <div>
-            <h2 class="panel-title-main">1차 CBT 학습실</h2>
-            <div class="panel-title-sub">모의, 기출, 오답 정리를 지금 바로 이어서 진행할 수 있습니다.</div>
+            <h2 class="panel-title-main">100일 2차 합격 실행실</h2>
+            <div class="panel-title-sub">오늘 손으로 쓰고, 계산기로 두드리고, 저녁 회고까지 남기는 2차 중심 대시보드입니다.</div>
           </div>
-          <button class="btn outline" onclick="goPortal()">시험 선택</button>
-        </div>
-        <div class="settings-grid">
-          <div class="settings-item">
-            <div class="settings-title">출제 난이도 (기본)</div>
-            <select id="difficultySelect" class="select" title="출제 난이도 선택">
-              <option value="">기본(실전+) · 기출보다 살짝 어려움</option>
-              <option value="high">상 · 고난도/응용형</option>
-              <option value="medium">중 · 표준 실전</option>
-              <option value="low">하 · 기초 중심</option>
-            </select>
-            <div class="hint" style="margin-top: 6px">AI 약점 모드에서 별도 난이도 지정 가능</div>
-          </div>
-
-          <div class="settings-item">
-            <div class="settings-title">AI 월 한도 금액 (원)</div>
-            <div style="display: flex; gap: 8px; align-items: center">
-              <input id="budgetInput" class="input" type="number" min="0" step="100" placeholder="예: 10000" />
-              <button class="btn outline" onclick="saveBudget()">저장</button>
-            </div>
-            <div class="hint" style="margin-top: 6px">
-              0 입력 시 한도 미사용
-              <button
-                class="btn sm outline"
-                style="margin-left: 8px; padding: 2px 8px; font-size: 0.7rem"
-                onclick="resetApiUsage()"
-                title="API 호출횟수/비용만 초기화 (키, 한도는 유지)">
-                🔄 API 사용량 초기화
-              </button>
-            </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn outline" onclick="showSecondStageScreen()">2차 수행실</button>
+            <button class="btn outline" onclick="showFirstStageScreen()">1차 도구</button>
+            <button class="btn outline" onclick="goPortal()">시험 선택</button>
           </div>
         </div>
-
         <div class="menu-grid">
-          <button class="menu-btn" onclick="startExam('academy')">
-            <div class="menu-title">학원 모의</div>
-            <div class="menu-desc">실전형 75문항으로 현재 감각을 점검합니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('perform')">
+            <div class="menu-title">2차 수행 안내</div>
+            <div class="menu-desc">오늘 손으로 써야 할 문제와 계산기 과제를 확인합니다.</div>
           </button>
-          <button class="menu-btn" onclick="openAIModal()">
-            <div class="menu-title">AI 모의</div>
-            <div class="menu-desc">약점 비중을 조절해 새 문제 세트를 만듭니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('answerGuide')">
+            <div class="menu-title">답안작성 훈련</div>
+            <div class="menu-desc">손글씨 답안을 더 잘 쓰기 위한 구조와 실수를 학습합니다.</div>
           </button>
-          <button class="menu-btn" onclick="openPastExamDirect()">
-            <div class="menu-title">기출 열기</div>
-            <div class="menu-desc">기출 사이트를 새 탭으로 열고 현재 화면은 유지합니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('calcGuide')">
+            <div class="menu-title">계산 실수 훈련</div>
+            <div class="menu-desc">계산기 입력, 식 전개, 단위와 검산 실수를 줄입니다.</div>
           </button>
-          <button class="menu-btn" onclick="showWrongAnalysis()">
-            <div class="menu-title">오답 분석</div>
-            <div class="menu-desc" id="wrongSummary">저장된 오답 분석</div>
+          <button class="menu-btn" onclick="showRoutineCalendar()">
+            <div class="menu-title">루틴 캘린더</div>
+            <div class="menu-desc">저녁 회고를 저장하고 날짜별로 수행 흐름을 검토합니다.</div>
           </button>
-          <button class="menu-btn" onclick="showAIBankScreen()">
-            <div class="menu-title">AI 문제은행</div>
-            <div class="menu-desc" id="aiBankSummary">조건별로 문제를 다시 묶어 바로 풉니다.</div>
-          </button>
-          <button class="menu-btn" onclick="showStrategyScreen()">
-            <div class="menu-title">전략 리포트</div>
-            <div class="menu-desc">최근 성적과 오답 패턴으로 우선순위를 정리합니다.</div>
+          <button class="menu-btn" onclick="showConditionHub()">
+            <div class="menu-title">합격 유지실</div>
+            <div class="menu-desc">몸관리, 호흡, 2차 전략 카드를 한 곳에서 봅니다.</div>
           </button>
         </div>
 
         <div class="panel" style="margin-bottom: 12px">
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
-            <div>
-              <h3 style="margin: 0 0 4px 0; color: var(--primary)">2차 학습센터</h3>
-              <div class="hint">기출 기반 연습과 짧은 퀴즈를 주제별로 바로 이어갈 수 있습니다.</div>
-            </div>
-            <button class="btn primary" onclick="showSecondStudyScreen()">2차 학습 시작</button>
-          </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-              gap: 10px;
-              margin-top: 12px;
-            ">
-            <div class="settings-item">
-              <div class="settings-title">주제별 학습팁</div>
-              <div class="hint">2차 1과목과 2과목 범위를 나눠 핵심 주제만 빠르게 복습</div>
-            </div>
-            <div class="settings-item">
-              <div class="settings-title">간단 퀴즈</div>
-              <div class="hint">빈출 개념은 바로 확인 가능한 객관식 퀴즈로 빠르게 점검</div>
-            </div>
-            <div class="settings-item">
-              <div class="settings-title">기출 기반 연습</div>
-              <div class="hint">8회~11회 기출을 2차 과목 체계에 맞춰 다시 묶어 서술형 메모 훈련</div>
-            </div>
-          </div>
-          <div id="secondStudySummary" style="margin-top: 12px"></div>
+          <h3 style="margin:0 0 10px 0;color:var(--primary);">오늘 해야 할 것</h3>
+          <div id="mainExecutionBody"></div>
         </div>
 
-        <div class="panel" style="margin-bottom: 12px">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px">
-            <div>
-              <h3 style="margin: 0 0 4px 0; color: var(--primary)">합격 가능성</h3>
-              <div class="hint">최근 5회 모의고사 + 오답 안정성 + 과목 밸런스 종합</div>
-            </div>
-            <div id="passProbabilityBox" style="text-align: right">
-              <div style="font-size: 2.2rem; font-weight: 900; color: var(--primary)" id="passProbValue">-%</div>
-              <div class="hint" id="passProbLabel">데이터 수집 중...</div>
-            </div>
+        <div class="second-dashboard-grid">
+          <div class="panel">
+            <h3 style="margin:0 0 10px 0;color:var(--primary);">최근 7일 루틴 요약</h3>
+            <div id="mainRoutineSummary"></div>
           </div>
-          <div id="scoreChart" class="chart-box" style="margin-top: 10px"></div>
+          <div class="panel">
+            <h3 style="margin:0 0 10px 0;color:var(--primary);">2차 전략 리포트 요약</h3>
+            <div id="mainStrategySummary"></div>
+          </div>
         </div>
 
-        <div class="panel">
-          <h3 style="margin: 0 0 10px 0; color: var(--primary)">학습 현황</h3>
+        <div class="panel" style="margin-top:12px;">
+          <h3 style="margin: 0 0 10px 0; color: var(--primary)">기존 1차 도구 빠른 진입</h3>
+          <div class="menu-grid" style="margin-bottom:10px;">
+            <button class="menu-btn" onclick="startExam('academy')">
+              <div class="menu-title">학원 모의</div>
+              <div class="menu-desc">1차 감각 점검이 필요할 때 바로 풉니다.</div>
+            </button>
+            <button class="menu-btn" onclick="openAIModal()">
+              <div class="menu-title">AI 모의</div>
+              <div class="menu-desc">1차 약점 비중을 조절해 새 문제 세트를 만듭니다.</div>
+            </button>
+            <button class="menu-btn" onclick="openPastExamDirect()">
+              <div class="menu-title">기출 열기</div>
+              <div class="menu-desc">1차 기출 사이트를 새 탭으로 엽니다.</div>
+            </button>
+            <button class="menu-btn" onclick="showWrongAnalysis()">
+              <div class="menu-title">오답 분석</div>
+              <div class="menu-desc" id="wrongSummary">저장된 오답 분석</div>
+            </button>
+            <button class="menu-btn" onclick="showAIBankScreen()">
+              <div class="menu-title">AI 문제은행</div>
+              <div class="menu-desc" id="aiBankSummary">조건별 문제를 다시 묶어 바로 풉니다.</div>
+            </button>
+          </div>
+          <div class="hint" style="margin-bottom:10px;">1차 기능은 유지하되, 이번 홈 화면의 중심은 2차 손글씨/계산기 수행에 둡니다.</div>
           <div id="dashboardBody"></div>
         </div>
 
@@ -2147,45 +2110,45 @@
           class="panel screen-top-panel"
           style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
           <div>
-            <h2 class="panel-title-main">2차 실전 학습실</h2>
-            <div class="panel-title-sub">서술, 계산, 암기 훈련을 필요한 순서대로 바로 실행할 수 있습니다.</div>
+            <h2 class="panel-title-main">2차 실전 수행실</h2>
+            <div class="panel-title-sub">웹에 오래 쓰지 말고, 오늘 해야 할 손글씨·계산기 수행을 확인하고 바로 종이로 나갑니다.</div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap">
-            <button class="btn outline" onclick="showFirstStageScreen()">1차 CBT</button>
+            <button class="btn outline" onclick="showStrategyScreen()">2차 전략 리포트</button>
             <button class="btn outline" onclick="goPortal()">시험 선택</button>
           </div>
         </div>
 
         <div class="menu-grid">
-          <button class="menu-btn" onclick="openSecondPractice('answer')">
-            <div class="menu-title">서술형 훈련</div>
-            <div class="menu-desc">키워드 누락과 문장 밀도를 빠르게 점검합니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('perform')">
+            <div class="menu-title">2차 오늘의 수행 안내</div>
+            <div class="menu-desc">오늘 손으로 써야 할 문제, 계산기로 풀 문제, 준비물과 수행 포인트를 봅니다.</div>
           </button>
-          <button class="menu-btn" onclick="openSecondPractice('calc')">
-            <div class="menu-title">계산형 훈련</div>
-            <div class="menu-desc">공식, 대입값, 중간값, 최종답을 단계별로 확인합니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('answerGuide')">
+            <div class="menu-title">답안작성 훈련</div>
+            <div class="menu-desc">손글씨 답안을 더 잘 쓰기 위한 구조, 실수, 자기채점 기준을 확인합니다.</div>
           </button>
-          <button class="menu-btn" onclick="openSecondPractice('memory')">
-            <div class="menu-title">빈칸 암기</div>
-            <div class="menu-desc">숫자, 기한, 주체 문장을 짧게 반복해 암기합니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('calcGuide')">
+            <div class="menu-title">계산 실수 훈련</div>
+            <div class="menu-desc">계산기 입력, 식 세우기, 단위와 검산 실수를 줄이는 가이드를 봅니다.</div>
           </button>
-          <button class="menu-btn" onclick="openSecondPractice('planner')">
-            <div class="menu-title">2차 D-day 플래너</div>
-            <div class="menu-desc">남은 기간에 맞는 학습 비중을 정리해 제안합니다.</div>
+          <button class="menu-btn" onclick="openSecondPractice('checklist')">
+            <div class="menu-title">오프라인 수행 체크</div>
+            <div class="menu-desc">볼펜, 계산기, 제한시간, 손글씨 수행 여부를 빠르게 점검합니다.</div>
           </button>
         </div>
 
         <div class="second-dashboard-grid">
           <div class="panel">
-            <h3 style="margin: 0 0 10px 0; color: var(--primary)">2차 학습 현황</h3>
+            <h3 style="margin: 0 0 10px 0; color: var(--primary)">2차 수행 현황</h3>
             <div id="secondStageSummary"></div>
           </div>
           <div class="panel">
-            <h3 style="margin: 0 0 10px 0; color: var(--primary)">합격 기준형 훈련 포인트</h3>
+            <h3 style="margin: 0 0 10px 0; color: var(--primary)">실전 수행 원칙</h3>
             <div class="feature-list">
-              <div>서술형: 결론 → 근거 → 산정/절차 순서로 짧고 정확하게 작성</div>
-              <div>계산형: 공식, 대입값, 중간값, 단위, 반올림을 별도 확인</div>
-              <div>암기형: 숫자·기한·주체·절차 키워드를 빈칸으로 반복</div>
+              <div>답안형: 결론 → 근거 → 절차/산정 순서로 손글씨 구조를 먼저 잡습니다.</div>
+              <div>계산형: 식을 쓰고 계산기를 누르며 중간값, 단위, 반올림을 확인합니다.</div>
+              <div>오프라인형: 웹에서 오래 보지 말고 확인 후 바로 종이와 계산기로 나갑니다.</div>
             </div>
           </div>
         </div>
@@ -2249,13 +2212,16 @@
       <section id="strategyScreen" class="hidden">
         <div class="panel screen-top-panel">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
-            <h2 class="panel-title-main">합격 전략 리포트</h2>
-            <button class="btn outline" onclick="goHome()">메인</button>
+            <h2 class="panel-title-main">2차 전략 리포트</h2>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더</button>
+              <button class="btn outline" onclick="goHome()">메인</button>
+            </div>
           </div>
           <div class="strategy-grid" style="margin-top: 12px">
             <div class="settings-item">
-              <div class="settings-title">📅 남은 기간 설정 (시험일 선택)</div>
-              <input id="examDateInput" class="input" type="date" onchange="updateDaysLeftDisplay()" />
+              <div class="settings-title">📅 2차 시험일</div>
+              <input id="examDateInput" class="input" type="date" onchange="updateDaysLeftDisplay(); buildStrategyReport();" />
               <div
                 id="daysLeftDisplay"
                 class="hint"
@@ -2270,84 +2236,67 @@
                 ">
                 시험일을 선택하면 D-day가 자동 계산됩니다.
               </div>
-              <div
-                class="hint"
-                style="margin-top: auto; padding-top: 10px; font-size: 0.78rem; line-height: 1.5; color: var(--sub)">
-                💡 <b>시험일 기준 D-day</b>에 따라 학습 운영안이 자동으로 달라집니다.<br />
-                · 90일 이상: 3단계 정착 → 확장 → 가속<br />
-                · 45~90일: 전·후반기 압축 학습<br />
-                · 21~45일: 실전 중심 반복<br />
-                · 21일 이하: 파이널 정리
+              <div class="hint" style="margin-top: auto; padding-top: 10px; font-size: 0.78rem; line-height: 1.5; color: var(--sub)">
+                2차 전략 리포트는 루틴 기록과 2차 수행 기록을 기준으로 보완 포인트를 제안합니다.
               </div>
             </div>
             <div class="settings-item">
-              <div class="settings-title">📝 실제 기출 결과 수동 입력</div>
-              <div style="display: flex; flex-direction: column; gap: 8px">
-                <div class="hint" style="font-size: 0.78rem; margin-bottom: 2px">과목별 점수 (각 0~100점)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px">
-                  <input
-                    id="pastSub1Input"
-                    class="input"
-                    type="number"
-                    min="0"
-                    max="100"
-                    placeholder="상법"
-                    oninput="autoCalcPastTotal()" />
-                  <input
-                    id="pastSub2Input"
-                    class="input"
-                    type="number"
-                    min="0"
-                    max="100"
-                    placeholder="농재법"
-                    oninput="autoCalcPastTotal()" />
-                  <input
-                    id="pastSub3Input"
-                    class="input"
-                    type="number"
-                    min="0"
-                    max="100"
-                    placeholder="재배학"
-                    oninput="autoCalcPastTotal()" />
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    padding: 8px 10px;
-                    background: var(--line-soft);
-                    border-radius: 8px;
-                    flex-wrap: wrap;
-                  ">
-                  <span style="font-weight: 800; white-space: nowrap">📊 총점</span>
-                  <span
-                    id="pastTotalDisplay"
-                    style="font-size: 1.25rem; font-weight: 900; color: var(--primary); min-width: 40px"
-                    >-</span
-                  >
-                  <span id="pastPassStatus" style="font-size: 0.85rem; font-weight: 800; margin-left: auto"></span>
-                </div>
-                <div
-                  id="pastSubFailStatus"
-                  style="font-size: 0.8rem; font-weight: 700; color: var(--danger); min-height: 1em"></div>
-                <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 2px">
-                  <div class="hint" style="font-size: 0.78rem">응시일 (선택 입력)</div>
-                  <div style="display: flex; gap: 6px; align-items: center">
-                    <input id="pastDateInput" class="input" type="date" style="flex: 1; min-width: 0" />
-                    <button class="btn primary" onclick="savePastManualResult()" style="white-space: nowrap">
-                      💾 저장
-                    </button>
-                  </div>
-                </div>
+              <div class="settings-title">🔐 텔레그램 연동 준비</div>
+              <div class="hint" style="line-height:1.7;">
+                Bot token과 chat id는 프론트에 저장하지 않습니다. 서버PC의 중계 엔드포인트만 연결하는 구조를 기준으로 준비합니다.
               </div>
+              <div class="second-result-box" style="margin-top:10px;">
+                <b>권장 API</b><br />
+                <span id="telegramSpecLine">/api/telegram/send · /api/telegram/checkin</span>
+              </div>
+              <div class="hint" style="margin-top:8px;">딥링크는 텔레그램 메시지에서 특정 화면과 카드로 바로 진입하게 하는 용도로 사용합니다.</div>
             </div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px">
-            <button class="btn primary" onclick="buildStrategyReport()">🔍 전략 분석 실행</button>
-            <button class="btn outline" onclick="clearPastManualResults()">기출 수동결과 초기화</button>
+            <button class="btn primary" onclick="buildStrategyReport()">🔍 2차 전략 분석 실행</button>
+            <button class="btn outline" onclick="showConditionHub('strategy')">전략 카드 보기</button>
+            <button class="btn outline" onclick="showToast(buildTelegramMessagePreview('checkin'), 2600)">체크인 미리보기</button>
           </div>
           <div id="strategyBody" style="margin-top: 12px"></div>
+        </div>
+      </section>
+
+      <section id="conditionHubScreen" class="hidden">
+        <div class="panel screen-top-panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div>
+              <h2 class="panel-title-main">합격 유지실</h2>
+              <div class="panel-title-sub">몸관리, 호흡·멘탈, 2차 전략 카드를 한곳에서 보고 바로 실전에 연결합니다.</div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더</button>
+              <button class="btn outline" onclick="goHome()">메인</button>
+            </div>
+          </div>
+          <div id="conditionHubTabs" class="badge-row" style="margin-top:12px;"></div>
+          <div id="conditionHubBody" style="margin-top:12px;"></div>
+        </div>
+      </section>
+
+      <section id="routineCalendarScreen" class="hidden">
+        <div class="panel screen-top-panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div>
+              <h2 class="panel-title-main" id="routineCalendarTitle">루틴 캘린더</h2>
+              <div class="panel-title-sub">저녁 회고와 2차 수행 기록을 달력으로 검토하고, 보완 포인트를 확인합니다.</div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn outline" onclick="shiftRoutineMonth(-1)">이전 달</button>
+              <button class="btn outline" onclick="shiftRoutineMonth(1)">다음 달</button>
+              <button class="btn outline" onclick="goHome()">메인</button>
+            </div>
+          </div>
+          <div class="second-dashboard-grid" style="margin-top:12px;">
+            <div class="panel">
+              <div id="routineCalendarBody"></div>
+            </div>
+            <div id="routineCalendarSide"></div>
+          </div>
         </div>
       </section>
 
@@ -2643,6 +2592,8 @@
         SECOND_STUDY: '손해평가사_second_study_v1',
         SECOND_STAGE_PROGRESS: '손해평가사_second_stage_progress_v1',
         SECOND_STAGE_EXAM_DATE: '손해평가사_second_stage_exam_date_v1',
+        ROUTINE_RECORDS: '손해평가사_routine_records_v1',
+        TELEGRAM_BRIDGE: '손해평가사_telegram_bridge_v1',
       };
       const PAST_EXAM_URL = 'https://www.comcbt.com/cbt/index2.php?hack_number=29';
 
@@ -2995,10 +2946,10 @@
       ];
 
       const SECOND_STAGE_MODES = {
-        answer: { label: '서술형 답안 훈련', icon: '✍️' },
-        calc: { label: '계산형 단계 훈련', icon: '🧮' },
-        memory: { label: '핵심 빈칸 암기', icon: '🧩' },
-        planner: { label: '2차 D-day 플래너', icon: '📅' },
+        perform: { label: '2차 오늘의 수행 안내', icon: '🗂' },
+        answerGuide: { label: '답안작성 훈련', icon: '✍️' },
+        calcGuide: { label: '계산 실수 훈련', icon: '🧮' },
+        checklist: { label: '오프라인 수행 체크', icon: '✅' },
       };
       const SECOND_STAGE_CONTENT = {
         answer: [
@@ -3067,6 +3018,155 @@
             tip: '절차형 답안은 순서를 틀리면 감점되기 쉬우므로 핵심 명사를 고정해서 암기합니다.',
           },
         ],
+      };
+
+      const ROUTINE_STATUS_OPTIONS = ['미실행', '일부', '완료'];
+      const ROUTINE_STATUS_SCORE = { 미실행: 0, 일부: 0.5, 완료: 1 };
+      const BODY_CARE_CONTENT = [
+        {
+          id: 'neck-reset',
+          symptom: '거북목',
+          title: '거북목 · 승모근 완화 5분',
+          purpose: '고개가 앞으로 빠진 자세와 상부승모근 과긴장을 줄여 손글씨 답안 전 집중을 돕습니다.',
+          good: '턱을 살짝 당기고 귀-어깨가 수직에 가깝게 정렬되도록 유지합니다.',
+          bad: '턱을 과하게 들거나 목만 뒤로 젖혀 턱을 숨기듯 버티는 자세는 피합니다.',
+          cues: ['턱을 가볍게 뒤로 미는 느낌', '어깨를 아래로 툭 떨어뜨리기', '목 앞이 아니라 뒤통수 길어지기'],
+          duration: '5분 · 6~8회',
+          goodFor: '새벽 공부 시작 전, 퇴근 후 목이 앞으로 쏠린 날, 승모근이 뻐근할 때',
+          avoid: '어지럼이 심하거나 목 통증이 날카롭게 올라올 때는 강하게 젖히지 않습니다.',
+        },
+        {
+          id: 'round-shoulder-reset',
+          symptom: '라운드숄더',
+          title: '라운드숄더 리셋 5분',
+          purpose: '굽은 어깨와 가슴 앞 긴장을 풀어 답안 작성 시 어깨 말림을 줄입니다.',
+          good: '가슴을 과하게 내밀지 않고, 쇄골이 넓어지는 느낌으로 어깨를 뒤아래로 둡니다.',
+          bad: '허리를 꺾어 억지로 가슴만 여는 자세는 피합니다.',
+          cues: ['겨드랑이 아래가 길어진다', '흉골을 살짝 들어올린다', '팔보다 견갑골이 먼저 움직인다'],
+          duration: '5분 · 2세트',
+          goodFor: '오래 앉아 어깨가 말렸을 때, 계산형 훈련 전',
+          avoid: '어깨 앞쪽 통증이 심하면 범위를 줄입니다.',
+        },
+        {
+          id: 'pelvis-balance',
+          symptom: '골반전방경사',
+          title: '골반전방경사 보정 6분',
+          purpose: '허리 과신전과 고관절 앞쪽 당김을 줄여 오래 앉아도 허리가 덜 무너지게 합니다.',
+          good: '갈비뼈와 골반을 평행에 가깝게 맞추고 둔근을 가볍게 씁니다.',
+          bad: '허리를 강하게 편 채 브릿지만 반복하면 오히려 전방경사가 심해질 수 있습니다.',
+          cues: ['아랫배를 살짝 끌어당기기', '엉덩이로 밀어 올리기', '허리 대신 둔근에 힘 싣기'],
+          duration: '6분 · 2세트',
+          goodFor: '아침 운동 전 워밍업, 저녁 공부 전 허리 부담이 클 때',
+          avoid: '허리 통증이 날카롭게 올라오면 가동 범위를 줄이고 휴식합니다.',
+        },
+        {
+          id: 'fatigue-breath-reset',
+          symptom: '승모근-두통-피로',
+          title: '저녁 두통 · 만성피로 완화 4분',
+          purpose: '승모근 과활성과 얕은 호흡을 줄여 저녁 2차 수행 전 복귀력을 높입니다.',
+          good: '의자에 기대지 않고 갈비뼈를 아래로 내리며 천천히 내쉽니다.',
+          bad: '어깨를 들썩이며 들숨만 크게 하거나 목에 힘을 주는 방식은 피합니다.',
+          cues: ['날숨을 길게 6초 이상', '혀와 턱에 힘 풀기', '어깨보다 갈비뼈가 움직이기'],
+          duration: '4분 · 8~10호흡',
+          goodFor: '퇴근 직후, 두통이 살짝 시작될 때, 저녁 공부 전',
+          avoid: '호흡으로 어지럽다면 횟수를 줄이고 정상 호흡으로 돌아갑니다.',
+        },
+        {
+          id: 'shallow-breath-reset',
+          symptom: '얕은 호흡',
+          title: '얕은 호흡 재정렬 4분',
+          purpose: '어깨와 목으로만 숨 쉬는 패턴을 줄여 손글씨 답안 전 호흡과 자세를 안정시킵니다.',
+          good: '갈비뼈 옆면이 넓어지고 날숨이 더 길어지도록 천천히 호흡합니다.',
+          bad: '가슴만 들썩이거나 들숨만 과하게 크게 만드는 방식은 피합니다.',
+          cues: ['날숨을 들숨보다 길게', '목 대신 옆구리가 움직인다', '어깨가 들리지 않는다'],
+          duration: '4분 · 10호흡',
+          goodFor: '가슴이 답답하고 숨이 얕아질 때, 2차 수행 시작 전',
+          avoid: '과호흡처럼 어지러우면 횟수를 줄이고 정상 호흡으로 돌아갑니다.',
+        },
+      ];
+      const BREATH_MENTAL_CONTENT = [
+        {
+          id: 'breath-shallow',
+          symptom: '얕은 호흡',
+          title: '얕은 호흡 재정렬 2분',
+          when: '2차 수행 시작 전, 말이 빨라지고 숨이 차는 느낌이 들 때',
+          minutes: '2분',
+          steps: ['한 손은 가슴, 한 손은 옆구리에 둡니다.', '4초 들이마시되 어깨를 들지 않습니다.', '6초 천천히 내쉬며 갈비뼈가 내려오는 느낌을 봅니다.', '10회 반복 후 바로 문제 풀이를 시작합니다.'],
+          pitfall: '들숨을 억지로 크게 만들기보다 긴 날숨과 옆구리 확장을 먼저 회복합니다.',
+          nextAction: '2차 손글씨 과제 15분 바로 시작',
+        },
+        {
+          id: 'breath-trap-headache',
+          symptom: '승모근-두통-피로',
+          title: '승모근 통증 · 두통 완화 3분',
+          when: '승모근이 타들어가듯 뻐근하고 머리가 무거울 때',
+          minutes: '3분',
+          steps: ['턱을 살짝 당기고 어깨를 툭 내립니다.', '4초 들숨, 7초 날숨으로 8회 반복합니다.', '날숨 때 손바닥으로 허벅지를 눌러 목 힘을 분산합니다.'],
+          pitfall: '목을 뒤로 젖히거나 승모근을 더 조이는 방식은 피합니다.',
+          nextAction: '저녁 계산기 훈련 전 5분 휴식',
+        },
+        {
+          id: 'breath-fatigue',
+          symptom: '만성피로',
+          title: '피로 누적일용 착수 호흡 2분',
+          when: '졸리지만 바로 눕고 싶지는 않은 퇴근 직후',
+          minutes: '2분',
+          steps: ['코로 짧게 들이마시고 입으로 길게 6초 내쉽니다.', '3회 후 정상 호흡으로 20초 유지합니다.', '다시 5회 반복하고 오늘 최소 과제 1개만 선택합니다.'],
+          pitfall: '과하게 각성하려고 숨을 세게 들이마시지 않습니다.',
+          nextAction: '오늘의 최소 2차 과제 1개 실행',
+        },
+        {
+          id: 'breath-posture',
+          symptom: '거북목-라운드숄더',
+          title: '자세 정렬 호흡 2분',
+          when: '새벽 공부 시작 전, 자세가 무너져 글씨가 흐트러질 때',
+          minutes: '2분',
+          steps: ['턱을 살짝 당기고 가슴을 과하게 내밀지 않습니다.', '갈비뼈를 아래로 모으며 4초 들숨 6초 날숨을 반복합니다.', '3회마다 어깨 긴장이 내려갔는지 체크합니다.'],
+          pitfall: '허리를 꺾어 정렬을 만들지 않습니다.',
+          nextAction: '답안 구조 훈련 카드 1개 확인',
+        },
+      ];
+      const STRATEGY_LIBRARY = [
+        {
+          id: 'final-defense',
+          title: '파이널 방어형',
+          fit: '100일 이내 남았고 신규 내용보다 실수 통제가 더 중요한 사람',
+          works: '손글씨와 계산기 훈련을 끊기지 않게 유지하면서 반복 실수를 줄일 때 효과가 납니다.',
+          warning: '새 내용을 너무 많이 넣고 싶어져 루틴이 흔들리면 오히려 점수가 무너집니다.',
+          weekly: '주 5회 손글씨 15분, 주 4회 계산기 15분, 주 2회 제한시간 모사',
+          checklist: ['답안 구조를 먼저 적는가', '계산기 입력 전에 식을 적는가', '저녁 최소 루틴이 끊기지 않는가'],
+        },
+        {
+          id: 'blocks-20',
+          title: '20분 블록 누적형',
+          fit: '회사 중 자투리 시간이 있지만 긴 세션 확보가 어려운 사람',
+          works: '점심과 퇴근 후 짧은 세션을 연결해 2차 감각을 살릴 때 강합니다.',
+          warning: '짧은 세션이라도 기록을 남기지 않으면 했다는 착각만 쌓입니다.',
+          weekly: '점심 20분 암기/복기 4회 + 저녁 20분 손글씨 4회',
+          checklist: ['점심 블록을 확보했는가', '짧게라도 손으로 끝까지 써봤는가', '실수 기록이 남아 있는가'],
+        },
+        {
+          id: 'calculator-discipline',
+          title: '계산 실수 통제형',
+          fit: '식은 아는데 계산기 입력과 검산에서 점수를 놓치는 사람',
+          works: '공식-대입-중간값-단위-최종답 순서를 고정하면 부분점수 확보에 유리합니다.',
+          warning: '문제를 많이 푸는 것만으로는 계산 실수가 줄지 않습니다.',
+          weekly: '주 4회 15분 계산기 훈련 + 실수 유형 1개씩 기록',
+          checklist: ['계산기 전에 식을 적는가', '단위를 마지막에 다시 확인하는가', '반올림 기준을 명시하는가'],
+        },
+        {
+          id: 'recovery-routine',
+          title: '무너진 날 복귀형',
+          fit: '새벽이나 저녁 루틴이 자주 끊기는 사람',
+          works: '완벽한 날보다 복귀 속도를 빠르게 만드는 데 초점을 둡니다.',
+          warning: '복귀용 최소 과제 없이 의지만 믿으면 공백이 길어집니다.',
+          weekly: '실패한 날은 10분 암기 + 10분 손글씨 최소 루틴으로 마감',
+          checklist: ['대체 루틴이 있는가', '오늘 총평을 남겼는가', '다음날 바로 착수 지점이 정리됐는가'],
+        },
+      ];
+      const TELEGRAM_API_SPEC = {
+        sendPath: '/api/telegram/send',
+        checkinPath: '/api/telegram/checkin',
       };
 
       let currentQuestions = [];
@@ -3229,6 +3329,734 @@
       }
       function lastN(arr, n) {
         return arr.slice(Math.max(0, arr.length - n));
+      }
+      function pad2(n) {
+        return String(n).padStart(2, '0');
+      }
+      function toDateKey(input = new Date()) {
+        const d = input instanceof Date ? input : new Date(input);
+        return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+      }
+      function parseDateKey(value) {
+        if (!value) return new Date();
+        const [y, m, d] = value.split('-').map(Number);
+        return new Date(y, (m || 1) - 1, d || 1);
+      }
+      function formatDateLabel(value) {
+        return parseDateKey(value).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' });
+      }
+      function getSecondExamDateValue() {
+        const saved = localStorage.getItem(STORAGE.SECOND_STAGE_EXAM_DATE) || localStorage.getItem('strategy_examDate');
+        if (saved) return saved;
+        const d = new Date();
+        d.setDate(d.getDate() + 100);
+        return toDateKey(d);
+      }
+      function getDaysLeftInfo(dateVal = getSecondExamDateValue()) {
+        const [y, m, d] = String(dateVal).split('-').map(Number);
+        const examDate = new Date(y, (m || 1) - 1, d || 1);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const daysLeft = Math.max(0, Math.ceil((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+        const phase =
+          daysLeft > 75 ? '기초 정착' : daysLeft > 45 ? '실전 전환' : daysLeft > 21 ? '실수 보정' : '파이널 모사';
+        return { examDate, daysLeft, weeks: Math.max(1, Math.ceil(daysLeft / 7)), phase };
+      }
+      function getRoutineRecords() {
+        try {
+          const arr = JSON.parse(localStorage.getItem(STORAGE.ROUTINE_RECORDS) || '[]');
+          return Array.isArray(arr) ? arr : [];
+        } catch (_) {
+          return [];
+        }
+      }
+      function saveRoutineRecords(arr) {
+        localStorage.setItem(STORAGE.ROUTINE_RECORDS, JSON.stringify((arr || []).slice(-400)));
+      }
+      function createDefaultRoutineRecord(dateKey = toDateKey()) {
+        return {
+          date: dateKey,
+          morning: '미실행',
+          workout: '미실행',
+          lunch: '미실행',
+          evening: '미실행',
+          second: '미실행',
+          sleep: '미실행',
+          symptom: '없음',
+          summary: '보통',
+          note: '',
+          updatedAt: nowISO(),
+        };
+      }
+      function getRoutineRecord(dateKey = toDateKey()) {
+        const item = getRoutineRecords().find((x) => x.date === dateKey);
+        return item ? { ...createDefaultRoutineRecord(dateKey), ...item } : createDefaultRoutineRecord(dateKey);
+      }
+      function upsertRoutineRecord(next) {
+        const records = getRoutineRecords();
+        const idx = records.findIndex((x) => x.date === next.date);
+        const merged = { ...createDefaultRoutineRecord(next.date), ...next, updatedAt: nowISO() };
+        if (idx >= 0) records[idx] = merged;
+        else records.push(merged);
+        records.sort((a, b) => a.date.localeCompare(b.date));
+        saveRoutineRecords(records);
+        return merged;
+      }
+      function getLatestSymptomFocus() {
+        const recent = getRoutineRecords().slice().reverse().find((x) => x.symptom && x.symptom !== '없음');
+        return recent?.symptom || '얕은 호흡';
+      }
+      function getStatusPct(status) {
+        return ROUTINE_STATUS_SCORE[status] ?? 0;
+      }
+      function pctText(value) {
+        return `${Math.round(value * 100)}%`;
+      }
+      function getRecentRoutineStats(days = 7) {
+        const today = new Date();
+        const keys = Array.from({ length: days }, (_, idx) => {
+          const d = new Date(today);
+          d.setDate(d.getDate() - idx);
+          return toDateKey(d);
+        }).reverse();
+        const items = keys.map((k) => getRoutineRecord(k));
+        const fields = ['morning', 'workout', 'lunch', 'evening', 'second', 'sleep'];
+        const summary = {};
+        fields.forEach((field) => {
+          summary[field] = avg(items.map((item) => getStatusPct(item[field])));
+        });
+        return { keys, items, summary };
+      }
+      function getTelegramBridgeConfig() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE.TELEGRAM_BRIDGE) || '{}') || {};
+        } catch (_) {
+          return {};
+        }
+      }
+      function saveTelegramBridgeConfig(config) {
+        localStorage.setItem(STORAGE.TELEGRAM_BRIDGE, JSON.stringify({ ...(config || {}), updatedAt: nowISO() }));
+      }
+      function buildDeepLink(route) {
+        const base = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+        return `${base}${route.startsWith('#') ? route : `#${route}`}`;
+      }
+      function buildTelegramMessagePreview(kind, context = {}) {
+        const closing =
+          context.closing || ['오늘 한 번의 실행이 합격선을 만든다.', '완벽보다 실행, 실행이 점수를 만든다.', '손이 기억해야 시험장에서 나온다.'][
+            Math.abs((context.seed || nowISO()).split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 3
+          ];
+        if (kind === 'checkin') {
+          return `오늘 루틴 체크입니다. 아래 항목을 기록하세요. ${closing}\n${buildDeepLink('#routine/checkin/today')}`;
+        }
+        return `${context.message || '오늘 2차는 손으로 합니다. 볼펜과 계산기를 꺼내고 시작하세요.'} ${closing}\n${buildDeepLink(
+          context.route || '#second/perform'
+        )}`;
+      }
+      async function sendTelegramBridge(payload) {
+        const config = getTelegramBridgeConfig();
+        if (!config.endpoint) throw new Error('텔레그램 중계 엔드포인트가 설정되지 않았습니다.');
+        const res = await fetch(config.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(`텔레그램 중계 실패: HTTP ${res.status}`);
+        return res.json().catch(() => ({}));
+      }
+      function getTodayExecutionPlan() {
+        const days = getDaysLeftInfo();
+        const symptom = getLatestSymptomFocus();
+        const symptomAction =
+          BODY_CARE_CONTENT.find((x) => x.symptom === symptom) || BODY_CARE_CONTENT.find((x) => x.symptom === '승모근-두통-피로');
+        const handSet = SECOND_STAGE_CONTENT.answer[days.daysLeft % SECOND_STAGE_CONTENT.answer.length];
+        const calcSet = SECOND_STAGE_CONTENT.calc[days.daysLeft % SECOND_STAGE_CONTENT.calc.length];
+        return {
+          handwriting: {
+            title: handSet.title,
+            detail: `${handSet.prompt} · 손글씨 15분`,
+            route: `#second/perform/${handSet.id}`,
+          },
+          calc: {
+            title: calcSet.title,
+            detail: `${calcSet.prompt} · 계산기 15분`,
+            route: `#second/calcGuide/${calcSet.id}`,
+          },
+          condition: {
+            title: symptomAction.title,
+            detail: `${symptom} 대응 · ${symptomAction.duration}`,
+            route: `#hub/body/${symptomAction.id}`,
+          },
+        };
+      }
+      function getTimeBlockActions() {
+        return [
+          { label: '새벽', text: '답안 구조 1세트 또는 손글씨 답안 15분', route: '#second/perform' },
+          { label: '회사 중', text: '2차 키워드 암기 20분', route: '#hub/strategy' },
+          { label: '퇴근 후', text: '계산기 훈련 + 체크리스트', route: '#second/checklist' },
+        ];
+      }
+      function buildRoutineSuggestions(records = getRoutineRecords()) {
+        const recent = records.slice(-7);
+        const suggestions = [];
+        const countLow = (key) => recent.filter((x) => getStatusPct(x[key]) < 0.5).length;
+        const symptomCount = (name) => recent.filter((x) => x.symptom === name).length;
+        if (countLow('evening') >= 4) suggestions.push('저녁 블록이 자주 무너집니다. 오늘부터 저녁 루틴을 90분이 아니라 30분 기본형으로 고정하세요.');
+        if (countLow('second') >= 3) suggestions.push('2차 수행 기록이 비어 있습니다. 저녁 최소 과제를 손글씨 15분으로 강제하세요.');
+        if (countLow('sleep') >= 3) suggestions.push('수면 목표 이탈이 잦습니다. 기상 알림보다 취침 경고를 먼저 강화하세요.');
+        if (symptomCount('승모근통증·두통·피로') >= 2 || symptomCount('승모근-두통-피로') >= 2)
+          suggestions.push('승모근 통증·두통이 반복됩니다. 저녁 세션 전 4분 호흡-자세 리셋을 기본 단계로 넣으세요.');
+        if (symptomCount('얕은 호흡') >= 2) suggestions.push('얕은 호흡이 반복됩니다. 2차 수행 전 2분 호흡 재정렬 루틴을 고정 단계로 넣으세요.');
+        if (symptomCount('골반전방경사') >= 2) suggestions.push('골반전방경사 관련 불편이 반복됩니다. 아침 헬스 전 둔근 활성 루틴 비중을 높이세요.');
+        return suggestions.length ? suggestions : ['최근 흐름은 유지되고 있습니다. 저녁 최소 루틴을 끊기지 않게 유지하세요.'];
+      }
+      function getSecondProgressSummary() {
+        const data = getSecondStageProgress();
+        const recent = data.slice(-6).reverse();
+        const counts = data.reduce((acc, item) => {
+          acc[item.mode] = (acc[item.mode] || 0) + 1;
+          return acc;
+        }, {});
+        return { data, recent, counts };
+      }
+      function recordSecondExecution(mode, detail, score = 80) {
+        recordSecondStageProgress(mode, score, detail);
+        showToast('2차 수행 기록 저장');
+      }
+      function renderStatusOptions(value) {
+        return ROUTINE_STATUS_OPTIONS.map((opt) => `<option value="${opt}" ${opt === value ? 'selected' : ''}>${opt}</option>`).join('');
+      }
+      function renderMainExecutionDashboard() {
+        const box = document.getElementById('mainExecutionBody');
+        if (!box) return;
+        const plan = getTodayExecutionPlan();
+        const blocks = getTimeBlockActions();
+        const days = getDaysLeftInfo();
+        const symptom = getLatestSymptomFocus();
+        box.innerHTML = `
+          <div class="badge-row" style="margin-bottom:10px;">
+            <span class="chip danger">D-${days.daysLeft}</span>
+            <span class="chip">${days.phase}</span>
+            <span class="chip">오늘 증상 ${escapeHtml(symptom)}</span>
+          </div>
+          <div class="subject-row" style="margin-bottom:10px;"><span>오늘의 증상 포커스</span><span>${escapeHtml(symptom)} · 2차 수행 전 컨디션 루틴 우선 적용</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+            ${[
+              ['2차 손글씨 과제', plan.handwriting, 'primary'],
+              ['2차 계산기 과제', plan.calc, 'outline'],
+              ['컨디션 루틴', plan.condition, 'outline'],
+            ]
+              .map(
+                ([label, item, btnClass]) => `
+              <div class="settings-item">
+                <div class="settings-title">${label}</div>
+                <div style="font-weight:800;color:var(--primary);margin-bottom:6px;">${escapeHtml(item.title)}</div>
+                <div class="hint" style="line-height:1.6;">${escapeHtml(item.detail)}</div>
+                <button class="btn ${btnClass}" style="margin-top:10px;" onclick="openHashRoute('${item.route.slice(1)}')">바로 보기</button>
+              </div>`
+              )
+              .join('')}
+          </div>
+          <div style="margin-top:12px;">
+            <div class="settings-title" style="margin-bottom:8px;">시간대별 추천</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+              ${blocks
+                .map(
+                  (item) => `
+                <div class="panel" style="padding:10px;">
+                  <div style="font-weight:800;color:var(--primary);">${item.label}</div>
+                  <div class="hint" style="margin-top:4px;line-height:1.6;">${escapeHtml(item.text)}</div>
+                  <button class="btn sm outline" style="margin-top:8px;" onclick="openHashRoute('${item.route.slice(1)}')">이동</button>
+                </div>`
+                )
+                .join('')}
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="settings-title" style="margin-bottom:8px;">지금 가능한 세션</div>
+            <div class="badge-row">
+              ${[10, 20, 30, 60, 90]
+                .map(
+                  (mins) =>
+                    `<button class="btn sm outline" onclick="openHashRoute('${
+                      mins <= 10
+                        ? 'hub/body/shallow-breath-reset'
+                        : mins <= 20
+                          ? 'hub/strategy'
+                          : mins <= 30
+                            ? 'second/perform'
+                            : mins <= 60
+                              ? 'second/answerGuide'
+                              : 'second/calcGuide'
+                    }')">${mins}분</button>`
+                )
+                .join('')}
+            </div>
+          </div>`;
+      }
+      function renderMainRoutineSummary() {
+        const box = document.getElementById('mainRoutineSummary');
+        if (!box) return;
+        const { summary } = getRecentRoutineStats(7);
+        box.innerHTML = `
+          <div class="badge-row" style="margin-bottom:10px;">
+            <span class="chip">새벽 ${pctText(summary.morning || 0)}</span>
+            <span class="chip">운동 ${pctText(summary.workout || 0)}</span>
+            <span class="chip">점심 ${pctText(summary.lunch || 0)}</span>
+            <span class="chip">저녁 ${pctText(summary.evening || 0)}</span>
+            <span class="chip ${summary.second >= 0.6 ? 'ok' : summary.second >= 0.3 ? 'warn' : 'danger'}">2차 ${pctText(summary.second || 0)}</span>
+          </div>
+          ${buildRoutineSuggestions()
+            .slice(0, 2)
+            .map((item) => `<div class="subject-row"><span>보완 포인트</span><span>${escapeHtml(item)}</span></div>`)
+            .join('')}
+          <div style="margin-top:10px;"><button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더 열기</button></div>`;
+      }
+      function renderMainStrategySummary() {
+        const box = document.getElementById('mainStrategySummary');
+        if (!box) return;
+        const progress = getSecondProgressSummary();
+        const latest = progress.recent[0];
+        const symptom = getLatestSymptomFocus();
+        box.innerHTML = `
+          <div class="badge-row" style="margin-bottom:10px;">
+            <span class="chip">누적 ${progress.data.length}회</span>
+            <span class="chip">최근 모드 ${escapeHtml(SECOND_STAGE_MODES[latest?.mode]?.label || '기록 대기')}</span>
+            <span class="chip">현재 증상 ${escapeHtml(symptom)}</span>
+          </div>
+          ${
+            latest
+              ? `<div class="subject-row"><span>최근 기록</span><span>${escapeHtml(latest.detail || '수행 기록 저장됨')}</span></div>`
+              : '<div class="hint">아직 2차 수행 기록이 없습니다. 오늘의 수행 안내부터 시작하세요.</div>'
+          }
+          <div style="margin-top:10px;"><button class="btn outline" onclick="showStrategyScreen()">2차 전략 리포트</button></div>`;
+      }
+      function renderConditionHubCard(card) {
+        return `
+          <div class="panel" style="padding:12px;">
+            <div class="badge-row" style="margin-bottom:8px;">
+              <span class="chip">${escapeHtml(card.symptom || '루틴')}</span>
+              <span class="chip">${escapeHtml(card.duration || card.minutes || '')}</span>
+            </div>
+            <div style="font-weight:800;color:var(--primary);margin-bottom:6px;">${escapeHtml(card.title)}</div>
+            ${
+              card.purpose
+                ? `<div class="hint" style="line-height:1.7;">${escapeHtml(card.purpose)}</div>`
+                : `<div class="hint" style="line-height:1.7;">${escapeHtml(card.when)}</div>`
+            }
+          </div>`;
+      }
+      function showConditionHub(tab = 'body', itemId = '') {
+        showScreen('conditionHubScreen');
+        renderConditionHub(tab, itemId);
+        setHashRoute(`#hub/${tab}${itemId ? `/${itemId}` : ''}`);
+      }
+      function renderConditionHub(tab = 'body', itemId = '') {
+        const tabs = [
+          ['body', '몸관리'],
+          ['breath', '호흡·멘탈'],
+          ['strategy', '학습전략 라이브러리'],
+        ];
+        const tabBox = document.getElementById('conditionHubTabs');
+        const body = document.getElementById('conditionHubBody');
+        if (!tabBox || !body) return;
+        tabBox.innerHTML = tabs
+          .map(
+            ([key, label]) =>
+              `<button class="btn ${key === tab ? 'primary' : 'outline'}" onclick="showConditionHub('${key}')">${label}</button>`
+          )
+          .join('');
+        if (tab === 'body') {
+          const focus = itemId ? BODY_CARE_CONTENT.find((x) => x.id === itemId) : BODY_CARE_CONTENT.find((x) => x.symptom === getLatestSymptomFocus()) || BODY_CARE_CONTENT[0];
+          body.innerHTML = `
+            <div class="panel" style="margin-bottom:10px;">
+              <div class="settings-title" style="margin-bottom:8px;">오늘 가장 불편한 증상</div>
+              <div class="badge-row">
+                ${['거북목', '라운드숄더', '골반전방경사', '승모근-두통-피로', '얕은 호흡']
+                  .map((symptom) => {
+                    const target = BODY_CARE_CONTENT.find((x) => x.symptom === symptom) || BODY_CARE_CONTENT[0];
+                    return `<button class="btn sm ${focus.symptom === symptom ? 'primary' : 'outline'}" onclick="showConditionHub('body', '${target.id}')">${symptom}</button>`;
+                  })
+                  .join('')}
+              </div>
+            </div>
+            <div class="panel" style="margin-bottom:10px;">
+              <div class="badge-row" style="margin-bottom:8px;"><span class="chip">${escapeHtml(focus.symptom)}</span><span class="chip">${escapeHtml(focus.duration)}</span></div>
+              <h3 style="margin:0 0 8px 0;color:var(--primary);">${escapeHtml(focus.title)}</h3>
+              <div class="hint" style="line-height:1.7;">${escapeHtml(focus.purpose)}</div>
+              <div class="subject-row"><span>올바른 자세</span><span>${escapeHtml(focus.good)}</span></div>
+              <div class="subject-row"><span>잘못된 자세</span><span>${escapeHtml(focus.bad)}</span></div>
+              <div class="subject-row"><span>핵심 큐</span><span>${focus.cues.map(escapeHtml).join(' · ')}</span></div>
+              <div class="subject-row"><span>하면 좋은 상황</span><span>${escapeHtml(focus.goodFor)}</span></div>
+              <div class="subject-row"><span>피해야 할 상황</span><span>${escapeHtml(focus.avoid)}</span></div>
+              <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="btn primary" onclick="showToast('오늘 컨디션 루틴으로 선택했습니다.', 1500)">오늘 루틴으로 선택</button>
+                <button class="btn outline" onclick="showRoutineCalendar()">기록 검토</button>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">${BODY_CARE_CONTENT.map(renderConditionHubCard).join('')}</div>`;
+          return;
+        }
+        if (tab === 'breath') {
+          body.innerHTML = BREATH_MENTAL_CONTENT.map(
+            (item) => `
+            <div class="panel" style="margin-bottom:10px;">
+              <div class="badge-row" style="margin-bottom:8px;"><span class="chip">${escapeHtml(item.symptom)}</span><span class="chip">${escapeHtml(item.minutes)}</span></div>
+              <h3 style="margin:0 0 8px 0;color:var(--primary);">${escapeHtml(item.title)}</h3>
+              <div class="hint" style="line-height:1.7;">${escapeHtml(item.when)}</div>
+              <ol style="margin:10px 0 0 18px;line-height:1.8;">${item.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
+              <div class="subject-row"><span>실수하기 쉬운 점</span><span>${escapeHtml(item.pitfall)}</span></div>
+              <div class="subject-row"><span>바로 이어질 행동</span><span>${escapeHtml(item.nextAction)}</span></div>
+            </div>`
+          ).join('');
+          return;
+        }
+        body.innerHTML = STRATEGY_LIBRARY.map(
+          (item) => `
+          <div class="panel" style="margin-bottom:10px;">
+            <div class="badge-row" style="margin-bottom:8px;"><span class="chip">${escapeHtml(item.title)}</span></div>
+            <div class="subject-row"><span>어떤 사람</span><span>${escapeHtml(item.fit)}</span></div>
+            <div class="subject-row"><span>효과 조건</span><span>${escapeHtml(item.works)}</span></div>
+            <div class="subject-row"><span>안 맞는 신호</span><span>${escapeHtml(item.warning)}</span></div>
+            <div class="subject-row"><span>1주 적용법</span><span>${escapeHtml(item.weekly)}</span></div>
+            <div class="subject-row"><span>체크리스트</span><span>${item.checklist.map(escapeHtml).join(' · ')}</span></div>
+            <div style="margin-top:10px;"><button class="btn outline" onclick="setHashRoute('#strategy/${item.id}'); showStrategyScreen()">리포트에서 보기</button></div>
+          </div>`
+        ).join('');
+      }
+      let routineCalendarState = { month: '', selectedDate: '' };
+      function showRoutineCalendar(dateKey = toDateKey()) {
+        const key = dateKey === 'today' ? toDateKey() : dateKey;
+        routineCalendarState = { month: key.slice(0, 7), selectedDate: key };
+        showScreen('routineCalendarScreen');
+        renderRoutineCalendar();
+        setHashRoute(`#routine/calendar/${routineCalendarState.month}`);
+      }
+      function shiftRoutineMonth(offset) {
+        const base = parseDateKey(`${routineCalendarState.month}-01`);
+        base.setMonth(base.getMonth() + offset);
+        routineCalendarState.month = `${base.getFullYear()}-${pad2(base.getMonth() + 1)}`;
+        if (!routineCalendarState.selectedDate.startsWith(routineCalendarState.month)) routineCalendarState.selectedDate = `${routineCalendarState.month}-01`;
+        renderRoutineCalendar();
+        setHashRoute(`#routine/calendar/${routineCalendarState.month}`);
+      }
+      function selectRoutineDate(dateKey) {
+        routineCalendarState.selectedDate = dateKey;
+        renderRoutineCalendar();
+      }
+      function saveRoutineForm() {
+        const date = routineCalendarState.selectedDate || toDateKey();
+        upsertRoutineRecord({
+          date,
+          morning: document.getElementById('routineMorningSelect')?.value || '미실행',
+          workout: document.getElementById('routineWorkoutSelect')?.value || '미실행',
+          lunch: document.getElementById('routineLunchSelect')?.value || '미실행',
+          evening: document.getElementById('routineEveningSelect')?.value || '미실행',
+          second: document.getElementById('routineSecondSelect')?.value || '미실행',
+          sleep: document.getElementById('routineSleepSelect')?.value || '미실행',
+          symptom: document.getElementById('routineSymptomSelect')?.value || '없음',
+          summary: document.getElementById('routineSummarySelect')?.value || '보통',
+          note: document.getElementById('routineMemoInput')?.value || '',
+        });
+        renderRoutineCalendar();
+        renderMainRoutineSummary();
+        showToast('루틴 기록 저장');
+      }
+      function renderRoutineCalendar() {
+        const month = routineCalendarState.month || toDateKey().slice(0, 7);
+        const selectedDate = routineCalendarState.selectedDate || toDateKey();
+        const [y, m] = month.split('-').map(Number);
+        const first = new Date(y, m - 1, 1);
+        const startDay = first.getDay();
+        const daysInMonth = new Date(y, m, 0).getDate();
+        const records = getRoutineRecords();
+        const monthBody = document.getElementById('routineCalendarBody');
+        const side = document.getElementById('routineCalendarSide');
+        const title = document.getElementById('routineCalendarTitle');
+        if (!monthBody || !side || !title) return;
+        title.textContent = `${y}년 ${m}월 루틴 캘린더`;
+        const cells = [];
+        for (let i = 0; i < startDay; i++) cells.push('<div></div>');
+        for (let day = 1; day <= daysInMonth; day++) {
+          const key = `${month}-${pad2(day)}`;
+          const item = getRoutineRecord(key);
+          const donePct = avg([item.morning, item.workout, item.lunch, item.evening, item.second, item.sleep].map(getStatusPct));
+          const bg =
+            donePct >= 0.8 ? 'var(--ok)' : donePct >= 0.45 ? 'var(--warn)' : donePct > 0 ? 'var(--danger)' : 'var(--panel)';
+          cells.push(`
+            <button class="btn outline sm" style="min-height:88px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;background:${bg};color:${donePct > 0 ? '#fff' : 'var(--text)'};"
+              onclick="selectRoutineDate('${key}')">
+              <span style="font-weight:800;">${day}</span>
+              <span style="font-size:.72rem;margin-top:4px;">2차 ${pctText(getStatusPct(item.second))}</span>
+              <span style="font-size:.7rem;margin-top:2px;">${escapeHtml(item.symptom || '없음')}</span>
+            </button>`);
+        }
+        monthBody.innerHTML = `<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;">${cells.join('')}</div>`;
+        const item = getRoutineRecord(selectedDate);
+        side.innerHTML = `
+          <div class="panel" style="padding:12px;">
+            <div style="font-weight:800;color:var(--primary);margin-bottom:8px;">${escapeHtml(formatDateLabel(selectedDate))}</div>
+            <div class="settings-grid">
+              <div class="settings-item"><div class="settings-title">새벽 2차 블록</div><select id="routineMorningSelect" class="select">${renderStatusOptions(item.morning)}</select></div>
+              <div class="settings-item"><div class="settings-title">아침 운동</div><select id="routineWorkoutSelect" class="select">${renderStatusOptions(item.workout)}</select></div>
+              <div class="settings-item"><div class="settings-title">점심 블록</div><select id="routineLunchSelect" class="select">${renderStatusOptions(item.lunch)}</select></div>
+              <div class="settings-item"><div class="settings-title">저녁 복귀</div><select id="routineEveningSelect" class="select">${renderStatusOptions(item.evening)}</select></div>
+              <div class="settings-item"><div class="settings-title">2차 수행</div><select id="routineSecondSelect" class="select">${renderStatusOptions(item.second)}</select></div>
+              <div class="settings-item"><div class="settings-title">수면 목표</div><select id="routineSleepSelect" class="select">${renderStatusOptions(item.sleep)}</select></div>
+            </div>
+            <div style="margin-top:10px;" class="settings-item">
+              <div class="settings-title">주요 증상</div>
+              <select id="routineSymptomSelect" class="select">
+                ${['없음', '거북목', '라운드숄더', '골반전방경사', '승모근통증·두통·피로', '얕은 호흡']
+                  .map((opt) => `<option value="${opt}" ${opt === item.symptom ? 'selected' : ''}>${opt}</option>`)
+                  .join('')}
+              </select>
+            </div>
+            <div style="margin-top:10px;" class="settings-item">
+              <div class="settings-title">오늘 총평</div>
+              <select id="routineSummarySelect" class="select">
+                ${['좋음', '보통', '무너짐'].map((opt) => `<option value="${opt}" ${opt === item.summary ? 'selected' : ''}>${opt}</option>`).join('')}
+              </select>
+            </div>
+            <div style="margin-top:10px;" class="settings-item">
+              <div class="settings-title">간단 메모</div>
+              <textarea id="routineMemoInput" class="textarea" placeholder="무너진 이유나 내일 수정할 점">${escapeHtml(item.note || '')}</textarea>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+              <button class="btn primary" onclick="saveRoutineForm()">저장</button>
+              <button class="btn outline" onclick="showToast(buildTelegramMessagePreview('checkin'), 2600)">텔레그램 체크인 미리보기</button>
+            </div>
+          </div>
+          <div class="panel" style="padding:12px;margin-top:10px;">
+            <div style="font-weight:800;color:var(--primary);margin-bottom:8px;">최근 보완 제안</div>
+            ${buildRoutineSuggestions(records).map((item) => `<div class="subject-row"><span>제안</span><span>${escapeHtml(item)}</span></div>`).join('')}
+          </div>`;
+      }
+      function renderSecondPerformGuide(itemId = '') {
+        const body = document.getElementById('secondPracticeBody');
+        if (!body) return;
+        const plan = getTodayExecutionPlan();
+        const answerItem = SECOND_STAGE_CONTENT.answer.find((x) => x.id === itemId) || SECOND_STAGE_CONTENT.answer[0];
+        const calcItem = SECOND_STAGE_CONTENT.calc.find((x) => x.id === itemId) || SECOND_STAGE_CONTENT.calc[0];
+        const memoryItem = SECOND_STAGE_CONTENT.memory[0];
+        body.innerHTML = `
+          <div class="hint" style="line-height:1.8;margin-bottom:12px;">
+            웹에서 오래 작성하지 말고, 문제를 확인한 뒤 종이와 볼펜, 계산기로 실제 수행하세요. 수행 후에는 체크리스트와 루틴 캘린더로 복기합니다.
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <div class="settings-title">오늘 손으로 써야 할 문제</div>
+            <h3 style="margin:8px 0;color:var(--primary);">${escapeHtml(answerItem.title)}</h3>
+            <div style="line-height:1.8;font-weight:700;">${escapeHtml(answerItem.prompt)}</div>
+            <div class="badge-row" style="margin-top:10px;">
+              ${answerItem.keywords.map((word) => `<span class="chip">${escapeHtml(word)}</span>`).join('')}
+            </div>
+            <div class="subject-row"><span>준비물</span><span>볼펜, 빈 종이, 타이머 15분</span></div>
+            <div class="subject-row"><span>수행 전 포인트</span><span>결론 → 근거 → 절차/산정 순서로 목차를 먼저 잡습니다.</span></div>
+            <div class="subject-row"><span>자주 하는 실수</span><span>목차 없이 바로 쓰기, 키워드 누락, 결론 없는 장문</span></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="recordSecondExecution('perform', '손글씨 과제 확인')">오늘 과제 확인 기록</button>
+              <button class="btn outline" onclick="openSecondPractice('answerGuide', '${answerItem.id}')">답안작성 훈련 보기</button>
+            </div>
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <div class="settings-title">오늘 계산기로 풀어야 할 문제</div>
+            <h3 style="margin:8px 0;color:var(--primary);">${escapeHtml(calcItem.title)}</h3>
+            <div style="line-height:1.8;font-weight:700;">${escapeHtml(calcItem.prompt)}</div>
+            <div class="second-result-box" style="margin-top:10px;"><b>공식</b><br>${escapeHtml(calcItem.formula)}</div>
+            <div class="subject-row"><span>준비물</span><span>계산기, 볼펜, 종이, 타이머 15분</span></div>
+            <div class="subject-row"><span>수행 전 포인트</span><span>식 먼저 적기 → 대입 → 중간값 → 단위 → 최종답 순서를 지킵니다.</span></div>
+            <div class="subject-row"><span>자주 하는 실수</span><span>계산기만 먼저 누르기, 중간값 생략, 단위/반올림 누락</span></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="recordSecondExecution('perform', '계산기 과제 확인')">계산 과제 확인 기록</button>
+              <button class="btn outline" onclick="openSecondPractice('calcGuide', '${calcItem.id}')">계산 실수 훈련 보기</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="settings-title">점심 암기/복기 과제</div>
+            <h3 style="margin:8px 0;color:var(--primary);">${escapeHtml(memoryItem.title)}</h3>
+            <div style="line-height:1.8;">${escapeHtml(memoryItem.text)}</div>
+            <div class="subject-row"><span>실행 방식</span><span>답을 보기 전에 입으로 먼저 말하고, 종이에 한 번 써본 뒤 확인합니다.</span></div>
+            <div class="subject-row"><span>바로가기</span><span><a href="${buildDeepLink('#second/checklist')}" target="_blank" rel="noopener noreferrer">오프라인 수행 체크 열기</a></span></div>
+          </div>`;
+      }
+      function renderSecondAnswerGuide(itemId = '') {
+        const body = document.getElementById('secondPracticeBody');
+        if (!body) return;
+        const items = itemId ? SECOND_STAGE_CONTENT.answer.filter((x) => x.id === itemId) : SECOND_STAGE_CONTENT.answer;
+        body.innerHTML = items
+          .map(
+            (item) => `
+          <div class="panel" style="margin-bottom:10px;">
+            <div class="badge-row" style="margin-bottom:8px;"><span class="chip">${escapeHtml(item.area)}</span><span class="chip">${escapeHtml(item.id)}</span></div>
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">${escapeHtml(item.title)}</h3>
+            <div style="line-height:1.8;font-weight:700;">${escapeHtml(item.prompt)}</div>
+            <div class="subject-row"><span>답안 구조</span><span>결론 먼저 제시 → 핵심 근거 3~5개 → 절차/산정 마무리</span></div>
+            <div class="subject-row"><span>자주 하는 실수</span><span>목차 없이 바로 쓰기, 키워드 누락, 의미 없는 장문, 절차 순서 뒤바뀜</span></div>
+            <div class="subject-row"><span>합격권 포인트</span><span>${item.keywords.map(escapeHtml).join(' · ')}</span></div>
+            <div class="subject-row"><span>손글씨 후 체크</span><span>키워드 포함 여부, 번호형 정리, 결론 문장 존재, 시간 내 마무리</span></div>
+            <div class="second-result-box" style="margin-top:10px;"><b>모범 구조 예시</b><br>${escapeHtml(item.model)}</div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="recordSecondExecution('answerGuide', '${escapeHtml(item.title)} 확인')">가이드 확인 기록</button>
+              <button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더 열기</button>
+            </div>
+          </div>`
+          )
+          .join('');
+      }
+      function renderSecondCalcGuide(itemId = '') {
+        const body = document.getElementById('secondPracticeBody');
+        if (!body) return;
+        const items = itemId ? SECOND_STAGE_CONTENT.calc.filter((x) => x.id === itemId) : SECOND_STAGE_CONTENT.calc;
+        body.innerHTML = items
+          .map(
+            (item) => `
+          <div class="panel" style="margin-bottom:10px;">
+            <div class="badge-row" style="margin-bottom:8px;"><span class="chip">${escapeHtml(item.area)}</span><span class="chip">${escapeHtml(item.id)}</span></div>
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">${escapeHtml(item.title)}</h3>
+            <div style="line-height:1.8;font-weight:700;">${escapeHtml(item.prompt)}</div>
+            <div class="second-result-box" style="margin:10px 0;"><b>공식</b><br>${escapeHtml(item.formula)}</div>
+            <div class="subject-row"><span>검산 포인트</span><span>공식 적기 → 값 대입 → 중간값 쓰기 → 단위 확인 → 최종답 박스</span></div>
+            <div class="subject-row"><span>자주 하는 실수</span><span>계산기 선입력, 중간값 누락, 단위 미표기, 반올림 기준 누락</span></div>
+            <div class="subject-row"><span>체크 항목</span><span>${item.fields.map((field) => escapeHtml(field.label)).join(' · ')}</span></div>
+            <div style="margin-top:10px;"><b>해설</b><br>${escapeHtml(item.explanation)}</div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn primary" onclick="recordSecondExecution('calcGuide', '${escapeHtml(item.title)} 확인')">계산 가이드 확인 기록</button>
+              <button class="btn outline" onclick="openSecondPractice('checklist')">오프라인 수행 체크 열기</button>
+            </div>
+          </div>`
+          )
+          .join('');
+      }
+      function renderSecondChecklist() {
+        const body = document.getElementById('secondPracticeBody');
+        if (!body) return;
+        body.innerHTML = `
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">오프라인 수행 체크리스트</h3>
+            <div class="subject-row"><span>볼펜 사용</span><span>실제 시험처럼 손으로 끝까지 썼는가</span></div>
+            <div class="subject-row"><span>계산기 사용</span><span>머리로 풀지 않고 실제로 눌렀는가</span></div>
+            <div class="subject-row"><span>제한시간</span><span>타이머를 켜고 끝까지 마쳤는가</span></div>
+            <div class="subject-row"><span>답안 구조</span><span>목차 또는 번호형 구조를 먼저 잡았는가</span></div>
+            <div class="subject-row"><span>검산</span><span>단위와 반올림을 마지막에 다시 확인했는가</span></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+              <button class="btn primary" onclick="recordSecondExecution('checklist', '오프라인 수행 체크 완료', 90)">오늘 수행 완료 기록</button>
+              <button class="btn outline" onclick="showRoutineCalendar('today')">오늘 회고 기록하기</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div style="font-weight:800;color:var(--primary);margin-bottom:8px;">텔레그램 체크인 미리보기</div>
+            <div class="hint" style="line-height:1.8;white-space:pre-line;">${escapeHtml(buildTelegramMessagePreview('checkin'))}</div>
+          </div>`;
+      }
+      function renderSecondStrategyReport() {
+        const body = document.getElementById('strategyBody');
+        if (!body) return;
+        const days = getDaysLeftInfo(document.getElementById('examDateInput')?.value || getSecondExamDateValue());
+        const progress = getSecondProgressSummary();
+        const routines = getRecentRoutineStats(7);
+        const symptom = getLatestSymptomFocus();
+        const latest = progress.recent[0];
+        body.innerHTML = `
+          <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);">
+            <div class="badge-row">
+              <span class="chip danger">D-${days.daysLeft}</span>
+              <span class="chip">${days.phase}</span>
+              <span class="chip">2차 기록 ${progress.data.length}회</span>
+              <span class="chip">현재 증상 ${escapeHtml(symptom)}</span>
+            </div>
+            <div class="hint" style="margin-top:8px;line-height:1.7;">100일 안에서는 신규 정보 소비보다 손글씨 답안, 계산기 사용, 저녁 복귀율 유지가 더 중요합니다.</div>
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">최근 7일 루틴 진단</h3>
+            <div class="badge-row" style="margin-bottom:8px;">
+              <span class="chip">새벽 ${pctText(routines.summary.morning || 0)}</span>
+              <span class="chip">운동 ${pctText(routines.summary.workout || 0)}</span>
+              <span class="chip">점심 ${pctText(routines.summary.lunch || 0)}</span>
+              <span class="chip">저녁 ${pctText(routines.summary.evening || 0)}</span>
+              <span class="chip ${routines.summary.second >= 0.6 ? 'ok' : routines.summary.second >= 0.3 ? 'warn' : 'danger'}">2차 ${pctText(
+                routines.summary.second || 0
+              )}</span>
+            </div>
+            ${buildRoutineSuggestions().map((item) => `<div class="subject-row"><span>보완</span><span>${escapeHtml(item)}</span></div>`).join('')}
+          </div>
+          <div class="panel" style="margin-bottom:10px;">
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">2차 수행 기록</h3>
+            ${
+              latest
+                ? progress.recent
+                    .map((item) => `<div class="subject-row"><span>${escapeHtml(SECOND_STAGE_MODES[item.mode]?.label || item.mode)}</span><span>${escapeHtml(
+                      item.detail || ''
+                    )} · ${new Date(item.date).toLocaleDateString()}</span></div>`)
+                    .join('')
+                : '<div class="hint">아직 2차 수행 기록이 없습니다. 오늘의 수행 안내를 먼저 시작하세요.</div>'
+            }
+          </div>
+          <div class="panel">
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">텔레그램 연동 준비</h3>
+            <div class="subject-row"><span>보안 원칙</span><span>Bot token과 chat id는 프론트엔드에 저장하지 않습니다.</span></div>
+            <div class="subject-row"><span>권장 엔드포인트</span><span>${escapeHtml(TELEGRAM_API_SPEC.sendPath)} / ${escapeHtml(
+              TELEGRAM_API_SPEC.checkinPath
+            )}</span></div>
+            <div class="subject-row"><span>딥링크 예시</span><span><a href="${buildDeepLink('#routine/checkin/today')}" target="_blank" rel="noopener noreferrer">저녁 체크인</a> · <a href="${buildDeepLink(
+              '#second/perform'
+            )}" target="_blank" rel="noopener noreferrer">오늘의 수행</a></span></div>
+            <div class="hint" style="margin-top:8px;line-height:1.7;">실제 토큰 연결은 서버PC의 중계 계층에서만 처리하고, 프론트에서는 메시지 템플릿과 경로만 준비합니다.</div>
+          </div>`;
+      }
+      function setHashRoute(route) {
+        const next = route.startsWith('#') ? route : `#${route}`;
+        if (window.location.hash === next) return;
+        history.replaceState(null, '', `${window.location.pathname}${window.location.search}${next}`);
+      }
+      function openHashRoute(route) {
+        const value = route.startsWith('#') ? route : `#${route}`;
+        history.replaceState(null, '', `${window.location.pathname}${window.location.search}${value}`);
+        applyRouteFromHash(value);
+      }
+      function applyRouteFromHash(hash = window.location.hash) {
+        const clean = String(hash || '').replace(/^#/, '').trim();
+        if (!clean) return false;
+        const parts = clean.split('/').filter(Boolean);
+        if (!parts.length) return false;
+        if (parts[0] === 'main') {
+          showFirstStageScreen();
+          return true;
+        }
+        if (parts[0] === 'second') {
+          if (parts[1] === 'home') {
+            showSecondStageScreen();
+            return true;
+          }
+          const mode = parts[1] || 'perform';
+          const itemId = parts[2] || '';
+          openSecondPractice(mode, itemId);
+          return true;
+        }
+        if (parts[0] === 'hub') {
+          showConditionHub(parts[1] || 'body', parts[2] || '');
+          return true;
+        }
+        if (parts[0] === 'routine') {
+          if (parts[1] === 'checkin') {
+            showRoutineCalendar(toDateKey());
+            return true;
+          }
+          if (parts[1] === 'calendar' && /^\d{4}-\d{2}$/.test(parts[2] || '')) {
+            showRoutineCalendar(`${parts[2]}-01`);
+            return true;
+          }
+          showRoutineCalendar(toDateKey());
+          return true;
+        }
+        if (parts[0] === 'strategy') {
+          showStrategyScreen();
+          return true;
+        }
+        if (parts[0] === 'portal') {
+          goPortal();
+          return true;
+        }
+        return false;
       }
       function getSelectedDifficulty() {
         const v = (document.getElementById('difficultySelect')?.value || '').trim();
@@ -4898,25 +5726,23 @@ ${scopeText}
       function renderSecondStageSummary() {
         const box = document.getElementById('secondStageSummary');
         if (!box) return;
-        const data = getSecondStageProgress();
+        const { data, recent, counts } = getSecondProgressSummary();
+        const routine = getRecentRoutineStats(7);
+        const avgScore = Math.round(avg(data.map((x) => Number(x.score) || 0)));
         if (!data.length) {
-          box.innerHTML =
-            '<div class="hint">아직 2차 학습 기록이 없습니다. 서술형, 계산형, 빈칸 암기 중 하나를 시작하세요.</div>';
+          box.innerHTML = `<div class="hint">아직 2차 수행 기록이 없습니다. 오늘의 수행 안내에서 손글씨/계산기 과제를 확인한 뒤 기록을 남기세요.</div>`;
           return;
         }
-        const recent = data.slice(-5).reverse();
-        const avgScore = Math.round(avg(data.map((x) => Number(x.score) || 0)));
-        const counts = data.reduce((acc, x) => {
-          acc[x.mode] = (acc[x.mode] || 0) + 1;
-          return acc;
-        }, {});
         box.innerHTML = `
     <div class="badge-row" style="margin-bottom:10px;">
       <span class="chip">누적 ${data.length}회</span>
       <span class="chip ${avgScore >= 75 ? 'ok' : avgScore >= 50 ? 'warn' : 'danger'}">평균 ${avgScore}점</span>
-      <span class="chip">서술 ${counts.answer || 0}</span>
-      <span class="chip">계산 ${counts.calc || 0}</span>
-      <span class="chip">암기 ${counts.memory || 0}</span>
+      <span class="chip">수행 ${counts.perform || 0}</span>
+      <span class="chip">답안 ${counts.answerGuide || 0}</span>
+      <span class="chip">계산 ${counts.calcGuide || 0}</span>
+      <span class="chip ${routine.summary.second >= 0.6 ? 'ok' : routine.summary.second >= 0.3 ? 'warn' : 'danger'}">최근7일 2차 ${pctText(
+        routine.summary.second || 0
+      )}</span>
     </div>
     ${recent
       .map((x) => {
@@ -4931,6 +5757,7 @@ ${scopeText}
       function showFirstStageScreen() {
         showScreen('mainScreen');
         updateDashboard();
+        setHashRoute('#main');
       }
       function goPortal() {
         if (timerInterval) clearInterval(timerInterval);
@@ -4940,20 +5767,23 @@ ${scopeText}
         document.getElementById('timerBox').classList.add('hidden');
         renderPortalCountdown();
         showScreen('portalScreen');
+        setHashRoute('#portal');
       }
       function showSecondStageScreen() {
         showScreen('secondStageScreen');
         renderSecondStageSummary();
+        setHashRoute('#second/home');
       }
-      function openSecondPractice(mode) {
+      function openSecondPractice(mode, itemId = '') {
         const config = SECOND_STAGE_MODES[mode];
         if (!config) return;
         document.getElementById('secondPracticeTitle').textContent = `${config.icon} ${config.label}`;
         showScreen('secondPracticeScreen');
-        if (mode === 'answer') renderSecondAnswerPractice();
-        if (mode === 'calc') renderSecondCalcPractice();
-        if (mode === 'memory') renderSecondMemoryPractice();
-        if (mode === 'planner') renderSecondPlanner();
+        if (mode === 'perform') renderSecondPerformGuide(itemId);
+        if (mode === 'answerGuide') renderSecondAnswerGuide(itemId);
+        if (mode === 'calcGuide') renderSecondCalcGuide(itemId);
+        if (mode === 'checklist') renderSecondChecklist();
+        setHashRoute(`#second/${mode}${itemId ? `/${itemId}` : ''}`);
       }
       function renderSecondAnswerPractice() {
         const body = document.getElementById('secondPracticeBody');
@@ -5199,6 +6029,8 @@ ${scopeText}
           'secondScreen',
           'secondStageScreen',
           'secondPracticeScreen',
+          'conditionHubScreen',
+          'routineCalendarScreen',
           'bankScreen',
           'strategyScreen',
           'examScreen',
@@ -6984,7 +7816,6 @@ ${scopeText}
       function updateDashboard() {
         const notes = JSON.parse(localStorage.getItem(STORAGE.WRONG_NOTE) || '[]');
         const usage = getApiUsageStats();
-        const limit = getBudgetLimit();
         const aiBank = getAIBank();
         const seen = getAIBankSeenSet();
         const wrongMap = getAIBankWrongMap();
@@ -6999,29 +7830,11 @@ ${scopeText}
         document.getElementById('aiBankSummary').textContent = aiBank.length
           ? `저장 ${aiBank.length}문항 · 미풀이 ${Math.max(0, aiBank.length - seen.size)}문항`
           : '저장된 AI 문제가 없습니다';
-        const budgetEl = document.getElementById('budgetInput');
-        if (budgetEl && document.activeElement !== budgetEl && !budgetInputDirty) {
-          const target = limit > 0 ? String(limit) : '';
-          if (budgetEl.value !== target) budgetEl.value = target;
-        }
-
-        const prob = calcPassProbability();
-        document.getElementById('passProbValue').textContent = `${prob}%`;
-        document.getElementById('passProbLabel').textContent =
-          prob >= 80
-            ? '🎉 합격 유력'
-            : prob >= 60
-              ? '✅ 합격권'
-              : prob >= 40
-                ? '⚠️ 경계선'
-                : prob > 0
-                  ? '🚨 보강 필요'
-                  : '데이터 부족';
-
-        renderScoreChart();
         updateSavedExamInfo();
         renderApiStatus();
-        renderSecondStudySummary();
+        renderMainExecutionDashboard();
+        renderMainRoutineSummary();
+        renderMainStrategySummary();
 
         const top3 = [...notes].sort((a, b) => (b.wrongCount || 1) - (a.wrongCount || 1)).slice(0, 3);
         const aiWrongCount = Object.values(wrongMap).reduce((acc, v) => acc + (v.wrongCount || 0), 0);
@@ -7220,45 +8033,31 @@ ${scopeText}
 ============================= */
       function showStrategyScreen() {
         showScreen('strategyScreen');
-        document.getElementById('strategyBody').innerHTML =
-          `<div class="hint">[전략 분석 실행]을 눌러 최신 학습 데이터를 분석하세요.</div>`;
-        // 시험일 초기화 (localStorage에서 불러오기)
-        const savedExamDate = localStorage.getItem('strategy_examDate') || '';
-        document.getElementById('examDateInput').value = savedExamDate;
+        document.getElementById('strategyBody').innerHTML = `<div class="hint">[2차 전략 분석 실행]을 눌러 최신 수행 기록을 분석하세요.</div>`;
+        document.getElementById('examDateInput').value = getSecondExamDateValue();
         updateDaysLeftDisplay();
-        // 과목 입력 초기화
-        ['pastSub1Input', 'pastSub2Input', 'pastSub3Input'].forEach((id) => (document.getElementById(id).value = ''));
-        document.getElementById('pastTotalDisplay').textContent = '-';
-        document.getElementById('pastPassStatus').textContent = '';
-        document.getElementById('pastSubFailStatus').textContent = '';
-        document.getElementById('pastDateInput').value = '';
+        buildStrategyReport();
+        if (!String(window.location.hash || '').startsWith('#strategy/')) setHashRoute('#strategy/report');
       }
 
       /* 시험일 변경 시 D-day 표시 업데이트 */
       function updateDaysLeftDisplay() {
-        const dateVal = document.getElementById('examDateInput').value;
+        const dateVal = document.getElementById('examDateInput').value || getSecondExamDateValue();
         const display = document.getElementById('daysLeftDisplay');
         if (!dateVal) {
           display.textContent = '시험일을 선택하면 D-day가 자동 계산됩니다.';
           return;
         }
+        localStorage.setItem(STORAGE.SECOND_STAGE_EXAM_DATE, dateVal);
         localStorage.setItem('strategy_examDate', dateVal);
-        // 시간대 버그 방지: YYYY-MM-DD 직접 파싱 (new Date('YYYY-MM-DD')는 UTC로 해석될 수 있음)
-        const [y, m, d] = dateVal.split('-').map(Number);
-        const examDate = new Date(y, m - 1, d);
-        // 실제 오늘 날짜 기준으로 D-day 계산 (자정 기준 비교)
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const diffMs = examDate.getTime() - today.getTime();
-        const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+        const { daysLeft, weeks, phase } = getDaysLeftInfo(dateVal);
         if (daysLeft < 0) {
           display.innerHTML = `<span style="color:var(--sub);">시험일이 <b style="color:var(--danger);">${Math.abs(daysLeft)}일</b> 지났습니다.</span>`;
         } else if (daysLeft === 0) {
           display.innerHTML = '<b style="color:var(--danger);font-size:1.05rem;">🔥 D-DAY · 오늘이 시험일입니다!</b>';
         } else {
-          const weeks = Math.ceil(daysLeft / 7);
           const color = daysLeft <= 21 ? 'var(--danger)' : daysLeft <= 60 ? 'var(--warn)' : 'var(--ok)';
-          display.innerHTML = `<b style="color:${color};font-size:1.1rem;">D-${daysLeft}</b> <span style="color:var(--sub);">(약 ${weeks}주 남음)</span>`;
+          display.innerHTML = `<b style="color:${color};font-size:1.1rem;">D-${daysLeft}</b> <span style="color:var(--sub);">(약 ${weeks}주 남음 · ${phase})</span>`;
         }
       }
 
@@ -7456,143 +8255,7 @@ ${scopeText}
         return { weak, avgMap };
       }
       function buildStrategyReport() {
-        // 시험일 기준 D-day 계산
-        const examDateVal = document.getElementById('examDateInput').value;
-        let daysLeft = 60;
-        if (examDateVal) {
-          const [y, m, d] = examDateVal.split('-').map(Number);
-          const examDate = new Date(y, m - 1, d);
-          // 실제 오늘 날짜 기준으로 D-day 계산
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          daysLeft = Math.max(1, Math.ceil((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
-        }
-        const hist = getExamHistory().sort((a, b) => new Date(a.date) - new Date(b.date));
-        const notes = JSON.parse(localStorage.getItem(STORAGE.WRONG_NOTE) || '[]');
-        const useful = hist.filter((h) => ['academy', 'ai', 'past-manual'].includes(h.type));
-
-        if (!useful.length) {
-          document.getElementById('strategyBody').innerHTML =
-            `<div class="panel"><b>분석 데이터 부족</b><br>학원/AI 모의고사를 2회 이상 풀면 전문 컨설팅이 제공됩니다.</div>`;
-          return;
-        }
-
-        const recent = lastN(useful, Math.min(8, useful.length));
-        const recentScores = recent.map((x) => Number(x.totalScore || 0));
-        const overallAvg = Math.round(avg(recentScores));
-        const latest = recent[recent.length - 1]?.totalScore || 0;
-        const passProb = calcPassProbability();
-        const remainPct = 100 - passProb;
-        const half = Math.floor(recentScores.length / 2) || 1;
-        const trend = avg(recentScores.slice(half)) - avg(recentScores.slice(0, half));
-
-        const byType = {
-          academy: recent.filter((x) => x.type === 'academy').map((x) => x.totalScore),
-          ai: recent.filter((x) => x.type === 'ai').map((x) => x.totalScore),
-          past: recent.filter((x) => x.type === 'past-manual').map((x) => x.totalScore),
-        };
-
-        const { weak, avgMap } = getWeakSubjectFromHistory(recent);
-        const weakName = SUBJECT_NAMES[weak];
-        const wrongCnt = { '1과목': 0, '2과목': 0, '3과목': 0 };
-        notes.forEach((n) => {
-          if (wrongCnt[n.subject] !== undefined) wrongCnt[n.subject]++;
-        });
-        const wrongTop = SUBJECTS.slice().sort((a, b) => wrongCnt[b] - wrongCnt[a])[0];
-        const wrongTopName = SUBJECT_NAMES[wrongTop];
-        const weeks = Math.max(1, Math.ceil(daysLeft / 7));
-
-        let weekPlan = '';
-        if (daysLeft > 90) {
-          const w1 = Math.ceil(weeks * 0.35),
-            w2 = Math.ceil(weeks * 0.7);
-          weekPlan = `<b>[1단계 · 1~${w1}주 · 기본 정착]</b><br>· 기본서 1회독 + 단원별 문제풀이<br>· <b>${weakName}</b> 추가 45분<br><br>
-      <b>[2단계 · ${w1 + 1}~${w2}주 · 유형 확장]</b><br>· 기출 5개년 + 오답 태깅<br>· <b>${wrongTopName}</b> 반복<br><br>
-      <b>[3단계 · ${w2 + 1}~${weeks}주 · 실전 가속]</b><br>· 주 3회 75문항 실전 + 오답 순환`;
-        } else if (daysLeft > 45) {
-          const w1 = Math.ceil(weeks * 0.5);
-          weekPlan = `<b>[전반기 · 1~${w1}주]</b><br>· <b>${weakName}</b> 매일 90분<br><br>
-      <b>[후반기 · ${w1 + 1}~${weeks}주]</b><br>· 주 2~3회 실전 + 오답분석`;
-        } else if (daysLeft > 21) {
-          weekPlan = `<b>[실전 압축 ${weeks}주]</b><br>· 주 3~4회 실전 + <b>${weakName}</b> 과락 방지`;
-        } else {
-          weekPlan = `<b>[파이널 ${daysLeft}일]</b><br>· 신규학습 중단, 오답/기출 반복`;
-        }
-
-        const targetMap = {};
-        SUBJECTS.forEach((k) => {
-          const cur = Math.round(avgMap[k] || 0);
-          const target = k === weak ? Math.max(cur + 15, 55) : Math.max(cur + 8, 60);
-          targetMap[k] = { current: cur, target: Math.min(target, 85) };
-        });
-        const targetRows = SUBJECTS.map((k) => {
-          const t = targetMap[k],
-            gap = t.target - t.current;
-          return `<div class="subject-row">
-      <span>${SUBJECT_NAMES[k]}</span>
-      <span>현재 ${t.current}점 → 목표 ${t.target}점 <b style="color:${gap <= 5 ? 'var(--ok)' : gap <= 15 ? 'var(--warn)' : 'var(--danger)'}">(+${gap}점)</b></span>
-    </div>`;
-        }).join('');
-
-        const typeAvg = (arr) => (arr.length ? Math.round(avg(arr)) : '-');
-        const trendTxt =
-          trend >= 5
-            ? '📈 강한 상승세'
-            : trend >= 2
-              ? '📈 완만한 상승'
-              : trend <= -5
-                ? '📉 하락세 (경고)'
-                : trend <= -2
-                  ? '📉 완만한 하락'
-                  : '➡️ 정체';
-        const subjectRows = SUBJECTS.map(
-          (k) =>
-            `<div class="subject-row"><span>${SUBJECT_NAMES[k]}</span><span>최근 평균 ${Math.round(avgMap[k] || 0)}점 · 누적오답 ${wrongCnt[k] || 0}개</span></div>`
-        ).join('');
-        const roundAnalysis = buildRoundByRoundAnalysis(hist);
-
-        document.getElementById('strategyBody').innerHTML = `
-    <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);">
-      <h2 style="margin:0 0 8px 0;color:var(--primary);">📊 종합 진단</h2>
-      <div class="badge-row">
-        <span class="chip">D-${daysLeft}일 (${weeks}주)</span>
-        <span class="chip">최근평균 ${overallAvg}점</span>
-        <span class="chip">최신 ${latest}점</span>
-        <span class="chip ${passProb >= 60 ? 'ok' : passProb >= 40 ? 'warn' : 'danger'}">합격가능성 ${passProb}%</span>
-        <span class="chip danger">합격까지 ${remainPct}%</span>
-        <span class="chip">${trendTxt}</span>
-      </div>
-      <div class="hint" style="margin-top:8px;">분석표본: 최근 ${recent.length}회</div>
-    </div>
-
-    <div class="panel" style="margin-bottom:10px;">
-      <h3 style="margin:0 0 8px 0;color:var(--primary);">🎯 모드별 평균</h3>
-      <div class="badge-row">
-        <span class="chip">학원: ${typeAvg(byType.academy)}점</span>
-        <span class="chip">AI: ${typeAvg(byType.ai)}점</span>
-        <span class="chip">실기출: ${typeAvg(byType.past)}점</span>
-      </div>
-    </div>
-
-    <div class="panel" style="margin-bottom:10px;">
-      <h3 style="margin:0 0 8px 0;color:var(--primary);">📚 과목별 진단 & 목표</h3>
-      ${subjectRows}
-      <div style="margin-top:10px;font-weight:800;color:var(--primary);">🎯 과목별 목표 점수</div>
-      ${targetRows}
-      <div class="weakness-item">🔥 최약점 과목: <b>${weakName}</b></div>
-      <div class="weakness-item">⚠️ 오답 누적 최다: <b>${wrongTopName}</b></div>
-    </div>
-
-    <div class="panel" style="margin-bottom:10px;">
-      <h3 style="margin:0 0 10px 0;color:var(--primary);">📅 D-${daysLeft} 맞춤 운영안</h3>
-      <div style="line-height:1.9;font-size:.95rem;">${weekPlan}</div>
-    </div>
-
-    <div class="panel" style="margin-bottom:10px;">
-      <h3 style="margin:0 0 10px 0;color:var(--primary);">🔍 회차별 전문 컨설팅</h3>
-      ${roundAnalysis}
-    </div>
-  `;
+        renderSecondStrategyReport();
       }
 
       /* =============================
@@ -7631,6 +8294,9 @@ ${scopeText}
           e.returnValue = '시험 진행 중입니다. 자동 저장됩니다.';
         }
       });
+      window.addEventListener('hashchange', () => {
+        applyRouteFromHash();
+      });
 
       /* =============================
    초기화
@@ -7666,7 +8332,10 @@ ${scopeText}
         updateDashboard();
         renderSecondStageSummary();
         renderPortalCountdown();
-        showScreen('portalScreen');
+        renderConditionHub('body');
+        routineCalendarState = { month: toDateKey().slice(0, 7), selectedDate: toDateKey() };
+        renderRoutineCalendar();
+        if (!applyRouteFromHash()) showScreen('portalScreen');
 
         // 메인 화면에서 timerBox 확실히 숨기기
         document.getElementById('timerBox').classList.add('hidden');
