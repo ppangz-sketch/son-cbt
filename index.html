@@ -168,13 +168,13 @@
         border: 1px solid var(--line);
         -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
-        font-size: 1.35rem;
+        font-size: 1.22rem;
         font-weight: 800;
         letter-spacing: -0.02em;
       }
       .title {
         font-family: var(--font-display);
-        font-size: 1.38rem;
+        font-size: 1.24rem;
         font-weight: 900;
         letter-spacing: -0.05em;
         line-height: 1.04;
@@ -330,7 +330,7 @@
       }
       .stage-title-large {
         font-family: var(--font-display);
-        font-size: clamp(1.9rem, 3.7vw, 3.08rem);
+        font-size: clamp(1.55rem, 3.1vw, 2.45rem);
         font-weight: 900;
         line-height: 1.02;
         letter-spacing: -0.06em;
@@ -342,7 +342,7 @@
         line-height: 1.78;
         font-weight: 500;
         max-width: 690px;
-        font-size: 0.96rem;
+        font-size: 0.9rem;
         letter-spacing: -0.01em;
       }
       .stage-hero-meta {
@@ -377,14 +377,14 @@
         color: var(--sub);
       }
       .portal-countdown-days {
-        font-size: clamp(2.2rem, 4.5vw, 3rem);
+        font-size: clamp(1.85rem, 4vw, 2.45rem);
         font-weight: 900;
         color: var(--primary);
         line-height: 1;
         letter-spacing: -0.05em;
       }
       .portal-countdown-label {
-        font-size: 0.92rem;
+        font-size: 0.86rem;
         font-weight: 700;
         color: var(--text);
       }
@@ -562,15 +562,15 @@
       .menu-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+        gap: 8px;
         margin: 12px 0;
       }
       .menu-btn {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(249, 246, 240, 0.97) 100%);
         border: 1px solid rgba(111, 122, 134, 0.16);
         border-radius: 16px;
-        min-height: 112px;
-        padding: 16px;
+        min-height: 96px;
+        padding: 13px 14px;
         cursor: pointer;
         text-align: left;
         display: flex;
@@ -623,14 +623,14 @@
       }
       .menu-title {
         font-family: var(--font-display);
-        font-size: 0.94rem;
+        font-size: 0.88rem;
         font-weight: 900;
         color: var(--text);
         letter-spacing: -0.03em;
         line-height: 1.2;
       }
       .menu-desc {
-        font-size: 0.79rem;
+        font-size: 0.75rem;
         color: var(--sub);
         line-height: 1.54;
         letter-spacing: -0.005em;
@@ -646,7 +646,7 @@
         border: 1px solid var(--line);
         border-radius: 999px;
         background: var(--panel);
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         font-weight: 700;
         color: var(--text);
       }
@@ -767,7 +767,7 @@
         cursor: pointer;
         background: var(--line-soft);
         color: var(--text);
-        font-size: 0.92rem;
+        font-size: 0.88rem;
         transition: all 0.15s;
       }
       .btn:hover {
@@ -1722,7 +1722,7 @@
           padding: 14px 16px;
         }
         .title {
-          font-size: 1.26rem;
+          font-size: 1.18rem;
         }
         .subtitle {
           font-size: 0.82rem;
@@ -1738,10 +1738,10 @@
           grid-template-columns: 1fr;
         }
         .stage-hero-panel {
-          padding: 22px 20px;
+          padding: 18px 18px;
         }
         .portal-countdown-card {
-          padding: 18px 20px;
+          padding: 16px 18px;
         }
         .menu-grid {
           grid-template-columns: 1fr 1fr;
@@ -1767,33 +1767,33 @@
           justify-content: flex-end;
         }
         .title {
-          font-size: 1.15rem;
+          font-size: 1.05rem;
         }
         .subtitle {
           font-size: 0.78rem;
           line-height: 1.4;
         }
         .stage-title-large {
-          font-size: 1.7rem;
+          font-size: 1.45rem;
           line-height: 1.12;
         }
         .stage-lead {
-          font-size: 0.88rem;
-          line-height: 1.62;
+          font-size: 0.82rem;
+          line-height: 1.54;
         }
         .stage-choice {
-          padding: 18px 16px;
+          padding: 14px 14px;
           min-height: auto;
           border-radius: 18px;
         }
         .stage-choice-title {
-          font-size: 1.08rem;
+          font-size: 0.98rem;
         }
         .stage-choice-desc {
-          font-size: 0.86rem;
+          font-size: 0.8rem;
         }
         .portal-countdown-days {
-          font-size: 2.1rem;
+          font-size: 1.75rem;
         }
         .menu-grid {
           grid-template-columns: 1fr;
@@ -2255,7 +2255,7 @@
               </div>
               <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
                 <button class="btn outline" onclick="saveTelegramBridgeBaseUrl()">브리지 URL 저장</button>
-                <button class="btn outline" onclick="sendTelegramRoutineCheckin()">체크인 테스트 전송</button>
+                <button class="btn outline" onclick="sendTelegramRoutineCheckin()">마감 체크 보내기</button>
                 <button class="btn outline" onclick="sendTelegramTodayPerform()">오늘 수행 전송</button>
                 <button class="btn outline" onclick="syncRoutineRecordsFromBridge(false, true)">지금 다시 불러오기</button>
               </div>
@@ -3564,9 +3564,23 @@
         })();
         return telegramBridgeSyncInFlight;
       }
+      function normalizeRouteHash(route) {
+        const clean = String(route || '').trim();
+        if (!clean) return '';
+        return clean.startsWith('#') ? clean : `#${clean.replace(/^#/, '')}`;
+      }
+      function getRouteFromLocation() {
+        const hashRoute = normalizeRouteHash(window.location.hash);
+        if (hashRoute) return hashRoute;
+        const queryRoute = new URLSearchParams(window.location.search).get('route');
+        return normalizeRouteHash(queryRoute);
+      }
       function buildDeepLink(route) {
-        const base = `${window.location.origin}${window.location.pathname}${window.location.search}`;
-        return `${base}${route.startsWith('#') ? route : `#${route}`}`;
+        const hashRoute = normalizeRouteHash(route);
+        const params = new URLSearchParams(window.location.search);
+        if (hashRoute) params.set('route', hashRoute.replace(/^#/, ''));
+        const query = params.toString();
+        return `${window.location.origin}${window.location.pathname}${query ? `?${query}` : ''}${hashRoute}`;
       }
       function buildTelegramMessagePreview(kind, context = {}) {
         const closing =
@@ -3574,7 +3588,7 @@
             Math.abs((context.seed || nowISO()).split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 3
           ];
         if (kind === 'checkin') {
-          return `🌙 저녁 체크인\n• 텔레그램 버튼으로 바로 기록\n• 기록은 홈페이지에 자동 반영\n\n${closing}`;
+          return `🌙 하루 마감 체크\n• 텔레그램 버튼으로 바로 기록\n• 기록은 홈페이지에 자동 반영\n\n${closing}`;
         }
         return `${context.message || '📝 오늘 공부 안내\n• 손글씨 15분\n• 계산기 15분\n• 끝나면 체크리스트 확인'}\n\n${closing}`;
       }
@@ -3608,7 +3622,7 @@
       async function sendTelegramRoutineCheckin() {
         try {
           await sendTelegramBridge({ kind: 'checkin' }, getTelegramRequestEndpoint('checkin'));
-          showToast('저녁 체크인을 텔레그램으로 보냈습니다.', 2000);
+          showToast('하루 마감 체크를 텔레그램으로 보냈습니다.', 2000);
         } catch (err) {
           showToast(err?.message || '텔레그램 전송에 실패했습니다.', 2400);
         }
@@ -8457,7 +8471,7 @@ ${scopeText}
         }
       });
       window.addEventListener('hashchange', () => {
-        applyRouteFromHash();
+        applyRouteFromHash(getRouteFromLocation());
       });
 
       /* =============================
@@ -8502,7 +8516,11 @@ ${scopeText}
           renderPortalCountdown();
           renderRoutineCalendar();
         });
-        if (!applyRouteFromHash()) showScreen('portalScreen');
+        const incomingRoute = getRouteFromLocation();
+        if (incomingRoute && !window.location.hash) {
+          history.replaceState(null, '', `${window.location.pathname}${window.location.search}${incomingRoute}`);
+        }
+        if (!applyRouteFromHash(incomingRoute)) showScreen('portalScreen');
 
         // 메인 화면에서 timerBox 확실히 숨기기
         document.getElementById('timerBox').classList.add('hidden');
