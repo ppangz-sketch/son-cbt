@@ -3353,7 +3353,7 @@
               <div
                 class="hint"
                 style="margin-top: auto; padding-top: 10px; font-size: 0.78rem; line-height: 1.5; color: var(--sub)">
-                2차 전략 리포트는 루틴 기록과 손글씨·계산 연습 기록을 기준으로 보완 포인트를 제안합니다.
+                2차 전략 리포트는 루틴 기록과 손글씨·계산 연습 기록을 바탕으로 오늘 집중할 항목을 정리해줍니다.
               </div>
             </div>
             <div class="settings-item placeholder-item">
@@ -4225,7 +4225,7 @@
         },
       ];
       const POSTURE_ROUTINE_INTRO = {
-        title: '재택 + 수험 병행 자세 루틴',
+        title: '하루 15~20분 자세 루틴',
         kicker: '거북목 · 라운드숄더 · 골반전방경사 통합 (총 15~20분)',
         why: '거북목·라운드숄더·골반전방경사는 따로 생긴 게 아니라 한 연결고리입니다. 짧아진 가슴 근육이 어깨를 앞으로 당기고, 약해진 코어가 골반을 앞으로 기울이면서 척추 전체가 무너지는 구조입니다. 따라서 세 가지를 따로 고치려 하면 비효율적이고, 흉추(등 중간) 가동성 회복이 세 문제를 동시에 해결하는 핵심 열쇠입니다.',
         order: '풀기(스트레칭) → 잡기(강화) → 마무리(정렬 인식) 순서로 진행합니다.',
@@ -4603,7 +4603,7 @@
         },
         {
           id: 'transition-launch',
-          title: '전환기 즉시 착수형',
+          title: '즉시 착수형',
           fit: '1차 합격 직후 2차가 막막해 검색과 계획만 늘어나는 사람',
           works: '합격 직후 3~7일의 분석 마비 구간에서 완벽주의 지연을 끊고 첫 기록을 만드는 데 강합니다.',
           warning: '공부법 비교만 하다 시작이 늦어지면 100일 골든타임을 그대로 잃습니다.',
@@ -4671,7 +4671,7 @@
             range: '61~85일',
             label: '심화 적용',
             goal: '기출문제와 모의고사 3회독 이상',
-            method: '오답 노트로 약점 보완, 풀이 시간 단축',
+            method: '오답 노트로 약점 정리, 풀이 시간 단축',
             action: '기출 1세트 + 오답 1개 복기',
           },
           {
@@ -4894,7 +4894,7 @@
         today.setHours(0, 0, 0, 0);
         const daysLeft = Math.max(0, Math.ceil((examDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
         const phase =
-          daysLeft > 75 ? '기초 정착' : daysLeft > 45 ? '실전 전환' : daysLeft > 21 ? '실수 보정' : '파이널 모사';
+          daysLeft > 75 ? '기초 정착' : daysLeft > 45 ? '실전 집중' : daysLeft > 21 ? '실수 보정' : '파이널 모사';
         return { examDate, daysLeft, weeks: Math.max(1, Math.ceil(daysLeft / 7)), phase };
       }
       function getTransitionActionPlan(days = getDaysLeftInfo(), progress = getSecondProgressSummary()) {
@@ -4925,7 +4925,7 @@
         }
         if (days.daysLeft > 30) {
           return {
-            title: '실전 전환 가속 구간',
+            title: '실전 집중 구간',
             text: '기출/모의 회독과 오답 복기로 시간 단축을 만드는 시기입니다. 새 정보보다 적용 비율을 높이세요.',
             next: '오늘 최소 기준: 기출 1세트 + 오답 1개 복기',
             route: '#strategy',
@@ -5404,7 +5404,7 @@
           alerts.push({
             icon: '🚦',
             tone: 'warn',
-            text: '전환기에는 완벽한 계획보다 20분 착수가 먼저입니다. 오늘은 공식 1개 필사만 해도 흐름이 다시 생깁니다.',
+            text: '처음에는 완벽한 계획보다 20분 착수가 먼저입니다. 오늘은 공식 1개 필사만 해도 흐름이 다시 생깁니다.',
           });
         if (symptomCount('승모근통증·두통·피로') >= 2 || symptomCount('승모근-두통-피로') >= 2)
           alerts.push({
@@ -5461,7 +5461,7 @@
             <span class="chip">오늘 증상 ${escapeHtml(symptom)}</span>
           </div>
           <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);padding:12px 14px;">
-            <div class="settings-title">전환기 시작 원칙</div>
+            <div class="settings-title">오늘 시작 원칙</div>
             <div style="font-weight:800;color:var(--primary);margin:6px 0 4px 0;">${escapeHtml(transition.title)}</div>
             <div class="hint" style="line-height:1.7;">${escapeHtml(transition.text)}</div>
             <div class="subject-row" style="margin-top:8px;"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
@@ -5483,7 +5483,7 @@
                 <div class="settings-title">${label}</div>
                 <div style="font-weight:800;color:var(--primary);margin-bottom:6px;">${escapeHtml(item.title)}</div>
                 <div class="hint" style="line-height:1.6;">${escapeHtml(item.detail)}</div>
-                <button class="btn ${btnClass}" style="margin-top:10px;" onclick="openHashRoute('${item.route.slice(1)}')">바로 보기</button>
+                <button class="btn ${btnClass}" style="margin-top:10px;" onclick="openHashRoute('${item.route.slice(1)}')">바로가기</button>
               </div>`
               )
               .join('')}
@@ -5497,7 +5497,7 @@
                 <div class="panel" style="padding:10px;">
                   <div style="font-weight:800;color:var(--primary);">${item.label}</div>
                   <div class="hint" style="margin-top:4px;line-height:1.6;">${escapeHtml(item.text)}</div>
-                  <button class="btn sm outline" style="margin-top:8px;" onclick="openHashRoute('${item.route.slice(1)}')">이동</button>
+                  <button class="btn sm outline" style="margin-top:8px;" onclick="openHashRoute('${item.route.slice(1)}')">바로가기</button>
                 </div>`
                 )
                 .join('')}
@@ -5545,7 +5545,7 @@
           <div class="subject-row" style="margin-bottom:8px;"><span>완벽 / 절반 / 미기록</span><span>${fullDoneCount}일 · ${halfDoneCount}일 · ${skipDoneCount}일</span></div>
           ${buildRoutineSuggestions()
             .slice(0, 2)
-            .map((item) => `<div class="subject-row"><span>보완 포인트</span><span>${escapeHtml(item)}</span></div>`)
+            .map((item) => `<div class="subject-row"><span>집중 포인트</span><span>${escapeHtml(item)}</span></div>`)
             .join('')}
           <div style="margin-top:10px;"><button class="btn outline" onclick="showRoutineCalendar()">루틴 캘린더 자세히 보기</button></div>`;
       }
@@ -5599,7 +5599,7 @@
           <div class="badge-row" style="margin-bottom:10px;">
             <span class="chip danger">D-${days.daysLeft}</span>
             <span class="chip">누적 ${progress.data.length}회</span>
-            <span class="chip">최근 모드 ${escapeHtml(SECOND_STAGE_MODES[latest?.mode]?.label || '기록 대기')}</span>
+            <span class="chip">최근 모드 ${escapeHtml(SECOND_STAGE_MODES[latest?.mode]?.label || '아직 없음')}</span>
             <span class="chip">현재 증상 ${escapeHtml(symptom)}</span>
           </div>
           <div class="subject-row"><span>지금 가장 중요한 것</span><span>${escapeHtml(transition.title)}</span></div>
@@ -6061,13 +6061,13 @@
             웹에서 오래 작성하지 말고, 문제를 확인한 뒤 종이와 볼펜, 계산기로 실제 수행하세요. 수행 후에는 체크리스트와 루틴 캘린더로 복기합니다.
           </div>
           <div class="panel" style="margin-bottom:10px;background:var(--primary-light);border-left:4px solid var(--primary);">
-            <div class="settings-title">전환기 시작 가이드</div>
+            <div class="settings-title">즉시 시작 가이드</div>
             <h3 style="margin:8px 0;color:var(--primary);">${escapeHtml(transition.title)}</h3>
             <div class="hint" style="line-height:1.75;">${escapeHtml(TRANSITION_REPORT_CONTENT.starter.summary)}</div>
             <div class="subject-row"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
             <div class="subject-row"><span>첫 행동</span><span>기본서 10페이지 또는 기출 1문제 필사 중 하나만 바로 시작</span></div>
             <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-              <button class="btn primary" onclick="recordSecondExecution('perform', '전환기 시작 가이드 확인')">시작 가이드 확인 기록</button>
+              <button class="btn primary" onclick="recordSecondExecution('perform', '즉시 시작 가이드 확인')">시작 가이드 확인 기록</button>
               <button class="btn outline" onclick="showConditionHub('breath')">STOP 루틴 보기</button>
               <button class="btn outline" onclick="showStrategyScreen()">100일 전략 보기</button>
             </div>
@@ -6200,7 +6200,7 @@
             <div class="subject-row" style="margin-top:8px;"><span>오늘 최소 기준</span><span>${escapeHtml(transition.next)}</span></div>
           </div>
           <div class="panel" style="margin-bottom:10px;">
-            <h3 style="margin:0 0 8px 0;color:var(--primary);">1차 합격 후 3~7일 함정</h3>
+            <h3 style="margin:0 0 8px 0;color:var(--primary);">1차 합격 후 3~7일 주의 구간</h3>
             <div class="hint" style="line-height:1.75;margin-bottom:8px;">${escapeHtml(TRANSITION_REPORT_CONTENT.starter.summary)}</div>
             ${TRANSITION_REPORT_CONTENT.starter.rules
               .map((item) => `<div class="subject-row"><span>핵심 원칙</span><span>${escapeHtml(item)}</span></div>`)
@@ -6244,7 +6244,7 @@
               <span class="chip">완벽 ${routines.fullDoneCount}일 · 절반 ${routines.halfDoneCount}일</span>
             </div>
             ${buildRoutineSuggestions()
-              .map((item) => `<div class="subject-row"><span>보완</span><span>${escapeHtml(item)}</span></div>`)
+              .map((item) => `<div class="subject-row"><span>점검</span><span>${escapeHtml(item)}</span></div>`)
               .join('')}
           </div>
           <div class="panel" style="margin-bottom:10px;">
@@ -8277,7 +8277,7 @@ ${scopeText}
         if (daysLeft > 60) {
           plan = '기본기 구축기: 이론 회독 40%, 계산 기본유형 30%, 서술형 키워드 답안 20%, 빈칸 암기 10%';
         } else if (daysLeft > 30) {
-          plan = '실전 전환기: 계산·서술 실전문제 50%, 오답 재작성 25%, 빈칸 암기 15%, 약점 보강 10%';
+          plan = '실전 집중기: 계산·서술 실전문제 50%, 오답 재작성 25%, 빈칸 암기 15%, 약점 보강 10%';
         } else if (daysLeft > 14) {
           plan = '압축 반복기: 매일 계산 3세트, 서술형 2문항 재작성, 핵심 숫자·절차 빈칸 반복';
         } else {
