@@ -2,26 +2,45 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#fffaf0" />
-      <stop offset="100%" stop-color="#f6ecd9" />
+      <stop offset="100%" stop-color="#f5ead6" />
     </linearGradient>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#7d9154" />
+      <path d="M0,0 L10,5 L0,10 Z" fill="#728b4c" />
     </marker>
   </defs>
-
   <rect width="640" height="380" fill="#f3ead7" />
   <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
-  <rect x="118" y="246" width="404" height="52" rx="24" fill="#dfcfb2" opacity="0.75" />
+  <rect x="318" y="46" width="2" height="288" fill="#dcccb0" stroke-dasharray="6 8" />
+  <rect x="92" y="266" width="204" height="26" rx="13" fill="#d8c5a5" opacity="0.76" />
+  <rect x="344" y="266" width="204" height="26" rx="13" fill="#d8c5a5" opacity="0.76" />
 
-  <circle cx="238" cy="220" r="22" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
-  <path d="M258 235 Q298 236 338 246" fill="none" stroke="#735b4d" stroke-width="16" stroke-linecap="round" />
-  <path d="M296 239 L268 176" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
-  <path d="M330 244 L387 194" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
-  <path d="M346 246 L416 246" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
-  <path d="M346 246 L324 306" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+  <circle cx="66" cy="68" r="18" fill="#8a6a3c" />
+  <text x="60" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">1</text>
+  <circle cx="386" cy="68" r="18" fill="#8a6a3c" />
+  <text x="380" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">2</text>
 
-  <path d="M268 176 C258 158 252 144 252 126" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
-  <path d="M388 194 C410 180 427 169 444 161" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
-  <ellipse cx="332" cy="250" rx="42" ry="26" fill="#d78b6e" opacity="0.18" />
-  <path d="M260 261 Q308 255 357 261" fill="none" stroke="#b86d58" stroke-width="4" stroke-dasharray="6 6" />
+  <g>
+    <circle cx="144" cy="242" r="18" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+    <path d="M162 250 Q200 246 232 252" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+    <path d="M190 248 L190 188" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M220 252 L260 220" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M230 252 L276 252" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M230 252 L210 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <ellipse cx="214" cy="254" rx="34" ry="22" fill="#d98768" opacity="0.18" />
+  </g>
+
+  <g>
+    <circle cx="396" cy="242" r="18" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+    <path d="M414 250 Q452 246 484 252" fill="none" stroke="#735b4d" stroke-width="14" stroke-linecap="round" />
+    <path d="M448 252 L448 192" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M474 252 L532 206" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M484 252 L548 252" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M484 252 L464 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <ellipse cx="470" cy="254" rx="42" ry="24" fill="#d98768" opacity="0.24" />
+  </g>
+
+  <path d="M462 192 C452 172 448 158 448 142" fill="none" stroke="#728b4c" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M530 206 C546 196 560 188 576 182" fill="none" stroke="#728b4c" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M186 268 Q212 260 242 268" fill="none" stroke="#b86d58" stroke-width="4" stroke-dasharray="6 6" />
+  <path d="M442 268 Q468 260 498 268" fill="none" stroke="#b86d58" stroke-width="4" stroke-dasharray="6 6" />
 </svg>

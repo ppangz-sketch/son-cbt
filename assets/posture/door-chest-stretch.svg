@@ -2,43 +2,53 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#fffaf0" />
-      <stop offset="100%" stop-color="#f6ecd9" />
+      <stop offset="100%" stop-color="#f5ead6" />
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#8a6a3c" flood-opacity="0.12" />
-    </filter>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#7d9154" />
+      <path d="M0,0 L10,5 L0,10 Z" fill="#728b4c" />
     </marker>
   </defs>
-
   <rect width="640" height="380" fill="#f3ead7" />
   <rect x="22" y="22" width="596" height="336" rx="24" fill="url(#bg)" stroke="#dcccb0" stroke-width="2" />
-  <rect x="0" y="306" width="640" height="74" fill="#efe3cb" />
+  <rect x="318" y="46" width="2" height="288" fill="#dcccb0" stroke-dasharray="6 8" />
+  <rect x="0" y="318" width="640" height="62" fill="#eee1c9" />
 
-  <g opacity="0.92">
-    <rect x="158" y="80" width="18" height="238" rx="8" fill="#c0a174" />
-    <rect x="464" y="80" width="18" height="238" rx="8" fill="#c0a174" />
-    <rect x="158" y="80" width="324" height="18" rx="8" fill="#c0a174" />
+  <circle cx="66" cy="68" r="18" fill="#8a6a3c" />
+  <text x="60" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">1</text>
+  <circle cx="386" cy="68" r="18" fill="#8a6a3c" />
+  <text x="380" y="74" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fffaf0">2</text>
+
+  <g opacity="0.95">
+    <rect x="106" y="92" width="14" height="198" rx="7" fill="#b99869" />
+    <rect x="240" y="92" width="14" height="198" rx="7" fill="#b99869" />
+    <rect x="106" y="92" width="148" height="14" rx="7" fill="#b99869" />
+  </g>
+  <g opacity="0.95">
+    <rect x="426" y="92" width="14" height="198" rx="7" fill="#b99869" />
+    <rect x="560" y="92" width="14" height="198" rx="7" fill="#b99869" />
+    <rect x="426" y="92" width="148" height="14" rx="7" fill="#b99869" />
   </g>
 
-  <g filter="url(#shadow)">
-    <circle cx="320" cy="133" r="25" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
-    <path d="M286 166 Q320 148 354 166 L346 232 Q320 246 294 232 Z" fill="#9e8575" stroke="#7f6450" stroke-width="3" />
-    <ellipse cx="320" cy="186" rx="40" ry="33" fill="#dca596" opacity="0.26" />
-    <path d="M292 175 Q250 180 240 195 Q236 202 238 214" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M348 175 Q390 180 400 195 Q404 202 402 214" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M239 210 L239 160" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M401 210 L401 160" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M305 232 L286 305" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M335 232 L360 292" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M285 305 L256 305" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
-    <path d="M360 292 L388 292" fill="none" stroke="#7f6450" stroke-width="14" stroke-linecap="round" />
+  <g>
+    <circle cx="180" cy="138" r="22" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+    <path d="M150 170 Q180 158 210 170 L206 230 Q180 242 154 230 Z" fill="#8e776c" stroke="#735b4d" stroke-width="3" />
+    <path d="M152 182 Q130 192 128 210 L128 170" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M208 182 Q230 192 232 210 L232 170" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M166 230 L154 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M194 230 L204 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <ellipse cx="180" cy="196" rx="38" ry="30" fill="#d98768" opacity="0.18" />
   </g>
 
-  <path d="M218 284 C246 270 266 266 286 266" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
-  <path d="M422 276 C402 270 384 268 360 270" fill="none" stroke="#7d9154" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" />
+  <g>
+    <circle cx="500" cy="138" r="22" fill="#f0cfad" stroke="#8a6a3c" stroke-width="3" />
+    <path d="M470 170 Q500 158 530 170 L526 230 Q500 242 474 230 Z" fill="#8e776c" stroke="#735b4d" stroke-width="3" />
+    <path d="M472 182 Q450 192 448 210 L448 170" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M528 182 Q550 192 552 210 L552 170" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M486 230 L456 300" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <path d="M514 230 L536 286" fill="none" stroke="#735b4d" stroke-width="12" stroke-linecap="round" />
+    <ellipse cx="500" cy="196" rx="44" ry="32" fill="#d98768" opacity="0.26" />
+  </g>
 
-  <circle cx="320" cy="182" r="54" fill="none" stroke="#d78b6e" stroke-width="3" stroke-dasharray="7 7" opacity="0.9" />
-  <circle cx="320" cy="182" r="8" fill="#d78b6e" opacity="0.8" />
+  <path d="M266 270 C312 250 342 246 384 258" fill="none" stroke="#728b4c" stroke-width="7" stroke-linecap="round" marker-end="url(#arrow)" />
+  <path d="M460 286 C480 278 494 274 510 274" fill="none" stroke="#728b4c" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)" />
 </svg>
