@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>손해평가사 CBT</title>
     <script src="data_academy.js"></script>
+    <script src="telegram_life_center_schedule.js"></script>
     <style>
       :root {
         --font-body:
@@ -5124,6 +5125,11 @@
           ][Math.abs((context.seed || nowISO()).split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 3];
         if (kind === 'checkin') {
           return `🌙 하루 마감 체크\n• 텔레그램 버튼으로 바로 기록\n• 기록은 홈페이지에 자동 반영\n\n${closing}`;
+        }
+        if (kind === 'lifeCenterMay2026' && typeof getOlympicLifeCenterMay2026TelegramMessage === 'function') {
+          return getOlympicLifeCenterMay2026TelegramMessage(
+            context.date ? new Date(context.date) : new Date()
+          );
         }
         return `${context.message || '📝 오늘 공부 안내\n• 손글씨 15분\n• 계산기 15분\n• 끝나면 체크리스트 확인'}\n\n${closing}`;
       }
